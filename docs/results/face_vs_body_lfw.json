@@ -1,0 +1,29 @@
+{
+  "seed": 7,
+  "people_enrolled": 10,
+  "strangers": 60,
+  "results": {
+    "body_only": {
+      "same_person_queries": 20,
+      "matched_correct_person": 8,
+      "matched_WRONG_person": 9,
+      "review": 0,
+      "unknown": 3,
+      "stranger_queries": 60,
+      "stranger_ACCEPTED": 48,
+      "stranger_review": 0,
+      "stranger_unknown": 12
+    },
+    "face_and_body": {
+      "same_person_queries": 20,
+      "matched_correct_person": 20,
+      "matched_WRONG_person": 0,
+      "review": 0,
+      "unknown": 0,
+      "stranger_queries": 60,
+      "stranger_ACCEPTED": 0,
+      "stranger_review": 4,
+      "stranger_unknown": 56
+    }
+  }
+}

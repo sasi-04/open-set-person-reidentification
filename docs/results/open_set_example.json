@@ -1,0 +1,1502 @@
+{
+  "what": "The built-in open-set example (GET /api/demo, POST /api/demo/prepare, POST /api/demo/cases/{id}) run against a live server.",
+  "generated_at": "2026-10-13T07:09:26+00:00",
+  "server": "http://127.0.0.1:8765",
+  "seconds": 8.0,
+  "caveat": "A small demonstration with public-domain photographs, not a benchmark. The numbers describe these 13 photos only; accuracy on other cameras, lighting or groups of people has not been measured. Nothing from this example is saved.",
+  "rules": {
+    "matching_mode": "face_body",
+    "face_threshold": 0.465,
+    "face_review_band": 0.1,
+    "body_threshold": 0.7,
+    "policy_version": 1,
+    "policy_status": "unvalidated",
+    "face_models_loaded": true
+  },
+  "summary": [
+    {
+      "label": "Known people recognised",
+      "column": "face_body",
+      "right": 5,
+      "total": 5
+    },
+    {
+      "label": "Known people recognised",
+      "column": "clothes_only",
+      "right": 0,
+      "total": 5
+    },
+    {
+      "label": "Strangers refused",
+      "column": "face_body",
+      "right": 6,
+      "total": 6
+    },
+    {
+      "label": "Strangers refused",
+      "column": "clothes_only",
+      "right": 3,
+      "total": 6
+    },
+    {
+      "label": "Strangers in the same clothes refused",
+      "column": "face_body",
+      "right": 3,
+      "total": 3
+    },
+    {
+      "label": "Strangers in the same clothes refused",
+      "column": "clothes_only",
+      "right": 0,
+      "total": 3
+    },
+    {
+      "label": "Known people with no usable face sent to a person",
+      "column": "face_body",
+      "right": 2,
+      "total": 2
+    },
+    {
+      "label": "Known people with no usable face sent to a person",
+      "column": "clothes_only",
+      "right": 1,
+      "total": 2
+    },
+    {
+      "label": "All photos",
+      "column": "face_body",
+      "right": 13,
+      "total": 13
+    },
+    {
+      "label": "All photos",
+      "column": "clothes_only",
+      "right": 4,
+      "total": 13
+    }
+  ],
+  "cases": [
+    {
+      "id": "known-1",
+      "group": "known",
+      "title": "Example person 1 in a NASA jacket",
+      "expect": {
+        "kind": "match",
+        "person": "person1",
+        "person_label": "Example person 1",
+        "text": "Enrolled: Example person 1. The right answer is MATCH Example person 1."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          407.3,
+          276.1,
+          570.4,
+          506.3
+        ],
+        "detector_score": 0.93,
+        "face_px": 163.1,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "accepted",
+        "accepted_person": "person1",
+        "accepted_label": "Example person 1",
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.6235,
+        "face_score": 0.6235,
+        "body_score": 0.4645,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.623 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.464; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.6235,
+            "basis": "face",
+            "face_score": 0.6235,
+            "body_score": 0.4645
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.2026,
+            "basis": "face",
+            "face_score": 0.2026,
+            "body_score": 0.5032
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4311,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4311
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.5032,
+        "face_score": null,
+        "body_score": 0.5032,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.503, below the acceptance threshold 0.700.",
+        "verdict": "missed",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5032,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4645,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4311,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 250.6,
+        "face_ms": 215.3,
+        "decide_ms": 0.8,
+        "total_ms": 512.0
+      }
+    },
+    {
+      "id": "known-2",
+      "group": "known",
+      "title": "Example person 1, twelve years later",
+      "expect": {
+        "kind": "match",
+        "person": "person1",
+        "person_label": "Example person 1",
+        "text": "Enrolled: Example person 1. The right answer is MATCH Example person 1."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          345.1,
+          158.8,
+          573.8,
+          465.4
+        ],
+        "detector_score": 0.936,
+        "face_px": 228.7,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "accepted",
+        "accepted_person": "person1",
+        "accepted_label": "Example person 1",
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.648,
+        "face_score": 0.648,
+        "body_score": 0.4849,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.648 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.485; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.648,
+            "basis": "face",
+            "face_score": 0.648,
+            "body_score": 0.4849
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.2014,
+            "basis": "face",
+            "face_score": 0.2014,
+            "body_score": 0.5256
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4807,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4807
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.5256,
+        "face_score": null,
+        "body_score": 0.5256,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.526, below the acceptance threshold 0.700.",
+        "verdict": "missed",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5256,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4849,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4807,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 219.2,
+        "face_ms": 98.5,
+        "decide_ms": 0.8,
+        "total_ms": 358.2
+      }
+    },
+    {
+      "id": "known-3",
+      "group": "known",
+      "title": "Example person 1 in a hard hat",
+      "expect": {
+        "kind": "match",
+        "person": "person1",
+        "person_label": "Example person 1",
+        "text": "Enrolled: Example person 1. The right answer is MATCH Example person 1."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          638.0,
+          104.7,
+          740.3,
+          229.3
+        ],
+        "detector_score": 0.92,
+        "face_px": 102.4,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "accepted",
+        "accepted_person": "person1",
+        "accepted_label": "Example person 1",
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.7313,
+        "face_score": 0.7313,
+        "body_score": 0.5441,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.731 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.544; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.7313,
+            "basis": "face",
+            "face_score": 0.7313,
+            "body_score": 0.5441
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.0783,
+            "basis": "face",
+            "face_score": 0.0783,
+            "body_score": 0.6161
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4563,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4563
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.6161,
+        "face_score": null,
+        "body_score": 0.6161,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.616, below the acceptance threshold 0.700.",
+        "verdict": "missed",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.6161,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.5441,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4563,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 162.6,
+        "face_ms": 114.0,
+        "decide_ms": 1.1,
+        "total_ms": 326.5
+      }
+    },
+    {
+      "id": "known-4",
+      "group": "known",
+      "title": "Example person 2 in flight",
+      "expect": {
+        "kind": "match",
+        "person": "person2",
+        "person_label": "Example person 2",
+        "text": "Enrolled: Example person 2. The right answer is MATCH Example person 2."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          379.0,
+          239.4,
+          516.9,
+          427.6
+        ],
+        "detector_score": 0.923,
+        "face_px": 137.8,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "accepted",
+        "accepted_person": "person2",
+        "accepted_label": "Example person 2",
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.5722,
+        "face_score": 0.5722,
+        "body_score": 0.5769,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "Accepted by face: 'Example person 2' face similarity 0.572 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.577; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5722,
+            "basis": "face",
+            "face_score": 0.5722,
+            "body_score": 0.5769
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.0863,
+            "basis": "face",
+            "face_score": 0.0863,
+            "body_score": 0.5235
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.466,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.466
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.5769,
+        "face_score": null,
+        "body_score": 0.5769,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.577, below the acceptance threshold 0.700.",
+        "verdict": "missed",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5769,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.5235,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.466,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 209.7,
+        "face_ms": 175.4,
+        "decide_ms": 0.6,
+        "total_ms": 425.6
+      }
+    },
+    {
+      "id": "known-5",
+      "group": "known",
+      "title": "Example person 2 in a laboratory",
+      "expect": {
+        "kind": "match",
+        "person": "person2",
+        "person_label": "Example person 2",
+        "text": "Enrolled: Example person 2. The right answer is MATCH Example person 2."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          174.8,
+          306.9,
+          366.7,
+          575.8
+        ],
+        "detector_score": 0.933,
+        "face_px": 191.9,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "accepted",
+        "accepted_person": "person2",
+        "accepted_label": "Example person 2",
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.6516,
+        "face_score": 0.6516,
+        "body_score": 0.5217,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "Accepted by face: 'Example person 2' face similarity 0.652 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.522; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.6516,
+            "basis": "face",
+            "face_score": 0.6516,
+            "body_score": 0.5217
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.1975,
+            "basis": "face",
+            "face_score": 0.1975,
+            "body_score": 0.4209
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.5157,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.5157
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.5217,
+        "face_score": null,
+        "body_score": 0.5217,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.522, below the acceptance threshold 0.700.",
+        "verdict": "missed",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5217,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.5157,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4209,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 150.9,
+        "face_ms": 171.3,
+        "decide_ms": 0.7,
+        "total_ms": 355.1
+      }
+    },
+    {
+      "id": "noface-1",
+      "group": "no_face",
+      "title": "Example person 3 again - head blurred",
+      "expect": {
+        "kind": "review",
+        "person": "person3",
+        "person_label": "Example person 3",
+        "text": "Example person 3 is enrolled, but there is no usable face. The safe answer is REVIEW (a person should look)."
+      },
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "face_body": {
+        "outcome": "review_required",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.9103,
+        "face_score": null,
+        "body_score": 0.9103,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No face was found in the picture. Body/clothing evidence alone: 'Example person 3' scored 0.910, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.9103,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.9103
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5209,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.5209
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4319,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4319
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "accepted",
+        "accepted_person": "person3",
+        "accepted_label": "Example person 3",
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.9103,
+        "face_score": null,
+        "body_score": 0.9103,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Accepted: 'Example person 3' scored 0.910, at or above the threshold 0.700.",
+        "verdict": "risky",
+        "candidates": [
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.9103,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5209,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4319,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 126.0,
+        "face_ms": 10.1,
+        "decide_ms": 0.5,
+        "total_ms": 140.7
+      }
+    },
+    {
+      "id": "noface-2",
+      "group": "no_face",
+      "title": "Example person 3, out of focus",
+      "expect": {
+        "kind": "review",
+        "person": "person3",
+        "person_label": "Example person 3",
+        "text": "Example person 3 is enrolled, but there is no usable face. The safe answer is REVIEW (a person should look)."
+      },
+      "face": {
+        "status": "unusable",
+        "box": [
+          -3.9,
+          -1.5,
+          133.7,
+          137.9
+        ],
+        "detector_score": 0.735,
+        "face_px": 137.5,
+        "flags": [
+          "face_low_confidence"
+        ],
+        "message": "A face was found but it is not usable: The face detector was not sure this is a face."
+      },
+      "face_body": {
+        "outcome": "review_required",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.4997,
+        "face_score": null,
+        "body_score": 0.4997,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 2' scored 0.500. A face was found but it is not good enough to compare (face_low_confidence).",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.4997,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4997
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4851,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.4851
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.426,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.426
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "review_required",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.4997,
+        "face_score": null,
+        "body_score": 0.4997,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 2' scored 0.500.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.4997,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.4851,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.426,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 108.6,
+        "face_ms": 30.7,
+        "decide_ms": 0.8,
+        "total_ms": 141.6
+      }
+    },
+    {
+      "id": "stranger-1",
+      "group": "stranger",
+      "title": "A stranger in a cockpit",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          720.8,
+          188.5,
+          859.4,
+          357.9
+        ],
+        "detector_score": 0.936,
+        "face_px": 138.6,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.211,
+        "face_score": 0.211,
+        "body_score": 0.4875,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.211, below the face threshold 0.465.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.211,
+            "basis": "face",
+            "face_score": 0.211,
+            "body_score": 0.4875
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.0746,
+            "basis": "face",
+            "face_score": 0.0746,
+            "body_score": 0.6047
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.529,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.529
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.6047,
+        "face_score": null,
+        "body_score": 0.6047,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.605, below the acceptance threshold 0.700.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.6047,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.529,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4875,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 114.5,
+        "face_ms": 74.5,
+        "decide_ms": 0.4,
+        "total_ms": 217.1
+      }
+    },
+    {
+      "id": "stranger-2",
+      "group": "stranger",
+      "title": "The same stranger, blue shirt",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          176.6,
+          191.1,
+          388.3,
+          434.2
+        ],
+        "detector_score": 0.929,
+        "face_px": 211.7,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.2611,
+        "face_score": 0.2611,
+        "body_score": 0.4419,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.261, below the face threshold 0.465.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.2611,
+            "basis": "face",
+            "face_score": 0.2611,
+            "body_score": 0.4419
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.0877,
+            "basis": "face",
+            "face_score": 0.0877,
+            "body_score": 0.4672
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3833,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.3833
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.4672,
+        "face_score": null,
+        "body_score": 0.4672,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.467, below the acceptance threshold 0.700.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.4672,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4419,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3833,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 128.0,
+        "face_ms": 249.4,
+        "decide_ms": 0.5,
+        "total_ms": 408.0
+      }
+    },
+    {
+      "id": "stranger-3",
+      "group": "stranger",
+      "title": "A stranger on the street (head blurred)",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.6341,
+        "face_score": null,
+        "body_score": 0.6341,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 3' scored 0.634, below the acceptance threshold 0.700. No face was found in the picture.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.6341,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.6341
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5885,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.5885
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.5423,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.5423
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.6341,
+        "face_score": null,
+        "body_score": 0.6341,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "No supported match: the closest candidate 'Example person 3' scored 0.634, below the acceptance threshold 0.700.",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.6341,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5885,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.5423,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 104.5,
+        "face_ms": 12.5,
+        "decide_ms": 0.5,
+        "total_ms": 120.2
+      }
+    },
+    {
+      "id": "same-1",
+      "group": "lookalike",
+      "title": "A stranger in the same orange flight suit (1)",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          398.5,
+          196.8,
+          562.6,
+          440.3
+        ],
+        "detector_score": 0.946,
+        "face_px": 164.1,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.1914,
+        "face_score": 0.1914,
+        "body_score": 0.8147,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.191, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.815 for 'Example person 1').",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.1914,
+            "basis": "face",
+            "face_score": 0.1914,
+            "body_score": 0.8147
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.0957,
+            "basis": "face",
+            "face_score": 0.0957,
+            "body_score": 0.7549
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3963,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.3963
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "accepted",
+        "accepted_person": "person1",
+        "accepted_label": "Example person 1",
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.8147,
+        "face_score": null,
+        "body_score": 0.8147,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Accepted: 'Example person 1' scored 0.815, at or above the threshold 0.700.",
+        "verdict": "false_accept",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.8147,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.7549,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3963,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 130.4,
+        "face_ms": 118.1,
+        "decide_ms": 0.4,
+        "total_ms": 281.0
+      }
+    },
+    {
+      "id": "same-2",
+      "group": "lookalike",
+      "title": "A stranger in the same orange flight suit (2)",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          328.6,
+          167.6,
+          525.4,
+          412.7
+        ],
+        "detector_score": 0.944,
+        "face_px": 196.9,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.1419,
+        "face_score": 0.1419,
+        "body_score": 0.8083,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 2', scored 0.142, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.808 for 'Example person 2').",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.1419,
+            "basis": "face",
+            "face_score": 0.1419,
+            "body_score": 0.8083
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.0849,
+            "basis": "face",
+            "face_score": 0.0849,
+            "body_score": 0.7747
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.371,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.371
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "accepted",
+        "accepted_person": "person2",
+        "accepted_label": "Example person 2",
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.8083,
+        "face_score": null,
+        "body_score": 0.8083,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Accepted: 'Example person 2' scored 0.808, at or above the threshold 0.700.",
+        "verdict": "false_accept",
+        "candidates": [
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.8083,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.7747,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.371,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 94.2,
+        "face_ms": 114.5,
+        "decide_ms": 0.7,
+        "total_ms": 244.3
+      }
+    },
+    {
+      "id": "same-3",
+      "group": "lookalike",
+      "title": "A stranger in the same orange flight suit (3)",
+      "expect": {
+        "kind": "unknown",
+        "person": null,
+        "person_label": null,
+        "text": "Not enrolled - a stranger. The right answer is UNKNOWN."
+      },
+      "face": {
+        "status": "usable",
+        "box": [
+          386.3,
+          140.8,
+          556.5,
+          368.5
+        ],
+        "detector_score": 0.949,
+        "face_px": 170.2,
+        "flags": [],
+        "message": "A usable face was found and compared."
+      },
+      "face_body": {
+        "outcome": "unknown",
+        "accepted_person": null,
+        "accepted_label": null,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.1577,
+        "face_score": 0.1577,
+        "body_score": 0.7844,
+        "basis": "face",
+        "threshold": 0.465,
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.158, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.784 for 'Example person 1').",
+        "verdict": "correct",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.1577,
+            "basis": "face",
+            "face_score": 0.1577,
+            "body_score": 0.7844
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.0865,
+            "basis": "face",
+            "face_score": 0.0865,
+            "body_score": 0.7393
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.394,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.394
+          }
+        ]
+      },
+      "clothes_only": {
+        "outcome": "accepted",
+        "accepted_person": "person1",
+        "accepted_label": "Example person 1",
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.7844,
+        "face_score": null,
+        "body_score": 0.7844,
+        "basis": "body",
+        "threshold": 0.7,
+        "reason": "Accepted: 'Example person 1' scored 0.784, at or above the threshold 0.700.",
+        "verdict": "false_accept",
+        "candidates": [
+          {
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.7844,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.7393,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.394,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          }
+        ]
+      },
+      "timings_ms": {
+        "embed_ms": 111.0,
+        "face_ms": 116.0,
+        "decide_ms": 0.4,
+        "total_ms": 261.3
+      }
+    }
+  ]
+}
