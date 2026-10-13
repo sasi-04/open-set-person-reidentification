@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="OpenID Vision: an open-set person re-identification research prototype - know when to match, know when to reject. Independent technical prototype; not an official Zed Digital product." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>OpenID Vision</title>
+    <script>
+      // Apply the theme before the first paint so there is no flash. The graphite (dark) workstation look is the
+      // default; a person's own choice (saved on this device) always wins.
+      try {
+        var t = localStorage.getItem("reid-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

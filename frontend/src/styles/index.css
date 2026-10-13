@@ -1,0 +1,250 @@
+/*
+  Design tokens and base styles.
+
+  In plain words: every colour, radius, shadow and font used by the interface is
+  defined ONCE here as a CSS variable. Components refer to the names ("--surface",
+  "--ink-2") and never to raw hex values, so changing the look - or switching to the
+  dark theme - means changing this file only.
+
+  Visual direction (inspired by zed.digital's public site, not a copy of its assets):
+  near-black ink and off-white surfaces, one restrained red accent (used for the main
+  action and the active-navigation marker only), Poppins headings, pill-shaped buttons,
+  fine borders and very light shadows. Status colours are separate from the brand red,
+  and are always paired with an icon and a text label (never colour alone).
+*/
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/poppins/latin-600.css";
+@import "@fontsource/poppins/latin-700.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ light theme */
+:root {
+  color-scheme: light;
+
+  --canvas: #f6f7f8;
+  --surface: #ffffff;
+  --surface-2: #f2f4f6;
+  --line: #e3e5e9;
+  --line-strong: #cdd1d7;
+  --ink: #0b0d10;
+  --ink-2: #454b54;
+  --ink-3: #5f6672; /* muted text: >= 5.2:1 on every light surface (checked, see docs/DESIGN.md) */
+
+  --brand: #e31b23; /* zed.digital red - primary action + active marker */
+  --brand-strong: #b91c1c;
+  --brand-ink: #c8161e; /* the accent when used as TEXT (passes AA on white) */
+  --brand-tint: #fdf2f2;
+  --on-brand: #ffffff;
+
+  --ok: #0f6b45;       --ok-bg: #e4f4ec;
+  --warn: #8a5300;     --warn-bg: #fff3d6;
+  --neutral: #3b4350;  --neutral-bg: #eceef1;
+  --bad: #b42318;      --bad-bg: #fdecea;
+  --info: #1d5fbf;     --info-bg: #e8f0fc;
+
+  --nav-bg: #0b0d10;
+  --nav-ink: #f3f4f6;
+  --nav-ink-2: #9aa1ad;
+  --nav-line: #1d2127;
+  --nav-active-bg: #171b21;
+
+  --focus: #1d5fbf;
+  --overlay: rgb(11 13 16 / 0.55);
+  --shadow-sm: 0 1px 2px rgb(11 13 16 / 0.06);
+  --shadow-md: 0 6px 24px rgb(11 13 16 / 0.1);
+
+  /* chart colours: fixed order, validated for colour-vision differences (see docs/DESIGN.md) */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --grid: #e8eaed;
+  --axis: #c3c7ce;
+}
+
+/* ------------------------------------------------------------------- dark theme */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #0e1115;
+  --surface: #161a20;
+  --surface-2: #1c2128;
+  --line: #2a3039;
+  --line-strong: #3a414c;
+  --ink: #f3f4f6;
+  --ink-2: #b6bcc6;
+  --ink-3: #8e96a3;
+
+  --brand: #e31b23;
+  --brand-strong: #f0444b;
+  --brand-ink: #ff7a80;
+  --brand-tint: #2a1416;
+  --on-brand: #ffffff;
+
+  --ok: #5fd39b;       --ok-bg: #12291f;
+  --warn: #f2b24c;     --warn-bg: #2d2210;
+  --neutral: #c3c9d3;  --neutral-bg: #232932;
+  --bad: #ff8a80;      --bad-bg: #32171a;
+  --info: #7fb0ff;     --info-bg: #14233a;
+
+  --nav-bg: #090b0e;
+  --nav-active-bg: #14181e;
+  --focus: #7fb0ff;
+  --overlay: rgb(0 0 0 / 0.65);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 8px 28px rgb(0 0 0 / 0.5);
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --grid: #2c3138;
+  --axis: #3a414b;
+}
+
+/* --------------------------------------------- expose the tokens to Tailwind utilities */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-tint: var(--brand-tint);
+  --color-on-brand: var(--on-brand);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-bad: var(--bad);
+  --color-bad-bg: var(--bad-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-nav: var(--nav-bg);
+  --color-nav-ink: var(--nav-ink);
+  --color-nav-ink-2: var(--nav-ink-2);
+  --color-nav-line: var(--nav-line);
+  --color-nav-active: var(--nav-active-bg);
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Poppins", "Inter Variable", system-ui, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-card: var(--shadow-sm);
+  --shadow-pop: var(--shadow-md);
+}
+
+/*
+  Base styles live in "@layer base" so Tailwind's utility classes (text-nav-ink, text-ink-3 ...)
+  can override them. Unlayered CSS would always win over utilities and, for example, turn
+  every navigation link red.
+*/
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-width: 320px;
+    overflow-x: hidden; /* never let a wide child create a horizontal page scroll */
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  a {
+    color: var(--brand-ink);
+  }
+  img {
+    max-width: 100%;
+  }
+  ::selection {
+    background: var(--brand-tint);
+    color: var(--ink);
+  }
+
+  /* A clearly visible keyboard focus indicator on every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Visually hidden but available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Numbers that line up in columns (tables, axes) use tabular figures; headline numbers do not. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle, purposeful motion only - and none at all if the user asked for reduced motion. */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+.animate-fade-in {
+  animation: fade-in 180ms ease-out both;
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--line) 37%, var(--surface-2) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: var(--radius-sm);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Windows high-contrast / forced-colors mode: keep boundaries visible. */
+@media (forced-colors: active) {
+  .badge,
+  .card {
+    border: 1px solid CanvasText;
+  }
+}
