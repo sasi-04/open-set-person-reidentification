@@ -1,0 +1,148 @@
+{
+  "notice": "A similarity score is not a probability, and a match is not proof of anyone's identity. This record shows what the system measured under the decision policy named in it; it can be wrong and is meant for authorised evaluation only.",
+  "record": {
+    "request_id": "e7fe2703a8554944",
+    "created_at": "2026-10-12T20:25:25.851845",
+    "mode": "crop",
+    "image": {
+      "width": 144,
+      "height": 448
+    },
+    "model_name": "osnet_ain_x1_0",
+    "policy_version": 1,
+    "people": [
+      {
+        "index": 0,
+        "box": null,
+        "detector_score": null,
+        "quality": {
+          "usable": true,
+          "flags": [],
+          "blocking_reason": null,
+          "metrics": {
+            "height_px": 448.0,
+            "width_px": 224.0,
+            "sharpness": 1870.3,
+            "aspect_ratio": 2.0
+          }
+        },
+        "decision": {
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.634, below the acceptance threshold 0.700. No face was found in the picture.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.63411,
+          "top2_score": 0.58848,
+          "margin": 0.04563,
+          "accept_threshold": 0.7,
+          "min_margin": null,
+          "calibrated_confidence": null,
+          "policy_version": 1,
+          "policy_status": "recorded",
+          "quality_flags": [],
+          "matching_mode": "face_body",
+          "basis": "body",
+          "face_status": "no_face",
+          "top1_face_score": null,
+          "top1_body_score": 0.63411,
+          "face_threshold": 0.465,
+          "body_threshold": 0.7
+        },
+        "candidates": [
+          {
+            "rank": 1,
+            "reference_id": "demo-person-a",
+            "label": "Example person 3 - street photo, head blurred, so NO face on file",
+            "score": 0.63411,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.63411,
+            "face_box": null
+          },
+          {
+            "rank": 2,
+            "reference_id": "demo-jemison",
+            "label": "Example person 2 (public-domain NASA photos)",
+            "score": 0.58848,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.58848,
+            "face_box": null
+          },
+          {
+            "rank": 3,
+            "reference_id": "demo-collins",
+            "label": "Example person 1 (public-domain NASA photos)",
+            "score": 0.54233,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.54233,
+            "face_box": null
+          }
+        ],
+        "face": {
+          "status": "no_face",
+          "box": null,
+          "detector_score": null,
+          "face_px": null,
+          "flags": [],
+          "message": "No face was found in this picture, so only the body could be compared."
+        },
+        "cues": [
+          {
+            "cue": "upper_clothing",
+            "title": "Upper clothing",
+            "query_rgb": [
+              196,
+              143,
+              66
+            ],
+            "query_label": "tan",
+            "reference_rgb": [
+              22,
+              24,
+              34
+            ],
+            "reference_label": "black",
+            "delta_e": 78.1,
+            "verdict": "different"
+          },
+          {
+            "cue": "lower_clothing",
+            "title": "Lower clothing",
+            "query_rgb": [
+              81,
+              77,
+              66
+            ],
+            "query_label": "dark grey",
+            "reference_rgb": [
+              7,
+              7,
+              9
+            ],
+            "reference_label": "black",
+            "delta_e": 31.8,
+            "verdict": "different"
+          }
+        ],
+        "crop_url": "/api/reid/history/e7fe2703a8554944/crops/0",
+        "timings_ms": {}
+      }
+    ],
+    "timings_ms": {
+      "preprocess_ms": 1.26,
+      "embed_ms": 108.22,
+      "face_ms": 9.9,
+      "retrieval_and_decision_ms": 0.53,
+      "total_ms": 127.66
+    }
+  }
+}

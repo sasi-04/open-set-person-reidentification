@@ -1,0 +1,22 @@
+section,model,metric,value,note
+experiment,,experiment_id,87b73e0b6dce44eebc615098ebea9ef0,
+experiment,,dataset,smoke_synthetic,smoke_test; benchmark=False
+experiment,,mining_split,test,which people were searched for look-alikes
+experiment,,seed,0,same data + seed + settings reproduce the numbers
+experiment,,operating_target,"DIR@1 (accepted and correct) >= 90.0%, minimise FAR",chosen on the calibration people only
+challenge_set,,identity_pairs,12,
+challenge_set,,impostor_comparisons,24,"different people, chosen because they are alike"
+challenge_set,,genuine_comparisons,720,"same person, different cameras"
+challenge_set,,all_pairs_compared,27840,denominator of the all-pairs reference FAR
+model,baseline,fingerprint,osnet_ain_x1_0-34c24e98b6b7-flip0,
+calibration,baseline,threshold,0.8343970775604248,chosen on calibration people
+calibration,baseline,min_margin,,
+calibration,baseline,target_achieved,False,
+test_query_level,baseline,far,1.0,120 of 120 strangers accepted
+test_query_level,baseline,far_upper_bound_95,1.0,one-sided 95% bound
+test_query_level,baseline,recall_dir1,0.48,accepted AND correct / enrolled queries
+challenge_set,baseline,far_on_challenge_set,1.0,24 of 24 hard pairs accepted
+challenge_set,baseline,far_all_pairs_reference,0.38308189655172414,over ALL different-person pairs
+challenge_set,baseline,tar,0.8736111111111111,629 of 720 same-person pairs accepted
+latency,baseline,single_crop_ms_p50,187.49,measured on this machine
+model,improved,status,unavailable,No fine-tuned checkpoint was selected. None is shipped with this project; scripts/finetune_triplet.py trains one on the development people.

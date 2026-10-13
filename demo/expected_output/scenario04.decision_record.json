@@ -1,0 +1,145 @@
+{
+  "notice": "A similarity score is not a probability, and a match is not proof of anyone's identity. This record shows what the system measured under the decision policy named in it; it can be wrong and is meant for authorised evaluation only.",
+  "record": {
+    "request_id": "c8ce8aa6a0e4463a",
+    "created_at": "2026-10-12T20:25:21.039675",
+    "mode": "crop",
+    "image": {
+      "width": 960,
+      "height": 1471
+    },
+    "model_name": "osnet_ain_x1_0",
+    "policy_version": 1,
+    "people": [
+      {
+        "index": 0,
+        "box": null,
+        "detector_score": null,
+        "quality": {
+          "usable": true,
+          "flags": [],
+          "blocking_reason": null,
+          "metrics": {
+            "height_px": 1471.0,
+            "width_px": 960.0,
+            "sharpness": 7492.31,
+            "aspect_ratio": 1.53
+          }
+        },
+        "decision": {
+          "outcome": "unknown",
+          "reason_code": "face_below_threshold",
+          "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'demo-collins', scored 0.261, below the face threshold 0.465.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-collins",
+          "top1_score": 0.26111,
+          "top2_score": 0.08772,
+          "margin": 0.17339,
+          "accept_threshold": 0.465,
+          "min_margin": null,
+          "calibrated_confidence": null,
+          "policy_version": 1,
+          "policy_status": "recorded",
+          "quality_flags": [],
+          "matching_mode": "face_body",
+          "basis": "face",
+          "face_status": "usable",
+          "top1_face_score": 0.26111,
+          "top1_body_score": 0.44186,
+          "face_threshold": 0.465,
+          "body_threshold": 0.7
+        },
+        "candidates": [
+          {
+            "rank": 1,
+            "reference_id": "demo-collins",
+            "label": "Example person 1 (public-domain NASA photos)",
+            "score": 0.26111,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+            "basis": "face",
+            "face_score": 0.26111,
+            "body_score": 0.44186,
+            "face_box": [
+              337.5,
+              519.3,
+              515.4,
+              747.3
+            ]
+          },
+          {
+            "rank": 2,
+            "reference_id": "demo-jemison",
+            "label": "Example person 2 (public-domain NASA photos)",
+            "score": 0.08772,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-jemison/images/036a500ed30144ac95a42f2fec1ee7c3",
+            "basis": "face",
+            "face_score": 0.08772,
+            "body_score": 0.46718,
+            "face_box": [
+              479.9,
+              542.7,
+              642.5,
+              756.9
+            ]
+          },
+          {
+            "rank": 3,
+            "reference_id": "demo-person-a",
+            "label": "Example person 3 - street photo, head blurred, so NO face on file",
+            "score": 0.3833,
+            "n_images": 2,
+            "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.3833,
+            "face_box": null
+          }
+        ],
+        "face": {
+          "status": "usable",
+          "box": [
+            176.6,
+            191.1,
+            388.3,
+            434.2
+          ],
+          "detector_score": 0.929,
+          "face_px": 211.7,
+          "flags": [],
+          "message": "A usable face was found and compared."
+        },
+        "cues": [
+          {
+            "cue": "skin_tone",
+            "title": "Skin tone",
+            "query_rgb": [
+              229,
+              161,
+              140
+            ],
+            "query_label": "light",
+            "reference_rgb": [
+              214,
+              171,
+              156
+            ],
+            "reference_label": "very light",
+            "delta_e": 11.7,
+            "verdict": "similar"
+          }
+        ],
+        "crop_url": "/api/reid/history/c8ce8aa6a0e4463a/crops/0",
+        "timings_ms": {}
+      }
+    ],
+    "timings_ms": {
+      "preprocess_ms": 0.0,
+      "embed_ms": 142.29,
+      "face_ms": 178.23,
+      "retrieval_and_decision_ms": 0.56,
+      "total_ms": 352.15
+    }
+  }
+}

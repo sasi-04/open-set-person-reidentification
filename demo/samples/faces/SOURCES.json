@@ -1,0 +1,212 @@
+[
+  {
+    "file": "enroll/collins/collins_enrol_1_orange_suit_1998.jpg",
+    "role": "enroll",
+    "person": "collins",
+    "title": "File:Commander Eileen Collins - GPN-2000-001177.jpg",
+    "licence": "Public domain",
+    "author": "Robert Markowitz",
+    "date": "Taken on 30 October 1998",
+    "page": "https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg",
+    "size": [
+      960,
+      1200
+    ]
+  },
+  {
+    "file": "enroll/collins/collins_enrol_2_navy_jacket_early.jpg",
+    "role": "enroll",
+    "person": "collins",
+    "title": "File:Eileen Collins, early NASA portrait.jpg",
+    "licence": "Public domain",
+    "author": "",
+    "date": "",
+    "page": "https://commons.wikimedia.org/wiki/File:Eileen_Collins,_early_NASA_portrait.jpg",
+    "size": [
+      960,
+      1215
+    ]
+  },
+  {
+    "file": "test/collins/collins_test_1_nasa_jacket_1999.jpg",
+    "role": "test",
+    "person": "collins",
+    "title": "File:Eileen Collins climbing into an M-113.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "1999-06-22",
+    "page": "https://commons.wikimedia.org/wiki/File:Eileen_Collins_climbing_into_an_M-113.jpg",
+    "size": [
+      960,
+      1430
+    ]
+  },
+  {
+    "file": "test/collins/collins_test_2_suit_jacket_2010.jpg",
+    "role": "test",
+    "person": "collins",
+    "title": "File:Defense.gov photo essay 100310-D-0653H-037.jpg",
+    "licence": "Public domain",
+    "author": "Linda Hosek",
+    "date": "2010-03-10",
+    "page": "https://commons.wikimedia.org/wiki/File:Defense.gov_photo_essay_100310-D-0653H-037.jpg",
+    "size": [
+      960,
+      640
+    ]
+  },
+  {
+    "file": "test/collins/collins_test_3_hard_hat_2004.jpg",
+    "role": "test",
+    "person": "collins",
+    "title": "File:KSC-04pd1046.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "2004-05-07",
+    "page": "https://commons.wikimedia.org/wiki/File:KSC-04pd1046.jpg",
+    "size": [
+      960,
+      695
+    ]
+  },
+  {
+    "file": "enroll/jemison/jemison_enrol_1_orange_suit_1992.jpg",
+    "role": "enroll",
+    "person": "jemison",
+    "title": "File:Mae Carol Jemison.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "Taken on 1 July 1992",
+    "page": "https://commons.wikimedia.org/wiki/File:Mae_Carol_Jemison.jpg",
+    "size": [
+      960,
+      1200
+    ]
+  },
+  {
+    "file": "enroll/jemison/jemison_enrol_2_blue_jacket_1987.jpg",
+    "role": "enroll",
+    "person": "jemison",
+    "title": "File:Mae Jemison - Official portrait of 1987 astronaut candidate.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "Taken on 15 October 1987",
+    "page": "https://commons.wikimedia.org/wiki/File:Mae_Jemison_-_Official_portrait_of_1987_astronaut_candidate.jpg",
+    "size": [
+      960,
+      1200
+    ]
+  },
+  {
+    "file": "test/jemison/jemison_test_1_in_flight_1992.jpg",
+    "role": "test",
+    "person": "jemison",
+    "title": "File:Mae Jemison floating in space during STS-47.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "between 12 September 1992 and 20 September 1992date QS:P,+19",
+    "page": "https://commons.wikimedia.org/wiki/File:Mae_Jemison_floating_in_space_during_STS-47.jpg",
+    "size": [
+      960,
+      1461
+    ]
+  },
+  {
+    "file": "test/jemison/jemison_test_2_lab_1992.jpg",
+    "role": "test",
+    "person": "jemison",
+    "title": "File:Mae-jemison.jpg",
+    "licence": "Public domain",
+    "author": "National Aeronautics and Space Administration",
+    "date": "1992-01-09",
+    "page": "https://commons.wikimedia.org/wiki/File:Mae-jemison.jpg",
+    "size": [
+      960,
+      1408
+    ]
+  },
+  {
+    "file": "test/ride/ride_stranger_1_cockpit_1983.jpg",
+    "role": "test",
+    "person": "ride",
+    "title": "File:Dr. Sally Ride in Space Shuttle cockpit on mission STS-7 (1983) with three levitating calculators HP-41C.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "1983-06-21",
+    "page": "https://commons.wikimedia.org/wiki/File:Dr._Sally_Ride_in_Space_Shuttle_cockpit_on_mission_STS-7_(1983)_with_three_levitating_calculators_HP-41C.jpg",
+    "size": [
+      960,
+      601
+    ]
+  },
+  {
+    "file": "test/ride/ride_stranger_2_blue_shirt_1983.jpg",
+    "role": "test",
+    "person": "ride",
+    "title": "File:STS007-12-536.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "1983-06-24",
+    "page": "https://commons.wikimedia.org/wiki/File:STS007-12-536.jpg",
+    "size": [
+      960,
+      1471
+    ]
+  },
+  {
+    "file": "test/ride/ride_stranger_3_headset_1983.jpg",
+    "role": "test",
+    "person": "ride",
+    "title": "File:S83-35763.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "1983-06-18",
+    "page": "https://commons.wikimedia.org/wiki/File:S83-35763.jpg",
+    "size": [
+      960,
+      623
+    ]
+  },
+  {
+    "file": "test/lookalike/stranger_same_suit_1_poindexter.jpg",
+    "role": "test",
+    "person": "lookalike",
+    "title": "File:Alan G. Poindexter.jpg",
+    "licence": "Public domain",
+    "author": "NASA",
+    "date": "Taken on 28 May 2006",
+    "page": "https://commons.wikimedia.org/wiki/File:Alan_G._Poindexter.jpg",
+    "size": [
+      960,
+      1200
+    ]
+  },
+  {
+    "file": "test/lookalike/stranger_same_suit_2_bondar.jpg",
+    "role": "test",
+    "person": "lookalike",
+    "title": "File:Roberta Bondar2.jpg",
+    "licence": "Public domain",
+    "author": "JSC/NASA",
+    "date": "1991-11-21",
+    "page": "https://commons.wikimedia.org/wiki/File:Roberta_Bondar2.jpg",
+    "size": [
+      960,
+      1175
+    ]
+  },
+  {
+    "file": "test/lookalike/stranger_same_suit_3_wilmore.jpg",
+    "role": "test",
+    "person": "lookalike",
+    "title": "File:Barry Wilmore.jpg",
+    "licence": "Public domain",
+    "author": "Bill Stafford",
+    "date": "Taken on 12 August 2009",
+    "page": "https://commons.wikimedia.org/wiki/File:Barry_Wilmore.jpg",
+    "size": [
+      960,
+      1200
+    ]
+  }
+]

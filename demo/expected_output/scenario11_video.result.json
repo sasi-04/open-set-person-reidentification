@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "kind": "video",
+  "metadata": {
+    "original_name": "clip_street.avi",
+    "video": {
+      "width": 480,
+      "height": 640,
+      "fps": 10.0,
+      "frame_count": 30,
+      "duration_seconds": 3.0,
+      "container": "avi"
+    },
+    "sampling": {
+      "every_seconds": 1.0,
+      "max_frames": 10,
+      "every_n_frames": 10,
+      "assumed_fps": null,
+      "frames_processed": 3
+    },
+    "policy": {
+      "version": 1,
+      "status": "unvalidated",
+      "accept_threshold": 0.7,
+      "min_margin": null,
+      "matching_mode": "face_body",
+      "face_accept_threshold": 0.465
+    },
+    "face_model": "face-8f2383e4-0ba9fbfa",
+    "model": {
+      "name": "osnet_ain_x1_0",
+      "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+      "device": "cpu"
+    },
+    "detector": "fasterrcnn_mobilenet_v3_large_fpn",
+    "thumbnails_kept": true,
+    "retention_hours": 24,
+    "generated_at": "2026-10-12T20:25:29.972848+00:00"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "frame_number": 0,
+      "time_seconds": 0.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0000.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            344.5,
+            180.3,
+            436.6,
+            450.4
+          ],
+          "detector_score": 0.9979,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "review_required",
+          "reason_code": "body_only_review",
+          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.852, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.85236,
+          "top2_score": 0.48006,
+          "margin": 0.3723,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.85236,
+          "accept_threshold": 0.7
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 4.67,
+        "detect_ms": 479.3,
+        "embed_ms": 92.28,
+        "face_ms": 6.53,
+        "match_ms": 0.38,
+        "processing_ms": 578.49
+      }
+    },
+    {
+      "index": 1,
+      "frame_number": 10,
+      "time_seconds": 1.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0001.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            169.4,
+            147.7,
+            311.2,
+            587.8
+          ],
+          "detector_score": 0.9975,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.645, below the acceptance threshold 0.700. No face was found in the picture.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.6454,
+          "top2_score": 0.57022,
+          "margin": 0.07519,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.6454,
+          "accept_threshold": 0.7
+        },
+        {
+          "index": 1,
+          "box": [
+            25.4,
+            120.8,
+            74.0,
+            242.1
+          ],
+          "detector_score": 0.9875,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.556, below the acceptance threshold 0.700. No face was found in the picture.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.5557,
+          "top2_score": 0.43352,
+          "margin": 0.12219,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.5557,
+          "accept_threshold": 0.7
+        },
+        {
+          "index": 2,
+          "box": [
+            105.0,
+            132.3,
+            144.3,
+            246.7
+          ],
+          "detector_score": 0.9575,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.540, below the acceptance threshold 0.700. No face was found in the picture.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.53963,
+          "top2_score": 0.46874,
+          "margin": 0.07089,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.53963,
+          "accept_threshold": 0.7
+        },
+        {
+          "index": 3,
+          "box": [
+            281.8,
+            108.3,
+            310.8,
+            203.2
+          ],
+          "detector_score": 0.8082,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.499, below the acceptance threshold 0.700. No face was found in the picture.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.49911,
+          "top2_score": 0.42744,
+          "margin": 0.07167,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.49911,
+          "accept_threshold": 0.7
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 3.51,
+        "detect_ms": 723.39,
+        "embed_ms": 426.4,
+        "face_ms": 23.23,
+        "match_ms": 1.84,
+        "processing_ms": 1174.86
+      }
+    },
+    {
+      "index": 2,
+      "frame_number": 20,
+      "time_seconds": 2.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0002.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            348.8,
+            176.8,
+            443.0,
+            455.8
+          ],
+          "detector_score": 0.9983,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "face_status": "no_face",
+          "face_box": null,
+          "face_flags": [],
+          "outcome": "review_required",
+          "reason_code": "body_only_review",
+          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.836, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.83616,
+          "top2_score": 0.48859,
+          "margin": 0.34757,
+          "calibrated_confidence": null,
+          "basis": "body",
+          "top1_face_score": null,
+          "top1_body_score": 0.83616,
+          "accept_threshold": 0.7
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 2.71,
+        "detect_ms": 411.26,
+        "embed_ms": 122.44,
+        "face_ms": 6.6,
+        "match_ms": 0.51,
+        "processing_ms": 540.81
+      }
+    }
+  ],
+  "summary": {
+    "frames_processed": 3,
+    "people_detected": 6,
+    "outcomes": {
+      "review_required": 2,
+      "unknown": 4
+    },
+    "identities_seen": [],
+    "latency_ms": {
+      "processing_per_frame": {
+        "n": 3,
+        "mean": 764.72,
+        "p50": 578.49,
+        "p95": 1115.22,
+        "p99": 1162.93,
+        "min": 540.81,
+        "max": 1174.86
+      },
+      "note": "detection + embedding + matching for one frame, measured; video decoding is reported separately per frame."
+    },
+    "wall_seconds": 2.36,
+    "frames_per_second_processed": 1.27
+  },
+  "notes": [
+    "Each sampled frame is judged on its own. A person is NOT followed from frame to frame, nothing is tracked through occlusion, and no identity is carried between frames - this is frame-by-frame re-identification, not multi-object tracking.",
+    "'Identities seen' only groups the independent MATCH decisions by name after the fact; gaps between frames say nothing about where a person was.",
+    "Face + body matching: in every frame the face decides when a usable face is visible (people seen from behind, far away or blurred have no usable face and fall back to the body, which by policy asks for review instead of a MATCH).",
+    "The active decision policy is 'unvalidated': its threshold has not been calibrated on held-out data."
+  ]
+}

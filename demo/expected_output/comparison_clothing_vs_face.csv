@@ -1,0 +1,9 @@
+photo,should_be,clothing_only,face_and_body
+collins_test_1_nasa_jacket_1999.jpg,MATCH collins,UNKNOWN  (wrong),MATCH collins
+collins_test_2_suit_jacket_2010.jpg,MATCH collins,UNKNOWN  (wrong),MATCH collins
+collins_test_3_hard_hat_2004.jpg,MATCH collins,UNKNOWN  (wrong),MATCH collins
+jemison_test_1_in_flight_1992.jpg,MATCH jemison,UNKNOWN  (wrong),MATCH jemison
+jemison_test_2_lab_1992.jpg,MATCH jemison,UNKNOWN  (wrong),MATCH jemison
+ride_stranger_1_cockpit_1983.jpg,UNKNOWN,UNKNOWN,UNKNOWN
+ride_stranger_2_blue_shirt_1983.jpg,UNKNOWN,UNKNOWN,UNKNOWN
+ride_stranger_3_headset_1983.jpg,UNKNOWN,UNKNOWN,UNKNOWN

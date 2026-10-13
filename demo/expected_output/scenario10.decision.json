@@ -1,0 +1,956 @@
+{
+  "request_id": "e77f6451f3e64b92",
+  "created_at": "2026-10-12T20:25:27.519993Z",
+  "mode": "all",
+  "image": {
+    "width": 960,
+    "height": 720
+  },
+  "model": {
+    "name": "osnet_ain_x1_0",
+    "architecture": "OSNet-AIN x1.0",
+    "embedding_dim": 512,
+    "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+    "device": "cpu"
+  },
+  "face_model": "face-8f2383e4-0ba9fbfa",
+  "matching_mode": "face_body",
+  "policy_version": 1,
+  "policy_status": "unvalidated",
+  "people": [
+    {
+      "index": 0,
+      "box": [
+        515.1,
+        269.0,
+        659.2,
+        717.4
+      ],
+      "detector_score": 0.9956,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 448.38,
+          "width_px": 144.11,
+          "sharpness": 2471.53,
+          "aspect_ratio": 3.11,
+          "detector_score": 1.0
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.554, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.55408,
+        "top2_score": 0.49615,
+        "margin": 0.05794,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.55408,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.55408,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.55408,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.49615,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.49615,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.45818,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.45818,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            193,
+            142,
+            65
+          ],
+          "query_label": "tan",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 77.4,
+          "verdict": "different"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            83,
+            79,
+            68
+          ],
+          "query_label": "dark grey",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 32.6,
+          "verdict": "different"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/0",
+      "timings_ms": {}
+    },
+    {
+      "index": 1,
+      "box": [
+        810.1,
+        267.9,
+        893.0,
+        470.0
+      ],
+      "detector_score": 0.9822,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 202.05,
+          "width_px": 82.96,
+          "sharpness": 1986.26,
+          "aspect_ratio": 2.44,
+          "detector_score": 0.98
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.572, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.57214,
+        "top2_score": 0.48982,
+        "margin": 0.08232,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.57214,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.57214,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.57214,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.48982,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.48982,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.41984,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.41984,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            27,
+            39,
+            59
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 10.0,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            13,
+            15,
+            15
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 2.5,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/1",
+      "timings_ms": {}
+    },
+    {
+      "index": 2,
+      "box": [
+        247.3,
+        247.0,
+        300.0,
+        359.8
+      ],
+      "detector_score": 0.9717,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 112.79,
+          "width_px": 52.77,
+          "sharpness": 659.25,
+          "aspect_ratio": 2.14,
+          "detector_score": 0.97
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.522, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.5221,
+        "top2_score": 0.49297,
+        "margin": 0.02913,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.5221,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.5221,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.5221,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.49297,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.49297,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.43986,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.43986,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            58,
+            26,
+            23
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 21.7,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            108,
+            115,
+            119
+          ],
+          "query_label": "grey",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 46.0,
+          "verdict": "different"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/2",
+      "timings_ms": {}
+    },
+    {
+      "index": 3,
+      "box": [
+        378.6,
+        255.3,
+        423.9,
+        386.2
+      ],
+      "detector_score": 0.9451,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 130.88,
+          "width_px": 45.32,
+          "sharpness": 1151.59,
+          "aspect_ratio": 2.89,
+          "detector_score": 0.95
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.554, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.55369,
+        "top2_score": 0.42288,
+        "margin": 0.13081,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.55369,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.55369,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.55369,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.42288,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.42288,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.38073,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.38073,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            5,
+            12,
+            19
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 6.6,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            29,
+            30,
+            29
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 9.3,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/3",
+      "timings_ms": {}
+    },
+    {
+      "index": 4,
+      "box": [
+        449.3,
+        264.1,
+        493.3,
+        385.2
+      ],
+      "detector_score": 0.9407,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 121.02,
+          "width_px": 43.91,
+          "sharpness": 1197.86,
+          "aspect_ratio": 2.76,
+          "detector_score": 0.94
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.474, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.47364,
+        "top2_score": 0.45611,
+        "margin": 0.01753,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.47364,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.47364,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.47364,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.45611,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.45611,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.38918,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.38918,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            18,
+            22,
+            31
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 1.8,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            21,
+            23,
+            24
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 5.7,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/4",
+      "timings_ms": {}
+    },
+    {
+      "index": 5,
+      "box": [
+        885.6,
+        274.3,
+        944.6,
+        434.2
+      ],
+      "detector_score": 0.8778,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 159.92,
+          "width_px": 59.0,
+          "sharpness": 1511.86,
+          "aspect_ratio": 2.71,
+          "detector_score": 0.88
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.604, below the acceptance threshold 0.700. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.60411,
+        "top2_score": 0.51692,
+        "margin": 0.08719,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.60411,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.60411,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/950764be59044a36bc5c7739a0300930",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.60411,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.51692,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.51692,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.40074,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.40074,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            18,
+            20,
+            20
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 7.8,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            21,
+            24,
+            25
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 6.1,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/5",
+      "timings_ms": {}
+    },
+    {
+      "index": 6,
+      "box": [
+        0.3,
+        242.1,
+        32.8,
+        364.0
+      ],
+      "detector_score": 0.7915,
+      "quality": {
+        "usable": true,
+        "flags": [
+          "cut_off_by_frame"
+        ],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 121.92,
+          "width_px": 32.52,
+          "sharpness": 725.6,
+          "aspect_ratio": 3.75,
+          "touching_edges": 1.0,
+          "detector_score": 0.79
+        }
+      },
+      "decision": {
+        "outcome": "review_required",
+        "reason_code": "quality_review",
+        "reason": "Image quality is inadequate for an automatic decision (cut_off_by_frame). Closest candidate 'demo-person-a' scored 0.638. No face was found in the picture.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.63811,
+        "top2_score": 0.55033,
+        "margin": 0.08778,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [
+          "cut_off_by_frame"
+        ],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.63811,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.63811,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.63811,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.55033,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.55033,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.44735,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.44735,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            11,
+            16,
+            18
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 7.5,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            5,
+            8,
+            11
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 1.0,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e77f6451f3e64b92/crops/6",
+      "timings_ms": {}
+    }
+  ],
+  "timings_ms": {
+    "detect_ms": 790.93,
+    "preprocess_ms": 2.28,
+    "embed_ms": 643.04,
+    "face_ms": 33.15,
+    "retrieval_and_decision_ms": 2.9,
+    "total_ms": 1489.14
+  },
+  "notes": [
+    "Face + body matching: the face decides when a usable face is visible; clothing alone cannot produce a MATCH.",
+    "The active threshold is unvalidated: it has not been calibrated on held-out data."
+  ]
+}

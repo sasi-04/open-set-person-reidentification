@@ -1,0 +1,25 @@
+rank,comparison_type,split,identity_a,identity_b,baseline_similarity_best_pair,baseline_pair_similarity,baseline_decision,clothing_colour_similarity,similar_clothing_proxy,image_a,image_b,camera_a,camera_b
+1,different_identities,test,P0061,P0064,0.97051,0.97051,false_accept,0.9708,True,P0061/c1_000.jpg,P0064/c1_004.jpg,1,1
+2,different_identities,test,P0077,P0078,0.96855,0.96855,false_accept,0.9729,True,P0077/c2_001.jpg,P0078/c2_005.jpg,2,2
+3,different_identities,test,P0027,P0061,0.96687,0.96687,false_accept,0.6371,True,P0027/c1_004.jpg,P0061/c1_000.jpg,1,1
+4,different_identities,test,P0061,P0062,0.96384,0.96384,false_accept,0.9867,True,P0061/c2_005.jpg,P0062/c2_005.jpg,2,2
+5,different_identities,test,P0013,P0064,0.96353,0.96353,false_accept,0.6702,True,P0013/c4_007.jpg,P0064/c4_003.jpg,4,4
+6,different_identities,test,P0027,P0064,0.96171,0.96171,false_accept,0.5919,True,P0027/c1_004.jpg,P0064/c3_006.jpg,1,3
+7,different_identities,test,P0089,P0092,0.95883,0.95883,false_accept,0.9235,True,P0089/c1_000.jpg,P0092/c1_004.jpg,1,1
+8,different_identities,test,P0097,P0100,0.95813,0.95813,false_accept,0.9712,True,P0097/c1_000.jpg,P0100/c1_000.jpg,1,1
+9,different_identities,test,P0039,P0077,0.95691,0.95691,false_accept,0.5573,True,P0039/c4_007.jpg,P0077/c4_003.jpg,4,4
+10,different_identities,test,P0050,P0052,0.95648,0.95648,false_accept,0.9572,True,P0050/c4_003.jpg,P0052/c4_003.jpg,4,4
+11,different_identities,test,P0013,P0015,0.9563,0.9563,false_accept,0.9822,True,P0013/c2_005.jpg,P0015/c4_007.jpg,2,4
+12,different_identities,test,P0052,P0061,0.95607,0.95607,false_accept,0.6939,True,P0052/c1_000.jpg,P0061/c1_000.jpg,1,1
+,"same_identity (hardest, baseline)",test,P0027,P0027,0.72562,,,,,P0027/c1_004.jpg,P0027/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0047,P0047,0.74737,,,,,P0047/c1_000.jpg,P0047/c4_003.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0074,P0074,0.74947,,,,,P0074/c1_000.jpg,P0074/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0061,P0061,0.76153,,,,,P0061/c1_000.jpg,P0061/c2_005.jpg,1,2
+,"same_identity (hardest, baseline)",test,P0047,P0047,0.7621,,,,,P0047/c3_002.jpg,P0047/c4_007.jpg,3,4
+,"same_identity (hardest, baseline)",test,P0027,P0027,0.76505,,,,,P0027/c1_000.jpg,P0027/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0047,P0047,0.77111,,,,,P0047/c1_000.jpg,P0047/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0008,P0008,0.77118,,,,,P0008/c1_004.jpg,P0008/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0074,P0074,0.77236,,,,,P0074/c1_004.jpg,P0074/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0085,P0085,0.77244,,,,,P0085/c1_004.jpg,P0085/c4_007.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0008,P0008,0.77261,,,,,P0008/c1_004.jpg,P0008/c4_003.jpg,1,4
+,"same_identity (hardest, baseline)",test,P0033,P0033,0.77398,,,,,P0033/c1_004.jpg,P0033/c4_003.jpg,1,4

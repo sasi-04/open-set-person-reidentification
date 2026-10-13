@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "title": "Open-set example",
+  "intro": "An open-set system must do two things at once: recognise the people it knows, and refuse everyone else. This example enrolls three example people in a private, temporary gallery, then shows the system 13 photos - people it knows, people it has never seen, and strangers dressed exactly like an enrolled person - and reports what it decided and whether that was right.",
+  "groups": [
+    {"id": "known", "title": "Known people, seen again", "blurb": "The same person, years apart and in different clothes. The right answer is MATCH with the right person."},
+    {"id": "no_face", "title": "Known person, but no usable face", "blurb": "Seen from behind or out of focus. Clothes alone are weak evidence, so the safe answer is REVIEW (ask a person), not an automatic MATCH."},
+    {"id": "stranger", "title": "Strangers (never enrolled)", "blurb": "Nobody in the gallery is this person. The right answer is UNKNOWN."},
+    {"id": "lookalike", "title": "Strangers in the SAME clothes as an enrolled person", "blurb": "The hard case of open-set re-identification: low variance between people. A clothes-only matcher is fooled; the face is not. The right answer is UNKNOWN."}
+  ],
+  "people": [
+    {
+      "id": "person1",
+      "label": "Example person 1",
+      "note": "Two portraits: a flight suit and a navy jacket.",
+      "photos": [
+        "faces/enroll/collins/collins_enrol_1_orange_suit_1998.jpg",
+        "faces/enroll/collins/collins_enrol_2_navy_jacket_early.jpg"
+      ]
+    },
+    {
+      "id": "person2",
+      "label": "Example person 2",
+      "note": "Two portraits: a flight suit and a blue jacket.",
+      "photos": [
+        "faces/enroll/jemison/jemison_enrol_1_orange_suit_1992.jpg",
+        "faces/enroll/jemison/jemison_enrol_2_blue_jacket_1987.jpg"
+      ]
+    },
+    {
+      "id": "person3",
+      "label": "Example person 3",
+      "note": "A street photo with the head blurred, so there is no face on file for this person.",
+      "photos": [
+        "person_A_reference_1.jpg",
+        "person_A_reference_2.jpg"
+      ]
+    }
+  ],
+  "cases": [
+    {"id": "known-1", "group": "known", "title": "Example person 1 in a NASA jacket", "story": "Photographed outdoors in 1999 - different clothes and place from both enrolled photos.", "file": "faces/test/collins/collins_test_1_nasa_jacket_1999.jpg", "expect": {"kind": "match", "person": "person1"}},
+    {"id": "known-2", "group": "known", "title": "Example person 1, twelve years later", "story": "A suit jacket, a different background and 2010 instead of 1998.", "file": "faces/test/collins/collins_test_2_suit_jacket_2010.jpg", "expect": {"kind": "match", "person": "person1"}},
+    {"id": "known-3", "group": "known", "title": "Example person 1 in a hard hat", "story": "Part of the head is covered and the clothes are new.", "file": "faces/test/collins/collins_test_3_hard_hat_2004.jpg", "expect": {"kind": "match", "person": "person1"}},
+    {"id": "known-4", "group": "known", "title": "Example person 2 in flight", "story": "Wearing a headband in a space-station module - nothing like either enrolled photo.", "file": "faces/test/jemison/jemison_test_1_in_flight_1992.jpg", "expect": {"kind": "match", "person": "person2"}},
+    {"id": "known-5", "group": "known", "title": "Example person 2 in a laboratory", "story": "A white shirt this time. The system must pick person 2, not person 1.", "file": "faces/test/jemison/jemison_test_2_lab_1992.jpg", "expect": {"kind": "match", "person": "person2"}},
+
+    {"id": "noface-1", "group": "no_face", "title": "Example person 3 again - head blurred", "story": "The same street photo style, smaller and darker. The clothes match strongly but there is no face to confirm it.", "file": "query_1_same_person.jpg", "expect": {"kind": "review", "person": "person3"}},
+    {"id": "noface-2", "group": "no_face", "title": "Example person 3, out of focus", "story": "So blurry that even the picture quality is a problem.", "file": "query_3_blurry.jpg", "expect": {"kind": "review", "person": "person3"}},
+
+    {"id": "stranger-1", "group": "stranger", "title": "A stranger in a cockpit", "story": "Never enrolled. A face is clearly visible.", "file": "faces/test/ride/ride_stranger_1_cockpit_1983.jpg", "expect": {"kind": "unknown"}},
+    {"id": "stranger-2", "group": "stranger", "title": "The same stranger, blue shirt", "story": "Never enrolled; a second picture of the same stranger.", "file": "faces/test/ride/ride_stranger_2_blue_shirt_1983.jpg", "expect": {"kind": "unknown"}},
+    {"id": "stranger-3", "group": "stranger", "title": "A stranger on the street (head blurred)", "story": "Never enrolled and no face visible: only clothes and build can be compared.", "file": "query_2_stranger.jpg", "expect": {"kind": "unknown"}},
+
+    {"id": "same-1", "group": "lookalike", "title": "A stranger in the same orange flight suit (1)", "story": "Never enrolled, but dressed like the enrolled people's flight-suit photos.", "file": "faces/test/lookalike/stranger_same_suit_1_poindexter.jpg", "expect": {"kind": "unknown"}},
+    {"id": "same-2", "group": "lookalike", "title": "A stranger in the same orange flight suit (2)", "story": "Another person who was never enrolled, same suit, same pose.", "file": "faces/test/lookalike/stranger_same_suit_2_bondar.jpg", "expect": {"kind": "unknown"}},
+    {"id": "same-3", "group": "lookalike", "title": "A stranger in the same orange flight suit (3)", "story": "A third stranger in the same suit.", "file": "faces/test/lookalike/stranger_same_suit_3_wilmore.jpg", "expect": {"kind": "unknown"}}
+  ]
+}

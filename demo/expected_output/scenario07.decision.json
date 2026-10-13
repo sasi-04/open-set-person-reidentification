@@ -1,0 +1,158 @@
+{
+  "request_id": "e8047fec32414247",
+  "created_at": "2026-10-12T20:25:25.698039Z",
+  "mode": "crop",
+  "image": {
+    "width": 124,
+    "height": 395
+  },
+  "model": {
+    "name": "osnet_ain_x1_0",
+    "architecture": "OSNet-AIN x1.0",
+    "embedding_dim": 512,
+    "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+    "device": "cpu"
+  },
+  "face_model": "face-8f2383e4-0ba9fbfa",
+  "matching_mode": "face_body",
+  "policy_version": 1,
+  "policy_status": "unvalidated",
+  "people": [
+    {
+      "index": 0,
+      "box": null,
+      "detector_score": null,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 395.0,
+          "width_px": 198.0,
+          "sharpness": 1408.89,
+          "aspect_ratio": 1.99
+        }
+      },
+      "decision": {
+        "outcome": "review_required",
+        "reason_code": "body_only_review",
+        "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.910, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.91035,
+        "top2_score": 0.5209,
+        "margin": 0.38945,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [],
+        "matching_mode": "face_body",
+        "basis": "body",
+        "face_status": "no_face",
+        "top1_face_score": null,
+        "top1_body_score": 0.91035,
+        "face_threshold": 0.465,
+        "body_threshold": 0.7
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Example person 3 - street photo, head blurred, so NO face on file",
+          "score": 0.91035,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/950764be59044a36bc5c7739a0300930",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.91035,
+          "face_box": null
+        },
+        {
+          "rank": 2,
+          "reference_id": "demo-jemison",
+          "label": "Example person 2 (public-domain NASA photos)",
+          "score": 0.5209,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.5209,
+          "face_box": null
+        },
+        {
+          "rank": 3,
+          "reference_id": "demo-collins",
+          "label": "Example person 1 (public-domain NASA photos)",
+          "score": 0.43189,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+          "basis": "body",
+          "face_score": null,
+          "body_score": 0.43189,
+          "face_box": null
+        }
+      ],
+      "face": {
+        "status": "no_face",
+        "box": null,
+        "detector_score": null,
+        "face_px": null,
+        "flags": [],
+        "message": "No face was found in this picture, so only the body could be compared."
+      },
+      "cues": [
+        {
+          "cue": "upper_clothing",
+          "title": "Upper clothing",
+          "query_rgb": [
+            20,
+            21,
+            29
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            22,
+            24,
+            34
+          ],
+          "reference_label": "black",
+          "delta_e": 2.2,
+          "verdict": "similar"
+        },
+        {
+          "cue": "lower_clothing",
+          "title": "Lower clothing",
+          "query_rgb": [
+            6,
+            6,
+            7
+          ],
+          "query_label": "black",
+          "reference_rgb": [
+            7,
+            7,
+            9
+          ],
+          "reference_label": "black",
+          "delta_e": 0.5,
+          "verdict": "similar"
+        }
+      ],
+      "crop_url": "/api/reid/history/e8047fec32414247/crops/0",
+      "timings_ms": {}
+    }
+  ],
+  "timings_ms": {
+    "preprocess_ms": 0.56,
+    "embed_ms": 96.57,
+    "face_ms": 8.4,
+    "retrieval_and_decision_ms": 0.49,
+    "total_ms": 111.91
+  },
+  "notes": [
+    "Face + body matching: the face decides when a usable face is visible; clothing alone cannot produce a MATCH.",
+    "The active threshold is unvalidated: it has not been calibrated on held-out data."
+  ]
+}
