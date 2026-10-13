@@ -1,0 +1,63 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# ---- Node / frontend ----
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+coverage/
+
+# ---- Local toolchain (portable Node installed by the setup script) ----
+.tools/
+
+# ---- Secrets and local configuration ----
+.env
+.env.*
+!.env.example
+
+# ---- Model weights and checkpoints (large / licensed; fetched by scripts/download_weights.py) ----
+backend/weights/*
+!backend/weights/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# ---- Runtime data: databases, uploads, reference images, caches, reports ----
+backend/data/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+logs/
+
+# ---- Datasets (licensed; never commit) ----
+datasets/*
+!datasets/README.md
+!datasets/.gitkeep
+
+# ---- Private / sample imagery ----
+private_images/
+uploads/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ---- Demo pack: generated results and build scratch ----
+demo/output_latest/
+demo/_build/
+__pycache__/
+
+# ---- the generated pack (rebuild with scripts/make_demo_zip.py) ----
+OpenID-Vision-Demo-Pack.zip
