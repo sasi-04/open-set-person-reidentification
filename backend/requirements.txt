@@ -1,0 +1,21 @@
+# Runtime dependencies for the ReID backend.
+#
+# PyTorch is installed separately (see README "Backend setup") because the CPU
+# build comes from PyTorch's own package index, not from PyPI:
+#
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#
+# Versions below are the ones the project was developed and tested with.
+# Ranges are kept narrow on purpose so a fresh install behaves the same.
+
+fastapi>=0.136,<0.137
+uvicorn>=0.47,<0.48
+python-multipart>=0.0.20
+pydantic>=2.13,<3
+pydantic-settings>=2.10,<3
+sqlalchemy>=2.0.40,<2.1
+
+numpy>=2.4,<3
+pillow>=12,<13
+opencv-python-headless>=4.12
+psutil>=7.0

@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Test tooling
+pytest>=9.0,<10
+httpx2>=2.13

@@ -1,0 +1,17 @@
+[project]
+name = "reid-lab-backend"
+version = "1.0.0"
+description = "Open-set person re-identification under low inter-class variance (research prototype)."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+# --basetemp keeps pytest's temporary files inside the project (not on the system drive).
+addopts = "-ra --basetemp=../.tools/pytest-tmp"
+markers = [
+    "model: needs the real pretrained weights (run scripts/download_weights.py first)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
