@@ -61,6 +61,6 @@ python demo\face_check.py demo\samples\faces --i-have-consent # the public-domai
 
 * **Not a phone's Face ID**: 2-D photo matching, no depth sensor, no liveness check.
 * Face accuracy was measured on the standard **LFW** benchmark (easy) - **98.9 %** - plus a small end-to-end test; other cameras, lighting, ages and demographic groups were **not** measured.
-* The **pedestrian re-identification benchmark (Market-1501) has not been run** (it must be supplied under its research licence).
+* The **Market-1501** benchmark was run on a CPU-sized subset with the project's own protocol, **body only** (see `docs/EXPERIMENT_RESULTS.md`; modest false-accept rates at high recall). Face + body has **not** been benchmarked on pedestrian data.
 * Thresholds are evidence-based defaults, **unvalidated** for any specific camera; the screens say so.
 * The example people are public figures photographed at work; they are used only to show recognition across photographs. Use only consenting volunteers for your own tests.

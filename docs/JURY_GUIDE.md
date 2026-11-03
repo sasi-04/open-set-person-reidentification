@@ -19,7 +19,7 @@
 > is not sure it says **REVIEW** - 'ask a human'.
 >
 > We measured it instead of just claiming it: on a standard public face benchmark the face part is **98.9 % accurate**; and in
-> our end-to-end test the old clothing-only matcher let in **48 of 60 strangers**, the new one let in **none**. We are also open
+> our end-to-end test the old clothing-only matcher let in **51 of 60 strangers**, the new one let in **none**. We are also open
 > about what is *not* proven: it is not a phone's Face ID, it has not been tested on a pedestrian-camera benchmark yet, and it
 > must only be used with people's consent."
 
@@ -129,8 +129,8 @@ correctly. (3) *The face is not found* → use a larger, front-facing photo; say
 | Face-model accuracy on the standard LFW test (6,000 face pairs, 10 folds) | **98.9 %** (± 0.35) | `docs/results/face_lfw.json`, `scripts/evaluate_face_lfw.py` |
 | Stranger pairs that reach the automatic-MATCH score | about **1 in 100,000** | 4.5 million different-people pairs, same file |
 | Same-person pairs that reach it | **93 %** (the rest go to review) | same file |
-| End-to-end test, 10 enrolled people, 60 strangers: strangers accepted | clothing-only **48 / 60** → face + body **0 / 60** | `docs/results/face_vs_body_lfw.json`, `scripts/verify_face_vs_body.py` |
-| ...same-person queries matched to the right person | clothing-only 8 / 20 → face + body **20 / 20** | same |
+| End-to-end test, 10 enrolled people, 60 strangers: strangers accepted | clothing-only **51 / 60** → face + body **0 / 60** | `docs/results/face_vs_body_lfw.json`, `scripts/verify_face_vs_body.py` |
+| ...same-person queries matched to the right person | clothing-only 5 / 20 → face + body **20 / 20** | same |
 | Time for one photo on a 2-core laptop CPU | about **0.5 - 1.2 s** including finding the person (**0.2 - 0.4 s** if the photo is already a tight crop); the face step adds about 0.06 s per person on a small picture and 0.1 - 0.25 s on a 1-megapixel portrait | `docs/PERFORMANCE.md` |
 | The built-in example (13 public-domain photos): same-suit strangers accepted | clothes-only **3 of 3** → face + body **0 of 3**; known people recognised 0 of 5 → **5 of 5**; all 13 photos right 4 → **13** | `docs/results/open_set_example.json`, `demo/run_open_set_example.py`, [OPEN_SET_EXAMPLE.md](OPEN_SET_EXAMPLE.md) |
 | Automated tests | **427 backend + 157 interface**, all passing | `pytest`, `vitest` |
@@ -139,9 +139,8 @@ correctly. (3) *The face is not found* → use a larger, front-facing photo; say
 **You must NOT say:**
 
 * "It is 99 % accurate" about the whole system. The 98.9 % is the *face stage* on an *easy public benchmark*.
-* Any accuracy on the **pedestrian re-identification benchmark (Market-1501)**: it has not been run (it must be supplied under its
-  research licence). The Evaluation Lab is built and tested, but shows "Not evaluated" until then.
-* That the 48 / 60 → 0 / 60 comparison is a fair test of the clothing model: those were head-and-shoulders photos, outside what the
+* Any accuracy on pedestrian data beyond `docs/EXPERIMENT_RESULTS.md`: the **Market-1501** numbers are **body only**, from the project's own protocol on a subset (Rank-1 83.6 %; FAR 6.4 / 12.9 / 28.6 % at 50 / 60 / 70 % recall; a 90 % recall target is unreachable). Face + body has **not** been benchmarked on pedestrian cameras.
+* That the 51 / 60 → 0 / 60 comparison is a fair test of the clothing model: those were head-and-shoulders photos, outside what the
   clothing model was designed for. Say "it shows what the face adds".
 * "Like Face ID", "unspoofable", "bias-free", "GDPR-compliant", "real-time", "production-ready" - none is true.
 * That the synthetic-data lab results (cartoon mannequins) are performance. They only prove the lab runs.
@@ -238,7 +237,7 @@ training. The measured gain comes from adding the face evidence and the decision
 face stage was measured on a public benchmark, and an end-to-end script reproduces the comparison in this guide. All reproducible.
 
 **Q24. Why did the first version accept a stranger?** Because a clothing-based model confuses people in similar clothes - the very
-low-variance problem the assignment describes. We reproduced it, measured it (48 of 60 strangers accepted), and fixed it.
+low-variance problem the assignment describes. We reproduced it, measured it (51 of 60 strangers accepted), and fixed it.
 
 **Q25. What if the face model files are missing?** The system keeps working on the body only, and says so on every result and on the
 Settings screen. Nothing fails silently.
@@ -249,7 +248,7 @@ when and why; results export as JSON / CSV.
 **Q27. What are the biggest risks?** Misuse (matching people without consent), over-trust of the scores, spoofing, and unmeasured bias.
 The design counters the first two with consent gates, explicit REVIEW and honest labels; the last two are stated limits.
 
-**Q28. What would you do next?** (1) Run the pedestrian benchmark (Market-1501) and publish the report. (2) Calibrate both thresholds on
+**Q28. What would you do next?** (1) Repeat the benchmark with the official Market-1501 query protocol and a second dataset, and benchmark face + body on footage with usable faces. (2) Calibrate both thresholds on
 the real camera data. (3) Add liveness/anti-spoofing. (4) Measure accuracy by lighting, age and demographic group. (5) Train and
 *evaluate* a fine-tuned body model on the look-alike hard cases.
 
@@ -308,7 +307,7 @@ right answer.
 
 * **Problem:** clothing-only matching accepts strangers who dress alike.
 * **Idea:** face first, body second, human when unsure. Three answers: **MATCH / UNKNOWN / REVIEW**.
-* **Proof:** face stage 98.9 % on LFW; strangers accepted 48/60 → 0/60 in our end-to-end test; same-person 20/20.
+* **Proof:** face stage 98.9 % on LFW; strangers accepted 51/60 → 0/60 in our end-to-end test; same-person 20/20.
 * **Home-page example (13 photos, not a benchmark):** strangers in the *same suit* accepted 3/3 by clothes alone, 0/3 with the face; known people recognised 0/5 → 5/5.
 * **Threshold 0.465:** chosen by a rule (≤ 1 stranger in 100,000) on 4.5 M pairs - not tuned on the demo.
 * **Honest limits:** not Face ID; no liveness; LFW is easy; bias not measured; pedestrian benchmark not run; thresholds unvalidated.

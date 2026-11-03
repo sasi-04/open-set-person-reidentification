@@ -1,22 +1,22 @@
 {
-  "request_id": "e7c0a62d2a724f89",
-  "created_at": "2026-10-12T20:25:20.620931Z",
+  "request_id": "a5c0cceea94e4840",
+  "created_at": "2026-11-03T06:46:45.798932Z",
   "mode": "crop",
   "image": {
     "width": 960,
     "height": 1461
   },
   "model": {
-    "name": "osnet_ain_x1_0",
-    "architecture": "OSNet-AIN x1.0",
+    "name": "osnet_x1_0",
+    "architecture": "OSNet x1.0 (multi-source)",
     "embedding_dim": 512,
-    "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+    "fingerprint": "osnet_x1_0-c552472fdf3d-flip0",
     "device": "cpu"
   },
   "face_model": "face-8f2383e4-0ba9fbfa",
   "matching_mode": "face_body",
-  "policy_version": 1,
-  "policy_status": "unvalidated",
+  "policy_version": 4,
+  "policy_status": "experimental",
   "people": [
     {
       "index": 0,
@@ -36,7 +36,7 @@
       "decision": {
         "outcome": "accepted",
         "reason_code": "accepted_by_face",
-        "reason": "Accepted by face: 'demo-jemison' face similarity 0.572 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.577; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'demo-jemison' face similarity 0.572 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.434; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "accepted_reference_id": "demo-jemison",
         "top1_reference_id": "demo-jemison",
         "top1_score": 0.57223,
@@ -45,14 +45,14 @@
         "accept_threshold": 0.465,
         "min_margin": null,
         "calibrated_confidence": null,
-        "policy_version": 1,
-        "policy_status": "unvalidated",
+        "policy_version": 4,
+        "policy_status": "experimental",
         "quality_flags": [],
         "matching_mode": "face_body",
         "basis": "face",
         "face_status": "usable",
         "top1_face_score": 0.57223,
-        "top1_body_score": 0.57691,
+        "top1_body_score": 0.43446,
         "face_threshold": 0.465,
         "body_threshold": 0.7
       },
@@ -63,10 +63,10 @@
           "label": "Example person 2 (public-domain NASA photos)",
           "score": 0.57223,
           "n_images": 2,
-          "image_url": "/api/gallery/demo-jemison/images/036a500ed30144ac95a42f2fec1ee7c3",
+          "image_url": "/api/gallery/demo-jemison/images/705dbdb676124e948c18350943530537",
           "basis": "face",
           "face_score": 0.57223,
-          "body_score": 0.57691,
+          "body_score": 0.43446,
           "face_box": [
             479.9,
             542.7,
@@ -80,10 +80,10 @@
           "label": "Example person 1 (public-domain NASA photos)",
           "score": 0.08631,
           "n_images": 2,
-          "image_url": "/api/gallery/demo-collins/images/bd950b575baa4c018e27aa3bfd6a0b0e",
+          "image_url": "/api/gallery/demo-collins/images/507b94c6942349468d5cbfe982e037bd",
           "basis": "face",
           "face_score": 0.08631,
-          "body_score": 0.52347,
+          "body_score": 0.4617,
           "face_box": [
             325.5,
             557.9,
@@ -95,12 +95,12 @@
           "rank": 3,
           "reference_id": "demo-person-a",
           "label": "Example person 3 - street photo, head blurred, so NO face on file",
-          "score": 0.466,
+          "score": 0.37626,
           "n_images": 2,
-          "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+          "image_url": "/api/gallery/demo-person-a/images/453ce575fdb34c4696b849b8d655f205",
           "basis": "body",
           "face_score": null,
-          "body_score": 0.466,
+          "body_score": 0.37626,
           "face_box": null
         }
       ],
@@ -155,19 +155,19 @@
           "verdict": "similar"
         }
       ],
-      "crop_url": "/api/reid/history/e7c0a62d2a724f89/crops/0",
+      "crop_url": "/api/reid/history/a5c0cceea94e4840/crops/0",
       "timings_ms": {}
     }
   ],
   "timings_ms": {
     "preprocess_ms": 0.0,
-    "embed_ms": 92.43,
-    "face_ms": 150.68,
-    "retrieval_and_decision_ms": 0.6,
-    "total_ms": 278.84
+    "embed_ms": 188.36,
+    "face_ms": 138.53,
+    "retrieval_and_decision_ms": 0.5,
+    "total_ms": 358.33
   },
   "notes": [
     "Face + body matching: the face decides when a usable face is visible; clothing alone cannot produce a MATCH.",
-    "The active threshold is unvalidated: it has not been calibrated on held-out data."
+    "The active threshold is experimental: it has not been calibrated on held-out data."
   ]
 }

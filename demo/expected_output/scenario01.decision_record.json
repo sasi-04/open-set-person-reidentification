@@ -1,15 +1,15 @@
 {
   "notice": "A similarity score is not a probability, and a match is not proof of anyone's identity. This record shows what the system measured under the decision policy named in it; it can be wrong and is meant for authorised evaluation only.",
   "record": {
-    "request_id": "5de6a366e3e24ad6",
-    "created_at": "2026-10-12T20:25:19.829199",
+    "request_id": "4387d4d9cc5041e7",
+    "created_at": "2026-11-03T06:46:44.942314",
     "mode": "crop",
     "image": {
       "width": 960,
       "height": 640
     },
-    "model_name": "osnet_ain_x1_0",
-    "policy_version": 1,
+    "model_name": "osnet_x1_0",
+    "policy_version": 4,
     "people": [
       {
         "index": 0,
@@ -29,7 +29,7 @@
         "decision": {
           "outcome": "accepted",
           "reason_code": "accepted_by_face",
-          "reason": "Accepted by face: 'demo-collins' face similarity 0.648 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.485; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+          "reason": "Accepted by face: 'demo-collins' face similarity 0.648 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.605; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
           "accepted_reference_id": "demo-collins",
           "top1_reference_id": "demo-collins",
           "top1_score": 0.64804,
@@ -38,14 +38,14 @@
           "accept_threshold": 0.465,
           "min_margin": null,
           "calibrated_confidence": null,
-          "policy_version": 1,
+          "policy_version": 4,
           "policy_status": "recorded",
           "quality_flags": [],
           "matching_mode": "face_body",
           "basis": "face",
           "face_status": "usable",
           "top1_face_score": 0.64804,
-          "top1_body_score": 0.4849,
+          "top1_body_score": 0.60474,
           "face_threshold": 0.465,
           "body_threshold": 0.7
         },
@@ -56,10 +56,10 @@
             "label": "Example person 1 (public-domain NASA photos)",
             "score": 0.64804,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-collins/images/bd950b575baa4c018e27aa3bfd6a0b0e",
+            "image_url": "/api/gallery/demo-collins/images/507b94c6942349468d5cbfe982e037bd",
             "basis": "face",
             "face_score": 0.64804,
-            "body_score": 0.4849,
+            "body_score": 0.60474,
             "face_box": [
               325.5,
               557.9,
@@ -73,10 +73,10 @@
             "label": "Example person 2 (public-domain NASA photos)",
             "score": 0.20145,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+            "image_url": "/api/gallery/demo-jemison/images/e88650dcbef943c5b6082a38eab94f3e",
             "basis": "face",
             "face_score": 0.20145,
-            "body_score": 0.52564,
+            "body_score": 0.65847,
             "face_box": [
               313.2,
               658.5,
@@ -88,12 +88,12 @@
             "rank": 3,
             "reference_id": "demo-person-a",
             "label": "Example person 3 - street photo, head blurred, so NO face on file",
-            "score": 0.48073,
+            "score": 0.42861,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-person-a/images/950764be59044a36bc5c7739a0300930",
+            "image_url": "/api/gallery/demo-person-a/images/453ce575fdb34c4696b849b8d655f205",
             "basis": "body",
             "face_score": null,
-            "body_score": 0.48073,
+            "body_score": 0.42861,
             "face_box": null
           }
         ],
@@ -130,16 +130,16 @@
             "verdict": "similar"
           }
         ],
-        "crop_url": "/api/reid/history/5de6a366e3e24ad6/crops/0",
+        "crop_url": "/api/reid/history/4387d4d9cc5041e7/crops/0",
         "timings_ms": {}
       }
     ],
     "timings_ms": {
-      "preprocess_ms": 17.46,
-      "embed_ms": 153.83,
-      "face_ms": 93.35,
-      "retrieval_and_decision_ms": 0.49,
-      "total_ms": 295.72
+      "preprocess_ms": 15.52,
+      "embed_ms": 201.44,
+      "face_ms": 70.06,
+      "retrieval_and_decision_ms": 0.36,
+      "total_ms": 315.59
     }
   }
 }

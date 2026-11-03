@@ -1,0 +1,81 @@
+{
+  "request_id": "1d41700323d14741",
+  "created_at": "2026-10-12T16:05:11.696488Z",
+  "mode": "crop",
+  "image": {
+    "width": 124,
+    "height": 395
+  },
+  "model": {
+    "name": "osnet_ain_x1_0",
+    "architecture": "OSNet-AIN x1.0",
+    "embedding_dim": 512,
+    "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+    "device": "cpu"
+  },
+  "policy_version": 1,
+  "policy_status": "unvalidated",
+  "people": [
+    {
+      "index": 0,
+      "box": null,
+      "detector_score": null,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 395.0,
+          "width_px": 198.0,
+          "sharpness": 1408.89,
+          "aspect_ratio": 1.99
+        }
+      },
+      "decision": {
+        "outcome": "accepted",
+        "reason_code": "accepted",
+        "reason": "Accepted: 'demo-person-a' scored 0.910, at or above the threshold 0.700.",
+        "accepted_reference_id": "demo-person-a",
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.91035,
+        "top2_score": 0.52437,
+        "margin": 0.38598,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.91035,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/8f5643090052470ba3b58e56bf90005c"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.52437,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/1d41700323d14741/crops/0",
+      "timings_ms": {}
+    }
+  ],
+  "timings_ms": {
+    "preprocess_ms": 1.08,
+    "embed_ms": 196.45,
+    "retrieval_and_decision_ms": 0.19,
+    "total_ms": 202.75
+  },
+  "notes": [
+    "The active threshold is unvalidated: it has not been calibrated on held-out data."
+  ]
+}

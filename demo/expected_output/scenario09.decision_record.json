@@ -1,15 +1,15 @@
 {
   "notice": "A similarity score is not a probability, and a match is not proof of anyone's identity. This record shows what the system measured under the decision policy named in it; it can be wrong and is meant for authorised evaluation only.",
   "record": {
-    "request_id": "749c0b6bd83e4d63",
-    "created_at": "2026-10-12T20:25:26.001035",
+    "request_id": "94c1129bd2754990",
+    "created_at": "2026-11-03T06:46:52.988944",
     "mode": "crop",
     "image": {
       "width": 146,
       "height": 290
     },
-    "model_name": "osnet_ain_x1_0",
-    "policy_version": 1,
+    "model_name": "osnet_x1_0",
+    "policy_version": 4,
     "people": [
       {
         "index": 0,
@@ -31,16 +31,16 @@
         "decision": {
           "outcome": "review_required",
           "reason_code": "quality_review",
-          "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'demo-jemison' scored 0.500. A face was found but it is not good enough to compare (face_low_confidence).",
+          "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'demo-person-a' scored 0.604. A face was found but it is not good enough to compare (face_low_confidence).",
           "accepted_reference_id": null,
-          "top1_reference_id": "demo-jemison",
-          "top1_score": 0.49972,
-          "top2_score": 0.48513,
-          "margin": 0.01459,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.60368,
+          "top2_score": 0.50392,
+          "margin": 0.09976,
           "accept_threshold": 0.7,
           "min_margin": null,
           "calibrated_confidence": null,
-          "policy_version": 1,
+          "policy_version": 4,
           "policy_status": "recorded",
           "quality_flags": [
             "blurry"
@@ -49,45 +49,45 @@
           "basis": "body",
           "face_status": "unusable",
           "top1_face_score": null,
-          "top1_body_score": 0.49972,
+          "top1_body_score": 0.60368,
           "face_threshold": 0.465,
           "body_threshold": 0.7
         },
         "candidates": [
           {
             "rank": 1,
-            "reference_id": "demo-jemison",
-            "label": "Example person 2 (public-domain NASA photos)",
-            "score": 0.49972,
+            "reference_id": "demo-person-a",
+            "label": "Example person 3 - street photo, head blurred, so NO face on file",
+            "score": 0.60368,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-jemison/images/933793bd4e184a93bd8233829bd6f5b4",
+            "image_url": "/api/gallery/demo-person-a/images/f72875de61a74917ae6ab7333a5a1c5a",
             "basis": "body",
             "face_score": null,
-            "body_score": 0.49972,
+            "body_score": 0.60368,
             "face_box": null
           },
           {
             "rank": 2,
-            "reference_id": "demo-person-a",
-            "label": "Example person 3 - street photo, head blurred, so NO face on file",
-            "score": 0.48513,
+            "reference_id": "demo-jemison",
+            "label": "Example person 2 (public-domain NASA photos)",
+            "score": 0.50392,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+            "image_url": "/api/gallery/demo-jemison/images/e88650dcbef943c5b6082a38eab94f3e",
             "basis": "body",
             "face_score": null,
-            "body_score": 0.48513,
+            "body_score": 0.50392,
             "face_box": null
           },
           {
             "rank": 3,
             "reference_id": "demo-collins",
             "label": "Example person 1 (public-domain NASA photos)",
-            "score": 0.42599,
+            "score": 0.4421,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-collins/images/b799ece48aae4775910dbed7da44a093",
+            "image_url": "/api/gallery/demo-collins/images/507b94c6942349468d5cbfe982e037bd",
             "basis": "body",
             "face_score": null,
-            "body_score": 0.42599,
+            "body_score": 0.4421,
             "face_box": null
           }
         ],
@@ -106,17 +106,54 @@
           ],
           "message": "A face was found but it is not usable: The face detector was not sure this is a face."
         },
-        "cues": [],
-        "crop_url": "/api/reid/history/749c0b6bd83e4d63/crops/0",
+        "cues": [
+          {
+            "cue": "upper_clothing",
+            "title": "Upper clothing",
+            "query_rgb": [
+              87,
+              91,
+              111
+            ],
+            "query_label": "dark grey",
+            "reference_rgb": [
+              22,
+              24,
+              34
+            ],
+            "reference_label": "black",
+            "delta_e": 30.8,
+            "verdict": "different"
+          },
+          {
+            "cue": "lower_clothing",
+            "title": "Lower clothing",
+            "query_rgb": [
+              24,
+              24,
+              25
+            ],
+            "query_label": "black",
+            "reference_rgb": [
+              7,
+              7,
+              9
+            ],
+            "reference_label": "black",
+            "delta_e": 6.3,
+            "verdict": "similar"
+          }
+        ],
+        "crop_url": "/api/reid/history/94c1129bd2754990/crops/0",
         "timings_ms": {}
       }
     ],
     "timings_ms": {
-      "preprocess_ms": 0.01,
-      "embed_ms": 87.9,
-      "face_ms": 27.84,
-      "retrieval_and_decision_ms": 0.51,
-      "total_ms": 124.22
+      "preprocess_ms": 0.0,
+      "embed_ms": 225.7,
+      "face_ms": 38.87,
+      "retrieval_and_decision_ms": 0.5,
+      "total_ms": 269.81
     }
   }
 }

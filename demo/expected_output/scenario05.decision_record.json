@@ -1,15 +1,15 @@
 {
   "notice": "A similarity score is not a probability, and a match is not proof of anyone's identity. This record shows what the system measured under the decision policy named in it; it can be wrong and is meant for authorised evaluation only.",
   "record": {
-    "request_id": "102c86debf234171",
-    "created_at": "2026-10-12T20:25:21.346590",
+    "request_id": "74256713a61d4ddb",
+    "created_at": "2026-11-03T06:46:46.586115",
     "mode": "crop",
     "image": {
       "width": 960,
       "height": 601
     },
-    "model_name": "osnet_ain_x1_0",
-    "policy_version": 1,
+    "model_name": "osnet_x1_0",
+    "policy_version": 4,
     "people": [
       {
         "index": 0,
@@ -38,14 +38,14 @@
           "accept_threshold": 0.465,
           "min_margin": null,
           "calibrated_confidence": null,
-          "policy_version": 1,
+          "policy_version": 4,
           "policy_status": "recorded",
           "quality_flags": [],
           "matching_mode": "face_body",
           "basis": "face",
           "face_status": "usable",
           "top1_face_score": 0.211,
-          "top1_body_score": 0.48748,
+          "top1_body_score": 0.59325,
           "face_threshold": 0.465,
           "body_threshold": 0.7
         },
@@ -56,10 +56,10 @@
             "label": "Example person 1 (public-domain NASA photos)",
             "score": 0.211,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-collins/images/bd950b575baa4c018e27aa3bfd6a0b0e",
+            "image_url": "/api/gallery/demo-collins/images/507b94c6942349468d5cbfe982e037bd",
             "basis": "face",
             "face_score": 0.211,
-            "body_score": 0.48748,
+            "body_score": 0.59325,
             "face_box": [
               325.5,
               557.9,
@@ -73,10 +73,10 @@
             "label": "Example person 2 (public-domain NASA photos)",
             "score": 0.07465,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-jemison/images/036a500ed30144ac95a42f2fec1ee7c3",
+            "image_url": "/api/gallery/demo-jemison/images/705dbdb676124e948c18350943530537",
             "basis": "face",
             "face_score": 0.07465,
-            "body_score": 0.6047,
+            "body_score": 0.63992,
             "face_box": [
               479.9,
               542.7,
@@ -88,12 +88,12 @@
             "rank": 3,
             "reference_id": "demo-person-a",
             "label": "Example person 3 - street photo, head blurred, so NO face on file",
-            "score": 0.52902,
+            "score": 0.57107,
             "n_images": 2,
-            "image_url": "/api/gallery/demo-person-a/images/33a34c865a34403581b2a5f1dda0f643",
+            "image_url": "/api/gallery/demo-person-a/images/453ce575fdb34c4696b849b8d655f205",
             "basis": "body",
             "face_score": null,
-            "body_score": 0.52902,
+            "body_score": 0.57107,
             "face_box": null
           }
         ],
@@ -130,16 +130,16 @@
             "verdict": "similar"
           }
         ],
-        "crop_url": "/api/reid/history/102c86debf234171/crops/0",
+        "crop_url": "/api/reid/history/74256713a61d4ddb/crops/0",
         "timings_ms": {}
       }
     ],
     "timings_ms": {
-      "preprocess_ms": 14.03,
-      "embed_ms": 142.62,
-      "face_ms": 84.33,
-      "retrieval_and_decision_ms": 0.48,
-      "total_ms": 270.26
+      "preprocess_ms": 13.79,
+      "embed_ms": 216.55,
+      "face_ms": 66.59,
+      "retrieval_and_decision_ms": 0.34,
+      "total_ms": 322.44
     }
   }
 }

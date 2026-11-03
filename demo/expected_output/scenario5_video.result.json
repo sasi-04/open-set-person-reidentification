@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "kind": "video",
+  "metadata": {
+    "original_name": "clip_street.avi",
+    "video": {
+      "width": 480,
+      "height": 640,
+      "fps": 10.0,
+      "frame_count": 30,
+      "duration_seconds": 3.0,
+      "container": "avi"
+    },
+    "sampling": {
+      "every_seconds": 1.0,
+      "max_frames": 10,
+      "every_n_frames": 10,
+      "assumed_fps": null,
+      "frames_processed": 3
+    },
+    "policy": {
+      "version": 1,
+      "status": "unvalidated",
+      "accept_threshold": 0.7,
+      "min_margin": null
+    },
+    "model": {
+      "name": "osnet_ain_x1_0",
+      "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+      "device": "cpu"
+    },
+    "detector": "fasterrcnn_mobilenet_v3_large_fpn",
+    "thumbnails_kept": true,
+    "retention_hours": 24,
+    "generated_at": "2026-10-12T16:05:17.642717+00:00"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "frame_number": 0,
+      "time_seconds": 0.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0000.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            344.5,
+            180.3,
+            436.6,
+            450.4
+          ],
+          "detector_score": 0.9979,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "accepted",
+          "reason_code": "accepted",
+          "reason": "Accepted: 'demo-person-a' scored 0.852, at or above the threshold 0.700.",
+          "accepted_reference_id": "demo-person-a",
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.85236,
+          "top2_score": 0.48795,
+          "margin": 0.36441,
+          "calibrated_confidence": null
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 5.76,
+        "detect_ms": 641.08,
+        "embed_ms": 180.74,
+        "match_ms": 0.21,
+        "processing_ms": 822.03
+      }
+    },
+    {
+      "index": 1,
+      "frame_number": 10,
+      "time_seconds": 1.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0001.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            169.4,
+            147.7,
+            311.2,
+            587.8
+          ],
+          "detector_score": 0.9975,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.645, below the acceptance threshold 0.700.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.6454,
+          "top2_score": 0.5225,
+          "margin": 0.1229,
+          "calibrated_confidence": null
+        },
+        {
+          "index": 1,
+          "box": [
+            25.4,
+            120.8,
+            74.0,
+            242.1
+          ],
+          "detector_score": 0.9875,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.556, below the acceptance threshold 0.700.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.5557,
+          "top2_score": 0.43313,
+          "margin": 0.12258,
+          "calibrated_confidence": null
+        },
+        {
+          "index": 2,
+          "box": [
+            105.0,
+            132.3,
+            144.3,
+            246.7
+          ],
+          "detector_score": 0.9575,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.540, below the acceptance threshold 0.700.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.53963,
+          "top2_score": 0.38716,
+          "margin": 0.15246,
+          "calibrated_confidence": null
+        },
+        {
+          "index": 3,
+          "box": [
+            281.8,
+            108.3,
+            310.8,
+            203.2
+          ],
+          "detector_score": 0.8082,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "unknown",
+          "reason_code": "below_threshold",
+          "reason": "No supported match: the closest candidate '101' scored 0.510, below the acceptance threshold 0.700.",
+          "accepted_reference_id": null,
+          "top1_reference_id": "101",
+          "top1_score": 0.51,
+          "top2_score": 0.49911,
+          "margin": 0.01088,
+          "calibrated_confidence": null
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 3.16,
+        "detect_ms": 996.95,
+        "embed_ms": 599.05,
+        "match_ms": 1.07,
+        "processing_ms": 1597.07
+      }
+    },
+    {
+      "index": 2,
+      "frame_number": 20,
+      "time_seconds": 2.0,
+      "width": 480,
+      "height": 640,
+      "thumbnail": "f0002.jpg",
+      "people": [
+        {
+          "index": 0,
+          "box": [
+            348.8,
+            176.8,
+            443.0,
+            455.8
+          ],
+          "detector_score": 0.9983,
+          "usable": true,
+          "quality_flags": [],
+          "blocking_reason": null,
+          "outcome": "accepted",
+          "reason_code": "accepted",
+          "reason": "Accepted: 'demo-person-a' scored 0.836, at or above the threshold 0.700.",
+          "accepted_reference_id": "demo-person-a",
+          "top1_reference_id": "demo-person-a",
+          "top1_score": 0.83616,
+          "top2_score": 0.52645,
+          "margin": 0.30971,
+          "calibrated_confidence": null
+        }
+      ],
+      "timings_ms": {
+        "decode_ms": 4.77,
+        "detect_ms": 610.14,
+        "embed_ms": 196.25,
+        "match_ms": 0.32,
+        "processing_ms": 806.71
+      }
+    }
+  ],
+  "summary": {
+    "frames_processed": 3,
+    "people_detected": 6,
+    "outcomes": {
+      "accepted": 2,
+      "unknown": 4
+    },
+    "identities_seen": [
+      {
+        "reference_id": "demo-person-a",
+        "frames": 2,
+        "first_seen_seconds": 0.0,
+        "last_seen_seconds": 2.0,
+        "best_score": 0.85236,
+        "label": "Demo person A (public-domain photo, head blurred)"
+      }
+    ],
+    "latency_ms": {
+      "processing_per_frame": {
+        "n": 3,
+        "mean": 1075.27,
+        "p50": 822.03,
+        "p95": 1519.57,
+        "p99": 1581.57,
+        "min": 806.71,
+        "max": 1597.07
+      },
+      "note": "detection + embedding + matching for one frame, measured; video decoding is reported separately per frame."
+    },
+    "wall_seconds": 3.34,
+    "frames_per_second_processed": 0.9
+  },
+  "notes": [
+    "Each sampled frame is judged on its own. A person is NOT followed from frame to frame, nothing is tracked through occlusion, and no identity is carried between frames - this is frame-by-frame re-identification, not multi-object tracking.",
+    "'Identities seen' only groups the independent MATCH decisions by name after the fact; gaps between frames say nothing about where a person was.",
+    "The active decision policy is 'unvalidated': its threshold has not been calibrated on held-out data."
+  ]
+}

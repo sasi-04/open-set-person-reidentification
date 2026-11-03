@@ -192,7 +192,7 @@ function deck() {
      <li><b>Twins and look-alikes</b> can still score high - that is what the review band and the Lab are for</li>
      <li><b>Masks, sunglasses, strong angles, low light, tiny faces</b> make a face unusable - reported, not guessed</li>
      <li>Accuracy measured on a <b>standard easy benchmark</b>; other cameras, ages and demographic groups are <b>not measured</b></li>
-     <li>The <b>pedestrian benchmark (Market-1501) has not been run</b> yet - it must be supplied under its research licence</li>
+     <li>The <b>pedestrian benchmark (Market-1501) ran only on a subset, body only</b>, with the project's own protocol: modest false-accept rates at high recall; face + body was <b>not</b> benchmarked there</li>
      <li>Thresholds are evidence-based defaults, <b>unvalidated</b> for any specific camera</li></ul>`));
 
   slides.push(slide(14, "Privacy and consent",
@@ -204,8 +204,8 @@ function deck() {
      <li>Biometric data is regulated (GDPR, India's DPDP Act, Illinois BIPA): a real deployment needs a legal basis and an impact assessment</li></ul>`));
 
   slides.push(slide(15, "Next steps - and questions",
-    `<div class="two"><div><h3>What we would do next</h3><ol class="list"><li>Run the <b>pedestrian benchmark</b> (Market-1501) and publish the report</li><li><b>Calibrate</b> both thresholds on the real cameras</li><li>Add <b>liveness / anti-spoofing</b></li><li>Measure accuracy by <b>lighting, age and demographic group</b></li><li>Train and <i>evaluate</i> a fine-tuned body model on the hard look-alike cases</li></ol></div>
-     <div class="card ok"><h3>Everything is reproducible</h3><p>427 backend + 157 interface tests · one script per claim:</p><p class="mono">evaluate_face_lfw.py<br>verify_face_vs_body.py<br>demo/run_demo.py<br>demo/run_open_set_example.py</p><p class="note">If asked something we have not measured: <i>"I don't know - here is how we would measure it."</i></p></div></div>`));
+    `<div class="two"><div><h3>What we would do next</h3><ol class="list"><li>Repeat the benchmark with the <b>official Market-1501 protocol</b>, on a second dataset, and benchmark <b>face + body</b> on footage with usable faces</li><li><b>Calibrate</b> both thresholds on the real cameras</li><li>Add <b>liveness / anti-spoofing</b></li><li>Measure accuracy by <b>lighting, age and demographic group</b></li><li>Repeat the metric-learning fine-tune on more seeds (one run so far: Rank-1 83.1 → 89.7 %)</li></ol></div>
+     <div class="card ok"><h3>Everything is reproducible</h3><p>431 backend + 157 interface tests · one script per claim:</p><p class="mono">evaluate_face_lfw.py<br>verify_face_vs_body.py<br>demo/run_demo.py<br>demo/run_open_set_example.py</p><p class="note">If asked something we have not measured: <i>"I don't know - here is how we would measure it."</i></p></div></div>`));
 
   const css = `
   @page { size: 1280px 720px; margin: 0 }
@@ -374,7 +374,7 @@ python demo\\face_check.py my_photos --i-have-consent</pre>
     <tr><td>Port 8000 is in use</td><td>Use <code>scripts\\start.ps1 -Port 8020</code> and pass <code>--base-url http://127.0.0.1:8020</code> to the scripts.</td></tr>
     <tr><td>Scores differ slightly from the guide</td><td>Normal across different CPUs. Outcomes should be the same.</td></tr></tbody></table>
     <h2>9. What this pack does not prove</h2>
-    <ul><li>It is <b>not a phone's Face ID</b>: no depth sensor and no liveness check; a photograph can fool a 2-D matcher.</li><li>The face stage was measured on the <b>standard LFW benchmark</b> (easy). Other cameras, lighting, ages and demographic groups were <b>not</b> measured.</li><li>The <b>pedestrian re-identification benchmark (Market-1501) has not been run</b>; the Evaluation Lab is built and tested but shows "Not evaluated" until it is supplied.</li><li>Thresholds are evidence-based defaults, <b>unvalidated</b> for any specific camera.</li><li>The example people are public figures photographed at work; they are used only to show recognition across photographs.</li><li>Face fingerprints are <b>biometric data</b>: enrol only consenting people; deleting a person erases everything stored about them.</li></ul>
+    <ul><li>It is <b>not a phone's Face ID</b>: no depth sensor and no liveness check; a photograph can fool a 2-D matcher.</li><li>The face stage was measured on the <b>standard LFW benchmark</b> (easy). Other cameras, lighting, ages and demographic groups were <b>not</b> measured.</li><li>The <b>Market-1501</b> benchmark ran on a CPU-sized subset with the project's own protocol, <b>body only</b>: Rank-1 83.6 %, false-accept rate 6.4 / 12.9 / 28.6 % at 50 / 60 / 70 % recall, a 90 % target unreachable. Face + body was <b>not</b> benchmarked on pedestrian data.</li><li>Thresholds are evidence-based defaults, <b>unvalidated</b> for any specific camera.</li><li>The example people are public figures photographed at work; they are used only to show recognition across photographs.</li><li>Face fingerprints are <b>biometric data</b>: enrol only consenting people; deleting a person erases everything stored about them.</li></ul>
     <h2>10. Where everything is</h2>
     <table><tbody><tr><td><code>docs/JURY_GUIDE.md</code></td><td>what to say, demo script, questions and answers</td></tr><tr><td><code>docs/FACE_AND_BODY_MATCHING.md</code></td><td>the exact rule, the threshold derivation, all measurements and limits</td></tr><tr><td><code>docs/SECURITY_AND_PRIVACY.md</code></td><td>consent, biometric data, retention, security</td></tr><tr><td><code>docs/results/*.json</code></td><td>the raw measurements behind every number in this pack</td></tr><tr><td><code>README.md</code></td><td>installation, API, evaluation, troubleshooting</td></tr></tbody></table></section>
   </body></html>`;
@@ -397,7 +397,7 @@ const a4 = (label) => ({ format: "A4", margin: { top: "16mm", bottom: "18mm", le
 console.log("Building documents ...");
 await toPdf(deck(), path.join(demo, "JURY_DECK.pdf"), { width: "1280px", height: "720px", preferCSSPageSize: true });
 await toPdf(demoGuide(), path.join(demo, "DEMO_GUIDE.pdf"), { preferCSSPageSize: true, displayHeaderFooter: true, headerTemplate: "<span></span>", footerTemplate: footer("demo guide") });
-for (const [source, target, label] of [["JURY_GUIDE.md", "JURY_GUIDE.pdf", "jury guide"], ["FACE_AND_BODY_MATCHING.md", "FACE_AND_BODY_MATCHING.pdf", "face and body matching"]]) {
+for (const [source, target, label] of [["JURY_GUIDE.md", "JURY_GUIDE.pdf", "jury guide"], ["FACE_AND_BODY_MATCHING.md", "FACE_AND_BODY_MATCHING.pdf", "face and body matching"], ["RECTIFICATION_REPORT.md", "RECTIFICATION_REPORT.pdf", "rectification report"], ["EXPERIMENT_RESULTS.md", "EXPERIMENT_RESULTS.pdf", "experiment results"]]) {
   const md = readFileSync(path.join(root, "docs", source), "utf8");
   await toPdf(markdownPage(label, md), path.join(demo, target), a4(label));
 }

@@ -5,14 +5,14 @@
   "results": {
     "body_only": {
       "same_person_queries": 20,
-      "matched_correct_person": 8,
-      "matched_WRONG_person": 9,
+      "matched_correct_person": 5,
+      "matched_WRONG_person": 8,
       "review": 0,
-      "unknown": 3,
+      "unknown": 7,
       "stranger_queries": 60,
-      "stranger_ACCEPTED": 48,
+      "stranger_ACCEPTED": 51,
       "stranger_review": 0,
-      "stranger_unknown": 12
+      "stranger_unknown": 9
     },
     "face_and_body": {
       "same_person_queries": 20,
@@ -22,8 +22,8 @@
       "unknown": 0,
       "stranger_queries": 60,
       "stranger_ACCEPTED": 0,
-      "stranger_review": 4,
-      "stranger_unknown": 56
+      "stranger_review": 3,
+      "stranger_unknown": 57
     }
   }
 }

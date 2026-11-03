@@ -1,0 +1,441 @@
+{
+  "request_id": "431b4b943e9f4443",
+  "created_at": "2026-10-12T16:05:14.172824Z",
+  "mode": "all",
+  "image": {
+    "width": 960,
+    "height": 720
+  },
+  "model": {
+    "name": "osnet_ain_x1_0",
+    "architecture": "OSNet-AIN x1.0",
+    "embedding_dim": 512,
+    "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+    "device": "cpu"
+  },
+  "policy_version": 1,
+  "policy_status": "unvalidated",
+  "people": [
+    {
+      "index": 0,
+      "box": [
+        515.1,
+        269.0,
+        659.2,
+        717.4
+      ],
+      "detector_score": 0.9956,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 448.38,
+          "width_px": 144.11,
+          "sharpness": 2471.53,
+          "aspect_ratio": 3.11,
+          "detector_score": 1.0
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.554, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.55408,
+        "top2_score": 0.46625,
+        "margin": 0.08783,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.55408,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.46625,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/0",
+      "timings_ms": {}
+    },
+    {
+      "index": 1,
+      "box": [
+        810.1,
+        267.9,
+        893.0,
+        470.0
+      ],
+      "detector_score": 0.9822,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 202.05,
+          "width_px": 82.96,
+          "sharpness": 1986.26,
+          "aspect_ratio": 2.44,
+          "detector_score": 0.98
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.572, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.57214,
+        "top2_score": 0.39956,
+        "margin": 0.17258,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.57214,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.39956,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/1",
+      "timings_ms": {}
+    },
+    {
+      "index": 2,
+      "box": [
+        247.3,
+        247.0,
+        300.0,
+        359.8
+      ],
+      "detector_score": 0.9717,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 112.79,
+          "width_px": 52.77,
+          "sharpness": 659.25,
+          "aspect_ratio": 2.14,
+          "detector_score": 0.97
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.522, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.5221,
+        "top2_score": 0.43341,
+        "margin": 0.08869,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.5221,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.43341,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/2",
+      "timings_ms": {}
+    },
+    {
+      "index": 3,
+      "box": [
+        378.6,
+        255.3,
+        423.9,
+        386.2
+      ],
+      "detector_score": 0.9451,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 130.88,
+          "width_px": 45.32,
+          "sharpness": 1151.59,
+          "aspect_ratio": 2.89,
+          "detector_score": 0.95
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.554, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.55369,
+        "top2_score": 0.4024,
+        "margin": 0.1513,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.55369,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.4024,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/3",
+      "timings_ms": {}
+    },
+    {
+      "index": 4,
+      "box": [
+        449.3,
+        264.1,
+        493.3,
+        385.2
+      ],
+      "detector_score": 0.9407,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 121.02,
+          "width_px": 43.91,
+          "sharpness": 1197.86,
+          "aspect_ratio": 2.76,
+          "detector_score": 0.94
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.474, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.47364,
+        "top2_score": 0.38381,
+        "margin": 0.08983,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.47364,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.38381,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/4",
+      "timings_ms": {}
+    },
+    {
+      "index": 5,
+      "box": [
+        885.6,
+        274.3,
+        944.6,
+        434.2
+      ],
+      "detector_score": 0.8778,
+      "quality": {
+        "usable": true,
+        "flags": [],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 159.92,
+          "width_px": 59.0,
+          "sharpness": 1511.86,
+          "aspect_ratio": 2.71,
+          "detector_score": 0.88
+        }
+      },
+      "decision": {
+        "outcome": "unknown",
+        "reason_code": "below_threshold",
+        "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.604, below the acceptance threshold 0.700.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.60411,
+        "top2_score": 0.45379,
+        "margin": 0.15032,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": []
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.60411,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/8f5643090052470ba3b58e56bf90005c"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.45379,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/5",
+      "timings_ms": {}
+    },
+    {
+      "index": 6,
+      "box": [
+        0.3,
+        242.1,
+        32.8,
+        364.0
+      ],
+      "detector_score": 0.7915,
+      "quality": {
+        "usable": true,
+        "flags": [
+          "cut_off_by_frame"
+        ],
+        "blocking_reason": null,
+        "metrics": {
+          "height_px": 121.92,
+          "width_px": 32.52,
+          "sharpness": 725.6,
+          "aspect_ratio": 3.75,
+          "touching_edges": 1.0,
+          "detector_score": 0.79
+        }
+      },
+      "decision": {
+        "outcome": "review_required",
+        "reason_code": "quality_review",
+        "reason": "Image quality is inadequate for an automatic decision (cut_off_by_frame). Closest candidate 'demo-person-a' scored 0.638.",
+        "accepted_reference_id": null,
+        "top1_reference_id": "demo-person-a",
+        "top1_score": 0.63811,
+        "top2_score": 0.57111,
+        "margin": 0.067,
+        "accept_threshold": 0.7,
+        "min_margin": null,
+        "calibrated_confidence": null,
+        "policy_version": 1,
+        "policy_status": "unvalidated",
+        "quality_flags": [
+          "cut_off_by_frame"
+        ]
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "reference_id": "demo-person-a",
+          "label": "Demo person A (public-domain photo, head blurred)",
+          "score": 0.63811,
+          "n_images": 2,
+          "image_url": "/api/gallery/demo-person-a/images/ec6c4468192a44028513b0bdc73a87b4"
+        },
+        {
+          "rank": 2,
+          "reference_id": "101",
+          "label": "SASIDHARAN N",
+          "score": 0.57111,
+          "n_images": 2,
+          "image_url": "/api/gallery/101/images/2b02c98f2e3d4df79f58d72780749583"
+        }
+      ],
+      "crop_url": "/api/reid/history/431b4b943e9f4443/crops/6",
+      "timings_ms": {}
+    }
+  ],
+  "timings_ms": {
+    "detect_ms": 1047.8,
+    "preprocess_ms": 2.67,
+    "embed_ms": 920.64,
+    "retrieval_and_decision_ms": 1.66,
+    "total_ms": 1989.68
+  },
+  "notes": [
+    "The active threshold is unvalidated: it has not been calibrated on held-out data."
+  ]
+}

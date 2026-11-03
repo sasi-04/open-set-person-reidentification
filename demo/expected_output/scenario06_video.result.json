@@ -19,8 +19,8 @@
       "frames_processed": 3
     },
     "policy": {
-      "version": 1,
-      "status": "unvalidated",
+      "version": 4,
+      "status": "experimental",
       "accept_threshold": 0.7,
       "min_margin": null,
       "matching_mode": "face_body",
@@ -28,14 +28,14 @@
     },
     "face_model": "face-8f2383e4-0ba9fbfa",
     "model": {
-      "name": "osnet_ain_x1_0",
-      "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+      "name": "osnet_x1_0",
+      "fingerprint": "osnet_x1_0-c552472fdf3d-flip0",
       "device": "cpu"
     },
     "detector": "fasterrcnn_mobilenet_v3_large_fpn",
     "thumbnails_kept": true,
     "retention_hours": 24,
-    "generated_at": "2026-10-12T20:25:24.709507+00:00"
+    "generated_at": "2026-11-03T06:46:51.158239+00:00"
   },
   "frames": [
     {
@@ -70,7 +70,7 @@
           "face_flags": [],
           "outcome": "accepted",
           "reason_code": "accepted_by_face",
-          "reason": "Accepted by face: 'demo-collins' face similarity 0.567 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.544; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+          "reason": "Accepted by face: 'demo-collins' face similarity 0.567 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.632; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
           "accepted_reference_id": "demo-collins",
           "top1_reference_id": "demo-collins",
           "top1_score": 0.56685,
@@ -79,17 +79,17 @@
           "calibrated_confidence": null,
           "basis": "face",
           "top1_face_score": 0.56685,
-          "top1_body_score": 0.54403,
+          "top1_body_score": 0.63208,
           "accept_threshold": 0.465
         }
       ],
       "timings_ms": {
-        "decode_ms": 4.54,
-        "detect_ms": 803.86,
-        "embed_ms": 154.98,
-        "face_ms": 79.26,
-        "match_ms": 0.61,
-        "processing_ms": 1038.71
+        "decode_ms": 8.3,
+        "detect_ms": 927.88,
+        "embed_ms": 208.69,
+        "face_ms": 40.56,
+        "match_ms": 0.85,
+        "processing_ms": 1177.98
       }
     },
     {
@@ -131,17 +131,17 @@
           "calibrated_confidence": null,
           "basis": "face",
           "top1_face_score": 0.26255,
-          "top1_body_score": 0.45532,
+          "top1_body_score": 0.62238,
           "accept_threshold": 0.465
         }
       ],
       "timings_ms": {
-        "decode_ms": 3.22,
-        "detect_ms": 917.56,
-        "embed_ms": 169.43,
-        "face_ms": 63.79,
-        "match_ms": 0.59,
-        "processing_ms": 1151.37
+        "decode_ms": 3.84,
+        "detect_ms": 1538.37,
+        "embed_ms": 388.08,
+        "face_ms": 60.29,
+        "match_ms": 0.71,
+        "processing_ms": 1987.45
       }
     },
     {
@@ -176,7 +176,7 @@
           "face_flags": [],
           "outcome": "accepted",
           "reason_code": "accepted_by_face",
-          "reason": "Accepted by face: 'demo-collins' face similarity 0.692 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.503; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+          "reason": "Accepted by face: 'demo-collins' face similarity 0.692 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.593; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
           "accepted_reference_id": "demo-collins",
           "top1_reference_id": "demo-collins",
           "top1_score": 0.69184,
@@ -185,17 +185,17 @@
           "calibrated_confidence": null,
           "basis": "face",
           "top1_face_score": 0.69184,
-          "top1_body_score": 0.50252,
+          "top1_body_score": 0.59303,
           "accept_threshold": 0.465
         }
       ],
       "timings_ms": {
-        "decode_ms": 2.51,
-        "detect_ms": 715.06,
-        "embed_ms": 163.19,
-        "face_ms": 44.48,
-        "match_ms": 0.49,
-        "processing_ms": 923.22
+        "decode_ms": 1.81,
+        "detect_ms": 598.33,
+        "embed_ms": 208.72,
+        "face_ms": 39.16,
+        "match_ms": 0.75,
+        "processing_ms": 846.96
       }
     }
   ],
@@ -219,22 +219,22 @@
     "latency_ms": {
       "processing_per_frame": {
         "n": 3,
-        "mean": 1037.77,
-        "p50": 1038.71,
-        "p95": 1140.1,
-        "p99": 1149.12,
-        "min": 923.22,
-        "max": 1151.37
+        "mean": 1337.46,
+        "p50": 1177.98,
+        "p95": 1906.5,
+        "p99": 1971.26,
+        "min": 846.96,
+        "max": 1987.45
       },
       "note": "detection + embedding + matching for one frame, measured; video decoding is reported separately per frame."
     },
-    "wall_seconds": 3.19,
-    "frames_per_second_processed": 0.94
+    "wall_seconds": 4.11,
+    "frames_per_second_processed": 0.73
   },
   "notes": [
     "Each sampled frame is judged on its own. A person is NOT followed from frame to frame, nothing is tracked through occlusion, and no identity is carried between frames - this is frame-by-frame re-identification, not multi-object tracking.",
     "'Identities seen' only groups the independent MATCH decisions by name after the fact; gaps between frames say nothing about where a person was.",
     "Face + body matching: in every frame the face decides when a usable face is visible (people seen from behind, far away or blurred have no usable face and fall back to the body, which by policy asks for review instead of a MATCH).",
-    "The active decision policy is 'unvalidated': its threshold has not been calibrated on held-out data."
+    "The active decision policy is 'experimental': its threshold has not been calibrated on held-out data."
   ]
 }

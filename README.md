@@ -107,7 +107,7 @@ The challenge text (PS-1 · *Open-Set Person Re-Identification under Low Inter-C
 | The hard failure is the **false accept**; *minimise FAR at a fixed recall* | [calibration](backend/app/evaluation/calibration.py) mode `fixed_recall` (the default); the alternative `fixed_far` is also available |
 | **Metric learning**, margin / decision boundary, **hard-negative mining**, **calibration of scores into confidences** | [triplet loss + batch-hard mining](backend/app/training/triplet.py), [margin rule](backend/app/cv/open_set/policy.py), [Platt confidence model](backend/app/cv/open_set/confidence.py) |
 | **Real-time**, one **compact backbone**, **no fixed identity count** | OSNet x1.0 (2.2 M parameters); no classifier head - the gallery is a plain index of embeddings, so enrolling or deleting people needs no retraining. Measured speed: [docs/PERFORMANCE.md](docs/PERFORMANCE.md) |
-| **ROC / FAR-vs-TAR analysis** on a **public benchmark** and a **curated low-variance subset**, with **ablations** | [Evaluation Lab](docs/EVALUATION.md) - pipeline complete, benchmark run pending the dataset |
+| **ROC / FAR-vs-TAR analysis** on a **public benchmark** and a **curated low-variance subset**, with **ablations** | [Evaluation Lab](docs/EVALUATION.md) - pipeline complete and **run on Market-1501** (subset, own protocol; [results](docs/EXPERIMENT_RESULTS.md)) |
 
 Full requirement-by-requirement mapping with test names: [docs/REQUIREMENTS_TRACEABILITY.md](docs/REQUIREMENTS_TRACEABILITY.md).
 

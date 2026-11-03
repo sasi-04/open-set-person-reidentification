@@ -56,7 +56,7 @@ and a same-clothing subset that reports the FAR specifically on look-alikes. Amb
 **Is the test set contaminated by tuning?** No. Split by *person* into development / calibration / test; thresholds, margins, the confidence model and even the "selected variant" use only calibration people; the calibration job never opens a test image
 (there is a test for that); a fine-tuned checkpoint that saw any test person is refused automatically.
 
-**Which dataset, and is it public?** Market-1501 (public, research-licensed) is the intended benchmark; the loader, validator and protocol are ready. [State plainly whether you have run it.] A curated same-clothing subset is derived with a colour proxy, or from a manual annotation file.
+**Which dataset, and is it public?** Market-1501 (public, research-licensed) is the intended benchmark; the loader, validator and protocol are ready. It **was** run on a subset with the project's own protocol (body only): see EXPERIMENT_RESULTS.md. A curated same-clothing subset is derived with a colour proxy, or from a manual annotation file.
 
 **Why OSNet and not something bigger / a transformer?** PS-1 asks for one compact backbone: OSNet-AIN has 2.2 M parameters, is built for ReID and is MIT-licensed. The backbone is behind a registry so another can be added.
 

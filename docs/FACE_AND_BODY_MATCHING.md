@@ -106,14 +106,14 @@ those people and 60 photos of 60 other people, once under the **body-only** poli
 
 | | Body only | **Face + body** |
 |---|---|---|
-| Same-person queries matched to the right person | 8 of 20 | **20 of 20** |
-| ... matched to the **wrong** person | 9 | **0** |
-| Strangers wrongly **accepted** | **48 of 60** | **0 of 60** |
-| Strangers sent to a person / rejected | 0 / 12 | 4 / 56 |
+| Same-person queries matched to the right person | 5 of 20 | **20 of 20** |
+| ... matched to the **wrong** person | 8 | **0** |
+| Strangers wrongly **accepted** | **51 of 60** | **0 of 60** |
+| Strangers sent to a person / rejected | 0 / 9 | 3 / 57 |
 
 Read this carefully: the LFW photos are head-and-shoulders news pictures, which the body model was **not designed for** (it expects
 full-body pedestrian crops), so the body-only column is its *worst case*, not a fair benchmark of the body model. The table shows
-what the face adds, not how good the body model is on its home ground (that needs Market-1501, which has not been run). The
+what the face adds, not how good the body model is on its home ground (that was measured separately on Market-1501: docs/EXPERIMENT_RESULTS.md). The
 threshold used was fixed beforehand from §4, not tuned on these 60 strangers - an earlier run with the model-card threshold 0.363
 had accepted 3 of the 60, which is what motivated looking at the stranger-score tail properly.
 

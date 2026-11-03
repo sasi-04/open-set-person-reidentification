@@ -19,8 +19,8 @@
       "frames_processed": 3
     },
     "policy": {
-      "version": 1,
-      "status": "unvalidated",
+      "version": 4,
+      "status": "experimental",
       "accept_threshold": 0.7,
       "min_margin": null,
       "matching_mode": "face_body",
@@ -28,14 +28,14 @@
     },
     "face_model": "face-8f2383e4-0ba9fbfa",
     "model": {
-      "name": "osnet_ain_x1_0",
-      "fingerprint": "osnet_ain_x1_0-34c24e98b6b7-flip0",
+      "name": "osnet_x1_0",
+      "fingerprint": "osnet_x1_0-c552472fdf3d-flip0",
       "device": "cpu"
     },
     "detector": "fasterrcnn_mobilenet_v3_large_fpn",
     "thumbnails_kept": true,
     "retention_hours": 24,
-    "generated_at": "2026-10-12T20:25:29.972848+00:00"
+    "generated_at": "2026-11-03T06:46:58.422076+00:00"
   },
   "frames": [
     {
@@ -63,26 +63,26 @@
           "face_flags": [],
           "outcome": "review_required",
           "reason_code": "body_only_review",
-          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.852, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.977, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
           "accepted_reference_id": null,
           "top1_reference_id": "demo-person-a",
-          "top1_score": 0.85236,
-          "top2_score": 0.48006,
-          "margin": 0.3723,
+          "top1_score": 0.97652,
+          "top2_score": 0.49726,
+          "margin": 0.47925,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.85236,
+          "top1_body_score": 0.97652,
           "accept_threshold": 0.7
         }
       ],
       "timings_ms": {
-        "decode_ms": 4.67,
-        "detect_ms": 479.3,
-        "embed_ms": 92.28,
-        "face_ms": 6.53,
-        "match_ms": 0.38,
-        "processing_ms": 578.49
+        "decode_ms": 3.9,
+        "detect_ms": 548.23,
+        "embed_ms": 204.45,
+        "face_ms": 8.0,
+        "match_ms": 0.6,
+        "processing_ms": 761.28
       }
     },
     {
@@ -110,16 +110,16 @@
           "face_flags": [],
           "outcome": "unknown",
           "reason_code": "below_threshold",
-          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.645, below the acceptance threshold 0.700. No face was found in the picture.",
+          "reason": "No supported match: the closest candidate 'demo-jemison' scored 0.505, below the acceptance threshold 0.700. No face was found in the picture.",
           "accepted_reference_id": null,
-          "top1_reference_id": "demo-person-a",
-          "top1_score": 0.6454,
-          "top2_score": 0.57022,
-          "margin": 0.07519,
+          "top1_reference_id": "demo-jemison",
+          "top1_score": 0.5054,
+          "top2_score": 0.48604,
+          "margin": 0.01936,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.6454,
+          "top1_body_score": 0.5054,
           "accept_threshold": 0.7
         },
         {
@@ -139,16 +139,16 @@
           "face_flags": [],
           "outcome": "unknown",
           "reason_code": "below_threshold",
-          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.556, below the acceptance threshold 0.700. No face was found in the picture.",
+          "reason": "No supported match: the closest candidate 'demo-collins' scored 0.569, below the acceptance threshold 0.700. No face was found in the picture.",
           "accepted_reference_id": null,
-          "top1_reference_id": "demo-person-a",
-          "top1_score": 0.5557,
-          "top2_score": 0.43352,
-          "margin": 0.12219,
+          "top1_reference_id": "demo-collins",
+          "top1_score": 0.56897,
+          "top2_score": 0.5551,
+          "margin": 0.01387,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.5557,
+          "top1_body_score": 0.56897,
           "accept_threshold": 0.7
         },
         {
@@ -168,16 +168,16 @@
           "face_flags": [],
           "outcome": "unknown",
           "reason_code": "below_threshold",
-          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.540, below the acceptance threshold 0.700. No face was found in the picture.",
+          "reason": "No supported match: the closest candidate 'demo-collins' scored 0.563, below the acceptance threshold 0.700. No face was found in the picture.",
           "accepted_reference_id": null,
-          "top1_reference_id": "demo-person-a",
-          "top1_score": 0.53963,
-          "top2_score": 0.46874,
-          "margin": 0.07089,
+          "top1_reference_id": "demo-collins",
+          "top1_score": 0.56338,
+          "top2_score": 0.523,
+          "margin": 0.04039,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.53963,
+          "top1_body_score": 0.56338,
           "accept_threshold": 0.7
         },
         {
@@ -197,26 +197,26 @@
           "face_flags": [],
           "outcome": "unknown",
           "reason_code": "below_threshold",
-          "reason": "No supported match: the closest candidate 'demo-person-a' scored 0.499, below the acceptance threshold 0.700. No face was found in the picture.",
+          "reason": "No supported match: the closest candidate 'demo-jemison' scored 0.506, below the acceptance threshold 0.700. No face was found in the picture.",
           "accepted_reference_id": null,
-          "top1_reference_id": "demo-person-a",
-          "top1_score": 0.49911,
-          "top2_score": 0.42744,
-          "margin": 0.07167,
+          "top1_reference_id": "demo-jemison",
+          "top1_score": 0.50613,
+          "top2_score": 0.49081,
+          "margin": 0.01532,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.49911,
+          "top1_body_score": 0.50613,
           "accept_threshold": 0.7
         }
       ],
       "timings_ms": {
-        "decode_ms": 3.51,
-        "detect_ms": 723.39,
-        "embed_ms": 426.4,
-        "face_ms": 23.23,
-        "match_ms": 1.84,
-        "processing_ms": 1174.86
+        "decode_ms": 3.07,
+        "detect_ms": 727.13,
+        "embed_ms": 760.14,
+        "face_ms": 23.97,
+        "match_ms": 1.21,
+        "processing_ms": 1512.45
       }
     },
     {
@@ -244,26 +244,26 @@
           "face_flags": [],
           "outcome": "review_required",
           "reason_code": "body_only_review",
-          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.836, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+          "reason": "No face was found in the picture. Body/clothing evidence alone: 'demo-person-a' scored 0.967, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
           "accepted_reference_id": null,
           "top1_reference_id": "demo-person-a",
-          "top1_score": 0.83616,
-          "top2_score": 0.48859,
-          "margin": 0.34757,
+          "top1_score": 0.96737,
+          "top2_score": 0.48569,
+          "margin": 0.48169,
           "calibrated_confidence": null,
           "basis": "body",
           "top1_face_score": null,
-          "top1_body_score": 0.83616,
+          "top1_body_score": 0.96737,
           "accept_threshold": 0.7
         }
       ],
       "timings_ms": {
-        "decode_ms": 2.71,
-        "detect_ms": 411.26,
-        "embed_ms": 122.44,
-        "face_ms": 6.6,
-        "match_ms": 0.51,
-        "processing_ms": 540.81
+        "decode_ms": 2.15,
+        "detect_ms": 410.8,
+        "embed_ms": 190.38,
+        "face_ms": 7.5,
+        "match_ms": 0.62,
+        "processing_ms": 609.3
       }
     }
   ],
@@ -278,22 +278,22 @@
     "latency_ms": {
       "processing_per_frame": {
         "n": 3,
-        "mean": 764.72,
-        "p50": 578.49,
-        "p95": 1115.22,
-        "p99": 1162.93,
-        "min": 540.81,
-        "max": 1174.86
+        "mean": 961.01,
+        "p50": 761.28,
+        "p95": 1437.33,
+        "p99": 1497.43,
+        "min": 609.3,
+        "max": 1512.45
       },
       "note": "detection + embedding + matching for one frame, measured; video decoding is reported separately per frame."
     },
-    "wall_seconds": 2.36,
-    "frames_per_second_processed": 1.27
+    "wall_seconds": 2.97,
+    "frames_per_second_processed": 1.01
   },
   "notes": [
     "Each sampled frame is judged on its own. A person is NOT followed from frame to frame, nothing is tracked through occlusion, and no identity is carried between frames - this is frame-by-frame re-identification, not multi-object tracking.",
     "'Identities seen' only groups the independent MATCH decisions by name after the fact; gaps between frames say nothing about where a person was.",
     "Face + body matching: in every frame the face decides when a usable face is visible (people seen from behind, far away or blurred have no usable face and fall back to the body, which by policy asks for review instead of a MATCH).",
-    "The active decision policy is 'unvalidated': its threshold has not been calibrated on held-out data."
+    "The active decision policy is 'experimental': its threshold has not been calibrated on held-out data."
   ]
 }

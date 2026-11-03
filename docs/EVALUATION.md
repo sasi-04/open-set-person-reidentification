@@ -5,8 +5,7 @@
 Code: [`backend/app/evaluation/`](../backend/app/evaluation/). Run it from the **Evaluation Lab** screen or the scripts
 [`run_evaluation.py`](../scripts/run_evaluation.py) / [`calibrate_threshold.py`](../scripts/calibrate_threshold.py). Metric definitions: [METRICS.md](METRICS.md).
 
-> **Status.** The whole pipeline is implemented, unit-tested and verified end to end on a *synthetic* smoke-test set. **It has not been run on a public benchmark yet**, because Market-1501 is research-licensed and must be supplied
-> by you (README §9). Nothing in this repository claims benchmark performance. Section 7 shows what the pipeline did on the synthetic set - *only* as evidence that it behaves honestly, not as an accuracy result.
+> **Status.** The pipeline was run on **Market-1501** on 2026-10-25 / 2026-11-03 (body only, the project's own identity-disjoint protocol on a CPU-sized subset, 3 seeds; the copy used lacks the official `query/` folder, so numbers are **not** comparable with published ones): [EXPERIMENT_RESULTS.md](EXPERIMENT_RESULTS.md). Face + body has **not** been benchmarked on pedestrian data. Section 7 below still shows what the pipeline did on the *synthetic* smoke-test set - only as evidence that it behaves honestly, never as an accuracy result.
 
 ## 1. The protocol: who may appear where
 

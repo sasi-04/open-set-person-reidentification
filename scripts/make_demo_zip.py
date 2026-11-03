@@ -43,7 +43,7 @@ To just READ and PRESENT, the three PDFs are enough.
 Important honesty notes
   * Not a phone's Face ID: 2-D photo matching, no depth sensor, no liveness check.
   * Face accuracy was measured on the standard LFW benchmark (98.9 %) - an easy test - plus a small end-to-end check.
-  * The pedestrian re-identification benchmark (Market-1501) has NOT been run.
+  * Market-1501 was run on a subset, body only (docs/EXPERIMENT_RESULTS.md); face + body has NOT been benchmarked on pedestrian data.
   * Thresholds are evidence-based defaults, unvalidated for any specific camera.
   * Face fingerprints are biometric data: use only consenting volunteers.
 """

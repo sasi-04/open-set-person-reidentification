@@ -1,0 +1,7 @@
+frame,time_seconds,person,outcome,accepted_reference_id,top1_reference_id,top1_score,margin,detector_score,quality_flags,reason,processing_ms
+0,0.0,0,accepted,demo-person-a,demo-person-a,0.85236,0.36441,0.9979,,"Accepted: 'demo-person-a' scored 0.852, at or above the threshold 0.700.",822.03
+1,1.0,0,unknown,,demo-person-a,0.6454,0.1229,0.9975,,"No supported match: the closest candidate 'demo-person-a' scored 0.645, below the acceptance threshold 0.700.",1597.07
+1,1.0,1,unknown,,demo-person-a,0.5557,0.12258,0.9875,,"No supported match: the closest candidate 'demo-person-a' scored 0.556, below the acceptance threshold 0.700.",1597.07
+1,1.0,2,unknown,,demo-person-a,0.53963,0.15246,0.9575,,"No supported match: the closest candidate 'demo-person-a' scored 0.540, below the acceptance threshold 0.700.",1597.07
+1,1.0,3,unknown,,101,0.51,0.01088,0.8082,,"No supported match: the closest candidate '101' scored 0.510, below the acceptance threshold 0.700.",1597.07
+2,2.0,0,accepted,demo-person-a,demo-person-a,0.83616,0.30971,0.9983,,"Accepted: 'demo-person-a' scored 0.836, at or above the threshold 0.700.",806.71
