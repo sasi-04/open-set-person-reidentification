@@ -79,6 +79,6 @@ A raw similarity is **not** a probability; the optional "calibrated confidence" 
 
 ## 8. Considered, not in the product
 
-* Training a new backbone from scratch (impossible on this CPU in useful time; fine-tuning only the last stage is implemented - see EXPERIMENT_RESULTS.md for whether it ran and what it gave).
+* Training a new backbone from scratch (impossible on this CPU in useful time; fine-tuning only the last stage is implemented and was run once, seed 0 - see EXPERIMENT_RESULTS.md section 3).
 * Liveness / anti-spoofing, depth sensing, multi-camera tracking: absent. Video is judged frame by frame, never tracked.
 * Re-ranking (k-reciprocal), pose or part-based models, clothing-change-specific training: not implemented.

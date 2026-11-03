@@ -1,0 +1,42 @@
+﻿{
+    "performance":  {
+                        "embedding":  {
+                                          "single_crop_ms":  {
+                                                                 "n":  30,
+                                                                 "mean":  203.56,
+                                                                 "p50":  195.98,
+                                                                 "p95":  235.39,
+                                                                 "p99":  242.69,
+                                                                 "min":  184.83,
+                                                                 "max":  245.25
+                                                             },
+                                          "batch":  {
+                                                        "batch_size":  16,
+                                                        "ms_per_crop":  186.96,
+                                                        "throughput_crops_per_second":  5.35
+                                                    }
+                                      },
+                        "retrieval_ms_per_query":  0.0174,
+                        "retrieval_gallery_images":  180,
+                        "model_load_seconds":  0.625,
+                        "warmup_seconds":  0.236,
+                        "dataset_embedding_ms_per_image":  {
+                                                               "n":  0
+                                                           },
+                        "peak_memory_mb":  613.4,
+                        "device":  "cpu",
+                        "note":  "Measured on this machine in steady state after warm-up; model load and warm-up are separate."
+                    },
+    "note":  "Measured with nothing else running (idle CPU), 2026-11-03.",
+    "hardware":  {
+                     "python":  "3.14.4",
+                     "platform":  "Windows-10-10.0.19045-SP0",
+                     "torch":  "2.14.1+cpu",
+                     "numpy":  "2.5.2",
+                     "cpu_count":  4,
+                     "torch_threads":  2,
+                     "total_memory_gb":  7.9,
+                     "peak_memory_mb":  613.4,
+                     "torchvision":  "0.29.1+cpu"
+                 }
+}

@@ -24,6 +24,7 @@ const VARIANT_CHOICES = [
   { key: "thr", label: "+ Calibrated threshold", on: true },
   { key: "thr_margin", label: "+ Top-1/top-2 margin rule", on: true },
   { key: "thr_confidence", label: "+ Calibrated confidence", on: true },
+  { key: "thr_mean", label: "+ Average over a person's photos", on: true },
   { key: "thr_margin_flip", label: "+ Flip test-time augmentation", on: true },
 ];
 

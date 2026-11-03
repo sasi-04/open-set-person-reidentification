@@ -15,6 +15,7 @@ export const VARIANT_COLOUR: Record<string, string> = {
   thr: "var(--series-1)",
   thr_margin: "var(--series-2)",
   thr_confidence: "var(--series-3)",
+  thr_mean: "var(--series-6)",
   thr_margin_flip: "var(--series-4)",
   thr_margin_finetuned: "var(--series-5)",
 };

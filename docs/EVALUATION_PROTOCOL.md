@@ -58,7 +58,7 @@ python scripts\run_evaluation.py --dataset market1501 --mode fixed_recall --targ
 python scripts\summarise_results.py docs\results\market1501                 # the table in EXPERIMENT_RESULTS.md
 ```
 
-Seeds, protocol fractions, model fingerprint, package versions and hardware are written into every result file (`metadata`). Cached embeddings make a re-run of the scoring take seconds; the first run takes about 50 minutes on the 2-core development laptop.
+Seeds, protocol fractions, model fingerprint, package versions and hardware are written into every result file (`metadata`). Cached embeddings make a re-run of the scoring take seconds; the first run (embedding about 5,000 images) took 33 minutes on the 2-core development laptop.
 
 ## 7. What these results can and cannot show
 

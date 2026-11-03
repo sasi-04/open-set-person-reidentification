@@ -38,7 +38,7 @@ def main() -> int:
     print("| Target DIR@1 (calibration) | Variant | Target reached on calibration | Test DIR@1 (recall) | Test FAR | ROC-AUC | Rank-1 | mAP | Threshold |")
     print("|---|---|---|---|---|---|---|---|---|")
     for target, path, data in runs:
-        for key in ("nn_baseline", "thr", "thr_margin", "thr_confidence"):
+        for key in ("nn_baseline", "thr", "thr_margin", "thr_confidence", "thr_mean", "thr_margin_flip", "thr_margin_finetuned"):
             variant = data["variants"].get(key)
             if not variant or not variant.get("summary"):
                 continue
