@@ -11,6 +11,7 @@ variant is measured with the same metrics on the same test people:
   thr_margin           + top-1 / top-2 margin rule (a near-tie is not a confident match).
   thr_confidence       + (instead of the margin rule) a calibrated confidence fitted from
                        similarity and margin; the threshold is applied to that confidence.
+  thr_mean             + (instead of the best photo) the AVERAGE over a person's photos as the identity score.
   thr_margin_flip      + horizontal-flip test-time augmentation of the embeddings.
   thr_margin_finetuned + a backbone fine-tuned with batch-hard triplet loss (only if a
                        checkpoint was supplied; otherwise reported as "not available").
@@ -41,6 +42,7 @@ class VariantSpec:
     rejection: str  # "none" | "threshold" | "threshold_margin" | "confidence"
     flip: bool = False
     finetuned: bool = False
+    aggregation: str = "max"  # how a person's several gallery photos become ONE score: "max" (best photo) | "mean" (average)
 
 
 VARIANTS: tuple[VariantSpec, ...] = (
@@ -56,6 +58,9 @@ VARIANTS: tuple[VariantSpec, ...] = (
     VariantSpec("thr_confidence", "+ Calibrated confidence (instead of margin)",
                 "Fit P(top-1 correct | similarity, margin) on the calibration split and threshold that.",
                 "thr", "confidence"),
+    VariantSpec("thr_mean", "+ Average over a person's photos (instead of the best photo)",
+                "Identity score = mean similarity over that person's gallery photos; threshold chosen on the calibration split.",
+                "thr", "threshold", aggregation="mean"),
     VariantSpec("thr_margin_flip", "+ Flip test-time augmentation",
                 "Average each embedding with the embedding of the mirrored crop.",
                 "thr_margin", "threshold_margin", flip=True),

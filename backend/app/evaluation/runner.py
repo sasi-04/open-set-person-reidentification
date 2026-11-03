@@ -178,7 +178,7 @@ class _Context:
             return normalise_rows(self.vectors("plain", records) + self.vectors("mirrored", records))
         return self.vectors("finetuned" if source == "finetuned" else "plain", records)
 
-    def score(self, protocol: Protocol, source: str) -> tuple[ScoredSplit, ScoredSplit]:
+    def score(self, protocol: Protocol, source: str, aggregation: str = "max") -> tuple[ScoredSplit, ScoredSplit]:
         scored = []
         for split in (protocol.calibration, protocol.test):
             scored.append(score_split(
@@ -187,6 +187,7 @@ class _Context:
                 self.source_vectors(source, split.known_queries),
                 self.source_vectors(source, split.unknown_queries),
                 cross_camera=protocol.config.cross_camera,
+                aggregation=aggregation,
             ))
         return scored[0], scored[1]
 
@@ -287,7 +288,7 @@ def run_evaluation(
         protocol_summaries[str(seed)] = protocol.summary()
         scored_cache: dict[str, tuple[ScoredSplit, ScoredSplit]] = {}
         base_cal, base_test = ctx.score(protocol, "plain")
-        scored_cache["plain"] = (base_cal, base_test)
+        scored_cache["plain/max"] = (base_cal, base_test)
         if step == 0:
             sandbox_scores = (base_cal, base_test)
 
@@ -306,9 +307,10 @@ def run_evaluation(
                                               "reason": finetuned_problem})
                 continue
             source = _source_for(spec.key)
-            if source not in scored_cache:
-                scored_cache[source] = ctx.score(protocol, source)
-            cal, test = scored_cache[source]
+            cache_key = f"{source}/{spec.aggregation}"
+            if cache_key not in scored_cache:
+                scored_cache[cache_key] = ctx.score(protocol, source, spec.aggregation)
+            cal, test = scored_cache[cache_key]
             try:
                 per_variant[spec.key].append(evaluate_variant(
                     spec, cal, test, request.target, calibration_hard=cal_hard, test_hard=test_hard,

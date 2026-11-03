@@ -345,3 +345,10 @@ def test_embedding_cache_avoids_recomputation(dataset, tmp_path):
     # The first run embedded every dataset image plus the latency benchmark. The second run must only
     # repeat the benchmark (a fixed number of calls), so it is far cheaper than the first.
     assert second_run_calls < first_run_calls * 0.5
+
+
+def test_averaging_a_persons_photos_is_a_separate_ablation_variant_that_changes_only_the_identity_score(dataset, tmp_path):
+    result = run_evaluation(dataset, request_for(dataset, variants=("thr", "thr_mean")), cache_dir=tmp_path / "cache", make_extractor=factory_for(FakeExtractor(noise=0.02)))
+    best, mean = result["variants"]["thr"]["per_seed"][0], result["variants"]["thr_mean"]["per_seed"][0]
+    assert mean["status"] == "ok" and result["variants"]["thr_mean"]["parent"] == "thr"
+    assert mean["closed_set"]["mAP"] == best["closed_set"]["mAP"]  # image-level retrieval is untouched; only the person-level score differs

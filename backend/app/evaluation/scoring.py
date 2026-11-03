@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from ..cv.retrieval.ranking import best_score_per_identity, cosine_similarity
+from ..cv.retrieval.ranking import best_score_per_identity, cosine_similarity, mean_score_per_identity
 from .datasets import ImageRecord
 from .metrics import QueryScores, cmc, mean_average_precision
 from .protocol import SplitProtocol
@@ -55,6 +55,7 @@ def score_split(
     unknown_embeddings: np.ndarray,
     *,
     cross_camera: bool,
+    aggregation: str = "max",
 ) -> ScoredSplit:
     # --- arrange the gallery so each person's images are contiguous -----------------
     order = sorted(range(len(split.gallery)), key=lambda i: (split.gallery[i].identity, split.gallery[i].path.name))
@@ -79,7 +80,10 @@ def score_split(
             if record.camera is not None:
                 ignore[row] = (g_ids == record.identity) & (g_cams == record.camera)
     masked = np.where(ignore, -np.inf, similarity)
-    identity_scores = best_score_per_identity(masked, block_starts)  # (Q, I)
+    if aggregation not in ("max", "mean"):
+        raise ValueError(f"Unknown identity aggregation '{aggregation}' (use 'max' or 'mean').")
+    aggregate = best_score_per_identity if aggregation == "max" else mean_score_per_identity
+    identity_scores = aggregate(masked, block_starts)  # (Q, I)
 
     # --- which known queries can be evaluated? ---------------------------------------
     true_index = np.array([id_index[r.identity] for r in split.known_queries], dtype=int)

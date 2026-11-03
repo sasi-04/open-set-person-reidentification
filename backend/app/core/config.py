@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     ]
 
     # ------------------------------------------------------------------- models
-    embedding_model: str = "osnet_ain_x1_0"
+    embedding_model: str = "osnet_x1_0"
     embedding_checkpoint: Path | None = None
     use_flip_tta: bool = False
     # Merge batch-norm layers into the convolutions. The output is identical (checked by a test) but, measured

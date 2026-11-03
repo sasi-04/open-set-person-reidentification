@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from app.cv.retrieval.gallery_index import GalleryIndex, IndexEntry
-from app.cv.retrieval.ranking import best_score_per_identity, cosine_similarity, rank_identities
+from app.cv.retrieval.ranking import best_score_per_identity, cosine_similarity, mean_score_per_identity, rank_identities
 
 
 def unit(*values: float) -> np.ndarray:
@@ -31,6 +31,14 @@ def test_identity_score_is_the_best_of_its_images():
     sims = np.array([[0.2, 0.9, 0.5, 0.4, 0.6]])
     scores = best_score_per_identity(sims, np.array([0, 2]))
     np.testing.assert_allclose(scores, [[0.9, 0.6]])
+
+
+def test_identity_score_can_be_the_average_of_its_images_and_ignores_switched_off_ones():
+    sims = np.array([[0.9, 0.5, 0.2, 0.4], [-np.inf, 0.6, 0.3, 0.1]])
+    scores = mean_score_per_identity(sims, np.array([0, 2]))
+    np.testing.assert_allclose(scores[0], [0.7, 0.3])
+    assert scores[1, 0] == 0.6  # the -inf image is left out of the average, not counted as a zero
+    assert mean_score_per_identity(np.array([[-np.inf, -np.inf, 0.2]]), np.array([0, 2]))[0, 0] == -np.inf  # nothing usable
 
 
 def test_top_k_is_sorted_best_first_and_clamped():

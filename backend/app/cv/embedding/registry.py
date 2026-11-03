@@ -35,10 +35,17 @@ _HF_BASE = "https://huggingface.co/LibreYOLO/LibreReID-osnet/resolve/main"
 
 @dataclass(frozen=True)
 class WeightFile:
+    """A weight file. Normally pinned by the SHA-256 of its bytes. A file that this project CONVERTS from an official
+    training checkpoint (``source_*`` fields) is pinned by ``tensor_sha256`` (a digest of the tensors) instead."""
+
     filename: str
     url: str
     sha256: str
     size_bytes: int
+    tensor_sha256: str | None = None
+    source_filename: str | None = None
+    source_sha256: str | None = None
+    source_size_bytes: int | None = None
 
 
 @dataclass(frozen=True)
@@ -55,6 +62,9 @@ class EmbeddingModelSpec:
     weights_license: str = "MIT (Torchreid); see training-data caveat in the README"
     weights_source: str = "https://huggingface.co/LibreYOLO/LibreReID-osnet"
     training_data: str = "MSMT17 + DukeMTMC-reID + CUHK03 (multi-source domain generalisation)"
+    architecture: str = "osnet_ain"  # "osnet_ain" | "osnet"
+    verified: bool = True  # False = a measured problem is documented in `verification_note`
+    verification_note: str = ""
 
 
 def _weight(filename: str, sha256: str, size_bytes: int) -> WeightFile:
@@ -65,6 +75,24 @@ EMBEDDING_MODELS: dict[str, EmbeddingModelSpec] = {
     spec.name: spec
     for spec in (
         EmbeddingModelSpec(
+            name="osnet_x1_0",
+            display_name="OSNet x1.0 (multi-source)",
+            channels=(64, 256, 384, 512),
+            weights=WeightFile(
+                filename="osnet_x1_0_ms_d_c.pt",
+                url="https://huggingface.co/datasets/aveocr/Market-1501-v15.09.15.zip/resolve/main/osnet_ms_d_c.pth.tar",  # the official Torchreid checkpoint (converted once, see convert.py)
+                sha256="",
+                size_bytes=8_947_299,
+                tensor_sha256="c552472fdf3d3b4aa85ba066ef876cf1f83531ec1159a12ed045497d14b13164",
+                source_filename="osnet_ms_d_c.pth.tar",
+                source_sha256="53cb9f42394254105fcb1cc786f6c1b2fb1b06ef0c4cc1ea7112feaea2888515",
+                source_size_bytes=55_935_451,
+            ),
+            weights_source="https://huggingface.co/datasets/aveocr/Market-1501-v15.09.15.zip (third-party mirror of the official Torchreid file osnet_ms_d_c.pth.tar, pinned by SHA-256; upstream: https://kaiyangzhou.github.io/deep-person-reid/MODEL_ZOO)",
+            training_data="MSMT17 + DukeMTMC-reID + CUHK03 (multi-source domain generalisation); Market-1501 is NOT in the training data",
+            architecture="osnet",
+            verification_note="Measured 2026-10-25 on Market-1501 (100 identities, cross-camera, closed set): Rank-1 81 %, mAP 69 %. Market-1501 was not in its training data.",
+        ),        EmbeddingModelSpec(
             name="osnet_ain_x1_0",
             display_name="OSNet-AIN x1.0",
             channels=(64, 256, 384, 512),
@@ -73,6 +101,8 @@ EMBEDDING_MODELS: dict[str, EmbeddingModelSpec] = {
                 "34c24e98b6b70c8b62480f846fd0d581aa2fd1535bc0276aecf1f10430b731d1",
                 8_932_647,
             ),
+        verified=False,
+            verification_note="FAILED verification: with this weight file OSNet-AIN x1.0 reached only Rank-1 20 % / mAP 13 % on Market-1501 (100 identities, cross-camera, closed set), the same 20 % inside Torchreid's own reference code; a verified OSNet checkpoint reached 81 % / 69 % under the identical protocol. Kept only for comparison. The smaller AIN files come from the same source and are unverified.",
         ),
         EmbeddingModelSpec(
             name="osnet_ain_x0_75",
@@ -83,6 +113,8 @@ EMBEDDING_MODELS: dict[str, EmbeddingModelSpec] = {
                 "57b31d7f806edac586540e08e98c589f0010ad7876dacf4af013deaa284dd26d",
                 5_375_571,
             ),
+        verified=False,
+            verification_note="FAILED verification: with this weight file OSNet-AIN x1.0 reached only Rank-1 20 % / mAP 13 % on Market-1501 (100 identities, cross-camera, closed set), the same 20 % inside Torchreid's own reference code; a verified OSNet checkpoint reached 81 % / 69 % under the identical protocol. Kept only for comparison. The smaller AIN files come from the same source and are unverified.",
         ),
         EmbeddingModelSpec(
             name="osnet_ain_x0_5",
@@ -93,6 +125,8 @@ EMBEDDING_MODELS: dict[str, EmbeddingModelSpec] = {
                 "510bcebae21bd0c0fcc7df388e97d2f687a9ee4befa4394d6fb1fb19aac0bce2",
                 2_736_551,
             ),
+        verified=False,
+            verification_note="FAILED verification: with this weight file OSNet-AIN x1.0 reached only Rank-1 20 % / mAP 13 % on Market-1501 (100 identities, cross-camera, closed set), the same 20 % inside Torchreid's own reference code; a verified OSNet checkpoint reached 81 % / 69 % under the identical protocol. Kept only for comparison. The smaller AIN files come from the same source and are unverified.",
         ),
         EmbeddingModelSpec(
             name="osnet_ain_x0_25",
@@ -103,6 +137,8 @@ EMBEDDING_MODELS: dict[str, EmbeddingModelSpec] = {
                 "ce171fe160b3608f5e4c19489774991419be965b1d6f4bdccc4b4cfd2ef95347",
                 1_001_683,
             ),
+        verified=False,
+            verification_note="FAILED verification: with this weight file OSNet-AIN x1.0 reached only Rank-1 20 % / mAP 13 % on Market-1501 (100 identities, cross-camera, closed set), the same 20 % inside Torchreid's own reference code; a verified OSNet checkpoint reached 81 % / 69 % under the identical protocol. Kept only for comparison. The smaller AIN files come from the same source and are unverified.",
         ),
     )
 }

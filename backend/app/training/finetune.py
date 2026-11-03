@@ -29,7 +29,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 
 from ..core.errors import ValidationFailed
-from ..cv.embedding.osnet_ain import OSNetAIN
+from ..cv.embedding.network import build_network
 from ..cv.embedding.registry import EmbeddingModelSpec
 from ..cv.embedding.weights import load_state_dict, locate_official_weights, sha256_of_file
 from ..cv.geometry import pad_to_person_aspect
@@ -142,7 +142,7 @@ def finetune(
         base_state, base_sha = load_state_dict(base_path), sha256_of_file(base_path)
     else:
         base_sha = "injected-for-test"
-    model = OSNetAIN(spec.channels, spec.feature_dim)
+    model = build_network(spec)
     model.load_state_dict(base_state, strict=True)
     model.eval()  # keeps batch-norm statistics fixed (tiny batches would corrupt them)
 
@@ -174,7 +174,7 @@ def finetune(
         progress(f"epoch {epoch + 1}/{config.epochs}  loss {history[-1]['loss']:.4f}  active triplets {history[-1]['active_triplets']:.0%}")
 
     metadata = {
-        "what": "OSNet-AIN fine-tuned with batch-hard triplet loss (cosine distance)",
+        "what": f"{spec.display_name} fine-tuned with batch-hard triplet loss (cosine distance)",
         "model": spec.name,
         "base_weights_sha256": base_sha,
         "config": asdict(config),

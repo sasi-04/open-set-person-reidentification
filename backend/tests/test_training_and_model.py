@@ -207,20 +207,20 @@ def test_weights_that_do_not_fit_the_architecture_are_rejected(tmp_path):
 
 def test_every_registered_model_has_a_pinned_hash_and_one_embedding_size():
     for spec in EMBEDDING_MODELS.values():
-        assert len(spec.weights.sha256) == 64 and spec.weights.url.startswith("https://")
+        assert len(spec.weights.tensor_sha256 or spec.weights.sha256) == 64 and spec.weights.url.startswith("https://")
         assert spec.feature_dim == 512  # one place defines the embedding dimension
         assert OSNetAIN(spec.channels, spec.feature_dim).eval()(torch.zeros(1, 3, 256, 128)).shape == (1, 512)
 
 
 # -------------------------------------------------- the REAL pretrained model (skipped without weights)
-WEIGHTS_PRESENT = (Settings(_env_file=None).weights_dir / get_spec("osnet_ain_x1_0").weights.filename).is_file()
+WEIGHTS_PRESENT = (Settings(_env_file=None).weights_dir / get_spec("osnet_x1_0").weights.filename).is_file()
 real = pytest.mark.skipif(not WEIGHTS_PRESENT, reason="official weights not downloaded (run scripts/download_weights.py)")
 
 
 @pytest.fixture(scope="module")
 def real_extractor():
     settings = Settings(_env_file=None)
-    return OSNetExtractor.load(get_spec("osnet_ain_x1_0"), settings.weights_dir, torch.device("cpu"), batch_size=8)
+    return OSNetExtractor.load(get_spec("osnet_x1_0"), settings.weights_dir, torch.device("cpu"), batch_size=8)
 
 
 def random_crops(n=4, seed=0):
@@ -252,7 +252,7 @@ def test_real_model_is_verified_and_reports_its_provenance(real_extractor):
 @real
 def test_folded_real_model_matches_the_unfolded_one():
     settings = Settings(_env_file=None)
-    spec = get_spec("osnet_ain_x1_0")
+    spec = get_spec("osnet_x1_0")
     folded = OSNetExtractor.load(spec, settings.weights_dir, torch.device("cpu"), fold_bn=True)
     plain = OSNetExtractor.load(spec, settings.weights_dir, torch.device("cpu"), fold_bn=False)
     crops = random_crops(3, seed=5)
@@ -264,7 +264,7 @@ def test_folded_real_model_matches_the_unfolded_one():
 @real
 def test_flip_augmentation_changes_the_embedding_but_keeps_it_normalised():
     settings = Settings(_env_file=None)
-    spec = get_spec("osnet_ain_x1_0")
+    spec = get_spec("osnet_x1_0")
     normal = OSNetExtractor.load(spec, settings.weights_dir, torch.device("cpu"), use_flip_tta=False)
     flipped = OSNetExtractor.load(spec, settings.weights_dir, torch.device("cpu"), use_flip_tta=True)
     crops = random_crops(2, seed=9)

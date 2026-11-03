@@ -39,6 +39,27 @@ def sha256_of_file(path: Path, chunk_size: int = 1 << 20) -> str:
     return digest.hexdigest()
 
 
+def tensor_digest(state: dict[str, torch.Tensor]) -> str:
+    """SHA-256 of the network tensors themselves (names, types, shapes and values), independent of how the file was written.
+
+    A converted weight file is not byte-for-byte reproducible (``torch.save`` embeds incidental ids), so such a file is pinned by this
+    content digest instead of by the hash of its bytes.
+    """
+    digest = hashlib.sha256()
+    for key in sorted(state):
+        tensor = state[key].detach().cpu().contiguous()
+        digest.update(key.encode())
+        digest.update(str(tensor.dtype).encode())
+        digest.update(str(tuple(tensor.shape)).encode())
+        digest.update(tensor.numpy().tobytes())
+    return digest.hexdigest()
+
+
+def weights_fingerprint(spec: EmbeddingModelSpec, path: Path) -> str:
+    """The identity of the weights actually loaded (content digest for converted files, file hash otherwise)."""
+    return tensor_digest(load_state_dict(path)) if spec.weights.tensor_sha256 else sha256_of_file(path)
+
+
 def locate_official_weights(spec: EmbeddingModelSpec, weights_dir: Path) -> Path:
     """Return the path of the verified official weight file, or raise a helpful error."""
     path = weights_dir / spec.weights.filename
@@ -48,6 +69,15 @@ def locate_official_weights(spec: EmbeddingModelSpec, weights_dir: Path) -> Path
             "Run:  python scripts/download_weights.py",
             details={"missing_file": str(path)},
         )
+    if spec.weights.tensor_sha256:
+        actual = tensor_digest(load_state_dict(path))
+        if actual != spec.weights.tensor_sha256:
+            raise ModelUnavailable(
+                f"The weight file {path.name} does not contain the official network tensors (content digest mismatch). "
+                "Delete it and re-run scripts/download_weights.py.",
+                details={"expected_tensor_sha256": spec.weights.tensor_sha256, "actual_tensor_sha256": actual},
+            )
+        return path
     actual = sha256_of_file(path)
     if actual != spec.weights.sha256:
         raise ModelUnavailable(

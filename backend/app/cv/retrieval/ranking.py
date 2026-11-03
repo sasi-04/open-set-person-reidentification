@@ -40,6 +40,19 @@ def best_score_per_identity(similarities: np.ndarray, block_starts: np.ndarray) 
     return np.maximum.reduceat(similarities, block_starts, axis=1)
 
 
+def mean_score_per_identity(similarities: np.ndarray, block_starts: np.ndarray) -> np.ndarray:
+    """Identity-level score = the AVERAGE similarity over that identity's usable images (a "prototype-like" aggregation).
+
+    Entries equal to -inf (images that must be ignored, e.g. the same camera as the query) are left out of the average; an
+    identity with no usable image scores -inf. The default everywhere else is the BEST image (``best_score_per_identity``).
+    """
+    usable = np.isfinite(similarities)
+    sums = np.add.reduceat(np.where(usable, similarities, 0.0), block_starts, axis=1)
+    counts = np.add.reduceat(usable.astype(np.float64), block_starts, axis=1)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        return np.where(counts > 0, sums / np.maximum(counts, 1.0), -np.inf)
+
+
 def rank_identities(scores: np.ndarray, k: int) -> tuple[np.ndarray, np.ndarray]:
     """Top-k identity indices and scores per query, best first.
 

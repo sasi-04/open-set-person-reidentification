@@ -151,6 +151,32 @@ def test_corrupted_weights_are_rejected_by_checksum(tmp_path):
         locate_official_weights(spec, tmp_path)
 
 
+def test_converted_weights_are_pinned_by_their_tensors_not_their_bytes(tmp_path):
+    import torch
+
+    from app.core.errors import ModelUnavailable
+    from app.cv.embedding.registry import get_spec
+    from app.cv.embedding.weights import locate_official_weights
+
+    spec = get_spec("osnet_x1_0")
+    assert spec.weights.tensor_sha256 and spec.weights.source_sha256  # converted from a hash-pinned official checkpoint
+    (tmp_path / spec.weights.filename).write_bytes(b"garbage")
+    with pytest.raises(ModelUnavailable, match="Could not read"):
+        locate_official_weights(spec, tmp_path)
+    torch.save({"conv1.conv.weight": torch.zeros(2, 2)}, tmp_path / spec.weights.filename)  # a valid file, but not the official tensors
+    with pytest.raises(ModelUnavailable, match="content digest mismatch"):
+        locate_official_weights(spec, tmp_path)
+
+
+def test_the_default_model_is_the_verified_one_and_failed_files_are_flagged():
+    from app.core.config import Settings
+    from app.cv.embedding.registry import EMBEDDING_MODELS, get_spec
+
+    assert Settings(_env_file=None).embedding_model == "osnet_x1_0" and get_spec("osnet_x1_0").verified
+    assert {name for name, spec in EMBEDDING_MODELS.items() if not spec.verified} == {n for n in EMBEDDING_MODELS if n.startswith("osnet_ain")}
+    assert all(spec.verification_note for spec in EMBEDDING_MODELS.values() if not spec.verified)
+
+
 def test_invalid_checkpoint_file_is_handled_gracefully(tmp_path):
     from app.core.errors import ModelUnavailable
     from app.cv.embedding.weights import load_state_dict

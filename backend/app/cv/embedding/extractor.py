@@ -25,13 +25,14 @@ from pathlib import Path
 import cv2
 import numpy as np
 import torch
+from torch import nn
 from torch.nn import functional as F
 
 from ...core.errors import ModelUnavailable, ProcessingFailed
 from .optimize import fold_batch_norm
-from .osnet_ain import OSNetAIN
+from .network import build_network
 from .registry import EmbeddingModelSpec
-from .weights import load_state_dict, locate_official_weights, sha256_of_file
+from .weights import load_state_dict, locate_official_weights, weights_fingerprint
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ class OSNetExtractor:
     def __init__(
         self,
         spec: EmbeddingModelSpec,
-        model: OSNetAIN,
+        model: nn.Module,
         device: torch.device,
         *,
         batch_size: int,
@@ -99,7 +100,7 @@ class OSNetExtractor:
             weights_label = f"official {spec.weights.filename}"
 
         state_dict = load_state_dict(weights_path)
-        model = OSNetAIN(spec.channels, spec.feature_dim)
+        model = build_network(spec)
         try:
             model.load_state_dict(state_dict, strict=True)
         except RuntimeError as exc:
@@ -122,7 +123,7 @@ class OSNetExtractor:
             batch_size=batch_size,
             use_flip_tta=use_flip_tta,
             weights_label=weights_label,
-            weights_sha256=sha256_of_file(weights_path),
+            weights_sha256=weights_fingerprint(spec, weights_path),
             custom_checkpoint=custom,
             load_seconds=time.perf_counter() - started,
             optimisations=optimisations,

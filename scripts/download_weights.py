@@ -4,8 +4,8 @@ Download the pretrained model weights - on purpose, once, with verification.
 In plain words: the web application never fetches models by itself. Run this
 script one time after installing; it downloads
 
-  * the OSNet-AIN person-embedding weights (MIT licence, ~9 MB for x1_0) and
-    checks them against a pinned SHA-256 hash, and
+  * the OSNet person-embedding weights (Torchreid, MIT code licence; the multi-source checkpoint is downloaded,
+    checked against a pinned SHA-256, converted once to a tensors-only file and checked against a pinned content digest), and
   * the torchvision person-detector weights (BSD licence, ~75 MB) and checks
     them against the hash prefix baked into the official file name, and
   * the two face models (YuNet detector, MIT, 0.2 MB; SFace recogniser, Apache-2.0, 37 MB) from the OpenCV model zoo,
@@ -35,7 +35,9 @@ sys.path.insert(0, str(REPO_ROOT / "backend"))
 
 from app.core.config import get_settings  # noqa: E402
 from app.cv.detection.detector import DETECTORS  # noqa: E402
+from app.cv.embedding.convert import convert_torchreid_checkpoint  # noqa: E402
 from app.cv.embedding.registry import EMBEDDING_MODELS  # noqa: E402
+from app.cv.embedding.weights import locate_official_weights  # noqa: E402
 from app.cv.face.registry import FACE_MODEL_FILES  # noqa: E402
 
 
@@ -59,12 +61,46 @@ def download(url: str, destination: Path) -> str:
     return digest.hexdigest()
 
 
+def fetch_converted_embedding_weights(spec, weights_dir: Path) -> bool:
+    """Official training checkpoint -> verified download -> one-off conversion to a tensors-only file -> content-digest check."""
+    target = weights_dir / spec.weights.filename
+    w = spec.weights
+    if target.exists():
+        try:
+            locate_official_weights(spec, weights_dir)
+            print("  already present and verified - skipping.")
+            return True
+        except Exception as exc:  # noqa: BLE001 - any problem means "fetch again"
+            print(f"  existing file failed verification ({exc}) - fetching again.")
+    source = weights_dir / "_source" / w.source_filename
+    if not (source.exists() and hashlib.sha256(source.read_bytes()).hexdigest() == w.source_sha256):
+        actual = download(w.url, source)
+        if actual != w.source_sha256:
+            source.unlink(missing_ok=True)
+            print(f"  !! SHA-256 MISMATCH of the downloaded checkpoint (got {actual}); file deleted, nothing converted.", file=sys.stderr)
+            return False
+    print("  checkpoint verified (SHA-256 matches the pinned value); converting to a tensors-only file ...")
+    kept = convert_torchreid_checkpoint(source, target)
+    try:
+        locate_official_weights(spec, weights_dir)
+    except Exception as exc:  # noqa: BLE001
+        target.unlink(missing_ok=True)
+        print(f"  !! the converted file does not match the pinned tensor digest ({exc}); deleted.", file=sys.stderr)
+        return False
+    print(f"  converted {kept} tensors; content digest matches the pinned value.")
+    return True
+
+
 def fetch_embedding_weights(name: str, weights_dir: Path) -> bool:
     spec = EMBEDDING_MODELS[name]
     target = weights_dir / spec.weights.filename
-    print(f"[embedding] {spec.display_name}  ({spec.weights.size_bytes / 2**20:.1f} MB)")
+    print(f"[embedding] {spec.display_name}  ({(spec.weights.source_size_bytes or spec.weights.size_bytes) / 2**20:.1f} MB)")
     print(f"  source : {spec.weights.url}")
     print(f"  licence: {spec.weights_license}")
+    if not spec.verified:
+        print(f"  WARNING: {spec.verification_note}", file=sys.stderr)
+    if spec.weights.tensor_sha256:
+        return fetch_converted_embedding_weights(spec, weights_dir)
     if target.exists():
         existing = hashlib.sha256(target.read_bytes()).hexdigest()
         if existing == spec.weights.sha256:
