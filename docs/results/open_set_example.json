@@ -1,16 +1,16 @@
 {
   "what": "The built-in open-set example (GET /api/demo, POST /api/demo/prepare, POST /api/demo/cases/{id}) run against a live server.",
-  "generated_at": "2026-10-13T07:09:26+00:00",
-  "server": "http://127.0.0.1:8765",
-  "seconds": 8.0,
+  "generated_at": "2026-11-03T05:42:42+00:00",
+  "server": "http://127.0.0.1:8000",
+  "seconds": 15.9,
   "caveat": "A small demonstration with public-domain photographs, not a benchmark. The numbers describe these 13 photos only; accuracy on other cameras, lighting or groups of people has not been measured. Nothing from this example is saved.",
   "rules": {
     "matching_mode": "face_body",
     "face_threshold": 0.465,
     "face_review_band": 0.1,
     "body_threshold": 0.7,
-    "policy_version": 1,
-    "policy_status": "unvalidated",
+    "policy_version": 2,
+    "policy_status": "experimental",
     "face_models_loaded": true
   },
   "summary": [
@@ -107,10 +107,10 @@
         "top1_label": "Example person 1",
         "top1_score": 0.6235,
         "face_score": 0.6235,
-        "body_score": 0.4645,
+        "body_score": 0.5701,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "Accepted by face: 'Example person 1' face similarity 0.623 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.464; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.623 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.570; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "verdict": "correct",
         "candidates": [
           {
@@ -119,7 +119,7 @@
             "score": 0.6235,
             "basis": "face",
             "face_score": 0.6235,
-            "body_score": 0.4645
+            "body_score": 0.5701
           },
           {
             "person": "person2",
@@ -127,15 +127,15 @@
             "score": 0.2026,
             "basis": "face",
             "face_score": 0.2026,
-            "body_score": 0.5032
+            "body_score": 0.6233
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4311,
+            "score": 0.3912,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.4311
+            "body_score": 0.3912
           }
         ]
       },
@@ -145,18 +145,18 @@
         "accepted_label": null,
         "top1_person": "person2",
         "top1_label": "Example person 2",
-        "top1_score": 0.5032,
+        "top1_score": 0.6233,
         "face_score": null,
-        "body_score": 0.5032,
+        "body_score": 0.6233,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.503, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.623, below the acceptance threshold 0.700.",
         "verdict": "missed",
         "candidates": [
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5032,
+            "score": 0.6233,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -164,7 +164,7 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4645,
+            "score": 0.5701,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -172,7 +172,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4311,
+            "score": 0.3912,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -180,10 +180,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 250.6,
-        "face_ms": 215.3,
-        "decide_ms": 0.8,
-        "total_ms": 512.0
+        "embed_ms": 413.5,
+        "face_ms": 345.8,
+        "decide_ms": 1.0,
+        "total_ms": 811.9
       }
     },
     {
@@ -217,10 +217,10 @@
         "top1_label": "Example person 1",
         "top1_score": 0.648,
         "face_score": 0.648,
-        "body_score": 0.4849,
+        "body_score": 0.6047,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "Accepted by face: 'Example person 1' face similarity 0.648 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.485; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.648 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.605; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "verdict": "correct",
         "candidates": [
           {
@@ -229,7 +229,7 @@
             "score": 0.648,
             "basis": "face",
             "face_score": 0.648,
-            "body_score": 0.4849
+            "body_score": 0.6047
           },
           {
             "person": "person2",
@@ -237,15 +237,15 @@
             "score": 0.2014,
             "basis": "face",
             "face_score": 0.2014,
-            "body_score": 0.5256
+            "body_score": 0.6585
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4807,
+            "score": 0.4286,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.4807
+            "body_score": 0.4286
           }
         ]
       },
@@ -255,18 +255,18 @@
         "accepted_label": null,
         "top1_person": "person2",
         "top1_label": "Example person 2",
-        "top1_score": 0.5256,
+        "top1_score": 0.6585,
         "face_score": null,
-        "body_score": 0.5256,
+        "body_score": 0.6585,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.526, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.658, below the acceptance threshold 0.700.",
         "verdict": "missed",
         "candidates": [
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5256,
+            "score": 0.6585,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -274,7 +274,7 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4849,
+            "score": 0.6047,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -282,7 +282,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4807,
+            "score": 0.4286,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -290,10 +290,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 219.2,
-        "face_ms": 98.5,
-        "decide_ms": 0.8,
-        "total_ms": 358.2
+        "embed_ms": 447.6,
+        "face_ms": 207.6,
+        "decide_ms": 0.9,
+        "total_ms": 708.9
       }
     },
     {
@@ -327,10 +327,10 @@
         "top1_label": "Example person 1",
         "top1_score": 0.7313,
         "face_score": 0.7313,
-        "body_score": 0.5441,
+        "body_score": 0.63,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "Accepted by face: 'Example person 1' face similarity 0.731 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.544; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'Example person 1' face similarity 0.731 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.630; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "verdict": "correct",
         "candidates": [
           {
@@ -339,7 +339,7 @@
             "score": 0.7313,
             "basis": "face",
             "face_score": 0.7313,
-            "body_score": 0.5441
+            "body_score": 0.63
           },
           {
             "person": "person2",
@@ -347,15 +347,15 @@
             "score": 0.0783,
             "basis": "face",
             "face_score": 0.0783,
-            "body_score": 0.6161
+            "body_score": 0.6181
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4563,
+            "score": 0.3459,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.4563
+            "body_score": 0.3459
           }
         ]
       },
@@ -363,28 +363,28 @@
         "outcome": "unknown",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person2",
-        "top1_label": "Example person 2",
-        "top1_score": 0.6161,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.63,
         "face_score": null,
-        "body_score": 0.6161,
+        "body_score": 0.63,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.616, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 1' scored 0.630, below the acceptance threshold 0.700.",
         "verdict": "missed",
         "candidates": [
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.6161,
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.63,
             "basis": "body",
             "face_score": null,
             "body_score": null
           },
           {
-            "person": "person1",
-            "label": "Example person 1",
-            "score": 0.5441,
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.6181,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -392,7 +392,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4563,
+            "score": 0.3459,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -400,10 +400,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 162.6,
-        "face_ms": 114.0,
-        "decide_ms": 1.1,
-        "total_ms": 326.5
+        "embed_ms": 504.5,
+        "face_ms": 201.0,
+        "decide_ms": 1.2,
+        "total_ms": 760.6
       }
     },
     {
@@ -437,10 +437,10 @@
         "top1_label": "Example person 2",
         "top1_score": 0.5722,
         "face_score": 0.5722,
-        "body_score": 0.5769,
+        "body_score": 0.4345,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "Accepted by face: 'Example person 2' face similarity 0.572 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.577; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'Example person 2' face similarity 0.572 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.434; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "verdict": "correct",
         "candidates": [
           {
@@ -449,7 +449,7 @@
             "score": 0.5722,
             "basis": "face",
             "face_score": 0.5722,
-            "body_score": 0.5769
+            "body_score": 0.4345
           },
           {
             "person": "person1",
@@ -457,15 +457,15 @@
             "score": 0.0863,
             "basis": "face",
             "face_score": 0.0863,
-            "body_score": 0.5235
+            "body_score": 0.4617
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.466,
+            "score": 0.3763,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.466
+            "body_score": 0.3763
           }
         ]
       },
@@ -473,28 +473,28 @@
         "outcome": "unknown",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person2",
-        "top1_label": "Example person 2",
-        "top1_score": 0.5769,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.4617,
         "face_score": null,
-        "body_score": 0.5769,
+        "body_score": 0.4617,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.577, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 1' scored 0.462, below the acceptance threshold 0.700.",
         "verdict": "missed",
         "candidates": [
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.5769,
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.4617,
             "basis": "body",
             "face_score": null,
             "body_score": null
           },
           {
-            "person": "person1",
-            "label": "Example person 1",
-            "score": 0.5235,
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.4345,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -502,7 +502,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.466,
+            "score": 0.3763,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -510,10 +510,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 209.7,
-        "face_ms": 175.4,
-        "decide_ms": 0.6,
-        "total_ms": 425.6
+        "embed_ms": 525.7,
+        "face_ms": 493.5,
+        "decide_ms": 4.3,
+        "total_ms": 1073.4
       }
     },
     {
@@ -547,10 +547,10 @@
         "top1_label": "Example person 2",
         "top1_score": 0.6516,
         "face_score": 0.6516,
-        "body_score": 0.5217,
+        "body_score": 0.528,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "Accepted by face: 'Example person 2' face similarity 0.652 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.522; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
+        "reason": "Accepted by face: 'Example person 2' face similarity 0.652 is at or above the face threshold 0.465. The body/clothing fingerprint is lower (0.528; body threshold 0.700) - clothing or build differs, which is normal if the person changed clothes.",
         "verdict": "correct",
         "candidates": [
           {
@@ -559,7 +559,7 @@
             "score": 0.6516,
             "basis": "face",
             "face_score": 0.6516,
-            "body_score": 0.5217
+            "body_score": 0.528
           },
           {
             "person": "person1",
@@ -567,15 +567,15 @@
             "score": 0.1975,
             "basis": "face",
             "face_score": 0.1975,
-            "body_score": 0.4209
+            "body_score": 0.4427
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.5157,
+            "score": 0.433,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.5157
+            "body_score": 0.433
           }
         ]
       },
@@ -585,26 +585,18 @@
         "accepted_label": null,
         "top1_person": "person2",
         "top1_label": "Example person 2",
-        "top1_score": 0.5217,
+        "top1_score": 0.528,
         "face_score": null,
-        "body_score": 0.5217,
+        "body_score": 0.528,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.522, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.528, below the acceptance threshold 0.700.",
         "verdict": "missed",
         "candidates": [
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5217,
-            "basis": "body",
-            "face_score": null,
-            "body_score": null
-          },
-          {
-            "person": "person3",
-            "label": "Example person 3",
-            "score": 0.5157,
+            "score": 0.528,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -612,7 +604,15 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4209,
+            "score": 0.4427,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.433,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -620,10 +620,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 150.9,
-        "face_ms": 171.3,
-        "decide_ms": 0.7,
-        "total_ms": 355.1
+        "embed_ms": 656.5,
+        "face_ms": 393.8,
+        "decide_ms": 4.2,
+        "total_ms": 1128.4
       }
     },
     {
@@ -650,37 +650,37 @@
         "accepted_label": null,
         "top1_person": "person3",
         "top1_label": "Example person 3",
-        "top1_score": 0.9103,
+        "top1_score": 0.9359,
         "face_score": null,
-        "body_score": 0.9103,
+        "body_score": 0.9359,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No face was found in the picture. Body/clothing evidence alone: 'Example person 3' scored 0.910, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
+        "reason": "No face was found in the picture. Body/clothing evidence alone: 'Example person 3' scored 0.936, at or above the body threshold 0.700, but clothing and build are not enough for an automatic MATCH - a person should confirm.",
         "verdict": "correct",
         "candidates": [
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.9103,
+            "score": 0.9359,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.9103
+            "body_score": 0.9359
           },
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5209,
+            "score": 0.4727,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.5209
+            "body_score": 0.4727
           },
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4319,
+            "score": 0.3974,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.4319
+            "body_score": 0.3974
           }
         ]
       },
@@ -690,18 +690,18 @@
         "accepted_label": "Example person 3",
         "top1_person": "person3",
         "top1_label": "Example person 3",
-        "top1_score": 0.9103,
+        "top1_score": 0.9359,
         "face_score": null,
-        "body_score": 0.9103,
+        "body_score": 0.9359,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Accepted: 'Example person 3' scored 0.910, at or above the threshold 0.700.",
+        "reason": "Accepted: 'Example person 3' scored 0.936, at or above the threshold 0.700.",
         "verdict": "risky",
         "candidates": [
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.9103,
+            "score": 0.9359,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -709,7 +709,7 @@
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5209,
+            "score": 0.4727,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -717,7 +717,7 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4319,
+            "score": 0.3974,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -725,10 +725,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 126.0,
-        "face_ms": 10.1,
-        "decide_ms": 0.5,
-        "total_ms": 140.7
+        "embed_ms": 519.3,
+        "face_ms": 24.4,
+        "decide_ms": 1.7,
+        "total_ms": 557.3
       }
     },
     {
@@ -760,39 +760,39 @@
         "outcome": "review_required",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person2",
-        "top1_label": "Example person 2",
-        "top1_score": 0.4997,
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.6037,
         "face_score": null,
-        "body_score": 0.4997,
+        "body_score": 0.6037,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 2' scored 0.500. A face was found but it is not good enough to compare (face_low_confidence).",
+        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 3' scored 0.604. A face was found but it is not good enough to compare (face_low_confidence).",
         "verdict": "correct",
         "candidates": [
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.4997,
-            "basis": "body",
-            "face_score": null,
-            "body_score": 0.4997
-          },
-          {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.4851,
+            "score": 0.6037,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.4851
+            "body_score": 0.6037
+          },
+          {
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5039,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.5039
           },
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.426,
+            "score": 0.4421,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.426
+            "body_score": 0.4421
           }
         ]
       },
@@ -800,28 +800,28 @@
         "outcome": "review_required",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person2",
-        "top1_label": "Example person 2",
-        "top1_score": 0.4997,
+        "top1_person": "person3",
+        "top1_label": "Example person 3",
+        "top1_score": 0.6037,
         "face_score": null,
-        "body_score": 0.4997,
+        "body_score": 0.6037,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 2' scored 0.500.",
+        "reason": "Image quality is inadequate for an automatic decision (blurry). Closest candidate 'Example person 3' scored 0.604.",
         "verdict": "correct",
         "candidates": [
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.4997,
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.6037,
             "basis": "body",
             "face_score": null,
             "body_score": null
           },
           {
-            "person": "person3",
-            "label": "Example person 3",
-            "score": 0.4851,
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5039,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -829,7 +829,7 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.426,
+            "score": 0.4421,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -837,10 +837,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 108.6,
-        "face_ms": 30.7,
-        "decide_ms": 0.8,
-        "total_ms": 141.6
+        "embed_ms": 552.4,
+        "face_ms": 105.7,
+        "decide_ms": 1.1,
+        "total_ms": 662.7
       }
     },
     {
@@ -874,7 +874,7 @@
         "top1_label": "Example person 1",
         "top1_score": 0.211,
         "face_score": 0.211,
-        "body_score": 0.4875,
+        "body_score": 0.5932,
         "basis": "face",
         "threshold": 0.465,
         "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.211, below the face threshold 0.465.",
@@ -886,7 +886,7 @@
             "score": 0.211,
             "basis": "face",
             "face_score": 0.211,
-            "body_score": 0.4875
+            "body_score": 0.5932
           },
           {
             "person": "person2",
@@ -894,15 +894,15 @@
             "score": 0.0746,
             "basis": "face",
             "face_score": 0.0746,
-            "body_score": 0.6047
+            "body_score": 0.6399
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.529,
+            "score": 0.5711,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.529
+            "body_score": 0.5711
           }
         ]
       },
@@ -912,26 +912,18 @@
         "accepted_label": null,
         "top1_person": "person2",
         "top1_label": "Example person 2",
-        "top1_score": 0.6047,
+        "top1_score": 0.6399,
         "face_score": null,
-        "body_score": 0.6047,
+        "body_score": 0.6399,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.605, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.640, below the acceptance threshold 0.700.",
         "verdict": "correct",
         "candidates": [
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.6047,
-            "basis": "body",
-            "face_score": null,
-            "body_score": null
-          },
-          {
-            "person": "person3",
-            "label": "Example person 3",
-            "score": 0.529,
+            "score": 0.6399,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -939,7 +931,15 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.4875,
+            "score": 0.5932,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.5711,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -947,10 +947,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 114.5,
-        "face_ms": 74.5,
-        "decide_ms": 0.4,
-        "total_ms": 217.1
+        "embed_ms": 499.6,
+        "face_ms": 192.5,
+        "decide_ms": 1.1,
+        "total_ms": 759.8
       }
     },
     {
@@ -984,7 +984,7 @@
         "top1_label": "Example person 1",
         "top1_score": 0.2611,
         "face_score": 0.2611,
-        "body_score": 0.4419,
+        "body_score": 0.58,
         "basis": "face",
         "threshold": 0.465,
         "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.261, below the face threshold 0.465.",
@@ -996,7 +996,7 @@
             "score": 0.2611,
             "basis": "face",
             "face_score": 0.2611,
-            "body_score": 0.4419
+            "body_score": 0.58
           },
           {
             "person": "person2",
@@ -1004,15 +1004,15 @@
             "score": 0.0877,
             "basis": "face",
             "face_score": 0.0877,
-            "body_score": 0.4672
+            "body_score": 0.5673
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.3833,
+            "score": 0.4328,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.3833
+            "body_score": 0.4328
           }
         ]
       },
@@ -1020,28 +1020,28 @@
         "outcome": "unknown",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person2",
-        "top1_label": "Example person 2",
-        "top1_score": 0.4672,
+        "top1_person": "person1",
+        "top1_label": "Example person 1",
+        "top1_score": 0.58,
         "face_score": null,
-        "body_score": 0.4672,
+        "body_score": 0.58,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.467, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 1' scored 0.580, below the acceptance threshold 0.700.",
         "verdict": "correct",
         "candidates": [
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.4672,
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.58,
             "basis": "body",
             "face_score": null,
             "body_score": null
           },
           {
-            "person": "person1",
-            "label": "Example person 1",
-            "score": 0.4419,
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.5673,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1049,7 +1049,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.3833,
+            "score": 0.4328,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1057,10 +1057,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 128.0,
-        "face_ms": 249.4,
-        "decide_ms": 0.5,
-        "total_ms": 408.0
+        "embed_ms": 482.1,
+        "face_ms": 340.1,
+        "decide_ms": 2.7,
+        "total_ms": 873.6
       }
     },
     {
@@ -1085,39 +1085,39 @@
         "outcome": "unknown",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person3",
-        "top1_label": "Example person 3",
-        "top1_score": 0.6341,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.4996,
         "face_score": null,
-        "body_score": 0.6341,
+        "body_score": 0.4996,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 3' scored 0.634, below the acceptance threshold 0.700. No face was found in the picture.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.500, below the acceptance threshold 0.700. No face was found in the picture.",
         "verdict": "correct",
         "candidates": [
           {
-            "person": "person3",
-            "label": "Example person 3",
-            "score": 0.6341,
-            "basis": "body",
-            "face_score": null,
-            "body_score": 0.6341
-          },
-          {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5885,
+            "score": 0.4996,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.5885
+            "body_score": 0.4996
           },
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.5423,
+            "score": 0.4849,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.5423
+            "body_score": 0.4849
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3759,
+            "basis": "body",
+            "face_score": null,
+            "body_score": 0.3759
           }
         ]
       },
@@ -1125,28 +1125,20 @@
         "outcome": "unknown",
         "accepted_person": null,
         "accepted_label": null,
-        "top1_person": "person3",
-        "top1_label": "Example person 3",
-        "top1_score": 0.6341,
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.4996,
         "face_score": null,
-        "body_score": 0.6341,
+        "body_score": 0.4996,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "No supported match: the closest candidate 'Example person 3' scored 0.634, below the acceptance threshold 0.700.",
+        "reason": "No supported match: the closest candidate 'Example person 2' scored 0.500, below the acceptance threshold 0.700.",
         "verdict": "correct",
         "candidates": [
           {
-            "person": "person3",
-            "label": "Example person 3",
-            "score": 0.6341,
-            "basis": "body",
-            "face_score": null,
-            "body_score": null
-          },
-          {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.5885,
+            "score": 0.4996,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1154,7 +1146,15 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.5423,
+            "score": 0.4849,
+            "basis": "body",
+            "face_score": null,
+            "body_score": null
+          },
+          {
+            "person": "person3",
+            "label": "Example person 3",
+            "score": 0.3759,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1162,10 +1162,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 104.5,
-        "face_ms": 12.5,
-        "decide_ms": 0.5,
-        "total_ms": 120.2
+        "embed_ms": 531.4,
+        "face_ms": 31.2,
+        "decide_ms": 0.9,
+        "total_ms": 572.3
       }
     },
     {
@@ -1199,10 +1199,10 @@
         "top1_label": "Example person 1",
         "top1_score": 0.1914,
         "face_score": 0.1914,
-        "body_score": 0.8147,
+        "body_score": 0.8346,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.191, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.815 for 'Example person 1').",
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.191, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.843 for 'Example person 2').",
         "verdict": "correct",
         "candidates": [
           {
@@ -1211,7 +1211,7 @@
             "score": 0.1914,
             "basis": "face",
             "face_score": 0.1914,
-            "body_score": 0.8147
+            "body_score": 0.8346
           },
           {
             "person": "person2",
@@ -1219,44 +1219,44 @@
             "score": 0.0957,
             "basis": "face",
             "face_score": 0.0957,
-            "body_score": 0.7549
+            "body_score": 0.8433
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.3963,
+            "score": 0.3513,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.3963
+            "body_score": 0.3513
           }
         ]
       },
       "clothes_only": {
         "outcome": "accepted",
-        "accepted_person": "person1",
-        "accepted_label": "Example person 1",
-        "top1_person": "person1",
-        "top1_label": "Example person 1",
-        "top1_score": 0.8147,
+        "accepted_person": "person2",
+        "accepted_label": "Example person 2",
+        "top1_person": "person2",
+        "top1_label": "Example person 2",
+        "top1_score": 0.8433,
         "face_score": null,
-        "body_score": 0.8147,
+        "body_score": 0.8433,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Accepted: 'Example person 1' scored 0.815, at or above the threshold 0.700.",
+        "reason": "Accepted: 'Example person 2' scored 0.843, at or above the threshold 0.700.",
         "verdict": "false_accept",
         "candidates": [
           {
-            "person": "person1",
-            "label": "Example person 1",
-            "score": 0.8147,
+            "person": "person2",
+            "label": "Example person 2",
+            "score": 0.8433,
             "basis": "body",
             "face_score": null,
             "body_score": null
           },
           {
-            "person": "person2",
-            "label": "Example person 2",
-            "score": 0.7549,
+            "person": "person1",
+            "label": "Example person 1",
+            "score": 0.8346,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1264,7 +1264,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.3963,
+            "score": 0.3513,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1272,10 +1272,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 130.4,
-        "face_ms": 118.1,
-        "decide_ms": 0.4,
-        "total_ms": 281.0
+        "embed_ms": 441.1,
+        "face_ms": 301.9,
+        "decide_ms": 2.6,
+        "total_ms": 830.0
       }
     },
     {
@@ -1309,10 +1309,10 @@
         "top1_label": "Example person 2",
         "top1_score": 0.1419,
         "face_score": 0.1419,
-        "body_score": 0.8083,
+        "body_score": 0.8751,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 2', scored 0.142, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.808 for 'Example person 2').",
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 2', scored 0.142, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.875 for 'Example person 2').",
         "verdict": "correct",
         "candidates": [
           {
@@ -1321,7 +1321,7 @@
             "score": 0.1419,
             "basis": "face",
             "face_score": 0.1419,
-            "body_score": 0.8083
+            "body_score": 0.8751
           },
           {
             "person": "person1",
@@ -1329,15 +1329,15 @@
             "score": 0.0849,
             "basis": "face",
             "face_score": 0.0849,
-            "body_score": 0.7747
+            "body_score": 0.8721
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.371,
+            "score": 0.4477,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.371
+            "body_score": 0.4477
           }
         ]
       },
@@ -1347,18 +1347,18 @@
         "accepted_label": "Example person 2",
         "top1_person": "person2",
         "top1_label": "Example person 2",
-        "top1_score": 0.8083,
+        "top1_score": 0.8751,
         "face_score": null,
-        "body_score": 0.8083,
+        "body_score": 0.8751,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Accepted: 'Example person 2' scored 0.808, at or above the threshold 0.700.",
+        "reason": "Accepted: 'Example person 2' scored 0.875, at or above the threshold 0.700.",
         "verdict": "false_accept",
         "candidates": [
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.8083,
+            "score": 0.8751,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1366,7 +1366,7 @@
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.7747,
+            "score": 0.8721,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1374,7 +1374,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.371,
+            "score": 0.4477,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1382,10 +1382,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 94.2,
-        "face_ms": 114.5,
-        "decide_ms": 0.7,
-        "total_ms": 244.3
+        "embed_ms": 498.7,
+        "face_ms": 331.7,
+        "decide_ms": 1.2,
+        "total_ms": 909.7
       }
     },
     {
@@ -1419,10 +1419,10 @@
         "top1_label": "Example person 1",
         "top1_score": 0.1577,
         "face_score": 0.1577,
-        "body_score": 0.7844,
+        "body_score": 0.7749,
         "basis": "face",
         "threshold": 0.465,
-        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.158, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.784 for 'Example person 1').",
+        "reason": "No supported match: a usable face was compared with 2 enrolled face holder(s); the closest, 'Example person 1', scored 0.158, below the face threshold 0.465. Body/clothing similarity alone is NOT accepted when a face is available (best body score 0.775 for 'Example person 1').",
         "verdict": "correct",
         "candidates": [
           {
@@ -1431,7 +1431,7 @@
             "score": 0.1577,
             "basis": "face",
             "face_score": 0.1577,
-            "body_score": 0.7844
+            "body_score": 0.7749
           },
           {
             "person": "person2",
@@ -1439,15 +1439,15 @@
             "score": 0.0865,
             "basis": "face",
             "face_score": 0.0865,
-            "body_score": 0.7393
+            "body_score": 0.7598
           },
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.394,
+            "score": 0.403,
             "basis": "body",
             "face_score": null,
-            "body_score": 0.394
+            "body_score": 0.403
           }
         ]
       },
@@ -1457,18 +1457,18 @@
         "accepted_label": "Example person 1",
         "top1_person": "person1",
         "top1_label": "Example person 1",
-        "top1_score": 0.7844,
+        "top1_score": 0.7749,
         "face_score": null,
-        "body_score": 0.7844,
+        "body_score": 0.7749,
         "basis": "body",
         "threshold": 0.7,
-        "reason": "Accepted: 'Example person 1' scored 0.784, at or above the threshold 0.700.",
+        "reason": "Accepted: 'Example person 1' scored 0.775, at or above the threshold 0.700.",
         "verdict": "false_accept",
         "candidates": [
           {
             "person": "person1",
             "label": "Example person 1",
-            "score": 0.7844,
+            "score": 0.7749,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1476,7 +1476,7 @@
           {
             "person": "person2",
             "label": "Example person 2",
-            "score": 0.7393,
+            "score": 0.7598,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1484,7 +1484,7 @@
           {
             "person": "person3",
             "label": "Example person 3",
-            "score": 0.394,
+            "score": 0.403,
             "basis": "body",
             "face_score": null,
             "body_score": null
@@ -1492,10 +1492,10 @@
         ]
       },
       "timings_ms": {
-        "embed_ms": 111.0,
-        "face_ms": 116.0,
-        "decide_ms": 0.4,
-        "total_ms": 261.3
+        "embed_ms": 474.5,
+        "face_ms": 290.3,
+        "decide_ms": 1.0,
+        "total_ms": 845.1
       }
     }
   ]

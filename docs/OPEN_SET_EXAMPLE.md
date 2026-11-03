@@ -65,8 +65,8 @@ The scores explain why:
 
 * **Face:** every known person scored at least **0.57**; every stranger with a visible face scored at most **0.26** (the three in the same suit:
   0.14-0.19). The face line (0.465) sits in that gap.
-* **Clothes:** the three strangers in the same suit scored **0.78-0.81** against an enrolled person - *higher* than the known people photographed
-  in new clothes (**0.50-0.62**). With clothes alone the strangers are accepted and the real people are missed, in the same breath.
+* **Clothes:** the three strangers in the same suit scored **0.77-0.88** against an enrolled person - *higher* than the known people photographed
+  in new clothes (**0.46-0.66**). With clothes alone the strangers are accepted and the real people are missed, in the same breath.
 
 In one sentence for a jury: **in this small test, clothing pointed at the wrong people and the face did not.**
 

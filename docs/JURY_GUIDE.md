@@ -262,8 +262,8 @@ enrolled person - run through the real decision code in a private, temporary gal
 shows *why* clothing-only matching fails and the face does not; it gives no error rate for any real camera.
 
 **Q31. Why does the clothes-only column miss the known people?** Because they changed clothes: the body fingerprint mostly encodes
-clothing colour and build, so the same person in a new jacket scores low (0.50-0.62 here, below the 0.70 line) while a *different*
-person in the same suit scores high (0.78-0.81). That is exactly the low inter-class variance the assignment describes.
+clothing colour and build, so the same person in a new jacket scores low (0.46-0.66 here, below the 0.70 line) while a *different*
+person in the same suit scores high (0.77-0.88). That is exactly the low inter-class variance the assignment describes.
 
 **Q32. Something you do not know.** Say: *"I don't know. Here is how I would find out"* - and name the measurement. This is always the
 right answer.

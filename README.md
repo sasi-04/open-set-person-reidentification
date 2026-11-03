@@ -18,9 +18,9 @@ Zed Digital *PS-1* assignment. It is **not** an official Zed Digital product and
 |---|---|
 | **What you can do** | **open the home page and press *Run the example*** - a built-in open-set analysis on 13 public-domain photos (known people, strangers, strangers in the *same clothes*) that shows face + body against clothes-only, with no setup; enroll authorised people; run a photo (**Match Studio**) or a prerecorded clip (**Video Explorer**) through detection → embedding → decision and see *why* the system said MATCH, UNKNOWN or REVIEW; hunt for the failures that matter in the **Lookalike Failure Lab**; calibrate the threshold on held-out people and try other thresholds safely in the **threshold sandbox**; export everything as JSON / CSV |
 | **What it is not** | a surveillance product, an identity-verification service, a multi-object tracker or a live-camera system (see [Known limitations](#20-known-limitations)) |
-| **Status** | all code, **427 backend and 157 interface tests**, real-model end-to-end checks (real photos, a real video, a real look-alike experiment, real face photos) and documentation are done. **Measured so far:** the face stage on the standard LFW benchmark (98.9 % accuracy; [report](docs/results/face_lfw.json)) and an end-to-end face-versus-clothing comparison ([report](docs/results/face_vs_body_lfw.json)). **Not run yet:** the pedestrian re-identification benchmark - Market-1501 must be supplied by you (it is research-licensed), so there are no pedestrian-ReID accuracy numbers. |
+| **Status** | all code, **431 backend and 157 interface tests** (run and passing), real-model end-to-end checks and documentation. **Measured on a public benchmark (2026-10-25, Market-1501, body only, own identity-disjoint protocol, 3 seeds):** closed-set Rank-1 **83.6 %**, mAP **77.8 %**, ROC-AUC **0.85**; at a required recall (DIR@1) of **50 / 60 / 70 / 80 %** the false-accept rate on held-out strangers was **6.4 / 12.9 / 28.6 / 79.7 %**, and a 90 % target is **unreachable** with body appearance alone ([results](docs/EXPERIMENT_RESULTS.md), [protocol](docs/EVALUATION_PROTOCOL.md), [limitations](docs/LIMITATIONS.md)). Face stage on LFW: 98.9 % ([report](docs/results/face_lfw.json)). **Found and fixed:** the embedding weights that shipped first scored only Rank-1 20 % on real data; they were replaced by a verified checkpoint ([what happened](docs/MODEL_VERIFICATION.md)). **Not measured:** face + body on pedestrian cameras (Market-1501 crops are too small for faces), other cameras, fairness across groups. |
 | **Using it (start here)** | double-click **`Start OpenID Vision.bat`**: the **home page** shows the three essentials (enroll · match · open-set analysis) and the example. For a step-by-step guide follow the **[User manual (PDF, 30 pages, with pictures of every screen)](OpenID-Vision-User-Manual.pdf)** - it needs no technical knowledge |
-| **Explaining it** | [10-minute presentation script for HR (PDF)](OpenID-Vision-HR-Presentation-10min.pdf) · [docs/OPEN_SET_EXAMPLE.md](docs/OPEN_SET_EXAMPLE.md) (the home-page example: what it shows and what it does not prove) · [docs/JURY_GUIDE.md](docs/JURY_GUIDE.md) (what to say, a 10-minute demo script, 32 questions with honest answers) · the in-app **How it works** page (top bar) · [docs/FACE_AND_BODY_MATCHING.md](docs/FACE_AND_BODY_MATCHING.md) (exact rule, measurements, limits) |
+| **Explaining it** | [docs/OPEN_SET_EXAMPLE.md](docs/OPEN_SET_EXAMPLE.md) (the home-page example: what it shows and what it does not prove) · [docs/JURY_GUIDE.md](docs/JURY_GUIDE.md) (what to say, a 10-minute demo script, 32 questions with honest answers) · the in-app **How it works** page (top bar) · [docs/FACE_AND_BODY_MATCHING.md](docs/FACE_AND_BODY_MATCHING.md) (exact rule, measurements, limits) |
 
 ---
 
@@ -68,15 +68,15 @@ This table is deliberately blunt. "Implemented" means the code exists and is uni
 | Component | Implemented & tested | Validated on a public benchmark |
 |---|---|---|
 | Person detection (torchvision Faster R-CNN, COCO), quality checks | yes (real photo checked end to end) | n/a |
-| Pretrained OSNet-AIN embeddings (single compact backbone, 512-d) | yes (real weights, SHA-256 verified) | **not yet** - needs Market-1501 |
+| Pretrained OSNet x1.0 embeddings (single compact backbone, 512-d; Torchreid multi-source weights, hash-pinned) | yes | **yes - Market-1501** (unseen domain): Rank-1 83.6 %, mAP 77.8 % (3 seeds, own protocol). The first weight file (OSNet-AIN) failed this check at 20 % and was replaced - [MODEL_VERIFICATION.md](docs/MODEL_VERIFICATION.md) |
 | **Face matching** (YuNet detector + SFace recogniser, usable-face checks, face-first decision rule, hair/skin/clothing colour cues for a human reader) | yes (54 backend + 16 interface tests; real photos end to end) | **face stage: yes, on LFW** (98.93 % ± 0.35 over 6,000 pairs; 1 stranger pair in 100,000 reaches the default threshold). **Not** on pedestrian data, other cameras, or across demographic groups |
-| Open-set decision engine (threshold, margin, review, unknown) | yes | **not yet** |
-| Calibration workflow (fixed-recall / fixed-FAR, sample-size honesty) | yes | **not yet** (workflow demonstrated on a synthetic set only) |
+| Open-set decision engine (threshold, margin, review, unknown) | yes | **yes, body only**: FAR 6.4 % at 50 % recall … 28.6 % at 70 % recall (Market-1501 test people); margin rule measured and did **not** help |
+| Calibration workflow (fixed-recall / fixed-FAR, sample-size honesty) | yes | **yes**: thresholds chosen on calibration people, frozen, scored on disjoint test people; unreachable 90 % target reported as such |
 | Calibrated confidence model (Platt, from similarity + margin) | yes | **not yet** |
-| Evaluation: ROC, FAR/TAR, DIR@k, Rank-k, mAP, OSCR, bootstrap CIs, ablations | yes (metrics checked against hand-computed examples) | **not yet** |
-| Same-clothing hard subset (colour-histogram proxy + manual-annotation hook) | yes | **not yet** |
+| Evaluation: ROC, FAR/TAR, DIR@k, Rank-k, mAP, OSCR, bootstrap CIs, ablations | yes (metrics checked against hand-computed examples) | **run on Market-1501** (subset, own protocol): [EXPERIMENT_RESULTS.md](docs/EXPERIMENT_RESULTS.md) |
+| Same-clothing hard subset (colour-histogram proxy + manual-annotation hook) | yes | proxy evaluated; **no ground-truth clothing labels exist** for Market-1501 |
 | Triplet fine-tuning with batch-hard mining + leakage guard | yes (code and tests) | **no checkpoint has been trained**; no improvement is claimed |
-| **Lookalike Failure Lab**: look-alike pair mining, reproducible challenge set, failure inspection with unproven hypotheses, baseline-vs-improved comparison, exports | yes (unit + API tests; run end to end with the real model on the smoke-test set) | **not yet** - needs Market-1501; no improved model has been trained, so none is compared |
+| **Lookalike Failure Lab**: look-alike pair mining, reproducible challenge set, failure inspection with unproven hypotheses, baseline-vs-improved comparison, exports | yes (unit + API tests; run end to end with the real model on the smoke-test set) | not run on Market-1501 |
 | **Threshold sandbox** (try any threshold on a run's fixed per-query scores; never changes the policy) | yes (checked against the live decision engine on 3,200 random cases) | n/a |
 | **Video Explorer** (frame-by-frame decisions on prerecorded clips; not tracking) | yes (real video files in tests; run end to end with the real detector and model) | n/a - accuracy on video has not been measured |
 | **Built-in open-set example** on the home page (13 public-domain photos in a private, temporary gallery; face + body versus clothes-only; plots; a what-if slider) | yes (34 backend + 27 interface tests; run end to end with the real models: [report](docs/results/open_set_example.json)) | **no - it is a 13-photo demonstration, not a benchmark** ([what it does and does not prove](docs/OPEN_SET_EXAMPLE.md)) |
@@ -106,7 +106,7 @@ The challenge text (PS-1 · *Open-Set Person Re-Identification under Low Inter-C
 | Real deployments re-identify a person against an **open set** of unknown identities, where many people look almost identical | [decision engine](backend/app/cv/open_set/decision_engine.py), [hard-subset evaluation](backend/app/evaluation/hard_subset.py) |
 | The hard failure is the **false accept**; *minimise FAR at a fixed recall* | [calibration](backend/app/evaluation/calibration.py) mode `fixed_recall` (the default); the alternative `fixed_far` is also available |
 | **Metric learning**, margin / decision boundary, **hard-negative mining**, **calibration of scores into confidences** | [triplet loss + batch-hard mining](backend/app/training/triplet.py), [margin rule](backend/app/cv/open_set/policy.py), [Platt confidence model](backend/app/cv/open_set/confidence.py) |
-| **Real-time**, one **compact backbone**, **no fixed identity count** | OSNet-AIN (2.2 M parameters); no classifier head - the gallery is a plain index of embeddings, so enrolling or deleting people needs no retraining. Measured speed: [docs/PERFORMANCE.md](docs/PERFORMANCE.md) |
+| **Real-time**, one **compact backbone**, **no fixed identity count** | OSNet x1.0 (2.2 M parameters); no classifier head - the gallery is a plain index of embeddings, so enrolling or deleting people needs no retraining. Measured speed: [docs/PERFORMANCE.md](docs/PERFORMANCE.md) |
 | **ROC / FAR-vs-TAR analysis** on a **public benchmark** and a **curated low-variance subset**, with **ablations** | [Evaluation Lab](docs/EVALUATION.md) - pipeline complete, benchmark run pending the dataset |
 
 Full requirement-by-requirement mapping with test names: [docs/REQUIREMENTS_TRACEABILITY.md](docs/REQUIREMENTS_TRACEABILITY.md).
@@ -127,7 +127,7 @@ Full requirement-by-requirement mapping with test names: [docs/REQUIREMENTS_TRAC
                                              │ evaluation/ metrics · protocol · runner│   │ reports/ (JSON/MD/HTML)│
                                              │ training/   triplet fine-tuning        │   └────────────────────────┘
                                              └───────────────────────────────────────┘
-                                                      loads once at startup:  OSNet-AIN embedder · Faster R-CNN detector · YuNet + SFace (faces)
+                                                      loads once at startup:  OSNet embedder · Faster R-CNN detector · YuNet + SFace (faces)
 ```
 
 One query, in order: **upload → decode safely → detect people → crop & quality-check → find and judge the face → embed body (one batch) and face → rank enrolled
@@ -143,7 +143,7 @@ and by the evaluation code, so what is measured is what is served.
 
 | Layer | Choice (exact version used) | Why |
 |---|---|---|
-| Embedding backbone | **OSNet-AIN x1.0** (ported from Torchreid, MIT) on PyTorch **2.14.1** (CPU build) | compact (2.17 M parameters), designed for person ReID, strong across cameras |
+| Embedding backbone | **OSNet x1.0** (ported from Torchreid, MIT; OSNet-AIN kept in the registry, flagged *failed verification*) on PyTorch **2.14.1** (CPU build) | compact (2.17 M parameters), designed for person ReID, strong across cameras |
 | Person detector | torchvision **Faster R-CNN MobileNetV3-Large FPN**, COCO weights (BSD) | lightweight, person class filter, no AGPL dependency |
 | Backend | Python **3.14**, FastAPI **0.136**, Pydantic **2.14**, SQLAlchemy **2.0.54** (SQLite, PostgreSQL-ready), Uvicorn **0.47** | typed schemas, auto-generated OpenAPI docs |
 | Image / maths / video | NumPy **2.5**, Pillow **12.3**, OpenCV-headless **5.0** (also decodes the videos; FFmpeg is built in) | |
@@ -209,7 +209,7 @@ backend\.venv\Scripts\python.exe scripts\download_weights.py
 
 | File | Source | Size | Licence | Integrity check |
 |---|---|---|---|---|
-| `osnet_ain_x1_0.pt` (embedder) | [Hugging Face `LibreYOLO/LibreReID-osnet`](https://huggingface.co/LibreYOLO/LibreReID-osnet) - a byte-identical mirror of the [Torchreid](https://github.com/KaiyangZhou/deep-person-reid) model zoo | 8.5 MB | MIT | SHA-256 pinned in [registry.py](backend/app/cv/embedding/registry.py) (cross-checked against the Hugging Face API) |
+| `osnet_x1_0_ms_d_c.pt` (embedder) | the official [Torchreid](https://github.com/KaiyangZhou/deep-person-reid) checkpoint `osnet_ms_d_c.pth.tar` (53 MB, from a third-party mirror), **downloaded, SHA-256-checked, converted once** to a tensors-only 8.5 MB file | 53 MB download, 8.5 MB kept | MIT (code) | checkpoint SHA-256 and the converted tensors' content digest pinned in [registry.py](backend/app/cv/embedding/registry.py) |
 | `fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth` (detector) | [torchvision](https://download.pytorch.org/models/fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth) | 74 MB | BSD-3-Clause | SHA-256 prefix = the 8 hex characters in the official file name |
 | `face_detection_yunet_2023mar.onnx` (face detector) | [OpenCV model zoo](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet) | 0.2 MB | MIT | SHA-256 equals the value in the zoo's own Git-LFS pointer file (checked in [registry.py](backend/app/cv/face/registry.py)) |
 | `face_recognition_sface_2021dec.onnx` (face recogniser) | [OpenCV model zoo](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface) | 37 MB | Apache-2.0 | same method |
@@ -219,7 +219,7 @@ Face models are optional: `--skip-face` leaves them out, `REID_FACE_MATCHING=fal
 Weights are loaded with `torch.load(weights_only=True)` (cannot execute pickled code), must match the architecture exactly, and a file that fails
 its check is deleted, never used. A corrupt or missing file leaves the server running with a clear "model not loaded" status instead of crashing.
 
-**Training-data caveat (please read).** The OSNet-AIN weights are the multi-source *domain-generalisation* release, trained on **MSMT17, DukeMTMC-reID
+**Training-data caveat (please read).** The OSNet weights are the multi-source *domain-generalisation* release, trained on **MSMT17, DukeMTMC-reID
 and CUHK03** - *not* on Market-1501, which makes Market-1501 an unseen target domain (a fairer test). Those are research datasets with their own terms,
 and DukeMTMC-reID was withdrawn by its authors in 2019 for privacy reasons. Treat this prototype as research-only; do not deploy it commercially without
 reviewing those terms. The face models were trained by their authors on public face datasets whose terms this project has not audited (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
@@ -227,7 +227,7 @@ reviewing those terms. The face models were trained by their authors on public f
 ## 9. Dataset acquisition
 
 **You supply the benchmark.** Market-1501 (Zheng et al., ICCV 2015) is licensed for **non-commercial research** and may not be redistributed, so it is
-not bundled and the application never downloads it.
+not bundled and the application never downloads it. (The results in `docs/results/market1501/` were produced from a copy fetched from a third-party mirror that lacks the official `query/` folder - see [docs/EVALUATION_PROTOCOL.md](docs/EVALUATION_PROTOCOL.md).)
 
 1. Download *Market-1501-v15.09.15* from its authors (see the dataset's [project page](https://zheng-lab-anu.github.io/Project/project_reid.html) and the paper
    *"Scalable Person Re-identification: A Benchmark"*), and read its terms. Cite the paper if you publish results.
