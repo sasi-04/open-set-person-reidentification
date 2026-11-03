@@ -1,11 +1,4 @@
-/**
- * VideoResults: what the matcher decided in every sampled frame of one video.
- *
- * In plain words: a timeline of the sampled frames (each marked M = match, U = unknown, R = review, - = nobody
- * found), a viewer that draws the detected people on the selected frame with their decisions, and the exact
- * numbers per person. Frames are judged independently - the page says so at the top and never connects one
- * frame's person to another's, because no tracking is done.
- */
+/** VideoResults: what the matcher decided in every sampled frame of one video. A timeline of the sampled frames (each marked M = match, U = unknown, R = review, - = nobody found), a viewer that draws the detected people on the selected frame with their decisions, and the exact numbers per person. */
 import { Download, Trash2 } from "lucide-react";
 import clsx from "clsx";
 import { useState } from "react";

@@ -1,10 +1,4 @@
-/**
- * CalibrationApply: put a finished calibration result into effect.
- *
- * In plain words: lists recent calibration runs. A run can be applied only if it reached its
- * target AND was computed for the model that is running now - the buttons say why not
- * otherwise, and the backend re-checks both rules.
- */
+/** CalibrationApply: put a finished calibration result into effect. Lists recent calibration runs. */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";

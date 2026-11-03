@@ -1,10 +1,7 @@
-"""
-The built-in example demo (open-set analysis).
-
-In plain words: these tests prove the example is HONEST and SAFE - it judges each photo by the same decision code as the real screens,
-reports a clothes-only decision next to the face + body decision, never touches the real gallery or history, and can only serve the
-files its manifest names. They use stand-in networks, so they check the plumbing and the rules; the real-model numbers are produced by
-running the example itself (docs/OPEN_SET_EXAMPLE.md).
+"""The built-in example demo (open-set analysis). These tests prove the example is HONEST and SAFE - it
+judges each photo by the same decision code as the real screens, reports a clothes-only decision
+next to the face + body decision, never touches the real gallery or history, and can only serve the
+files its manifest names.
 """
 
 from __future__ import annotations

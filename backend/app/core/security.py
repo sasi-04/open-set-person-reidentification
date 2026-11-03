@@ -1,22 +1,6 @@
-"""
-Access control.
-
-In plain words: access keys are an OPTIONAL feature and are OFF by default
-(``REID_AUTH_REQUIRED=false``): on a single-user demo machine, with the server
-bound to 127.0.0.1, every caller is treated as an administrator and nobody has
-to type a key.
-
-When ``REID_AUTH_REQUIRED=true`` this becomes a *local demo trust boundary*, not
-a full identity provider. Three API keys map to three roles:
-
-    viewer    can run re-identification queries and read results
-    operator  can additionally manage the gallery (enroll, add images, delete)
-    admin     can additionally change thresholds, run evaluations, reset, clean up
-
-The client sends its key in the ``X-API-Key`` header. Keys are compared in
-constant time. If you expose this service beyond localhost, switch keys on (or
-better, put it behind real authentication - SSO / reverse proxy) - see
-docs/SECURITY_AND_PRIVACY.md.
+"""Access control. Access keys are an OPTIONAL feature and are OFF by default
+(``REID_AUTH_REQUIRED=false``): on a single-user demo machine, with the server bound to 127.0.0.1,
+every caller is treated as an administrator and nobody has to type a key.
 """
 
 from __future__ import annotations

@@ -1,20 +1,5 @@
-"""
-The decision policy: the rules that turn scores into an outcome.
-
-In plain words: a policy is a small, versioned bundle of settings -
-
-    accept_threshold   "the best candidate must be at least THIS similar"
-    min_margin         (optional) "...and must beat the runner-up by at least THIS much"
-    margin_action      what to do when the margin rule fails: send to REVIEW or just REJECT
-    review_on_quality_flags   send blurry / cut-off / tiny crops to REVIEW
-
-Every change creates a NEW version, so any past decision can be traced to the
-exact rules that produced it. ``status`` says honestly how trustworthy the
-numbers are:
-
-    unvalidated   a starting value nobody has checked
-    experimental  chosen by a human, not derived from data
-    calibrated    selected on a held-out calibration split by the calibration workflow
+"""The decision policy: the rules that turn scores into an outcome. A policy is a small, versioned
+bundle of settings -
 """
 
 from __future__ import annotations
@@ -57,20 +42,9 @@ class BodyOnlyAction(str, enum.Enum):
 
 @dataclass(frozen=True)
 class MultiCuePolicy:
-    """Rules for using the FACE as well as the whole body.
-
-    face_accept_threshold   "the best face must be at least THIS similar" (cosine)
-    face_review_band        a face score within this distance BELOW the threshold is sent to REVIEW rather than UNKNOWN
-    body_only_action        see ``BodyOnlyAction``
-
-    ``DecisionPolicy.accept_threshold`` keeps meaning "body similarity needed"; this block adds the face rules on top.
-
-    Where the defaults come from (measured, see docs/FACE_AND_BODY_MATCHING.md and docs/results/face_lfw.json): on 4.5 million
-    pairs of DIFFERENT people from LFW, a face score of 0.465 or more occurred in 1 pair per 100,000 (0.001 %), while 93 % of
-    same-person pairs reach it. The face model's own card suggests 0.363, which about 1 stranger pair in 1,200 still reaches -
-    too loose when a query is compared with every enrolled person and the best score wins. So 0.465 is the automatic-MATCH
-    line, and the 0.10 band below it (about 0.365 - 0.465, the model card's own region) goes to a person instead of being
-    decided by the machine. Both numbers are still UNVALIDATED for any particular camera or population.
+    """Rules for using the FACE as well as the whole body. Face_accept_threshold "the best face must be
+    at least THIS similar" (cosine) face_review_band a face score within this distance BELOW the
+    threshold is sent to REVIEW rather than UNKNOWN body_only_action see ``BodyOnlyAction``
     """
 
     face_accept_threshold: float = 0.465

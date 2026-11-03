@@ -1,12 +1,4 @@
-/**
- * How it works: a plain-language tour of the system, inside the application.
- *
- * In plain words: this page exists so that anyone - a juror, a manager, a colleague who never saw the code - can
- * understand what OpenID Vision does and, just as important, what it cannot do, without leaving the application. It
- * explains with words and two small illustrations. The only numbers shown are the live thresholds read from the
- * backend (so they can never disagree with the real settings); no accuracy figure is hard-coded here - those live in
- * the reports, with their sources, and are quoted in docs/JURY_GUIDE.md.
- */
+/** How it works: a plain-language tour of the system, inside the application. This page exists so that anyone - a juror, a manager, a colleague who never saw the code - can understand what OpenID Vision does and, just as important, what it cannot do, without leaving the application. */
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, FileSearch, Layers, ScanFace, ScanSearch, ShieldCheck, ThumbsUp, UserRoundSearch } from "lucide-react";
 import { Link } from "react-router-dom";

@@ -1,10 +1,4 @@
-/**
- * ScoreBar: a similarity score drawn against the acceptance threshold.
- *
- * In plain words: the filled part is the similarity (0 to 1) and the vertical tick is the
- * threshold. If the fill stops short of the tick, the match was not accepted. It is a
- * meter for screen readers, and its text always states the numbers.
- */
+/** ScoreBar: a similarity score drawn against the acceptance threshold. The filled part is the similarity (0 to 1) and the vertical tick is the threshold. */
 import clsx from "clsx";
 
 /**

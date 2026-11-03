@@ -1,11 +1,4 @@
-/**
- * EnrollDialog: add a new authorised identity to the gallery.
- *
- * In plain words: choose a pseudonymous reference ID, tick that the person is authorised,
- * add one or more images, submit. The backend answers file by file, so a bad image is
- * reported without losing the good ones. The dialog shows that answer (and any
- * "possible duplicate person" warnings) before closing.
- */
+/** EnrollDialog: add a new authorised identity to the gallery. Choose a pseudonymous reference ID, tick that the person is authorised, add one or more images, submit. */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, X, XCircle } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";

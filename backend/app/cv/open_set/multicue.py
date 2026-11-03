@@ -1,33 +1,14 @@
-"""
-Open-set decisions that use the FACE as well as the whole BODY.
+"""Open-set decisions that use the face as well as the body.
 
-In plain words: the body fingerprint (``cv/embedding``) mostly sees clothing colour and build, so two different people
-in similar clothes can look alike to it - the "low inter-class variance" problem this project is about. A face
-fingerprint sees the face itself. This module decides what the system may conclude when it has BOTH kinds of evidence.
-
-It is a pure function, like ``decision_engine.decide``: scores in, decision out, no database, no images.
-
-The rules, first one that applies wins
---------------------------------------
-There are two situations.
-
-A. The picture has a USABLE FACE and at least one enrolled person has a face on file -> the FACE decides:
-
-    1. best face similarity  >= face threshold                       -> MATCH   (margin rule, if configured, may say REVIEW/UNKNOWN)
-    2. within the review band just below the face threshold          -> REVIEW  (too close to call automatically)
-    3. below that                                                    -> UNKNOWN
-       ... unless an enrolled person WITHOUT a face on file passes the body threshold -> REVIEW (nothing to verify the face against)
-
-    Clothing similarity can NOT turn a failed face into a MATCH. That is the whole point: a stranger in the same
-    jacket gets UNKNOWN. The body score is reported next to the face score - "agrees" or "differs" - as supporting
-    evidence; a low body score with a matching face is normal when the person simply changed clothes.
-
-B. No usable face (none found, or too small / blurry / turned), or nobody enrolled has a face -> the BODY decides,
-   with the original rules (quality flags -> REVIEW, below threshold -> UNKNOWN, margin rule). Because clothing alone is
-   weak evidence, a body-only pass is sent to REVIEW instead of MATCH unless the policy says ``body_only_action = accept``.
-
-The face threshold is a starting value from the model's authors (see docs/FACE_AND_BODY_MATCHING.md for what was measured);
-like the body threshold it is UNVALIDATED until someone calibrates it on their own camera data.
+The body embedding mostly sees clothing colour and build, so different people in similar clothes can
+look alike to it. Rules, first match wins:
+  A. usable face and at least one enrolled face on file: the face decides.
+       face score >= face threshold                 -> MATCH
+       within the review band below the threshold   -> REVIEW
+       lower                                        -> UNKNOWN (REVIEW if an enrolled person without a face passes the body threshold)
+     Clothing similarity never turns a failed face into a MATCH.
+  B. no usable face: the body decides with the plain rules, but a body-only pass goes to REVIEW
+     unless the policy sets body_only_action = accept.
 """
 
 from __future__ import annotations
@@ -59,8 +40,10 @@ def decide_multicue(
     face_status: str = "usable",
     face_flags: Sequence[str] = (),
 ) -> Decision:
-    """``body``: every enrolled person scored by body. ``face``: enrolled people WITH a face, scored by face; None if the
-    picture has no usable face (then ``face_status`` says why: no_face | unusable)."""
+    """``body``: every enrolled person scored by body. ``face``: enrolled people WITH a face, scored by
+    face; None if the picture has no usable face (then ``face_status`` says why: no_face |
+    unusable).
+    """
     multicue = policy.multicue
     if multicue is None:
         raise ValueError("decide_multicue needs a policy with a multicue block; use decide() for body-only policies.")
@@ -70,7 +53,7 @@ def decide_multicue(
     if face is not None and len(face) == 0:
         face, face_status = None, "not_enrolled"  # a usable face, but nobody to compare it with
 
-    # ------------------------------------------------------------------------------ B. body-only evidence
+    # B. body-only evidence
     if face is None:
         legacy = decide(body, body_policy, quality_flags=body_quality_flags)
         note = _FACE_STATE_TEXT.get(face_status, "")
@@ -89,7 +72,7 @@ def decide_multicue(
         reason = f"{legacy.reason} {note}".strip() if note else legacy.reason
         return replace(legacy, reason=reason, **common)
 
-    # ------------------------------------------------------------------------------ A. the face decides
+    # A. the face decides
     body_by = {c.reference_id: c for c in body}
     ranked_face = sorted(face, key=lambda c: -c.score)  # stable: ties keep their gallery order
     top, second = ranked_face[0], (ranked_face[1] if len(ranked_face) > 1 else None)

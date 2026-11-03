@@ -22,7 +22,7 @@ def person(response):
     return response.json()["people"][0]
 
 
-# ------------------------------------------------------------------- the core behaviour
+# the core behaviour
 def test_empty_gallery_gives_unknown_not_an_error(env):
     result = person(env.predict(crop_png(RED)))
     assert result["decision"]["outcome"] == "unknown"
@@ -97,7 +97,7 @@ def test_tiny_person_is_a_processing_error_without_an_embedding(env):
     assert "too small" in result["decision"]["reason"]
 
 
-# ------------------------------------------------------------------ detection workflow
+# detection workflow
 def test_detect_endpoint_returns_boxes_and_keeps_detector_score_separate(env):
     env.detector.boxes = [detection(80, 40, 220, 360, 0.93)]
     body = env.post("/api/reid/detect", role="viewer", files={"image": ("s.png", scene_png(RED), "image/png")}).json()
@@ -145,7 +145,7 @@ def test_response_reports_per_stage_timings(env):
     assert timings["total_ms"] >= timings["embed_ms"] >= 0
 
 
-# ----------------------------------------------------------------------- upload safety
+# upload safety
 def test_non_image_upload_is_unsupported_media(env):
     response = env.post("/api/reid/predict", role="viewer", data={"mode": "crop"},
                         files={"image": ("notes.txt", b"hello", "text/plain")})
@@ -170,7 +170,7 @@ def test_top_k_is_validated(env):
     assert env.predict(crop_png(RED), top_k="11").status_code == 422
 
 
-# --------------------------------------------------------------------------- history
+# history
 def test_history_lists_requests_without_any_raw_image_data(env):
     enrol_three(env)
     first = env.predict(crop_png(RED)).json()["request_id"]
@@ -227,7 +227,7 @@ def test_unknown_history_request_is_404(env):
     assert env.get("/api/reid/history/doesnotexist").status_code == 404
 
 
-# ------------------------------------------------------------------------ overview
+# overview
 def test_overview_shows_real_numbers_and_honest_empty_states(env):
     empty = env.get("/api/overview").json()
     assert empty["inference"]["requests"] == 0 and empty["inference"]["acceptance_rate"] is None

@@ -1,12 +1,5 @@
-"""
-Database connection setup.
-
-In plain words: the app stores metadata (who is enrolled, history, settings
-versions, evaluation runs) in a small SQLite file. We talk to it only through
-SQLAlchemy's ORM, which sends every value as a bound parameter - so there is no
-string-built SQL anywhere and nothing to inject into. Because SQLAlchemy hides
-the database dialect, moving to PostgreSQL later is a matter of changing the
-connection URL (and adding a migration tool such as Alembic).
+"""Database connection setup. The app stores metadata (who is enrolled, history, settings versions,
+evaluation runs) in a small SQLite file.
 """
 
 from __future__ import annotations
@@ -54,13 +47,8 @@ def init_db(engine: Engine) -> None:
 
 
 def add_missing_columns(engine: Engine) -> list[str]:
-    """Upgrade an older database file in place when a release adds a nullable column to an existing table.
-
-    ``create_all`` only creates tables that do not exist; it never alters one that does. Without this step, a database
-    created by an earlier version would crash on the first query that mentions a new column - and the person's enrolled
-    gallery would be unusable. Only columns that may be NULL (or have a server default) are added, because those are the
-    only ones that can be added safely to a table that already holds rows. Nothing is ever dropped or rewritten.
-    Returns the "table.column" names that were added.
+    """Upgrade an older database file in place when a release adds a nullable column to an existing
+    table.
     """
     inspector = inspect(engine)
     added: list[str] = []

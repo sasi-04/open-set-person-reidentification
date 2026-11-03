@@ -1,12 +1,4 @@
-/**
- * LabForm: set up one Lookalike Failure Lab experiment.
- *
- * In plain words: choose a labelled dataset, say which group of people to search for look-alikes, say what
- * recall the operating threshold must keep, and press Run. If something needed is missing - no dataset,
- * models that did not load, another job already running - the form says exactly what and why instead of
- * offering a button that cannot work. The "improved model" menu only lists checkpoints that really exist;
- * with none, the experiment runs the baseline alone and says so.
- */
+/** LabForm: set up one Lookalike Failure Lab experiment. Choose a labelled dataset, say which group of people to search for look-alikes, say what recall the operating threshold must keep, and press Run. */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { GitCompareArrows } from "lucide-react";
 import { useState } from "react";

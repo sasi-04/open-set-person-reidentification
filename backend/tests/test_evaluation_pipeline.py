@@ -1,10 +1,7 @@
-"""
-Evaluation-pipeline tests.
-
-A FAKE extractor (embedding = a fixed random projection of the image's mean colour) stands in for the
-neural network, so these tests are fast and deterministic and check the PLUMBING:
-identity-disjoint splits, cross-camera masking, calibration/test separation, reproducibility and
-honest reporting. They say nothing about how well the real model performs.
+"""Evaluation-pipeline tests. A FAKE extractor (embedding = a fixed random projection of the image's
+mean colour) stands in for the neural network, so these tests are fast and deterministic and check
+the PLUMBING: identity-disjoint splits, cross-camera masking, calibration/test separation,
+reproducibility and honest reporting.
 """
 
 from __future__ import annotations
@@ -29,7 +26,7 @@ from app.evaluation.runner import (
 from app.evaluation.scoring import score_split
 
 
-# ------------------------------------------------------------------------- fixtures
+# fixtures
 class FakeExtractor:
     """Deterministic stand-in for OSNetExtractor. Records every image it is asked to embed."""
 
@@ -97,7 +94,7 @@ def request_for(dataset_info, **overrides) -> EvaluationRequest:
     return EvaluationRequest(**base)
 
 
-# ------------------------------------------------------------------------ dataset readers
+# dataset readers
 def test_market1501_layout_is_parsed_and_junk_images_are_dropped(tmp_path):
     root = tmp_path / "market1501" / "Market-1501-v15.09.15"  # real downloads unpack into a nested folder
     for sub in ("bounding_box_train", "bounding_box_test", "query"):
@@ -131,7 +128,7 @@ def test_a_dataset_with_too_few_people_is_reported_unusable(tmp_path):
     assert not info.available and "at least 10" in info.problems[0]
 
 
-# --------------------------------------------------------------------------- protocol
+# protocol
 def test_splits_are_identity_disjoint(dataset):
     protocol = build_protocol(records_of(dataset), ProtocolConfig(dev_fraction=0.2, calibration_fraction=0.3))
     protocol.assert_disjoint()
@@ -179,7 +176,7 @@ def test_protocol_refuses_tiny_datasets():
         build_protocol(records, ProtocolConfig())
 
 
-# ---------------------------------------------------------------------------- scoring
+# scoring
 def unit(*values):
     v = np.asarray(values, dtype=np.float32)
     return v / np.linalg.norm(v)
@@ -216,7 +213,7 @@ def test_scoring_marks_correct_identification_and_rank():
     assert scored.cmc[0] == 1.0 and scored.mean_ap == pytest.approx(1.0)
 
 
-# ---------------------------------------------------------------------- calibration
+# calibration
 def test_fixed_far_selection_respects_the_target_on_calibration_data():
     rng = np.random.default_rng(0)
     n = 500
@@ -263,7 +260,7 @@ def test_invalid_targets_are_rejected():
         OperatingTarget("sometimes").validate()
 
 
-# ------------------------------------------------------------------ end-to-end runs
+# end-to-end runs
 def factory_for(extractor):
     return lambda checkpoint: extractor
 

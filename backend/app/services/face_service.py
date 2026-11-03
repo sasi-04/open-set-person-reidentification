@@ -1,16 +1,5 @@
-"""
-Face analysis for the gallery and for queries.
-
-In plain words: this is the glue between the face engine (``cv/face``) and the rest of the application.
-
-  * For a REFERENCE photo it finds the face, judges it, stores its fingerprint and the hair / skin / clothing colours
-    in the ``face_templates`` table, so a query never has to re-read old pictures.
-  * For a QUERY it does the same on the fly and returns what the matcher needs.
-  * ``analyse_missing_faces`` upgrades galleries enrolled before faces existed (it reads the stored reference pictures;
-    nothing is re-uploaded and nothing leaves the machine).
-
-A face is only allowed to decide something when it is a USABLE face (large enough, sharp enough, not in strong profile).
-A reference photo whose face is not usable is still used for body matching; it just contributes no face fingerprint.
+"""Face analysis for the gallery and for queries. This is the glue between the face engine
+(``cv/face``) and the rest of the application.
 """
 
 from __future__ import annotations
@@ -37,12 +26,10 @@ logger = logging.getLogger(__name__)
 STARTUP_ANALYSIS_LIMIT = 300  # at startup, analyse at most this many not-yet-analysed reference pictures (about a minute at worst)
 
 
-# ----------------------------------------------------------------------------------------- helpers
+# helpers
 def trim_padding(crop: np.ndarray) -> tuple[np.ndarray, int, int]:
-    """Remove the grey bars ``pad_to_person_aspect`` added around a crop. Returns (content, top offset, left offset).
-
-    Face and colour analysis must look at real picture content only: the bars would confuse the face detector and the
-    clothing-colour regions. A bar is a border row/column that is entirely the pad colour (JPEG noise tolerated).
+    """Remove the grey bars ``pad_to_person_aspect`` added around a crop. Returns (content, top offset,
+    left offset).
     """
     if crop.size == 0:
         return crop, 0, 0
@@ -76,7 +63,7 @@ def explain(status: str, flags: list[str]) -> str | None:
     return "Not analysed yet. Use 'Analyse faces'."
 
 
-# --------------------------------------------------------------------------------- reference pictures
+# reference pictures
 @dataclass
 class ReferenceAnalysis:
     status: str  # ready | weak | no_face | failed
@@ -132,9 +119,8 @@ def store_template(session: Session, runtime: Runtime, image: ReferenceImage, an
 
 
 def analyse_missing_faces(session: Session, runtime: Runtime, role_name: str, *, limit: int | None = None, everything: bool = False) -> dict:
-    """Analyse reference pictures that have no current face record (or ALL of them when ``everything``).
-
-    Safe to run any time: it reads the stored reference crops, writes only ``face_templates`` rows, then refreshes the index.
+    """Analyse reference pictures that have no current face record (or ALL of them when
+    ``everything``).
     """
     engine = runtime.face_engine
     if engine is None:
@@ -167,7 +153,7 @@ def analyse_missing_faces(session: Session, runtime: Runtime, role_name: str, *,
             "message": f"Analysed {len(batch) - unreadable} reference picture(s): {counts['ready']} with a usable face."}
 
 
-# ----------------------------------------------------------------------------------------------- queries
+# queries
 @dataclass
 class QueryFace:
     """What the matcher knows about the face in a query picture."""

@@ -1,20 +1,6 @@
-"""
-Face detection and face fingerprints.
-
-In plain words: given a picture of a person this finds the face (if there is a usable one), judges whether the
-face is good enough to trust, and turns it into 128 numbers (a "face embedding"). Two photos of the same face give
-embeddings with a high cosine similarity; different people give low ones. It is the second kind of evidence next
-to the whole-body fingerprint of ``cv/embedding``: a body fingerprint mostly captures clothing colour and build,
-a face fingerprint captures the face itself.
-
-Quality is checked before a face is allowed to decide anything. A face that is tiny, blurry, in strong profile or
-only weakly detected is reported as NOT usable, with the reason - the matcher then falls back to body evidence
-(and, by default, asks for human review instead of accepting on clothing alone).
-
-Honest limits: this is ordinary 2-D face matching from photographs. It is not the 3-D depth sensing of a phone's
-Face ID, it can be fooled by photos of photos, it degrades with masks, sunglasses, strong angles, low light and
-tiny faces, and very similar faces (twins, close relatives) can score high. The measured accuracy is in
-docs/FACE_AND_BODY_MATCHING.md.
+"""Face detection and face fingerprints. Given a picture of a person this finds the face (if there is a
+usable one), judges whether the face is good enough to trust, and turns it into 128 numbers (a "face
+embedding").
 """
 
 from __future__ import annotations
@@ -34,12 +20,12 @@ from .registry import FACE_DETECTOR_FILE, FACE_DIM, FACE_RECOGNIZER_FILE, FaceMo
 
 logger = logging.getLogger(__name__)
 
-# ---- detection ---------------------------------------------------------------------------------
+# detection
 DETECT_SCORE_THRESHOLD = 0.70  # YuNet's own confidence needed before a face is even considered
 NMS_THRESHOLD = 0.30
 MAX_DETECT_SIDE = 1280  # larger pictures are shrunk for the detector only (faces are found at this scale)
 
-# ---- "is this face good enough to decide anything?" (plain heuristics, listed in the docs) ----------
+# "is this face good enough to decide anything?" (plain heuristics, listed in the docs)
 MIN_FACE_PX = 40  # shorter side of the face box, in the ORIGINAL picture's pixels
 MIN_FACE_CONFIDENCE = 0.80
 MAX_YAW_RATIO = 0.45  # |nose offset from the eye midline| / eye distance; ~0 = frontal, > 0.45 = strong profile
@@ -125,7 +111,7 @@ class FaceEngine:
         self.load_seconds = load_seconds
         self.fingerprint = f"face-{files[0].sha256[:8]}-{files[1].sha256[:8]}"
 
-    # ---------------------------------------------------------------- loading
+    # loading
     @classmethod
     def load(cls, weights_dir: Path) -> FaceEngine:
         started = time.perf_counter()
@@ -155,7 +141,7 @@ class FaceEngine:
         logger.info("Face models ready (%.2fs)", engine.load_seconds)
         return engine
 
-    # -------------------------------------------------------------- detection
+    # detection
     def detect(self, rgb: np.ndarray) -> list[FaceFound]:
         """All faces in ``rgb`` (an RGB uint8 picture), best first. Empty list = no face."""
         height, width = rgb.shape[:2]
@@ -183,10 +169,9 @@ class FaceEngine:
         return found
 
     def best_face(self, rgb: np.ndarray) -> FaceFound | None:
-        """The face of THE person in a picture of one person.
-
-        A picture taller than 1.4:1 is a whole-body crop: the face must be in its upper 70 % (a face on a poster
-        or a second person's face lower down is ignored). A squarer picture is a head-and-shoulders photo: any face counts.
+        """The face of THE person in a picture of one person. A picture taller than 1.4:1 is a
+        whole-body crop: the face must be in its upper 70 % (a face on a poster or a second person's
+        face lower down is ignored).
         """
         faces = self.detect(rgb)
         height, width = rgb.shape[:2]
@@ -194,7 +179,7 @@ class FaceEngine:
             faces = [f for f in faces if f.centre[1] <= 0.70 * height]
         return faces[0] if faces else None
 
-    # ------------------------------------------------------- quality + fingerprint
+    # quality + fingerprint
     def read(self, rgb: np.ndarray, face: FaceFound) -> FaceReading:
         """Judge the face and compute its fingerprint (the fingerprint is computed even for a weak face)."""
         flags: list[str] = []

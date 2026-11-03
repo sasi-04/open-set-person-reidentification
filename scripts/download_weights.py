@@ -1,25 +1,5 @@
-"""
-Download the pretrained model weights - on purpose, once, with verification.
-
-In plain words: the web application never fetches models by itself. Run this
-script one time after installing; it downloads
-
-  * the OSNet person-embedding weights (Torchreid, MIT code licence; the multi-source checkpoint is downloaded,
-    checked against a pinned SHA-256, converted once to a tensors-only file and checked against a pinned content digest), and
-  * the torchvision person-detector weights (BSD licence, ~75 MB) and checks
-    them against the hash prefix baked into the official file name, and
-  * the two face models (YuNet detector, MIT, 0.2 MB; SFace recogniser, Apache-2.0, 37 MB) from the OpenCV model zoo,
-    checked against the SHA-256 that the zoo itself publishes in its Git-LFS pointer files,
-
-into ``backend/weights/``. A file that fails its check is deleted, never used.
-
-Usage (from the repository root, with the backend venv active):
-
-    python scripts/download_weights.py                       # default models from .env
-    python scripts/download_weights.py --embedding osnet_ain_x0_25
-    python scripts/download_weights.py --detector ssdlite320_mobilenet_v3_large
-    python scripts/download_weights.py --skip-detector
-    python scripts/download_weights.py --skip-face        # body-only system: no face models
+"""Download the pretrained model weights - on purpose, once, with verification. The web application
+never fetches models by itself.
 """
 
 from __future__ import annotations

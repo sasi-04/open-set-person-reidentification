@@ -1,11 +1,4 @@
-/**
- * IdentityDialog: inspect one enrolled identity, add images, or delete it.
- *
- * In plain words: shows every reference image and its metadata. Adding images works like
- * enrolling. Deleting needs a confirmation that spells out the consequences, and the
- * backend repeats the check (it requires the reference ID back), so a stray click or a
- * hand-made request cannot delete anything.
- */
+/** IdentityDialog: inspect one enrolled identity, add images, or delete it. Shows every reference image and its metadata. */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, Trash2 } from "lucide-react";
 import { useState } from "react";

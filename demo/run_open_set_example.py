@@ -1,15 +1,5 @@
-"""
-Run the built-in open-set example from the command line (the same analysis the home page shows) and save the result.
-
-In plain words: the home page of the website has a "Run the example" button. This script presses it for you, prints one line per
-photo - what the system (face + body) decided, whether that was right, and what a clothes-only matcher would have decided -
-and writes everything to docs/results/open_set_example.json so the numbers quoted in the documents can be traced to a file.
-
-It is READ-ONLY for your data: the example uses a private, temporary gallery held in the server's memory. Your real gallery,
-decision history and audit trail are not touched. Exit code 0 = the system gave the right answer for every photo.
-
-    python demo\\run_open_set_example.py                      (server on http://127.0.0.1:8000)
-    python demo\\run_open_set_example.py --base-url http://127.0.0.1:8765
+"""Run the built-in open-set example from the command line (the same analysis the home page shows) and
+save the result.
 """
 
 from __future__ import annotations

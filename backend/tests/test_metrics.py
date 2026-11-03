@@ -1,12 +1,7 @@
-"""
-Metric tests on a toy table whose answers were worked out by hand.
-
-Known queries (5)                         Unknown queries (4)
-  K1 score .90 margin .30 correct rank1     U1 score .75 margin .10
-  K2 score .80 margin .20 correct rank1     U2 score .50 margin .05
-  K3 score .70 margin .05 WRONG   rank2     U3 score .30 margin .01
-  K4 score .60 margin .10 correct rank1     U4 score .65 margin .08
-  K5 score .40 margin .02 WRONG   rank3
+"""Metric tests on a toy table whose answers were worked out by hand. Known queries (5) Unknown queries
+(4) K1 score .90 margin .30 correct rank1 U1 score .75 margin .10 K2 score .80 margin .20 correct
+rank1 U2 score .50 margin .05 K3 score .70 margin .05 WRONG rank2 U3 score .30 margin .01 K4 score
+.60 margin .10 correct rank1 U4 score .65 margin .08 K5 score .40 margin .02 WRONG rank3
 """
 
 import numpy as np
@@ -26,7 +21,7 @@ def toy() -> m.QueryScores:
     )
 
 
-# ------------------------------------------------------------- one operating point
+# one operating point
 def test_operating_point_threshold_only():
     point = m.operating_point(toy(), threshold=0.65)
     counts = point["counts"]
@@ -66,7 +61,7 @@ def test_empty_denominators_are_none_not_zero():
     assert m.operating_point(only_known, 0.5)["far"] is None
 
 
-# --------------------------------------------------------------------- the curve
+# the curve
 def test_roc_points_and_area_match_hand_calculation():
     curve = m.roc_curve(toy())
     assert curve.thresholds[0] == np.inf and curve.thresholds[-1] == -np.inf
@@ -123,7 +118,7 @@ def test_margin_rule_changes_the_curve():
     assert with_margin.tar[-2] == pytest.approx(3 / 5)
 
 
-# ------------------------------------------------------------- closed-set metrics
+# closed-set metrics
 def test_cmc_rank_accuracy():
     ranks = toy().true_rank
     assert m.cmc(ranks, max_rank=3) == pytest.approx([0.6, 0.8, 1.0])
@@ -145,7 +140,7 @@ def test_mean_average_precision_respects_ignored_images():
     assert m.mean_average_precision(similarity, query_ids, gallery_ids, ignore) == pytest.approx(0.5)
 
 
-# ------------------------------------------------------- uncertainty and honesty
+# uncertainty and honesty
 def test_wilson_upper_bound_with_zero_events_matches_closed_form():
     z = 1.645
     assert m.wilson_upper_bound(0, 100) == pytest.approx(z * z / (100 + z * z), rel=1e-6)

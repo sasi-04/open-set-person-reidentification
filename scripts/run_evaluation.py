@@ -1,21 +1,6 @@
-"""
-Run the full open-set evaluation from the command line.
-
-In plain words: the same experiment the "Evaluation Lab" screen launches, but
-with progress printed to the terminal and the result saved as JSON (plus a
-readable Markdown report). Examples:
-
-    # Quick smoke test on the synthetic dataset (verifies the pipeline only!)
-    python scripts/run_evaluation.py --dataset smoke_synthetic --seeds 0 1 2
-
-    # Real benchmark, "keep 90% of enrolled people, minimise false accepts"
-    python scripts/run_evaluation.py --dataset market1501 --mode fixed_recall --target-recall 0.90 \\
-        --seeds 0 1 2 --max-identities 150
-
-    # Or: "never let more than 1% of strangers in, keep as many enrolled people as possible"
-    python scripts/run_evaluation.py --dataset market1501 --mode fixed_far --target-far 0.01
-
-Results are written to backend/data/reports/<timestamp>_<dataset>.json / .md
+"""Run the full open-set evaluation from the command line. The same experiment the "Evaluation Lab"
+screen launches, but with progress printed to the terminal and the result saved as JSON (plus a
+readable Markdown report).
 """
 
 from __future__ import annotations

@@ -1,16 +1,4 @@
-/**
- * LabResults: everything one Lookalike Failure Lab experiment found, in six tabs.
- *
- *   Look-alike pairs     the different people the model finds most alike (photos side by side)
- *   Challenge set        the reproducible test list, each model's numbers, the curve, threshold effects
- *   Mistakes             real false accepts / rejections, with measured facts and unproven hypotheses
- *   Baseline vs improved the two models on identical examples - or why no comparison exists
- *   Threshold sandbox    try other thresholds on the stored query results (never changes the policy)
- *   Method & limits      definitions, limitations, reproducibility
- *
- * Everything is read from the stored result. Where something is missing (no improved model, no
- * benchmark) the screen says so; it never fills the gap with a made-up number.
- */
+/** LabResults: everything one Lookalike Failure Lab experiment found, in six tabs. Look-alike pairs     the different people the model finds most alike (photos side by side) Challenge set        the reproducible test list, each model's numbers, the curve, threshold effects Mistakes             real false accepts / rejections, with measured facts and unproven hypotheses Baseline vs improved the two models on identical examples - or why no comparison exists Threshold sandbox    try other thresholds on the stored query results (never changes the policy) Method & limits      definitions, limitations, reproducibility */
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/Badge";

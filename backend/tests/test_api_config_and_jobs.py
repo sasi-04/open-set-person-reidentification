@@ -15,7 +15,7 @@ from tests.fakes import FakeDetector, FakeExtractor
 from tests.test_evaluation_pipeline import make_dataset
 
 
-# ------------------------------------------------------------------------- policy
+# policy
 def test_initial_policy_is_honestly_labelled_unvalidated(env):
     policy = env.get("/api/config").json()["policy"]
     assert policy["version"] == 1 and policy["status"] == "unvalidated"
@@ -63,7 +63,7 @@ def test_cleanup_endpoint_reports_what_it_did(env):
     assert set(result) == {"expired_crops_removed", "history_rows_removed", "orphan_files_removed"}
 
 
-# -------------------------------------------------------------------- job helpers
+# job helpers
 @pytest.fixture()
 def jobs_env(tmp_path, monkeypatch):
     """An app with a small toy dataset and a fake extractor injected into the background worker."""
@@ -104,7 +104,7 @@ def start_calibration(env, **overrides):
     return env.post("/api/evaluation/calibrate", json=body)
 
 
-# ---------------------------------------------------------------------- datasets
+# datasets
 def test_dataset_discovery_lists_what_is_installed(jobs_env):
     items = jobs_env.get("/api/evaluation/datasets").json()
     assert [d["name"] for d in items] == ["toy"] and items[0]["available"] and items[0]["identities"] == 40
@@ -119,7 +119,7 @@ def test_running_on_a_missing_dataset_explains_how_to_get_one(env):
     assert response.status_code == 404 and "README" in response.json()["error"]["message"]
 
 
-# --------------------------------------------------------------------- checkpoints
+# checkpoints
 def write_checkpoint(env, name="toy_seed0", dev=(), dataset="toy", seed=0):
     import json
 
@@ -159,7 +159,7 @@ def test_a_checkpoint_trained_on_the_evaluated_people_is_refused_as_leakage(jobs
     assert "LEAKAGE" in run["result"]["variants"]["thr_margin_finetuned"]["reason"]
 
 
-# --------------------------------------------------------------------- evaluation
+# evaluation
 def test_evaluation_job_runs_in_the_background_and_reports_real_progress(jobs_env):
     started = start_evaluation(jobs_env)
     assert started.status_code == 202
@@ -256,7 +256,7 @@ def test_server_restart_marks_orphaned_jobs_as_failed(tmp_path):
     assert run["status"] == "failed" and "restarted" in run["error"]
 
 
-# ------------------------------------------------------------ calibration -> policy
+# calibration -> policy
 def test_calibration_uses_only_the_calibration_split_and_can_be_applied(jobs_env):
     run = wait_for(jobs_env, start_calibration(jobs_env).json()["run_id"])
     result = run["result"]

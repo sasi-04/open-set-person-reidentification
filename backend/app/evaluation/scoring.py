@@ -1,18 +1,7 @@
-"""
-From embeddings to the per-query results table.
-
-In plain words: given the embeddings of a split's gallery and queries, this
-produces one row per query - best identity score, margin to the runner-up,
-was it the right person, where did the true person rank - using EXACTLY the
-same ranking functions the live API uses (``cv/retrieval/ranking.py``).
-
-Cross-camera rule (Market-1501 convention): when a KNOWN query comes from
-camera 3, gallery photos of that same person from camera 3 are ignored, because
-matching two frames from the same camera is too easy and would inflate the
-numbers. Only the TRUE identity's same-camera photos are removed; other
-people's photos are never touched, so strangers are not given an unfair
-handicap. A known query whose person has no gallery photo from another camera
-cannot be scored fairly and is dropped (and counted in the report).
+"""From embeddings to the per-query results table. Given the embeddings of a split's gallery and
+queries, this produces one row per query - best identity score, margin to the runner-up, was it the
+right person, where did the true person rank - using EXACTLY the same ranking functions the live API
+uses (``cv/retrieval/ranking.py``).
 """
 
 from __future__ import annotations

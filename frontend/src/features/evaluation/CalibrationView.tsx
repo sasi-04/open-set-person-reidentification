@@ -1,11 +1,4 @@
-/**
- * CalibrationView: the result of a threshold-calibration run.
- *
- * In plain words: tells you plainly whether the requested operating point was reached on the
- * calibration split, what threshold and margin were found, how many people that is based on
- * (and how sure we can be - the 95% upper bound on FAR), and where the score distributions
- * overlap. If the target was NOT reached, that is the headline - no result is dressed up.
- */
+/** CalibrationView: the result of a threshold-calibration run. Tells you plainly whether the requested operating point was reached on the calibration split, what threshold and margin were found, how many people that is based on (and how sure we can be - the 95% upper bound on FAR), and where the score distributions overlap. */
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";

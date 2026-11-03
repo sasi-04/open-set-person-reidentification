@@ -1,27 +1,6 @@
-"""
-The catalogue of embedding models we know how to run.
-
-In plain words: this is the ONE place that says which model names exist, how
-big their layers are, what input size they expect, how to normalise pixels,
-and where their pretrained weights come from (URL, file size, SHA-256 hash and
-licence). If you want to try a different backbone, you add an entry here (and,
-if it is not an OSNet, a small extractor class next to ``extractor.py``).
-
-About the weights
------------------
-The pretrained OSNet-AIN weights are the ones released by the Torchreid
-authors (MIT licence) for domain generalisation. They were trained on
-MSMT17 + DukeMTMC-reID + CUHK03 - NOT on Market-1501 - so Market-1501 is an
-unseen target domain for them, which makes it a fair evaluation set.
-The copy we download is a byte-identical mirror on Hugging Face
-(``LibreYOLO/LibreReID-osnet``, MIT) whose SHA-256 hashes were cross-checked
-against the Hugging Face API. The files are checked against those hashes
-before they are ever loaded.
-
-Dataset-licence caveat (also stated in the README): those training sets are
-research datasets with their own terms, and DukeMTMC-reID was withdrawn by its
-authors in 2019 for privacy reasons. This prototype is for research
-demonstration only.
+"""The catalogue of embedding models we know how to run. This is the ONE place that says which model
+names exist, how big their layers are, what input size they expect, how to normalise pixels, and
+where their pretrained weights come from (URL, file size, SHA-256 hash and licence).
 """
 
 from __future__ import annotations
@@ -35,8 +14,7 @@ _HF_BASE = "https://huggingface.co/LibreYOLO/LibreReID-osnet/resolve/main"
 
 @dataclass(frozen=True)
 class WeightFile:
-    """A weight file. Normally pinned by the SHA-256 of its bytes. A file that this project CONVERTS from an official
-    training checkpoint (``source_*`` fields) is pinned by ``tensor_sha256`` (a digest of the tensors) instead."""
+    """A weight file. Normally pinned by the SHA-256 of its bytes."""
 
     filename: str
     url: str

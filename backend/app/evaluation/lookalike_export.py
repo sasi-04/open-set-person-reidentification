@@ -1,17 +1,5 @@
-"""
-Exporting a Lookalike Failure Lab experiment.
-
-In plain words: the experiment's full result is stored as JSON (that is the complete,
-machine-readable record). This module turns it into the files people actually open:
-
-  pairs.csv      one row per look-alike pair of people (and the hardest same-person pairs)
-  failures.csv   one row per listed mistake, with the observed numbers and the unproven hypotheses
-  summary.csv    the headline numbers, one row per model, plus the reproducibility details
-  a Markdown report that reads top to bottom for a reviewer
-
-CSV safety: a spreadsheet treats a cell that starts with = + - or @ as a formula. Dataset labels
-come from file names we do not control, so text cells that start that way are prefixed with an
-apostrophe before they are written.
+"""Exporting a Lookalike Failure Lab experiment. The experiment's full result is stored as JSON (that
+is the complete, machine-readable record).
 """
 
 from __future__ import annotations

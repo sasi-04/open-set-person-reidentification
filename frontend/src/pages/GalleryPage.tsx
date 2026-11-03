@@ -1,12 +1,4 @@
-/**
- * Identity Gallery: browse, enroll, inspect, delete.
- *
- * In plain words: a searchable, sortable, paged list of enrolled identities, shown as a
- * grid or a list. Clicking one opens its details. Enrolling, rebuilding embeddings and
- * resetting are separate buttons, enabled only for roles that may use them (the backend
- * enforces this again). The page address can carry ?ref=<id> so other screens can link
- * straight to one identity.
- */
+/** Identity Gallery: browse, enroll, inspect, delete. A searchable, sortable, paged list of enrolled identities, shown as a grid or a list. */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LayoutGrid, List, RefreshCcw, ScanFace, Search, Trash, UserPlus, Users } from "lucide-react";
 import { useEffect, useState } from "react";

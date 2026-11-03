@@ -1,12 +1,5 @@
-"""
-Versioned decision policy.
-
-In plain words: the acceptance threshold and margin rule are stored in the
-database as a list of numbered versions. Exactly one version is "active". A
-change never edits a row - it adds a new version and switches the active flag -
-so history is never lost and every decision can say "made under policy v7".
-Every request reads the active version from the database, so a change takes
-effect on the very next request (it is not cached in the browser or the server).
+"""Versioned decision policy. The acceptance threshold and margin rule are stored in the database as a
+list of numbered versions.
 """
 
 from __future__ import annotations
@@ -66,10 +59,8 @@ def to_policy(row: PolicyVersion) -> DecisionPolicy:
 
 
 def effective_policy(runtime, row: PolicyVersion) -> tuple[DecisionPolicy, str | None]:
-    """The policy to apply right now, plus a note when it had to be reduced.
-
-    A policy may ask for face matching while the face models are not loaded (not downloaded, or switched off). The system
-    then does what it did before faces existed - match on the body - and SAYS so, instead of failing or silently pretending.
+    """The policy to apply right now, plus a note when it had to be reduced. A policy may ask for face
+    matching while the face models are not loaded (not downloaded, or switched off).
     """
     policy = to_policy(row)
     if policy.multicue is not None and runtime.face_engine is None:

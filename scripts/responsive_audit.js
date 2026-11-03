@@ -1,14 +1,4 @@
-/*
- * Responsive audit - paste into the browser DevTools console while the app is open and signed in.
- *
- * In plain words: it visits each of the seven screens (and the three Settings tabs and the decision
- * history) without reloading the page and reports any element that sticks out past the right edge of
- * the viewport and is NOT inside its own scrolling container. An empty "problems" list means the screen
- * has no horizontal overflow at the current window width. Repeat it at 360, 390, 768, 1024 and 1440 px
- * (DevTools > device toolbar).
- *
- *     await window.__audit()        // -> { viewport: 360, problems: [] }
- */
+/** Responsive audit - paste into the browser DevTools console while the app is open and signed in. */
 window.__audit = async () => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const routes = ["/", "/gallery", "/match", "/video", "/lookalike", "/evaluation", "/settings?tab=model", "/settings?tab=system", "/settings?tab=preferences", "/history"];

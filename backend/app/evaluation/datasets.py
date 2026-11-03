@@ -1,22 +1,5 @@
-"""
-Finding and reading evaluation datasets.
-
-In plain words: benchmark datasets are NOT part of this repository (they are
-licensed for research and must not be redistributed). You download one
-yourself and drop it in the ``datasets/`` folder; this module notices it.
-
-Two folder layouts are understood:
-
-  market1501   the official Market-1501 layout
-               (bounding_box_train/, bounding_box_test/, query/ ; file names like
-                0002_c1s1_000451_03.jpg  = person 0002, camera 1, sequence 1 ...)
-  folder       <dataset>/<person_id>/<image>.jpg   (camera read from "c3" in the
-               file name if present - useful for your own authorised data)
-
-An optional ``dataset.json`` next to the images can set ``name``, ``kind``
-("benchmark" or "smoke_test"), ``description`` and ``license``. The synthetic
-smoke-test set we generate for plumbing checks is marked ``smoke_test`` so it
-can never be mistaken for a benchmark in the UI or reports.
+"""Finding and reading evaluation datasets. Benchmark datasets are NOT part of this repository (they
+are licensed for research and must not be redistributed).
 """
 
 from __future__ import annotations
@@ -75,9 +58,7 @@ class DatasetInfo:
         }
 
 
-# ----------------------------------------------------------------------------
 # Reading
-# ----------------------------------------------------------------------------
 
 
 def _images_in(folder: Path) -> list[Path]:
@@ -137,9 +118,7 @@ def load_records(info: DatasetInfo) -> list[ImageRecord]:
     return _read_folder(info.root)
 
 
-# ----------------------------------------------------------------------------
 # Discovery
-# ----------------------------------------------------------------------------
 
 
 def inspect_dataset(root: Path) -> DatasetInfo:

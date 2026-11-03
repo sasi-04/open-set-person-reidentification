@@ -1,10 +1,5 @@
-"""
-Which hardware runs the neural networks?
-
-In plain words: ``auto`` uses the GPU when PyTorch can see one and quietly falls
-back to the CPU otherwise. Asking explicitly for ``cuda`` on a machine without
-a GPU is a configuration mistake, so that case raises a clear error instead of
-silently running slowly.
+"""Which hardware runs the neural networks?. ``auto`` uses the GPU when PyTorch can see one and quietly
+falls back to the CPU otherwise.
 """
 
 from __future__ import annotations

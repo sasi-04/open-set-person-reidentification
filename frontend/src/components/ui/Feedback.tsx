@@ -1,10 +1,4 @@
-/**
- * Loading, empty, error and notice states.
- *
- * In plain words: every screen has to say something sensible when data is loading,
- * missing, or failed. These shared pieces make sure it always does - with a clear
- * message and, where possible, the next step - instead of a blank space.
- */
+/** Loading, empty, error and notice states. Every screen has to say something sensible when data is loading, missing, or failed. */
 import clsx from "clsx";
 import { AlertTriangle, Info, Loader2, RefreshCcw, TriangleAlert } from "lucide-react";
 import type { ReactNode } from "react";

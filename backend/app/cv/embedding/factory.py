@@ -1,9 +1,5 @@
-"""
-Builds the embedding extractor named in the settings.
-
-In plain words: one small function so the rest of the app never needs to know
-*which* backbone is in use. To plug in a different backbone family, add a
-branch here that returns an object satisfying ``EmbeddingExtractor``.
+"""Builds the embedding extractor named in the settings. One small function so the rest of the app
+never needs to know *which* backbone is in use.
 """
 
 from __future__ import annotations

@@ -1,9 +1,5 @@
-"""
-Lookalike Failure Lab, threshold sandbox, decision-record export and Video Explorer - through the HTTP API.
-
-Fake networks stand in for the models (see ``tests/fakes.py``), so these tests check the plumbing, the safety rules
-and the honesty of the output - not how accurate the real model is. Videos are REAL files written with OpenCV and
-read back with OpenCV, so the decoding, sampling and cleanup code runs for real.
+"""Lookalike Failure Lab, threshold sandbox, decision-record export and Video Explorer - through the
+HTTP API.
 """
 
 from __future__ import annotations
@@ -66,7 +62,7 @@ def finished_lab(lab):
     return lab, run
 
 
-# ====================================================================================== the lab through the API
+# the lab through the API
 def test_a_lab_experiment_runs_in_the_background_and_returns_its_sections(finished_lab):
     env, run = finished_lab
     result = run["result"]
@@ -111,7 +107,7 @@ def test_lab_actions_need_the_right_role_when_keys_are_on(lab):
     assert lab.get("/api/lookalike/runs", role="viewer").status_code == 200
 
 
-# ----------------------------------------------------------------------------------------------- exports
+# exports
 def test_every_export_format_is_downloadable_and_parseable(finished_lab):
     env, run = finished_lab
     base = f"/api/lookalike/runs/{run['run_id']}/export"
@@ -142,7 +138,7 @@ def test_spreadsheet_formulas_in_labels_are_neutralised():
     assert lookalike_export._cell("0042") == "0042" and lookalike_export._cell(None) == "" and lookalike_export._cell(0.5) == 0.5
 
 
-# ----------------------------------------------------------------------------------------- image serving
+# image serving
 def test_the_lab_serves_only_images_the_experiment_recorded(finished_lab):
     env, run = finished_lab
     ref = run["result"]["challenge_set"]["identity_pairs"][0]["image_a"]
@@ -152,7 +148,7 @@ def test_the_lab_serves_only_images_the_experiment_recorded(finished_lab):
         assert env.get(f"/api/lookalike/runs/{run['run_id']}/image", params={"ref": bad}).status_code == 404
 
 
-# =========================================================================================== threshold sandbox
+# threshold sandbox
 def test_the_sandbox_describes_what_it_can_do_and_never_writes_policy(finished_lab):
     env, run = finished_lab
     info = env.get(f"/api/evaluation/runs/{run['run_id']}/sandbox").json()
@@ -208,7 +204,7 @@ def test_an_ordinary_evaluation_run_also_gets_a_sandbox_whose_reference_is_its_c
     assert replay["trial"]["metrics"]["far"] == run["result"]["variants"]["thr_margin"]["per_seed"][0]["test"]["far"]
 
 
-# ======================================================================================= decision-record export
+# decision-record export
 def test_a_decision_record_can_be_downloaded_as_json_and_csv(env):
     env.enroll("p-red", RED)
     env.detector.boxes = [detection(80, 40, 220, 360)]
@@ -225,7 +221,7 @@ def test_a_decision_record_can_be_downloaded_as_json_and_csv(env):
     assert env.get("/api/reid/history/doesnotexist/export").status_code == 404
 
 
-# =============================================================================================== video helpers
+# video helpers
 def write_avi(path: Path, colours, *, fps=10, size=(320, 240), box=(110, 20, 210, 220), seed=0) -> Path:
     """A real MJPG .avi: one frame per colour, a textured person-shaped rectangle on a grey background."""
     rng = np.random.default_rng(seed)
@@ -258,7 +254,7 @@ def clip(tmp_path):
     return write_avi(tmp_path / "clip.avi", [RED] * 10 + [BLUE] * 10)
 
 
-# =============================================================================================== Video Explorer
+# Video Explorer
 def test_video_limits_are_published_for_the_interface(env):
     limits = env.get("/api/video/limits").json()
     assert limits["detector_ready"] is True and ".avi" in limits["extensions"] and limits["max_frames"] >= 1
@@ -347,7 +343,7 @@ def test_the_maximum_number_of_frames_is_respected(env, clip):
     assert job["result"]["summary"]["frames_processed"] == 2
 
 
-# ---------------------------------------------------------------------------- refusing bad uploads
+# refusing bad uploads
 def test_files_that_are_not_videos_are_refused_by_their_content_not_their_name(env, tmp_path):
     fake = tmp_path / "evil.mp4"
     fake.write_bytes(b"MZ\x90\x00this is an executable pretending to be a video" * 40)
@@ -422,7 +418,7 @@ def test_video_needs_the_detector_and_says_so(tmp_path, clip):
     assert response.status_code == 503 and response.json()["error"]["code"] == "model_unavailable"
 
 
-# ------------------------------------------------------------------ the job lifecycle
+# the job lifecycle
 def test_a_running_video_job_can_be_cancelled_and_leaves_no_previews(env, tmp_path):
     video_env_with_person(env)
     env.extractor.delay = 0.25  # slow the model so there is time to cancel
@@ -489,7 +485,7 @@ def test_the_video_job_cannot_be_reached_through_the_lab_or_a_missing_id(env):
     assert env.post(f"/api/video/jobs/{'a' * 32}/cancel", role="viewer").status_code == 404
 
 
-# ------------------------------------------------------------------------------ small unit checks
+# small unit checks
 def test_container_sniffing_recognises_real_videos_and_rejects_everything_else():
     assert video_service.sniff_container(b"\x00\x00\x00\x20ftypisom" + b"\x00" * 20) == "mp4"
     assert video_service.sniff_container(b"RIFF\x00\x00\x00\x00AVI LIST") == "avi"

@@ -1,10 +1,4 @@
-/**
- * Tabs with full keyboard support.
- *
- * In plain words: follows the standard ARIA tabs pattern - Left/Right arrows move between
- * tabs, Home/End jump to the first/last one, and only the active panel is in the tab order.
- * On narrow screens the tab strip scrolls sideways inside itself (the page never does).
- */
+/** Tabs with full keyboard support. Follows the standard ARIA tabs pattern - Left/Right arrows move between tabs, Home/End jump to the first/last one, and only the active panel is in the tab order. */
 import clsx from "clsx";
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 

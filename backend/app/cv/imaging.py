@@ -1,16 +1,5 @@
-"""
-Safe image decoding and encoding.
-
-In plain words: this is the front door for every picture that enters the
-system - uploads from the browser, reference images, dataset files. The rules:
-
-  * never trust the file name or the MIME type the client sends - check the
-    real bytes with Pillow;
-  * refuse oversized files and absurd dimensions *before* decoding everything
-    (protects against "decompression bomb" images);
-  * apply the camera's EXIF rotation, then convert to plain RGB pixels;
-  * when we need to store an image, we re-encode it ourselves as JPEG, so the
-    original bytes (and any hidden metadata) are never written to disk.
+"""Safe image decoding and encoding. This is the front door for every picture that enters the system -
+uploads from the browser, reference images, dataset files.
 """
 
 from __future__ import annotations

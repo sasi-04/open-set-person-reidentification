@@ -16,9 +16,7 @@ function firstOk(variant: VariantResult, seed: number): VariantSeedResult | unde
   return variant.per_seed.find((r) => r.status === "ok" && r.seed === seed);
 }
 
-// ----------------------------------------------------------------------------------------------
 // ROC: false accepts against recall
-// ----------------------------------------------------------------------------------------------
 export function RocChart({ result, seed, targetRecall, targetFar }: { result: EvaluationResult; seed: number; targetRecall?: number; targetFar?: number }) {
   const [metric, setMetric] = useState<Metric>("dir1");
   const [logAxis, setLogAxis] = useState(false);
@@ -92,9 +90,7 @@ export function RocChart({ result, seed, targetRecall, targetFar }: { result: Ev
   );
 }
 
-// ----------------------------------------------------------------------------------------------
 // Score distribution: where the low-inter-class-variance problem shows up
-// ----------------------------------------------------------------------------------------------
 export function ScoreDistributionChart({ histogram, threshold, scale = "cosine similarity" }: { histogram: ScoreHistogram; threshold?: number | null; scale?: string }) {
   const [metric, setMetric] = useState<"share" | "count">("share");
   const totals = {
@@ -161,9 +157,7 @@ export function ScoreDistributionChart({ histogram, threshold, scale = "cosine s
   );
 }
 
-// ----------------------------------------------------------------------------------------------
 // CMC: closed-set retrieval
-// ----------------------------------------------------------------------------------------------
 export function CmcChart({ result, seed }: { result: EvaluationResult; seed: number }) {
   const lines = Object.entries(result.variants).flatMap(([key, variant]) => {
     const run = firstOk(variant, seed);
@@ -194,9 +188,7 @@ export function CmcChart({ result, seed }: { result: EvaluationResult; seed: num
   );
 }
 
-// ----------------------------------------------------------------------------------------------
 // Latency
-// ----------------------------------------------------------------------------------------------
 export function LatencyChart({ stats }: { stats: LatencyStats }) {
   const data = [
     { name: "Median (p50)", ms: stats.p50 ?? 0 },

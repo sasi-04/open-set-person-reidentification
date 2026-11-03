@@ -1,11 +1,6 @@
-"""
-One person's decision, shared by the single-image workflow and the video workflow.
-
-In plain words: both ``reid_service`` (a photo) and ``video_service`` (the frames of a clip) have, for each person, a body
-fingerprint and possibly a face. This function turns those into ONE ``Decision`` so the two workflows can never disagree.
-
-    policy has face rules AND the face models are loaded  -> compare the face (if usable) and the body, decide with multicue.py
-    otherwise                                             -> the original body-only engine (decision_engine.decide)
+"""One person's decision, shared by the single-image workflow and the video workflow. Both
+``reid_service`` (a photo) and ``video_service`` (the frames of a clip) have, for each person, a
+body fingerprint and possibly a face.
 """
 
 from __future__ import annotations

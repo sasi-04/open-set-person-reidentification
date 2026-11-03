@@ -1,20 +1,5 @@
-"""
-Finding, verifying and safely loading model weight files.
-
-In plain words: the app NEVER downloads anything by itself while it is
-running. Weights are fetched once, on purpose, by ``scripts/download_weights.py``.
-This module then makes sure the file on disk is exactly the file we expect
-before PyTorch ever reads it:
-
-  1. the file must exist;
-  2. its SHA-256 must match the pinned value in the registry (for official weights);
-  3. it is opened with ``torch.load(weights_only=True)``, which can only
-     produce tensors and plain containers - it cannot run code hidden inside a
-     pickle file;
-  4. every key must fit the architecture (strict loading).
-
-A fine-tuned checkpoint that you trained yourself has no pinned hash; it is
-loaded with the same safe loader and its hash is *reported*, not trusted.
+"""Finding, verifying and safely loading model weight files. The app NEVER downloads anything by itself
+while it is running.
 """
 
 from __future__ import annotations
@@ -40,10 +25,8 @@ def sha256_of_file(path: Path, chunk_size: int = 1 << 20) -> str:
 
 
 def tensor_digest(state: dict[str, torch.Tensor]) -> str:
-    """SHA-256 of the network tensors themselves (names, types, shapes and values), independent of how the file was written.
-
-    A converted weight file is not byte-for-byte reproducible (``torch.save`` embeds incidental ids), so such a file is pinned by this
-    content digest instead of by the hash of its bytes.
+    """SHA-256 of the network tensors themselves (names, types, shapes and values), independent of how
+    the file was written.
     """
     digest = hashlib.sha256()
     for key in sorted(state):
@@ -89,10 +72,7 @@ def locate_official_weights(spec: EmbeddingModelSpec, weights_dir: Path) -> Path
 
 
 def read_checkpoint_metadata(path: Path) -> dict:
-    """The ``meta`` record stored beside the weights by our fine-tuning script ({} if there is none).
-
-    Used by the evaluation to see WHICH PEOPLE a fine-tuned checkpoint was trained on.
-    """
+    """The ``meta`` record stored beside the weights by our fine-tuning script ({} if there is none)."""
     try:
         payload = torch.load(path, map_location="cpu", weights_only=True)
     except Exception as exc:

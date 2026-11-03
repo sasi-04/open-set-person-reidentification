@@ -1,12 +1,4 @@
-/**
- * The OpenID Vision mark and wordmark.
- *
- * In plain words: the icon is two overlapping rings - a query and a reference being compared -
- * with a red tick in the overlap, the "verified decision". It is original artwork. This is an
- * independent prototype, so it deliberately does not use Zed Digital's logo or name as a brand.
- * The same drawing is used for the favicon (public/favicon.svg), the loading screen, empty
- * states and the exported reports.
- */
+/** The OpenID Vision mark and wordmark. The icon is two overlapping rings - a query and a reference being compared - with a red tick in the overlap, the "verified decision". */
 export function BrandMark({ className = "size-8" }: { className?: string }) {
   return (
     <svg aria-hidden viewBox="0 0 32 32" className={`${className} shrink-0`}>

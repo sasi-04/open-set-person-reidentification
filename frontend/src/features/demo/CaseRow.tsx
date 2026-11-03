@@ -1,10 +1,4 @@
-/**
- * One example photo and what each matcher decided about it.
- *
- * In plain words: on the left the photo and the right answer; in the middle what the system (face + body) decided; on the right
- * what a clothes-only matcher would have decided. Every answer carries its badge (MATCH / UNKNOWN / REVIEW), whether it was
- * right, and the similarity it was based on, drawn against the number it needed to reach.
- */
+/** One example photo and what each matcher decided about it. On the left the photo and the right answer; in the middle what the system (face + body) decided; on the right what a clothes-only matcher would have decided. */
 import { AuthImage } from "@/components/ui/AuthImage";
 import { Badge, OutcomeBadge } from "@/components/ui/Badge";
 import { FACE_STATUS } from "@/lib/present";

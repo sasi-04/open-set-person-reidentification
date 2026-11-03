@@ -1,16 +1,4 @@
-/*
- * Build the step-by-step USER MANUAL (PDF) from the pictures made by scripts/make_manual_images.mjs.
- *
- * In plain words: a person who has never seen the website should be able to follow this document from "how do I open it" to
- * "how do I read the answer" without help. Every step has a real picture of the real screen with red numbered boxes, and a
- * legend that says what each number is.
- *
- * The "practice photos" table at the end is NOT typed by hand: this script sends those photos to the running test server and prints
- * what the system actually answered, so the manual cannot promise a result the system does not give.
- *
- *     node scripts/make_manual_images.mjs http://127.0.0.1:8765      (once, or whenever the website changes)
- *     node scripts/build_user_manual.mjs  http://127.0.0.1:8765      -> OpenID-Vision-User-Manual.pdf
- */
+/** Build the step-by-step USER MANUAL (PDF) from the pictures made by scripts/make_manual_images.mjs. */
 import { createRequire } from "node:module";
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
@@ -33,7 +21,7 @@ for (const needed of ["01_first_screen", "09_result_decision", "ans_match", "ans
   if (!existsSync(path.join(images, needed + ".jpg"))) throw new Error(`Missing picture ${needed}.jpg - run scripts/make_manual_images.mjs first.`);
 }
 
-// ------------------------------------------------------------------------------- practice results (measured live)
+// practice results (measured live)
 const LABEL = { accepted: "MATCH", unknown: "UNKNOWN", review_required: "REVIEW", processing_error: "ERROR" };
 async function ask(file, mode = "crop") {
   const form = new FormData();
@@ -79,7 +67,7 @@ for (const [shortName, what, file, mode] of practice) {
   console.log("  practice scene ->", text);
 }
 
-// ------------------------------------------------------------------------------------------ small building blocks
+// small building blocks
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const img = (name, { width = "100%", cls = "" } = {}) => `<img class="shot ${cls}" src="${url(name)}" style="width:${width}" alt="">`;
 const legend = (items, two = false) => `<ol class="legend${two ? " cols2" : ""}">${items.map(([n, html]) => `<li><span class="n">${n}</span><div>${html}</div></li>`).join("")}</ol>`;
@@ -109,7 +97,7 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000</pre></div>`;
 const addressBar = `<div class="addr"><span class="dots"></span><span class="field">http://127.0.0.1:8000</span></div>`;
 
-// ================================================================================================================ pages
+// pages
 const pages = [];
 
 pages.push(`<section class="cover"><p class="kicker">USER MANUAL</p><h1>OpenID Vision</h1><p class="tag">Know when to match. Know when to reject.</p>
@@ -454,7 +442,7 @@ pages.push(page(`<h1 class="ph">Quick reference card</h1>
   <div><h3>Finish</h3><p>Delete people you no longer need (<b>click the card → Delete identity</b>).<br>Close the <b>black window</b> to stop.</p></div></div>
   <div class="rulebox"><b>Remember:</b> only photos of people who agreed · a MATCH is a strong hint, not proof · UNKNOWN is not an accusation · never decide something important about a person from this alone.</div>`));
 
-// ================================================================================================================ CSS + PDF
+// CSS + PDF
 const css = `
 @page { size: A4; margin: 15mm 14mm 17mm } @page :first { margin: 0 }
 * { box-sizing: border-box } html { -webkit-print-color-adjust: exact; print-color-adjust: exact }

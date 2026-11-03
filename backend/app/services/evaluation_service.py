@@ -1,15 +1,5 @@
-"""
-Background evaluation and calibration jobs.
-
-In plain words: an evaluation can take minutes on a CPU, so it must never block
-the web server. Submitting a job writes a ``queued`` row and hands the work to a
-single background thread. That thread updates the SAME row as it goes (stage,
-progress 0-1) so the browser can poll real progress. A job can be cancelled
-(checked between batches), can fail (the error is stored, the server keeps
-running), and is marked as interrupted if the server restarts while it runs.
-
-One worker is deliberate: two evaluations at once would only fight over the
-same CPU cores and slow each other down.
+"""Background evaluation and calibration jobs. An evaluation can take minutes on a CPU, so it must
+never block the web server.
 """
 
 from __future__ import annotations
@@ -68,9 +58,7 @@ def _aware(moment: datetime | None) -> datetime | None:
     return None if moment is None else (moment if moment.tzinfo else moment.replace(tzinfo=UTC))
 
 
-# ---------------------------------------------------------------------------------
 # Translating API options into runner requests
-# ---------------------------------------------------------------------------------
 def _protocol(options: ProtocolOptions, seed: int = 0) -> ProtocolConfig:
     return ProtocolConfig(
         seed=seed, dev_fraction=options.dev_fraction, calibration_fraction=options.calibration_fraction,
@@ -101,7 +89,7 @@ class EvaluationJobs:
         self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="evaluation")
         self._cancel: dict[str, threading.Event] = {}
 
-    # ------------------------------------------------------------ lifecycle
+    # lifecycle
     def recover_interrupted(self, session: Session) -> int:
         """Jobs that were running when the server stopped can never finish: say so."""
         stuck = list(session.scalars(select(EvaluationRun).where(EvaluationRun.status.in_(ACTIVE_STATES))))
@@ -114,7 +102,7 @@ class EvaluationJobs:
             event.set()
         self._pool.shutdown(wait=False, cancel_futures=True)
 
-    # ------------------------------------------------------------ submitting
+    # submitting
     def _submit(self, session: Session, *, kind: str, dataset_name: str, dataset_kind: str, config: dict,
                 role_name: str) -> EvaluationRun:
         """Queue one job. Only ONE job runs at a time: two would just fight over the same few CPU cores."""
@@ -190,7 +178,7 @@ class EvaluationJobs:
             event.set()
         return run
 
-    # ------------------------------------------------------------ the worker
+    # the worker
     def _update(self, run_id: str, **fields) -> None:
         with session_scope(self.runtime.session_factory) as session:
             run = session.get(EvaluationRun, run_id)
@@ -289,9 +277,7 @@ class EvaluationJobs:
         (folder / f"{run_id}.md").write_text(writer(result), encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------------
 # Reading runs
-# ---------------------------------------------------------------------------------
 def headline(run: EvaluationRun) -> dict | None:
     result = run.result
     if run.status != "succeeded" or not result:
@@ -348,10 +334,9 @@ def to_detail(run: EvaluationRun) -> RunDetail:
 
 
 def list_checkpoints(runtime: Runtime) -> list[CheckpointModel]:
-    """Fine-tuned checkpoints available for the "triplet fine-tuned backbone" ablation variant.
-
-    The details come from the small ``.json`` file written next to each checkpoint, so listing never has to
-    load a neural network. Only file names inside one folder are ever exposed.
+    """Fine-tuned checkpoints available for the "triplet fine-tuned backbone" ablation variant. The
+    details come from the small ``.json`` file written next to each checkpoint, so listing never has
+    to load a neural network.
     """
     folder = runtime.settings.weights_dir / "finetuned"
     if not folder.is_dir():
@@ -426,9 +411,7 @@ def render_report(run: EvaluationRun, fmt: str) -> tuple[str, str]:
     return builders[fmt](result), "text/csv; charset=utf-8"
 
 
-# ---------------------------------------------------------------------------------
 # The threshold sandbox
-# ---------------------------------------------------------------------------------
 def _sandbox_payload(run: EvaluationRun) -> dict:
     payload = (run.result or {}).get("sandbox") if run.status == "succeeded" else None
     if not payload:

@@ -1,16 +1,6 @@
-"""
-Appearance cues: hair, skin tone and clothing colours, compared side by side.
-
-In plain words: besides the two neural fingerprints (face and whole body) a human reviewer likes to SEE the simple
-things - "same hair colour? same skin tone? same shirt?". This module measures those from the pictures with plain
-image statistics (no neural network) and lines up the query and the closest enrolled reference.
-
-These cues are SUPPORTING EVIDENCE FOR A HUMAN. They never change a MATCH / UNKNOWN / REVIEW decision, because they
-are not calibrated: lighting, camera white balance, shadows and make-up move colours a lot, and clothes change from
-day to day. The decision uses the face and body fingerprints; this is the explanation next to it.
-
-Colours are compared as CIE L*a*b* distance (Delta E 1976): about 2 is the smallest visible difference, 10-20 is
-clearly a different shade, 40+ is a different colour.
+"""Appearance cues: hair, skin tone and clothing colours, compared side by side. Besides the two neural
+fingerprints (face and whole body) a human reviewer likes to SEE the simple things - "same hair
+colour? same skin tone? same shirt?".
 """
 
 from __future__ import annotations

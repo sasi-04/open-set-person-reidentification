@@ -1,11 +1,4 @@
-/**
- * AblationTable: every variant, same metrics, same test split.
- *
- * In plain words: each row differs from its "parent" by exactly one ingredient, so you can see what
- * that ingredient bought. Numbers are on the held-out TEST split, using rules chosen on the
- * CALIBRATION split. With one seed the 95% bootstrap interval (over people) is shown; with several,
- * mean ± standard deviation across seeds.
- */
+/** AblationTable: every variant, same metrics, same test split. Each row differs from its "parent" by exactly one ingredient, so you can see what that ingredient bought. */
 import clsx from "clsx";
 import { Badge } from "@/components/ui/Badge";
 import { InfoTip } from "@/components/ui/InfoTip";

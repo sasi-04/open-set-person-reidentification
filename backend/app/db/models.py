@@ -1,18 +1,4 @@
-"""
-Database tables.
-
-In plain words: one class per table. The tables are:
-
-  identities / reference_images   the enrolled gallery (people + their reference crops and embeddings)
-  face_templates                  per reference image: the face found in it, its fingerprint and colour cues
-  policy_versions                 every version of the decision rules, with who changed them and why
-  inference_records / _results    history of re-identification requests (scores, never raw images)
-  evaluation_runs                 background experiments: status, progress, final JSON result
-  audit_events                    who did what to the gallery / settings, and when
-
-Raw database IDs stay inside the server; the API speaks in ``reference_id``
-(a pseudonymous label chosen by the operator) and random ``image_uid`` strings.
-"""
+"""Database tables. One class per table."""
 
 from __future__ import annotations
 
@@ -67,13 +53,8 @@ class ReferenceImage(Base):
 
 
 class FaceTemplate(Base):
-    """What the face analysis found in ONE reference image (kept in its own table so older databases upgrade in place).
-
-    status: ready    a usable face; its 128-number fingerprint is in the face index
-            weak     a face was found but it is too small / blurry / turned to trust - NOT used for matching
-            no_face  no face found (a back view, a very small person ...) - the image is still used for body matching
-            stale    made by a different face model than the one now loaded; re-analyse
-            failed   the analysis crashed on this image
+    """What the face analysis found in ONE reference image (kept in its own table so older databases
+    upgrade in place).
     """
 
     __tablename__ = "face_templates"

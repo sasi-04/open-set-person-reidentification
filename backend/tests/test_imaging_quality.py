@@ -26,7 +26,7 @@ def decode(data, name="x.png", mime="image/png"):
     return decode_image(data, filename=name, content_type=mime, settings=SETTINGS)
 
 
-# ------------------------------------------------------------------ upload safety
+# upload safety
 def test_valid_image_decodes_to_rgb_pixels():
     image = decode(png_bytes(100, 200))
     assert image.pixels.shape == (200, 100, 3) and image.pixels.dtype == np.uint8
@@ -97,7 +97,7 @@ def test_jpeg_round_trip_keeps_shape():
     assert decoded.pixels.shape == (120, 60, 3)
 
 
-# ---------------------------------------------------------------------- geometry
+# geometry
 def test_box_clipping_and_validity():
     box = Box(-10, -5, 500, 700).clipped(400, 600)
     assert (box.x1, box.y1, box.x2, box.y2) == (0, 0, 400, 600)
@@ -121,7 +121,7 @@ def test_crop_person_stays_inside_the_image():
     assert crop.shape[0] > 0 and crop.shape[1] > 0
 
 
-# ------------------------------------------------------------------------ quality
+# quality
 def noisy(height, width, seed=0):
     return np.random.default_rng(seed).integers(0, 255, (height, width, 3), dtype=np.uint8)
 

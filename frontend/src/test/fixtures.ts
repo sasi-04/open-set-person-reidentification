@@ -179,7 +179,7 @@ export const finishedRun = (over: Partial<RunDetail> = {}): RunDetail => ({
   config: {}, result: evaluationResult(), cancel_requested: false, ...over,
 });
 
-// ------------------------------------------------------------------ Lookalike Failure Lab
+// Lookalike Failure Lab
 const labMeasurement = (far: number, tar: number) => ({
   threshold: 0.8, genuine_pairs: 200, impostor_pairs: 24, true_accepts: Math.round(tar * 200), false_rejects: 200 - Math.round(tar * 200),
   false_accepts: Math.round(far * 24), true_rejects: 24 - Math.round(far * 24), tar, far_on_challenge_set: far, far_on_challenge_set_upper_bound_95: far + 0.1,
@@ -272,7 +272,7 @@ export const sandboxResult = (threshold = 0.8, split: "calibration" | "test" = "
   warning: split === "test" ? "You are looking at the TEST split. Moving the threshold while watching these numbers and then keeping the best-looking value would be tuning on the test set." : null,
 });
 
-// ---------------------------------------------------------------------------- Video Explorer
+// Video Explorer
 export const videoLimits = (over: Partial<VideoLimits> = {}): VideoLimits => ({
   max_megabytes: 100, max_seconds: 180, max_frames: 120, max_frame_side: 3840, extensions: [".mp4", ".mov", ".avi", ".mkv", ".webm"],
   detector_ready: true, embedding_ready: true, frame_previews_kept_hours: 24,
@@ -317,7 +317,7 @@ export const videoJob = (over: Partial<RunDetail> = {}): RunDetail => ({
   config: {}, result: videoResult(), cancel_requested: false, ...over,
 });
 
-// ---------------------------------------------------------------------------- built-in example (open-set analysis)
+// built-in example (open-set analysis)
 export const demoInfo = (over: Partial<DemoInfo> = {}): DemoInfo => ({
   available: true, reason: null, title: "Open-set example",
   intro: "An open-set system must do two things at once: recognise the people it knows, and refuse everyone else.",

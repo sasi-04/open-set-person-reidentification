@@ -1,17 +1,5 @@
-"""
-Crop quality checks.
-
-In plain words: a blurry, tiny or half-cut-off picture of a person gives an
-unreliable fingerprint. Before we trust a match we look at the crop and record
-simple, explainable facts about it. There are two severities:
-
-  * BLOCKING problem  -> the crop is unusable (e.g. a few pixels tall). We do
-    not even compute an embedding; the result is a PROCESSING_ERROR.
-  * SOFT flag         -> we still compute the embedding and show the candidates,
-    but the decision policy sends the result to human REVIEW instead of
-    auto-accepting or auto-rejecting it.
-
-The thresholds are plain heuristics (documented below), not learned values.
+"""Crop quality checks. A blurry, tiny or half-cut-off picture of a person gives an unreliable
+fingerprint.
 """
 
 from __future__ import annotations

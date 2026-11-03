@@ -1,20 +1,5 @@
-"""
-Metric learning pieces: the batch-hard triplet loss and the P x K batch sampler.
-
-In plain words: the pretrained network already places photos of the same person near each other.
-Fine-tuning with a TRIPLET loss tightens that further, and "batch-hard" mining aims it at exactly
-the cases that cause false accepts:
-
-  for every photo in a batch (the "anchor") find
-     the HARDEST POSITIVE  - the farthest photo of the SAME person, and
-     the HARDEST NEGATIVE  - the closest photo of a DIFFERENT person (the look-alike!)
-  and demand that the positive is closer than the negative by at least a margin.
-
-A batch is built from P people with K photos each (the "P x K sampler") so that every anchor has
-both positives and negatives to choose from. Distances are COSINE distances (1 - similarity), the
-same measure the deployed system ranks with.
-
-Reference: Hermans, Beyer, Leibe - "In Defense of the Triplet Loss for Person Re-Identification" (2017).
+"""Metric learning pieces: the batch-hard triplet loss and the P x K batch sampler. The pretrained
+network already places photos of the same person near each other.
 """
 
 from __future__ import annotations
@@ -71,11 +56,8 @@ def batch_hard_triplet_loss(
 
 
 class PKBatchSampler(Sampler[list[int]]):
-    """Yields batches of dataset indices: P different people x K photos each.
-
-    A person with fewer than K photos is sampled WITH replacement (some photos repeat) so every batch
-    keeps the same shape. The shuffling is driven by ``seed`` and the epoch number, so a run is
-    reproducible.
+    """Yields batches of dataset indices: P different people x K photos each. A person with fewer than
+    K photos is sampled WITH replacement (some photos repeat) so every batch keeps the same shape.
     """
 
     def __init__(self, labels: Sequence[int], people_per_batch: int, photos_per_person: int, batches_per_epoch: int, seed: int = 0):

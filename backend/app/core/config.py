@@ -1,12 +1,4 @@
-"""
-Application settings.
-
-In plain words: every knob the app can be configured with lives here, in ONE
-place. Values come from environment variables prefixed with ``REID_`` (or from
-the ``.env`` file in the repository root). Nothing else in the code base reads
-environment variables directly, so if you want to know "what can I configure?"
-this file is the answer.
-"""
+"""Application settings. Every knob the app can be configured with lives here, in ONE place."""
 
 from __future__ import annotations
 
@@ -29,7 +21,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # ------------------------------------------------------------------ paths
+    # paths
     data_dir: Path = BACKEND_DIR / "data"
     weights_dir: Path = BACKEND_DIR / "weights"
     datasets_dir: Path = REPO_ROOT / "datasets"
@@ -39,7 +31,7 @@ class Settings(BaseSettings):
     # and set e.g. postgresql+psycopg://user:password@host/dbname. Tables are created on start-up (no migrations yet).
     database_url: str | None = None
 
-    # ------------------------------------------------------------ access control
+    # access control
     # OFF by default: the server listens on 127.0.0.1 only, so on a single-user demo machine nobody has to type a key.
     # Set REID_AUTH_REQUIRED=true (and the three keys below) before sharing the server with anyone else.
     auth_required: bool = False
@@ -47,13 +39,13 @@ class Settings(BaseSettings):
     operator_key: SecretStr | None = None
     admin_key: SecretStr | None = None
 
-    # ---------------------------------------------------------------- web server
+    # web server
     cors_origins: Annotated[list[str], NoDecode] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
 
-    # ------------------------------------------------------------------- models
+    # models
     embedding_model: str = "osnet_x1_0"
     embedding_checkpoint: Path | None = None
     use_flip_tta: bool = False
@@ -73,14 +65,14 @@ class Settings(BaseSettings):
     detector_score_threshold: float = Field(default=0.5, ge=0.05, le=0.99)
     detector_max_people: int = Field(default=20, ge=1, le=100)
 
-    # ------------------------------------------------------------ upload limits
+    # upload limits
     max_upload_mb: int = Field(default=10, ge=1, le=100)
     max_image_side: int = Field(default=6000, ge=256, le=20000)
     min_image_side: int = Field(default=32, ge=8)
     max_enroll_files: int = Field(default=20, ge=1, le=100)
     allowed_extensions: tuple[str, ...] = (".jpg", ".jpeg", ".png", ".webp", ".bmp")
 
-    # ------------------------------------------------------------- video limits
+    # video limits
     # Video Explorer processes a prerecorded clip by sampling frames. These caps keep one upload from
     # monopolising a small CPU: file size, clip length, frames actually processed, and frame dimensions.
     max_video_mb: int = Field(default=100, ge=1, le=1000)
@@ -88,14 +80,14 @@ class Settings(BaseSettings):
     max_video_frames: int = Field(default=120, ge=1, le=1000)
     max_video_side: int = Field(default=3840, ge=256, le=8000)
 
-    # ------------------------------------------------------ privacy / retention
+    # privacy / retention
     query_retention_hours: int = Field(default=24, ge=0)
     history_retention_days: int = Field(default=30, ge=1)
 
-    # ------------------------------------------------------ starting policy
+    # starting policy
     default_accept_threshold: float = Field(default=0.70, ge=-1.0, le=1.0)
 
-    # ------------------------------------------------------------- evaluation
+    # evaluation
     evaluation_bootstrap_samples: int = Field(default=300, ge=0, le=5000)
 
     @field_validator("cors_origins", mode="before")

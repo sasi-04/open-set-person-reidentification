@@ -1,17 +1,5 @@
-"""
-The built-in example demo: an open-set analysis you can run with one click.
-
-In plain words: an "open-set" system has two jobs at once - recognise the people it knows AND refuse everyone else. Showing
-that needs photos with known right answers. The project ships a small set of public-domain photos plus a manifest
-(``demo/samples/demo_manifest.json``) that says who is "enrolled" and which test photos are known people, strangers, or strangers
-dressed exactly like an enrolled person. This module runs them through the SAME decision code the real screens use and reports,
-for every photo, what the system decided, what the right answer was, and what a clothes-only matcher would have decided.
-
-Safety by design - the example never touches your data:
-  * the example people live in a PRIVATE, TEMPORARY gallery held in memory (a ``DemoSandbox``); the real gallery, the history,
-    the audit trail and the stored files are not read or written;
-  * nothing about the example photos or the answers is saved;
-  * only the files named in the manifest can be served (no path can reach anything else).
+"""The built-in example demo: an open-set analysis you can run with one click. An "open-set" system has
+two jobs at once - recognise the people it knows AND refuse everyone else.
 """
 
 from __future__ import annotations
@@ -59,7 +47,7 @@ DISCLAIMER = (
 )
 
 
-# --------------------------------------------------------------------------------------------------------------- manifest
+# manifest
 @dataclass
 class Manifest:
     root: Path
@@ -132,12 +120,10 @@ def served_file(runtime: Runtime, relative: str) -> Path:
     return path
 
 
-# ---------------------------------------------------------------------------------------------------------------- rules
+# rules
 def _policies(session: Session) -> tuple[DecisionPolicy, DecisionPolicy, DecisionPolicy]:
-    """(active policy, face + body policy, clothes-only policy). The active policy itself is never changed.
-
-    If the active policy is body-only, the face + body column uses the recommended default face rules, so the example can
-    still show the comparison.
+    """(active policy, face + body policy, clothes-only policy). The active policy itself is never
+    changed.
     """
     active = policy_service.to_policy(policy_service.get_active(session))
     face_body = active if active.multicue is not None else replace(active, multicue=MultiCuePolicy())
@@ -156,7 +142,7 @@ def _rules(runtime: Runtime, session: Session) -> DemoRules:
     )
 
 
-# --------------------------------------------------------------------------------------------------------------- sandbox
+# sandbox
 @dataclass
 class DemoSandbox:
     """The private example gallery. It looks like a ``Runtime`` to ``decide_person`` (index, face_index, face_engine)."""
@@ -220,7 +206,7 @@ def _sandbox(runtime: Runtime, manifest: Manifest, *, rebuild: bool = False) -> 
         return runtime.demo_sandbox  # type: ignore[return-value]
 
 
-# --------------------------------------------------------------------------------------------------------------- service
+# service
 def _expect_text(expect: dict, manifest: Manifest) -> DemoExpect:
     label = manifest.person_label(expect.get("person"))
     text = {

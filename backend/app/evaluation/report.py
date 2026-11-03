@@ -1,12 +1,5 @@
-"""
-Human-readable evaluation reports (Markdown and HTML).
-
-In plain words: the JSON result of a run is complete but not pleasant to read.
-This module turns it into a short report. The content is assembled ONCE as a
-list of simple sections (text + tables), and two tiny renderers print that same
-structure as Markdown or as a standalone HTML page, so the two can never
-disagree. Only numbers present in the result are shown; anything missing is
-printed as "n/a" - never invented.
+"""Human-readable evaluation reports (Markdown and HTML). The JSON result of a run is complete but not
+pleasant to read.
 """
 
 from __future__ import annotations
@@ -25,7 +18,7 @@ class Section:
     rows: list[list[str]] = field(default_factory=list)
 
 
-# ------------------------------------------------------------------ formatting
+# formatting
 def pct(value, digits: int = 1) -> str:
     return "n/a" if value is None else f"{value * 100:.{digits}f}%"
 
@@ -53,7 +46,7 @@ def mean_std(entry: dict | None, as_percent: bool = True, digits: int = 1) -> st
     return text
 
 
-# ---------------------------------------------------------------------- builder
+# builder
 def build_sections(result: dict) -> list[Section]:
     if result.get("kind") == "calibration":
         return _calibration_sections(result)
@@ -186,7 +179,7 @@ def _calibration_sections(result: dict) -> list[Section]:
     return [section]
 
 
-# -------------------------------------------------------------------- renderers
+# renderers
 PRODUCT = "OpenID Vision"
 TAGLINE = "Know when to match. Know when to reject."
 INDEPENDENCE_NOTE = (

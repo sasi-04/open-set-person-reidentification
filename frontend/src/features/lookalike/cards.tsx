@@ -1,12 +1,4 @@
-/**
- * The small building blocks of the Lookalike Failure Lab: a dataset photo, a look-alike pair, a mistake.
- *
- * In plain words: everything is shown as the actual photos next to the actual numbers. A pair of two
- * DIFFERENT people is called a "different-identity comparison"; a pair of the same person is a "genuine"
- * one. In a mistake card the measured facts ("Observed") and the ideas about why it happened ("Possible
- * causes - hypotheses, not proven") live in two separate blocks, so a reader can never mistake a guess
- * for a finding.
- */
+/** The small building blocks of the Lookalike Failure Lab: a dataset photo, a look-alike pair, a mistake. */
 import clsx from "clsx";
 import { FlaskConical, Palette } from "lucide-react";
 import { AuthImage } from "@/components/ui/AuthImage";

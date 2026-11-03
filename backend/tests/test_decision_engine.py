@@ -1,9 +1,5 @@
-"""
-Decision-engine tests.
-
-These use hand-written candidate lists (synthetic scores) so every expected
-outcome can be verified by reading the test. They prove the RULES behave as
-documented; they say nothing about real-world accuracy.
+"""Decision-engine tests. These use hand-written candidate lists (synthetic scores) so every expected
+outcome can be verified by reading the test.
 """
 
 import pytest

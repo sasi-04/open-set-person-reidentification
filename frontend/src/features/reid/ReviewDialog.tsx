@@ -1,11 +1,4 @@
-/**
- * ReviewDialog: compare the query person with each candidate, side by side.
- *
- * In plain words: used when the outcome is "review required". It crops the query
- * person out of the uploaded image (with CSS, no canvas) and shows each candidate's
- * closest reference photo next to it. It only helps a person look - nothing is saved,
- * enrolled or merged by viewing it.
- */
+/** ReviewDialog: compare the query person with each candidate, side by side. Used when the outcome is "review required". */
 import { AuthImage } from "@/components/ui/AuthImage";
 import { Dialog } from "@/components/ui/Dialog";
 import { Notice } from "@/components/ui/Feedback";

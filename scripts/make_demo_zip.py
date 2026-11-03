@@ -1,11 +1,7 @@
-"""
-Zip the demo pack so it can be e-mailed or copied to a USB stick.
-
-In plain words: collects the printable documents, the sample pictures with their licence record, the reference outputs, the screenshots
-and the demo scripts into ONE file, ``OpenID-Vision-Demo-Pack.zip`` (next to the project folder's README), with a short START_HERE.txt.
-Generated scratch (``demo/output_latest``, ``demo/_build``, caches) is left out.
-
-    python scripts/make_demo_zip.py
+"""Zip the demo pack so it can be e-mailed or copied to a USB stick. Collects the printable documents,
+the sample pictures with their licence record, the reference outputs, the screenshots and the demo
+scripts into ONE file, ``OpenID-Vision-Demo-Pack.zip`` (next to the project folder's README), with a
+short START_HERE.txt.
 """
 
 from __future__ import annotations

@@ -1,13 +1,4 @@
-/**
- * ChallengePanel: the reproducible challenge set and how each model does on it.
- *
- * In plain words: the challenge set is a fixed list of comparisons - different-person pairs chosen
- * BECAUSE the model finds them alike, plus ordinary same-person pairs. Each model is measured on that same
- * list at its own calibrated threshold. Two numbers sit side by side on purpose:
- *   "challenge false-accept rate"  measured only on the hard pairs (high by construction)
- *   "all-pairs false-accept rate"  measured over every different-person pair (the realistic rate)
- * so the first can never be mistaken for the system's real-world error rate.
- */
+/** ChallengePanel: the reproducible challenge set and how each model does on it. The challenge set is a fixed list of comparisons - different-person pairs chosen BECAUSE the model finds them alike, plus ordinary same-person pairs. */
 import { useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Card, CardBody, CardHeader, DefinitionList, Stat } from "@/components/ui/Card";

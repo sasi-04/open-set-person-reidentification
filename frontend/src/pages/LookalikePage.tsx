@@ -1,13 +1,4 @@
-/**
- * Lookalike Failure Lab (screen E): where does the matcher go wrong, and why?
- *
- * In plain words: re-identification fails when two DIFFERENT people look alike. This screen goes looking for
- * those cases on a labelled dataset instead of waiting for them. It lists the pairs of different people the
- * model finds most alike, turns them into a reproducible challenge set, measures the matcher (and, if one
- * exists, a fine-tuned model on the very same examples), lists the real mistakes with the evidence, and lets
- * you explore thresholds. It is a diagnostic tool, not a new learning algorithm: it proves nothing by itself,
- * and it never invents a number - when something cannot run, it says what is missing.
- */
+/** Lookalike Failure Lab (screen E): where does the matcher go wrong, and why?. Re-identification fails when two DIFFERENT people look alike. */
 import { useQuery } from "@tanstack/react-query";
 import { GitCompareArrows, ListChecks, Search, Target } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";

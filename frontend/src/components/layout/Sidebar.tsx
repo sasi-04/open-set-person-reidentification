@@ -1,13 +1,4 @@
-/**
- * Sidebar navigation.
- *
- * Desktop (>= 1024px): full sidebar with labels.
- * Tablet (768-1023px): icon rail (labels are in the tooltip and the accessible name).
- * Phone (< 768px): the same list is shown in a slide-over drawer opened from the top bar.
- *
- * There is ONE navigation list; CSS only decides whether the text labels are visible. (Two copies
- * would give screen readers two identical "Main" landmarks.)
- */
+/** Sidebar navigation. Desktop (>= 1024px): full sidebar with labels. */
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import { Brand } from "./Brand";

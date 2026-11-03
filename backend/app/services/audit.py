@@ -1,10 +1,5 @@
-"""
-Audit trail.
-
-In plain words: every sensitive action (enrolling, deleting, resetting,
-changing thresholds, running evaluations, cleaning up) writes one row saying
-WHO (role) did WHAT to WHICH subject and WHEN. Details never include images or
-embeddings.
+"""Audit trail. Every sensitive action (enrolling, deleting, resetting, changing thresholds, running
+evaluations, cleaning up) writes one row saying WHO (role) did WHAT to WHICH subject and WHEN.
 """
 
 from __future__ import annotations

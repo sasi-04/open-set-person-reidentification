@@ -1,24 +1,5 @@
-"""
-The ablation variants and how one variant is evaluated.
-
-In plain words: an ablation answers "which ingredient actually helps?". Every
-variant below differs from its ``parent`` by exactly ONE ingredient, and every
-variant is measured with the same metrics on the same test people:
-
-  nn_baseline          Nearest neighbour, never rejects. The closed-set way of working:
-                       shows why a nearest neighbour alone is unsafe (FAR = 100%).
-  thr                  + threshold chosen on the calibration split.
-  thr_margin           + top-1 / top-2 margin rule (a near-tie is not a confident match).
-  thr_confidence       + (instead of the margin rule) a calibrated confidence fitted from
-                       similarity and margin; the threshold is applied to that confidence.
-  thr_mean             + (instead of the best photo) the AVERAGE over a person's photos as the identity score.
-  thr_margin_flip      + horizontal-flip test-time augmentation of the embeddings.
-  thr_margin_finetuned + a backbone fine-tuned with batch-hard triplet loss (only if a
-                       checkpoint was supplied; otherwise reported as "not available").
-
-NOTHING here looks at test results to choose anything: thresholds, margins and
-confidence models are all fitted on the calibration split, then frozen and applied to the
-test split. Whether a variant "wins" is decided afterwards by the CALIBRATION numbers.
+"""The ablation variants and how one variant is evaluated. An ablation answers "which ingredient
+actually helps?".
 """
 
 from __future__ import annotations
@@ -128,7 +109,7 @@ def evaluate_variant(
         "dropped_same_camera_only": test.dropped_known_queries,
     }
 
-    # ---- no rejection: the nearest-neighbour baseline ------------------------------
+    # no rejection: the nearest-neighbour baseline
     if spec.rejection == "none":
         everything = float("-inf")
         result["selected"] = None
@@ -137,7 +118,7 @@ def evaluate_variant(
         result["score_histogram"] = m.score_histogram(test_qs)
         return result
 
-    # ---- choose the rule on the CALIBRATION split ------------------------------------
+    # choose the rule on the CALIBRATION split
     confidence_model = None
     working_cal, working_test = cal_qs, test_qs
     if spec.rejection == "confidence":
@@ -156,7 +137,7 @@ def evaluate_variant(
     result["selected"] = selected.to_dict()
     result["score_scale"] = "calibrated confidence" if confidence_model else "cosine similarity"
 
-    # ---- frozen rule applied to the held-out test split ------------------------------
+    # frozen rule applied to the held-out test split
     point = m.operating_point(working_test, threshold, margin)
     point["confidence_intervals"] = m.cluster_bootstrap_ci(
         working_test, _headline_statistics(threshold, margin), n_boot=bootstrap_samples, seed=seed
@@ -174,7 +155,7 @@ def evaluate_variant(
         for far in far_grid
     ]
 
-    # ---- low inter-class variance: the same frozen rule on the same-clothing subset ------
+    # low inter-class variance: the same frozen rule on the same-clothing subset
     hard_test = working_test.subset(np.flatnonzero(test_hard))
     hard = {"test": m.operating_point(hard_test, threshold, margin)}
     if hard_test.n_known and hard_test.n_unknown:
@@ -209,9 +190,7 @@ def evaluate_variant(
     return result
 
 
-# --------------------------------------------------------------------------
 # Combining several seeds
-# --------------------------------------------------------------------------
 
 _HEADLINES = {
     "far": ("test", "far"),

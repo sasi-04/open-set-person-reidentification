@@ -1,28 +1,12 @@
-"""
-The open-set decision engine.
+"""Open-set decision engine.
 
-In plain words: retrieval always returns *someone* as the nearest neighbour,
-even for a stranger. This module decides whether that nearest neighbour is
-actually SUPPORTED by the evidence. It is a pure function - scores in,
-decision out - with no database, no web framework and no images, so it can be
-tested exhaustively and reasoned about in a code review.
-
-The rules, in order (the first one that applies wins):
-
-  1. Empty gallery                      -> UNKNOWN   (nobody to match against)
-  2. Quality flags (if the policy asks) -> REVIEW    (the evidence itself is shaky)
-  3. top-1 similarity < threshold       -> UNKNOWN   (not alike enough to anyone)
-  4. margin rule (if configured): top-1 minus top-2 < minimum margin
-                                        -> REVIEW (default) or UNKNOWN (policy choice)
-  5. otherwise                          -> ACCEPTED
-
-Note what is NOT here: "UNKNOWN" does not mean "one specific unknown person",
-and nothing is enrolled automatically. A rejected query stays a rejected query.
-
-Four different numbers appear in a Decision and must never be confused:
-``top1_score`` (retrieval similarity), ``margin`` (gap to the runner-up),
-``calibrated_confidence`` (fitted probability, optional) - and the detector
-score, which lives with the detection, not here.
+Retrieval always returns someone as the nearest neighbour, even for a stranger, so the closest
+candidate is only accepted if it passes these checks, in order:
+  1. empty gallery -> UNKNOWN
+  2. quality flags (when the policy asks for it) -> REVIEW
+  3. top-1 similarity below the threshold -> UNKNOWN
+  4. top-1 minus top-2 below the minimum margin (if set) -> REVIEW or UNKNOWN
+  5. otherwise -> MATCH
 """
 
 from __future__ import annotations
@@ -52,7 +36,7 @@ class Decision:
     candidates: tuple[Candidate, ...]
     calibrated_confidence: float | None = None
     quality_flags: tuple[str, ...] = ()
-    # ---- filled only by multicue.decide_multicue (face + body matching); the body-only engine leaves the defaults
+    # filled only by multicue.decide_multicue (face + body matching); the body-only engine leaves the defaults
     basis: str = "body"  # which evidence produced top1_score / accept_threshold: "face" or "body"
     face_status: str | None = None  # not_used | usable | no_face | unusable | not_enrolled
     top1_face_score: float | None = None  # what the FACE says about the top-1 identity (None = not compared)

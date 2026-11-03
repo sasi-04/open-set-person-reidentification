@@ -1,9 +1,5 @@
-"""
-A broken fingerprint is an ERROR, never an "unknown person".
-
-The brief asks for explicit tests of invalid, wrong-size and zero-length embeddings. They are checked at the door of the
-search (``cv/retrieval/validation.py``), end to end through the API (a PROCESSING ERROR for that person, others unaffected),
-for video frames, and for reference embeddings that were damaged in storage.
+"""A broken fingerprint is an ERROR, never an "unknown person". The brief asks for explicit tests of
+invalid, wrong-size and zero-length embeddings.
 """
 
 from __future__ import annotations
@@ -25,7 +21,7 @@ def unit(seed: int = 0) -> np.ndarray:
     return vector / np.linalg.norm(vector)
 
 
-# ---------------------------------------------------------------------------- the check itself
+# the check itself
 def test_a_proper_embedding_passes_unchanged():
     vector = unit()
     assert np.array_equal(check_embedding(vector, DIM), vector)
@@ -63,7 +59,7 @@ def test_the_search_still_ranks_good_queries():
     assert [c.reference_id for c in ranked] == ["a", "b"] and ranked[0].score == pytest.approx(1.0, abs=1e-5)
 
 
-# ---------------------------------------------------------------------------- through the API
+# through the API
 def test_a_broken_embedding_is_a_processing_error_for_that_person_not_an_unknown(env):
     env.enroll("p-red", RED)
     env.extractor.embed = lambda crops: np.zeros((len(crops), DIM), dtype=np.float32)  # the "model" returns nothing useful
@@ -99,7 +95,7 @@ def test_a_good_query_with_an_empty_gallery_is_still_just_unknown(env):
     assert person["decision"]["outcome"] == "unknown" and person["decision"]["reason_code"] == "empty_gallery"
 
 
-# ---------------------------------------------------------------------------- damaged storage
+# damaged storage
 def _damage(env, reference_id: str, blob: bytes) -> None:
     with env.runtime.session_factory() as session:
         for image in session.scalars(select(ReferenceImage)):
@@ -144,7 +140,7 @@ def test_a_failed_reference_can_be_repaired_by_rebuilding_its_embeddings(env):
     assert env.runtime.index.snapshot.reference_ids == ("p-red",)  # re-embedded from the stored crop
 
 
-# ---------------------------------------------------------------------------- video frames
+# video frames
 def test_a_broken_embedding_in_a_video_frame_is_a_processing_error_not_unknown(env, tmp_path):
     from tests.test_api_lab_and_video import upload, wait_for, write_avi
 

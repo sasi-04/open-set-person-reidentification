@@ -1,11 +1,5 @@
-"""
-Tabulate saved evaluation runs (docs/results/<dataset>/*.json) into one Markdown table.
-
-In plain words: each run answers "if we insist on recognising at least X % of enrolled people, how many strangers get in?". This
-reads the saved JSON of several runs (different X) and prints one row per run and variant, with means and standard deviations
-over the seeds - numbers copied from the files, never typed by hand.
-
-    python scripts/summarise_results.py docs/results/market1501
+"""Tabulate saved evaluation runs (docs/results/<dataset>/*.json) into one Markdown table. each run
+answers "if we insist on recognising at least X % of enrolled people, how many strangers get in?".
 """
 
 from __future__ import annotations

@@ -1,12 +1,4 @@
-/**
- * Runtime and system health (one tab of the Model & System Settings screen).
- *
- * In plain words: "is everything the matcher needs actually working, and under what limits?" Each
- * line is read from the running backend (readiness, model status, configured limits) - nothing is
- * assumed. A component that failed to load shows the real reason (for example "weights file missing"),
- * because that message is exactly what someone needs to fix it. Settings that are only experimental
- * (a hand-set threshold, flip augmentation) are kept apart from validated ones (a calibrated policy).
- */
+/** Runtime and system health (one tab of the Model & System Settings screen). "is everything the matcher needs actually working, and under what limits?" Each line is read from the running backend (readiness, model status, configured limits) - nothing is assumed. */
 import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, CheckCircle2, XCircle } from "lucide-react";
 import type { ReactNode } from "react";

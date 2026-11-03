@@ -1,14 +1,5 @@
-"""
-Application errors.
-
-In plain words: whenever something goes wrong in a way the *user* should know
-about (bad upload, unknown identity, model not ready ...) the code raises one
-of these small exception classes. A single handler in ``main.py`` turns them
-into the same JSON shape every time:
-
-    {"error": {"code": "not_found", "message": "...", "request_id": "...", "details": {...}}}
-
-That keeps the API predictable and keeps HTTP details out of the business logic.
+"""Application errors. Whenever something goes wrong in a way the *user* should know about (bad upload,
+unknown identity, model not ready ...) the code raises one of these small exception classes.
 """
 
 from __future__ import annotations

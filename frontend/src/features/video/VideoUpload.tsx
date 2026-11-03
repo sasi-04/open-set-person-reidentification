@@ -1,11 +1,4 @@
-/**
- * VideoUpload: choose a prerecorded clip, say how often to sample it, and start the analysis.
- *
- * In plain words: the browser checks the file before anything is sent (type, size, and - by playing the
- * file's own header locally - how long it is), and tells you roughly how many frames will be analysed. The
- * server checks again from the real file contents; these early checks are a convenience, not the protection.
- * If the server cannot analyse video right now (no person detector) the form says so instead of failing later.
- */
+/** VideoUpload: choose a prerecorded clip, say how often to sample it, and start the analysis. */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { Film, Play, UploadCloud, X } from "lucide-react";

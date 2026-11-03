@@ -1,10 +1,7 @@
-"""
-Lookalike Failure Lab tests.
-
-A fake extractor stands in for the neural network (embedding = projection of the image's mean colour), so these
-tests check the LOGIC: the pair mining is exact, the threshold never depends on the mined split, a second model is
-refused unless it is clean, failures carry both facts and hypotheses, and runs are reproducible. They say nothing
-about how well the real model performs.
+"""Lookalike Failure Lab tests. A fake extractor stands in for the neural network (embedding =
+projection of the image's mean colour), so these tests check the LOGIC: the pair mining is exact,
+the threshold never depends on the mined split, a second model is refused unless it is clean,
+failures carry both facts and hypotheses, and runs are reproducible.
 """
 
 from __future__ import annotations
@@ -65,7 +62,7 @@ def write_checkpoint(folder, dev_identities, *, dataset="toy", seed=0, name="tun
     return folder / name
 
 
-# ------------------------------------------------------------------------------- exact pair mining
+# exact pair mining
 def _mining_set(vectors_by_person: dict[str, np.ndarray], cameras=None):
     records, rows = [], []
     for person, vectors in vectors_by_person.items():
@@ -142,7 +139,7 @@ def test_pair_curve_far_and_tar_fall_as_the_threshold_rises():
     assert pair_curve(np.zeros(0), np.ones(3)) == []
 
 
-# ------------------------------------------------------------------------------- failure explanations
+# failure explanations
 OBSERVED = dict(outcome="accepted", top1_score=0.81, threshold=0.80, score_minus_threshold=0.01, margin=0.01, min_margin=None,
                 true_identity_rank=None, true_identity_score=None, quality_flags=[], sharpness=50.0, clothing_colour_similarity=0.5)
 
@@ -181,7 +178,7 @@ def test_a_narrowly_rejected_enrolled_person_is_flagged_but_a_review_item_is_not
     assert "ambiguous_ranking" in causes and "threshold_too_strict" not in causes
 
 
-# ------------------------------------------------------------------------------- the whole experiment
+# the whole experiment
 def test_a_run_has_every_section_and_labels_what_it_is(toy, tmp_path):
     result = run(toy, tmp_path)
     assert result["kind"] == "lookalike" and result["metadata"]["experiment_id"] == "exp-1"

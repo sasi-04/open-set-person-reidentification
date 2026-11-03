@@ -1,10 +1,4 @@
-/**
- * InfoTip: a small "i" button that reveals an explanation.
- *
- * In plain words: used to show how a number is measured. It is a real button, so it
- * works with the keyboard (Tab to focus, Enter/Space to toggle, Escape to close) and
- * the text is linked to it with aria-describedby for screen readers.
- */
+/** InfoTip: a small "i" button that reveals an explanation. Used to show how a number is measured. */
 import { Info } from "lucide-react";
 import { useId, useState, type ReactNode } from "react";
 

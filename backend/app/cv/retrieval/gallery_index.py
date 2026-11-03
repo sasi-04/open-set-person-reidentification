@@ -1,12 +1,6 @@
-"""
-The in-memory gallery index.
-
-In plain words: the database is the source of truth for who is enrolled; this
-class is a fast read-only copy of all reference embeddings kept in RAM as one
-matrix, so a query is a single matrix multiplication. Whenever the gallery
-changes (enroll, add images, delete, rebuild) the service builds a NEW
-snapshot and swaps it in. Readers always see a complete, consistent snapshot,
-and the ``version`` number changes every time - that is our cache invalidation.
+"""The in-memory gallery index. The database is the source of truth for who is enrolled; this class is
+a fast read-only copy of all reference embeddings kept in RAM as one matrix, so a query is a single
+matrix multiplication.
 """
 
 from __future__ import annotations

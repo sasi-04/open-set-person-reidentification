@@ -1,10 +1,4 @@
-/**
- * Form controls.
- *
- * In plain words: every input is paired with a visible <label> (so screen readers
- * announce it), an optional hint, and an error message tied to the input with
- * aria-describedby. Touch targets are at least 40px tall.
- */
+/** Form controls. Every input is paired with a visible <label> (so screen readers announce it), an optional hint, and an error message tied to the input with aria-describedby. */
 import clsx from "clsx";
 import { cloneElement, isValidElement, useId, type InputHTMLAttributes, type ReactElement, type ReactNode, type SelectHTMLAttributes } from "react";
 

@@ -1,10 +1,4 @@
-/**
- * The essentials: the three things this project does, one card each, at the top of the home page.
- *
- * In plain words: 1) enroll people (tell the system who is known), 2) match photos (ask who is in a picture), 3) the open-set
- * analysis (prove it refuses strangers, even ones dressed like someone it knows). Each card shows a live status, ticks itself
- * from real data, and has one button. A viewer who only has a minute sees the whole point from here.
- */
+/** The essentials: the three things this project does, one card each, at the top of the home page. */
 import { CheckCircle2, Circle, FlaskConical, Play, ScanSearch, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { OutcomeBadge } from "@/components/ui/Badge";

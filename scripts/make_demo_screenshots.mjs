@@ -1,18 +1,4 @@
-/*
- * Take the screenshots used in demo/DEMO_GUIDE.html.
- *
- * In plain words: it opens the REAL web interface of a running server in a headless browser, does exactly what the
- * guide tells a person to do (upload the sample pictures, click the buttons) and saves what is on the screen. Nothing
- * is drawn or edited: each PNG is a photograph of the live page.
- *
- * Use a CLEAN server instance, so no one's real gallery appears in the pictures:
- *     $env:REID_DATA_DIR = "D:\some\empty\folder"; powershell -File scripts\start.ps1 -Port 8765
- *     python demo\run_demo.py --base-url http://127.0.0.1:8765 --lab      (creates the example person, a video job and a lab run)
- *     node scripts\make_demo_screenshots.mjs http://127.0.0.1:8765
- *
- * Needs puppeteer-core (just the remote-control library, no browser download) and Microsoft Edge or Chrome:
- *     cd .tools\shots; npm install puppeteer-core
- */
+/** Take the screenshots used in demo/DEMO_GUIDE.html. it opens the REAL web interface of a running server in a headless browser, does exactly what the guide tells a person to do (upload the sample pictures, click the buttons) and saves what is on the screen. */
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
@@ -117,7 +103,7 @@ await clickText("Open demo-collins", "button").catch(() => {});
 await sleep(1500);
 await shot("02b_gallery_person_faces.png");
 
-// ---- Match Studio, one query picture at a time (cropped pictures, so the detector is skipped)
+// Match Studio, one query picture at a time (cropped pictures, so the detector is skipped)
 async function matchOne(file, name) {
   await open("/match", 1200);
   await upload(file);
@@ -133,7 +119,7 @@ await matchOne("faces/test/ride/ride_stranger_2_blue_shirt_1983.jpg", "04_match_
 await matchOne("query_1_same_person.jpg", "05_match_studio_REVIEW_no_face.png");
 await matchOne("query_3_blurry.jpg", "05b_match_studio_REVIEW_blurry.png");
 
-// ---- Match Studio, a busy scene: everyone is found and decided separately
+// Match Studio, a busy scene: everyone is found and decided separately
 await open("/match", 1200);
 await upload("scene_B_station_square.jpg");
 await setCheckbox("Image is already a person crop", false);
@@ -143,7 +129,7 @@ await waitForText("Ranked candidates", 120000);
 await sleep(1500);
 await tallShot("06_match_studio_busy_scene.png");
 
-// ---- Video Explorer: upload the clip, wait for the result
+// Video Explorer: upload the clip, wait for the result
 await open("/video", 1200);
 const videoInput = await page.$("input[type=file]");
 await videoInput.uploadFile(path.join(samples, "clip_faces.avi"));
@@ -155,7 +141,7 @@ await page.waitForFunction(() => !/\brunning\b|\bqueued\b/.test(document.body.in
 await sleep(3500);
 await tallShot("07b_video_result.png");
 
-// ---- Lookalike Failure Lab (the experiment was run by demo/run_demo.py --lab)
+// Lookalike Failure Lab (the experiment was run by demo/run_demo.py --lab)
 await open("/lookalike", 2500);
 await tallShot("08a_lookalike_top.png");
 async function clickTab(label) {
@@ -181,7 +167,7 @@ await tallShot("10b_settings_system.png");
 await open("/", 2500);
 await tallShot("01_command_center.png");
 
-// ---- A phone-sized view of the same screen, to show the interface adapts
+// A phone-sized view of the same screen, to show the interface adapts
 console.log("Phone view (390x844)");
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 view = { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true };

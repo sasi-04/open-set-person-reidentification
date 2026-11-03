@@ -1,9 +1,4 @@
-"""
-A tiny HTTP client for the demo scripts (standard library only, so it runs on any Python 3.9+).
-
-In plain words: the demo scripts talk to the running OpenID Vision server exactly like the web interface does -
-upload a picture, read the JSON answer. Nothing here is special-cased for the demo.
-"""
+"""A tiny HTTP client for the demo scripts (standard library only, so it runs on any Python 3.9+)."""
 
 from __future__ import annotations
 
@@ -27,7 +22,7 @@ class Api:
         self.base, self.timeout = base_url.rstrip("/"), timeout
         self.headers = {"X-API-Key": api_key} if api_key else {}
 
-    # ------------------------------------------------------------------ plumbing
+    # plumbing
     def _send(self, request: urllib.request.Request, raw: bool = False):
         for key, value in self.headers.items():
             request.add_header(key, value)

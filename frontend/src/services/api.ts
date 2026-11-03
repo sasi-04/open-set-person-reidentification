@@ -1,10 +1,4 @@
-/**
- * Typed functions for every backend endpoint the interface uses.
- *
- * In plain words: screens call ``api.gallery(...)`` instead of building URLs by hand.
- * Keeping the list in one file means "which endpoints does the UI use?" has a
- * one-glance answer.
- */
+/** Typed functions for every backend endpoint the interface uses. Screens call ``api.gallery(...)`` instead of building URLs by hand. */
 import type {
   AuditEntry,
   Checkpoint,
@@ -108,12 +102,12 @@ export interface SandboxBody {
 export type LabExportFormat = "json" | "md" | "pairs_csv" | "failures_csv" | "summary_csv";
 
 export const api = {
-  // ---------------------------------------------------------------- status
+  // status
   readiness: () => request<Readiness>("/api/readiness", { acceptStatus: [503] }),
   me: () => request<{ role: Role; auth_required: boolean }>("/api/auth/me"),
   overview: () => request<Overview>("/api/overview"),
 
-  // ---------------------------------------------------------------- re-identification
+  // re-identification
   detect(image: File) {
     const form = new FormData();
     form.append("image", image);
@@ -131,7 +125,7 @@ export const api = {
     request<HistoryPage>("/api/reid/history", { query }),
   historyItem: (requestId: string) => request<HistoryDetail>(`/api/reid/history/${requestId}`),
 
-  // ---------------------------------------------------------------- gallery
+  // gallery
   gallery: (query: GalleryQuery) => request<GalleryPage>("/api/gallery", { query: { ...query } }),
   identity: (referenceId: string) => request<IdentityDetail>(`/api/gallery/${encodeURIComponent(referenceId)}`),
   enroll(body: { referenceId: string; label?: string; files: File[]; imagesAreCrops: boolean; consent: boolean }) {
@@ -159,7 +153,7 @@ export const api = {
   resetGallery: () => request<MutationResult>("/api/gallery/reset", { method: "POST", json: { confirm: "RESET DEMO GALLERY" } }),
   imageBlob: (url: string) => requestBlob(url),
 
-  // ---------------------------------------------------------------- configuration
+  // configuration
   config: () => request<ConfigResponse>("/api/config"),
   modelStatus: () => request<ModelStatus>("/api/model/status"),
   policyHistory: () => request<Policy[]>("/api/config/history"),
@@ -167,7 +161,7 @@ export const api = {
   audit: () => request<AuditEntry[]>("/api/audit"),
   cleanup: () => request<Record<string, number>>("/api/maintenance/cleanup", { method: "POST" }),
 
-  // ---------------------------------------------------------------- evaluation
+  // evaluation
   datasets: () => request<DatasetInfo[]>("/api/evaluation/datasets"),
   checkpoints: () => request<Checkpoint[]>("/api/evaluation/checkpoints"),
   runs: (query: { kind?: string; limit?: number; offset?: number } = {}) => request<RunsPage>("/api/evaluation/runs", { query }),
@@ -178,11 +172,11 @@ export const api = {
   reportBlob: (runId: string, format: "json" | "md" | "html") =>
     requestBlob(`/api/evaluation/runs/${runId}/report`, { format }),
 
-  // ---------------------------------------------------------------- threshold sandbox
+  // threshold sandbox
   sandboxInfo: (runId: string) => request<SandboxInfo>(`/api/evaluation/runs/${runId}/sandbox`),
   sandbox: (runId: string, body: SandboxBody) => request<SandboxResult>(`/api/evaluation/runs/${runId}/sandbox`, { method: "POST", json: body }),
 
-  // ---------------------------------------------------------------- Lookalike Failure Lab
+  // Lookalike Failure Lab
   labRuns: (query: { limit?: number; offset?: number } = {}) => request<RunsPage>("/api/lookalike/runs", { query }),
   labRun: (runId: string) => request<RunDetail>(`/api/lookalike/runs/${runId}`),
   startLab: (body: LookalikeBody) => request<RunDetail>("/api/lookalike/run", { method: "POST", json: body }),
@@ -190,7 +184,7 @@ export const api = {
   /** URL (for AuthImage) of a dataset photo the experiment recorded. */
   labImageUrl: (runId: string, ref: string) => `/api/lookalike/runs/${runId}/image?ref=${encodeURIComponent(ref)}`,
 
-  // ---------------------------------------------------------------- Video Explorer
+  // Video Explorer
   videoLimits: () => request<VideoLimits>("/api/video/limits"),
   analyzeVideo(video: File, options: { everySeconds: number; maxFrames: number }) {
     const form = new FormData();
@@ -206,14 +200,14 @@ export const api = {
   videoFrameUrl: (jobId: string, index: number) => `/api/video/jobs/${jobId}/frames/${index}`,
   videoExport: (jobId: string, format: "json" | "frames_csv") => requestBlob(`/api/video/jobs/${jobId}/export`, { format }),
 
-  // ---------------------------------------------------------------- built-in example (open-set analysis)
+  // built-in example (open-set analysis)
   demo: () => request<DemoInfo>("/api/demo"),
   /** Builds the private, in-memory example gallery. Saves nothing and never touches the real gallery. */
   demoPrepare: () => request<DemoPrepared>("/api/demo/prepare", { method: "POST", timeoutMs: 120_000 }),
   demoCase: (caseId: string) => request<DemoCaseResult>(`/api/demo/cases/${encodeURIComponent(caseId)}`, { method: "POST", timeoutMs: 120_000 }),
   demoForget: () => request<{ ok: boolean }>("/api/demo/sandbox", { method: "DELETE" }),
 
-  // ---------------------------------------------------------------- decision records
+  // decision records
   decisionRecord: (requestId: string, format: "json" | "csv") => requestBlob(`/api/reid/history/${requestId}/export`, { format }),
 };
 

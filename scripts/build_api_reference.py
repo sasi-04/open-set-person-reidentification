@@ -1,11 +1,4 @@
-"""
-Write docs/API_REFERENCE.md from the running code, so it cannot drift from the real endpoints.
-
-In plain words: it asks the application for its own OpenAPI description (without loading any model) and turns it into a readable
-table of every endpoint - method, path, what it does, what it needs and what comes back - followed by a few hand-checked examples.
-
-    python scripts/build_api_reference.py
-"""
+"""Write docs/API_REFERENCE.md from the running code, so it cannot drift from the real endpoints."""
 
 from __future__ import annotations
 

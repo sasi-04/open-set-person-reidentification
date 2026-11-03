@@ -1,17 +1,4 @@
-/*
- * Build the printable documents of the demo pack (PDF).
- *
- * In plain words: it turns the written guides and the real results into PDFs that can be shown, printed or e-mailed:
- *   demo/DEMO_GUIDE.pdf        step by step: set up, run, read every screen, with the real screenshots and the real outputs
- *   demo/JURY_DECK.pdf         15 slides for a presentation (16:9)
- *   demo/JURY_GUIDE.pdf        docs/JURY_GUIDE.md as a document (what to say, demo script, questions and answers)
- *   demo/FACE_AND_BODY_MATCHING.pdf   the technical explanation, with the measurements
- *
- * No number is typed into the slides by hand: they are read from docs/results/*.json and demo/expected_output/*.
- * Run it AFTER demo/run_demo.py and scripts/make_demo_screenshots.mjs:
- *     node scripts/build_demo_documents.mjs
- * Needs puppeteer-core and marked (cd .tools\shots; npm install puppeteer-core marked) and Microsoft Edge or Chrome.
- */
+/** Build the printable documents of the demo pack (PDF). It turns the written guides and the real results into PDFs that can be shown, printed or e-mailed: demo/DEMO_GUIDE.pdf        step by step: set up, run, read every screen, with the real screenshots and the real outputs demo/JURY_DECK.pdf         15 slides for a presentation (16:9) demo/JURY_GUIDE.pdf        docs/JURY_GUIDE.md as a document (what to say, demo script, questions and answers) demo/FACE_AND_BODY_MATCHING.pdf   the technical explanation, with the measurements */
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -57,7 +44,7 @@ async function toPdf(html, outFile, options) {
   console.log("  wrote", path.relative(root, outFile));
 }
 
-// ------------------------------------------------------------------------------------------------------------------ shared pieces
+// shared pieces
 const BADGE = {
   accepted: ["MATCH", "match"], unknown: ["UNKNOWN", "unknown"], review_required: ["REVIEW", "review"], processing_error: ["ERROR", "unknown"],
 };
@@ -77,7 +64,7 @@ const SAME_CLOTHES_SVG = (dark) => {
     <path d="M118 48 H182" stroke="#ff5a52" stroke-width="3"/><text x="150" y="40" text-anchor="middle" fill="#ff5a52" font-size="12" font-weight="700">faces: different</text></svg>`;
 };
 
-// ===================================================================================================================== DECK
+// DECK
 function deck() {
   const strangers = (x) => `${x.stranger_ACCEPTED} of ${x.stranger_queries}`;
   const right = (x) => `${x.matched_correct_person} of ${x.same_person_queries}`;
@@ -234,7 +221,7 @@ function deck() {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>OpenID Vision - jury deck</title><style>${css}</style></head><body>${slides.join("\n")}</body></html>`;
 }
 
-// ============================================================================================================== DEMO GUIDE
+// DEMO GUIDE
 function demoGuide() {
   const scenarios = [
     [1, "Same person, different clothes and 12 years later", "faces/test/collins/collins_test_2_suit_jacket_2010.jpg", "Match Studio → tick <i>Image is already a person crop</i> → upload → <i>Run re-identification</i>"],
@@ -380,7 +367,7 @@ python demo\\face_check.py my_photos --i-have-consent</pre>
   </body></html>`;
 }
 
-// ======================================================================================================== MARKDOWN → PDF
+// MARKDOWN → PDF
 function markdownPage(title, md) {
   const css = `
   @page { size: A4; margin: 0 } body { font-family: "Segoe UI", Arial, sans-serif; color: #16181d; font-size: 10.2pt; line-height: 1.5; margin: 0 }

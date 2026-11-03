@@ -1,11 +1,5 @@
-"""
-Write demo/samples/SOURCES.md: where every sample picture comes from, under what licence, and how it was made.
-
-In plain words: before pictures of real people are put in a pack that is passed around a company, the pack must say who took
-them, what the licence is and what was done to them. This file is generated from the machine-readable record that
-``prepare_faces.py`` writes (faces/SOURCES.json) plus the two street scenes' details, so the text cannot drift from the files.
-
-    python demo/write_sources.py
+"""Write demo/samples/SOURCES.md: where every sample picture comes from, under what licence, and how it
+was made.
 """
 
 from __future__ import annotations

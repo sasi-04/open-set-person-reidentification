@@ -1,11 +1,5 @@
-"""
-Retention and cleanup.
-
-In plain words: query crops are only kept for ``REID_QUERY_RETENTION_HOURS`` so
-the history screen can show them briefly, and history rows are removed after
-``REID_HISTORY_RETENTION_DAYS``. This runs at startup and whenever an admin
-presses "Run cleanup now". Reference images are NOT touched here: they live
-until someone deliberately deletes the identity.
+"""Retention and cleanup. Query crops are only kept for ``REID_QUERY_RETENTION_HOURS`` so the history
+screen can show them briefly, and history rows are removed after ``REID_HISTORY_RETENTION_DAYS``.
 """
 
 from __future__ import annotations

@@ -1,23 +1,4 @@
-"""
-Fine-tune the backbone with batch-hard triplet loss (metric learning + hard-negative mining).
-
-In plain words: trains ONLY on the "development" people of a dataset - the people set aside by the
-evaluation protocol so they never overlap with the calibration or test people - and saves a
-checkpoint that remembers who it trained on. Nothing is claimed about improvement: you then run the
-evaluation, which scores the checkpoint on held-out people (and refuses it if there is any overlap).
-
-IMPORTANT: use the SAME protocol options here and in run_evaluation.py (seed, fractions), so the
-development people are the same ones the evaluation holds out.
-
-    python scripts/finetune_triplet.py --dataset market1501 --seed 0 --epochs 3 \\
-        --out backend/weights/finetuned/market_seed0.pt
-
-    python scripts/run_evaluation.py --dataset market1501 --seeds 0 \\
-        --finetuned-checkpoint backend/weights/finetuned/market_seed0.pt \\
-        --variants thr thr_margin thr_margin_finetuned
-
-CPU time: the default trains only the last stage; expect a few minutes per epoch on a laptop.
-"""
+"""Fine-tune the backbone with batch-hard triplet loss (metric learning + hard-negative mining)."""
 
 from __future__ import annotations
 

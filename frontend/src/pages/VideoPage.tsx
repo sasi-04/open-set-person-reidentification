@@ -1,11 +1,4 @@
-/**
- * Video Explorer (screen D): re-identify people in sampled frames of a prerecorded video.
- *
- * In plain words: upload a clip, choose how often to sample it, and the system asks the same question it asks
- * of a single photo - "who is this, if anyone?" - for every sampled frame, with the same detector, the same
- * model, the same gallery and the same decision rules. Each frame is judged on its own. This is NOT a
- * multi-object tracker: nobody is followed from frame to frame or through occlusion, and the screen says so.
- */
+/** Video Explorer (screen D): re-identify people in sampled frames of a prerecorded video. Upload a clip, choose how often to sample it, and the system asks the same question it asks of a single photo - "who is this, if anyone?" - for every sampled frame, with the same detector, the same model, the same gallery and the same decision rules. */
 import { useQuery } from "@tanstack/react-query";
 import { Film } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";

@@ -1,16 +1,4 @@
-"""
-The FastAPI application.
-
-In plain words: ``create_app()`` assembles the server. At startup (the
-"lifespan") it opens the database, loads the models ONCE, rebuilds the
-in-memory gallery index, makes sure a decision policy exists, tidies old
-data, and starts the background-job worker. Middleware adds a request ID to
-every call, safe response headers, and refuses obviously oversized uploads
-before reading them. All errors - ours, validation errors, even unknown URLs -
-come back in the same JSON shape.
-
-Run it with:  uvicorn app.main:app --port 8000     (from the backend folder; or scripts/start.ps1)
-"""
+"""The FastAPI application. ``create_app()`` assembles the server."""
 
 from __future__ import annotations
 
@@ -136,7 +124,7 @@ def create_app(
             response.headers["Cache-Control"] = "no-store"
         return response
 
-    # ---------------------------------------------------------- uniform errors
+    # uniform errors
     def rid(request: Request) -> str:
         return getattr(request.state, "request_id", "-")
 

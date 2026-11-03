@@ -1,21 +1,7 @@
-"""
-Generate a small SYNTHETIC person dataset for checking that the pipeline runs.
-
-In plain words: this draws cartoon "mannequins" - a head, a shirt, trousers -
-with a few random variations (pose, lighting, camera colour cast, blur, noise)
-so that we have labelled images of "different people seen by different
-cameras" without using anyone's real photos. Groups of four mannequins
-deliberately wear almost the SAME clothing colours, to mimic the
-low-inter-class-variance situation (same uniform, similar build).
-
-WHAT THIS IS NOT: a benchmark. A network trained on real photographs will find
-these cartoons strange, and the numbers on them mean nothing about real-world
-accuracy. The dataset is stamped ``"kind": "smoke_test"`` in ``dataset.json`` so
-the application labels every result computed on it accordingly.
-
-Usage:
-    python scripts/make_smoke_dataset.py                    # datasets/smoke_synthetic
-    python scripts/make_smoke_dataset.py --identities 120 --images 8 --seed 1
+"""Generate a small SYNTHETIC person dataset for checking that the pipeline runs. This draws cartoon
+"mannequins" - a head, a shirt, trousers - with a few random variations (pose, lighting, camera
+colour cast, blur, noise) so that we have labelled images of "different people seen by different
+cameras" without using anyone's real photos.
 """
 
 from __future__ import annotations

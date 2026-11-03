@@ -1,18 +1,5 @@
-"""
-Measure how fast each stage of the pipeline really is on THIS machine.
-
-In plain words: we never quote a speed we have not measured. This script times, after a warm-up
-(model loading and warm-up are reported separately because they happen once):
-
-  * the embedding backbone, one crop at a time (p50/p95/p99) and in batches;
-  * the effect of the batch-norm folding optimisation;
-  * the person detector at several input sizes;
-  * gallery search for galleries of different sizes;
-  * peak memory of this process.
-
-Run it with the backend venv active:   python scripts/benchmark_latency.py
-The result is printed and saved to backend/data/reports/benchmark_latency.md. Numbers from other
-computers will differ - quote them only together with the machine description printed at the top.
+"""Measure how fast each stage of the pipeline really is on THIS machine. We never quote a speed we
+have not measured.
 """
 
 from __future__ import annotations
@@ -68,7 +55,7 @@ def main() -> int:
     say(f"- Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}")
     say()
 
-    # ------------------------------------------------------------------- embedding backbone
+    # embedding backbone
     say("## Embedding backbone (official OSNet-AIN x1.0 weights, 256x128 input)")
     say()
     say("| Setting | Load (one-off) | Warm-up (one-off) | 1 crop p50 | p95 | p99 | Batch of 16 |")
@@ -126,7 +113,7 @@ def main() -> int:
         say(f"| {model_spec.display_name} | {sum(p.numel() for p in model.parameters()) / 1e6:.2f} M | {stats['p50']:.0f} ms | {stats['p95']:.0f} ms |")
     say()
 
-    # --------------------------------------------------------------------------- detector
+    # detector
     if not args.skip_detector:
         say("## Person detector (torchvision Faster R-CNN MobileNetV3, COCO) on a 1280x720 image")
         say()
@@ -155,7 +142,7 @@ def main() -> int:
         say("(Random-noise images contain no people, so the post-processing stage is idle; real photos are somewhat slower.)")
         say()
 
-    # ----------------------------------------------------------------------------- search
+    # search
     say("## Gallery search (one query, 5 reference images per person)")
     say()
     say("| Enrolled people | Reference images | p50 | p95 |")

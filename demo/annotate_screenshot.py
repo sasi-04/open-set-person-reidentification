@@ -1,11 +1,4 @@
-﻿"""
-Draw numbered callouts on the Match Studio screenshot, for the printed guide.
-
-In plain words: a screenshot of a busy screen is hard to read for someone who has never seen it. This copies the real MATCH screenshot
-and puts a numbered circle on each part the guide explains. Only circles and numbers are added; nothing in the picture is changed.
-
-    python demo/annotate_screenshot.py
-"""
+﻿"""Draw numbered callouts on the Match Studio screenshot, for the printed guide."""
 
 from __future__ import annotations
 

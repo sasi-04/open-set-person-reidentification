@@ -1,17 +1,4 @@
-/**
- * ThresholdSandbox: "what would change if I moved the dial?" - safely.
- *
- * In plain words: a finished run keeps a fixed table of its per-query results (who each query really
- * was, who the matcher picked, how alike they looked). Here you try any threshold or margin rule on that
- * SAME table and watch the real counts change - strangers let in, enrolled people turned away, decisions
- * that flip - next to the run's own calibrated rule. The counting is done by the backend with the same
- * decision rule the live system uses; this screen only draws the answer.
- *
- * Two promises, both visible on screen:
- *   * it never changes the active decision policy (there is no "apply" button here on purpose);
- *   * on the TEST split it warns that choosing a threshold because it looks good there is tuning on the
- *     test set. Real thresholds are chosen on the calibration split by a calibration run.
- */
+/** ThresholdSandbox: "what would change if I moved the dial?" - safely. A finished run keeps a fixed table of its per-query results (who each query really was, who the matcher picked, how alike they looked). */
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { RotateCcw, ShieldCheck } from "lucide-react";

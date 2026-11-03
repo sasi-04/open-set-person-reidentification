@@ -1,14 +1,7 @@
-/**
- * The one place that talks to the network.
- *
- * In plain words: every request to the backend goes through ``request()``. It adds the
- * access key, turns the backend's structured error JSON into a typed ``ApiError`` that
- * screens can show to people, and never throws away the request ID (which is what you
- * quote when reporting a problem).
- */
+/** The one place that talks to the network. Every request to the backend goes through ``request()``. */
 import { useSyncExternalStore } from "react";
 
-// ------------------------------------------------------------------ access key store
+// access key store
 const STORAGE_KEY = "reid-api-key";
 const listeners = new Set<() => void>();
 
@@ -50,7 +43,7 @@ export function useAccessKey(): string | null {
   return useSyncExternalStore(accessKey.subscribe, accessKey.get, () => null);
 }
 
-// ----------------------------------------------------------------------------- errors
+// errors
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -75,7 +68,7 @@ async function toApiError(response: Response): Promise<ApiError> {
   return new ApiError(`The server answered ${response.status} ${response.statusText}.`, response.status, "http_error");
 }
 
-// ------------------------------------------------------------------------------ calls
+// calls
 export interface RequestOptions {
   method?: "GET" | "POST" | "DELETE";
   query?: Record<string, string | number | boolean | undefined | null>;

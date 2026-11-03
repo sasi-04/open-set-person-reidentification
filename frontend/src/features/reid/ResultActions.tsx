@@ -1,11 +1,4 @@
-/**
- * ResultActions: what you can do after a result.
- *
- * "Decision record" downloads what the BACKEND saved for this request - the decision, every score, the
- * threshold and policy version it was made under, the candidates and the timings, plus a plain-language
- * notice that a score is not a probability. It contains no image, crop or embedding, so it is safe to
- * share. "Export result summary" is the same idea built in the browser from the screen's own data.
- */
+/** ResultActions: what you can do after a result. "Decision record" downloads what the BACKEND saved for this request - the decision, every score, the threshold and policy version it was made under, the candidates and the timings, plus a plain-language notice that a score is not a probability. */
 import { Download, History, RotateCcw, Settings2, Upload } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";

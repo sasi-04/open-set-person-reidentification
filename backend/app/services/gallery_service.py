@@ -1,15 +1,5 @@
-"""
-Gallery management: enroll people, add images, inspect, delete, rebuild.
-
-In plain words: this is the "who is enrolled" module. Safety rules baked in:
-
-  * enrolling requires an explicit confirmation that the person is authorised;
-  * identities are named by a pseudonymous ``reference_id`` (letters, digits, . _ -),
-    never by a database ID or file name;
-  * we store our own JPEG of the PERSON CROP, not the raw upload;
-  * a photo with several people is rejected (we will not guess which one to enroll);
-  * deleting an identity needs its reference_id typed back, and removes its files too;
-  * a rejected query is never enrolled automatically - enrollment is always a deliberate act.
+"""Gallery management: enroll people, add images, inspect, delete, rebuild. This is the "who is
+enrolled" module.
 """
 
 from __future__ import annotations
@@ -64,9 +54,7 @@ def validate_reference_id(reference_id: str) -> str:
     return reference_id
 
 
-# ---------------------------------------------------------------------------------
 # Reading the gallery
-# ---------------------------------------------------------------------------------
 def _status_of(images: list[ReferenceImage]) -> str:
     statuses = {image.embedding_status for image in images}
     if not statuses:
@@ -173,9 +161,7 @@ def list_gallery(
     )
 
 
-# ---------------------------------------------------------------------------------
 # Enrolling and adding images
-# ---------------------------------------------------------------------------------
 def enroll(
     session: Session, runtime: Runtime, *, reference_id: str, label: str | None, files: list[UploadedFile],
     images_are_crops: bool, consent_confirmed: bool, role_name: str,
@@ -362,9 +348,7 @@ def _duplicate_person_warnings(runtime: Runtime, reference_id: str, embeddings: 
     return sorted(warnings)
 
 
-# ---------------------------------------------------------------------------------
 # Deleting, resetting, rebuilding
-# ---------------------------------------------------------------------------------
 def delete_identity(session: Session, runtime: Runtime, reference_id: str, confirm: str | None, role_name: str) -> int:
     identity = get_identity(session, reference_id)
     if confirm != reference_id:

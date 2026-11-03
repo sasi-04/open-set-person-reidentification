@@ -1,12 +1,4 @@
-/**
- * Command Center (screen A): the home page.
- *
- * In plain words: this is what an interviewer sees first, so it leads with the three essentials - enroll people, match photos,
- * and the open-set analysis (a built-in example you can run with one click, with its results right here) - and only then the
- * live system status. Every status figure comes from the backend at the moment you open the page; a figure with nothing behind
- * it shows "Not evaluated" or an empty state - never an invented zero or a demo number. The example uses public-domain
- * photos in a private, temporary gallery and saves nothing.
- */
+/** Command Center (screen A): the home page. This is what an interviewer sees first, so it leads with the three essentials - enroll people, match photos, and the open-set analysis (a built-in example you can run with one click, with its results right here) - and only then the live system status. */
 import { useQuery } from "@tanstack/react-query";
 import {
   Activity, CheckCircle2, Circle, CircleHelp, Cpu, Database, Eye, FlaskConical, Gauge, Images, ShieldCheck, Target, Users,

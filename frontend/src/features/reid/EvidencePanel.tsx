@@ -1,17 +1,4 @@
-/**
- * EvidencePanel: what each kind of evidence says about the closest enrolled person.
- *
- * In plain words: a decision rests on two fingerprints and a few simple colour observations, and this panel lays them
- * side by side so anyone can follow the reasoning.
- *
- *   FACE   - how alike the two faces are. When a usable face is visible, THIS decides.
- *   BODY   - how alike the whole person is (mostly clothing colour and build). Supporting evidence when a face decides;
- *            the deciding evidence only when there is no usable face.
- *   CUES   - hair colour, skin tone, clothing colours of the query next to the closest enrolled photo. Plain image
- *            measurements, shown for a human reader; they never change MATCH / UNKNOWN / REVIEW.
- *
- * Every number comes from the server. The face crops are drawn from the server's reported face boxes.
- */
+/** EvidencePanel: what each kind of evidence says about the closest enrolled person. A decision rests on two fingerprints and a few simple colour observations, and this panel lays them side by side so anyone can follow the reasoning. */
 import { Badge } from "@/components/ui/Badge";
 import { InfoTip } from "@/components/ui/InfoTip";
 import { num } from "@/lib/format";

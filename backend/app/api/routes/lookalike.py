@@ -25,8 +25,10 @@ def _lookalike_run(session, run_id: str):
 @router.post("/run", response_model=RunDetail, status_code=status.HTTP_202_ACCEPTED,
              summary="Start a look-alike experiment (runs in the background)")
 def start(body: LookalikeRunRequest, runtime: RuntimeDep, session: SessionDep, role: AdminRole) -> RunDetail:
-    """Mines the most alike pairs of different people, builds a reproducible challenge set, measures the matcher on it,
-    and lists its real mistakes. The threshold is chosen on the calibration people only."""
+    """Mines the most alike pairs of different people, builds a reproducible challenge set, measures
+    the matcher on it, and lists its real mistakes. The threshold is chosen on the calibration
+    people only.
+    """
     return evaluation_service.to_detail(runtime.jobs.submit_lookalike(session, body, role.name))
 
 

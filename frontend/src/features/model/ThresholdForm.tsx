@@ -1,11 +1,4 @@
-/**
- * ThresholdForm: change the live decision rules.
- *
- * In plain words: this really changes backend behaviour - saving creates a NEW policy
- * version and the very next query uses it. So the form validates ranges, shows what
- * changed, and asks for confirmation that spells out the consequence. A manually typed
- * value is stored as "experimental": only a calibration run can make a policy "calibrated".
- */
+/** ThresholdForm: change the live decision rules. This really changes backend behaviour - saving creates a NEW policy version and the very next query uses it. */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { RotateCcw, Save } from "lucide-react";
 import { useEffect, useState } from "react";

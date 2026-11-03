@@ -1,22 +1,5 @@
-"""
-Video Explorer: re-identify people in sampled frames of a PRERECORDED video.
-
-In plain words: a video is just many pictures. We take one frame every N seconds
-(you choose N), find the people in it, and ask the matcher the same question we ask
-for a single photo - "which enrolled person is this, if any?" - using the same
-detector, the same embedding model, the same gallery and the same decision rules
-(``cv/open_set/decision_engine.py``). Every sampled frame is judged on its own.
-
-What this is NOT: it is not a multi-object tracker. A person is never followed from
-one frame to the next, nobody is tracked through occlusion, and no identity is
-carried between frames. If the same enrolled person shows up in five frames you get
-five independent MATCH decisions; "identities seen" below is just those decisions
-grouped by name afterwards. The result says so in its own notes.
-
-Safety: the upload is size-limited and read in chunks, its real container type is
-checked from the first bytes (the file name and MIME type are never trusted), it is
-stored under a random name, probed with OpenCV for sane dimensions and length, and
-deleted as soon as processing ends - whether it succeeded, failed or was cancelled.
+"""Video Explorer: re-identify people in sampled frames of a PRERECORDED video. A video is just many
+pictures.
 """
 
 from __future__ import annotations
@@ -60,9 +43,7 @@ _SAFE_RUN_ID = re.compile(r"^[0-9a-f]{32}$")
 ProgressFn = Callable[[str, float], None]
 
 
-# =====================================================================================
 # Accepting an upload
-# =====================================================================================
 def sniff_container(head: bytes) -> str | None:
     """Recognise the real container from its first bytes. ``None`` means "not a video we accept"."""
     if len(head) >= 12 and head[4:8] == b"ftyp":
@@ -113,9 +94,7 @@ def save_upload(settings: Settings, upload: UploadFile) -> tuple[Path, str, int]
     return path, container, size
 
 
-# =====================================================================================
 # Looking at the video before accepting the job
-# =====================================================================================
 @dataclass(frozen=True)
 class VideoProbe:
     width: int
@@ -166,9 +145,7 @@ def validate_sampling(settings: Settings, every_seconds: float, max_frames: int)
         raise ValidationFailed(f"Maximum frames must be between 1 and {settings.max_video_frames}.")
 
 
-# =====================================================================================
 # Frame thumbnails (kept briefly, like query crops)
-# =====================================================================================
 def frame_folder(settings: Settings, run_id: str) -> Path:
     if not _SAFE_RUN_ID.fullmatch(run_id or ""):
         raise NotFound("No such video job.")
@@ -204,9 +181,7 @@ def remove_expired(settings: Settings) -> int:
     return removed
 
 
-# =====================================================================================
 # Processing
-# =====================================================================================
 def _ms(start: float) -> float:
     return round((time.perf_counter() - start) * 1000, 2)
 

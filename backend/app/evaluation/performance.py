@@ -1,11 +1,5 @@
-"""
-Measuring speed and memory honestly.
-
-In plain words: we never quote a latency we have not measured on the machine
-running the code. This module measures the embedding backbone in steady state
-(after warm-up), reports the usual percentiles, and reads the process's peak
-memory from the operating system. Model-loading and warm-up time are reported
-separately because they happen once, not per request.
+"""Measuring speed and memory honestly. We never quote a latency we have not measured on the machine
+running the code.
 """
 
 from __future__ import annotations

@@ -1,12 +1,4 @@
-/**
- * ComparePanel: the query person next to the closest enrolled reference photo.
- *
- * In plain words: the numbers say HOW alike two pictures are; this lets a person SEE them. The query
- * crop is cut out of the uploaded image with CSS (nothing is re-uploaded), and the reference is the
- * enrolled photo that matched best. The similarity under the pictures is a retrieval score, never a
- * probability, and the caption says whether it passed the threshold - a close look-alike is shown
- * exactly like a genuine match, so a person can judge for themselves.
- */
+/** ComparePanel: the query person next to the closest enrolled reference photo. The numbers say HOW alike two pictures are; this lets a person SEE them. */
 import { AuthImage } from "@/components/ui/AuthImage";
 import { OutcomeBadge } from "@/components/ui/Badge";
 import { num } from "@/lib/format";

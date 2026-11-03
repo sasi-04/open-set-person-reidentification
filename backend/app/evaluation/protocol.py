@@ -1,23 +1,5 @@
-"""
-The open-set evaluation protocol: who is enrolled, who is a stranger, who is held out.
-
-In plain words: to measure false accepts honestly we must be strict about
-which people are allowed to appear where. This module takes a flat list of
-labelled images and builds three PEOPLE-DISJOINT groups (nobody appears in two):
-
-    dev           people for training / hard-negative mining (not used for scoring)
-    calibration   people used ONLY to choose thresholds and fit confidence models
-    test          people used ONLY for the final, reported numbers
-
-Inside each of calibration and test, people are split again:
-
-    enrolled   -> a few photos become the GALLERY ("gallery shots"); their other
-                  photos are KNOWN queries ("this person is enrolled; find them")
-    unknown    -> never enrolled; all their photos are UNKNOWN queries
-                  ("this person is a stranger; the system must not accept them")
-
-Everything is driven by one seed, so the same configuration always produces the
-same split. ``assert_disjoint`` re-checks the guarantees and is run by the tests.
+"""The open-set evaluation protocol: who is enrolled, who is a stranger, who is held out. To measure
+false accepts honestly we must be strict about which people are allowed to appear where.
 """
 
 from __future__ import annotations

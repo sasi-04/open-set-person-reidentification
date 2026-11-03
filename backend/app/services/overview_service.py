@@ -1,11 +1,4 @@
-"""
-The numbers on the Overview dashboard.
-
-In plain words: every figure is computed from the database right now. Each one
-states its denominator and time window, and a figure that has no data behind it
-is returned as ``None`` so the UI can say "Not evaluated" instead of showing a
-made-up zero.
-"""
+"""The numbers on the Overview dashboard. Every figure is computed from the database right now."""
 
 from __future__ import annotations
 

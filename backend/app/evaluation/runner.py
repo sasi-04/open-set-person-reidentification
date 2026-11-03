@@ -1,23 +1,5 @@
-"""
-Running a complete experiment.
-
-In plain words: two entry points, both usable from the web UI and from the
-command line (``scripts/run_evaluation.py``, ``scripts/calibrate_threshold.py``):
-
-``run_evaluation``   the full study. For every seed it builds an identity-disjoint
-                     protocol, measures every ablation variant on the calibration AND
-                     test splits, applies the calibration-selected rules to the test
-                     split, adds same-clothing-subset analysis, bootstrap intervals and
-                     speed/memory measurements, and finally picks the "selected
-                     configuration" using CALIBRATION numbers only.
-
-``run_calibration``  the threshold-setting workflow. Uses ONLY the calibration split, never
-                     the test split, and returns a proposed decision policy plus a
-                     calibrated-confidence model - or reports that the target could not
-                     be met.
-
-Both return plain JSON-serialisable dictionaries that are stored with the run, so every
-number on screen can be traced to a configuration, a seed and a model fingerprint.
+"""Running a complete experiment. Two entry points, both usable from the web UI and from the command
+line (``scripts/run_evaluation.py``, ``scripts/calibrate_threshold.py``):
 """
 
 from __future__ import annotations
@@ -95,10 +77,7 @@ def _noop_progress(stage: str, fraction: float) -> None:
 
 
 def make_extractor_factory(model_name: str, weights_dir: Path, device, batch_size: int = 32, fold_bn: bool = False) -> ExtractorFactory:
-    """Evaluation extractors: flip-TTA OFF (flip is built from cached 'mirrored' embeddings instead).
-
-    ``checkpoint=None`` means the official pretrained weights, regardless of what the live app uses.
-    """
+    """Evaluation extractors: flip-TTA OFF (flip is built from cached 'mirrored' embeddings instead)."""
     from ..cv.embedding.registry import get_spec
 
     spec = get_spec(model_name)
@@ -143,9 +122,8 @@ class _Context:
         end: float,
         records: list[ImageRecord] | None = None,
     ) -> None:
-        """``kinds``: name -> (checkpoint, mirrored). Computes (or loads from cache) each requested flavour.
-
-        ``records`` limits the work to specific images (calibration passes only the calibration split).
+        """``kinds``: name -> (checkpoint, mirrored). Computes (or loads from cache) each requested
+        flavour.
         """
         needed = records if records is not None else self._needed_records()
         self._row = {record.path: i for i, record in enumerate(needed)}
@@ -192,17 +170,13 @@ class _Context:
         return scored[0], scored[1]
 
 
-# --------------------------------------------------------------------------
 # Full evaluation
-# --------------------------------------------------------------------------
 
 
 def _finetuned_problem(request: EvaluationRequest, info: DatasetInfo, protocols: dict[int, Protocol]) -> str | None:
-    """Why a fine-tuned checkpoint must NOT be evaluated (None = it is safe).
-
-    The danger is leakage: a network trained on a person has seen them, so scoring it on that person as a
-    "stranger" or "known" would be meaningless. The checkpoint records the people it was trained on, and
-    we refuse it if ANY of them is in the calibration or test split of ANY seed in this run.
+    """Why a fine-tuned checkpoint must NOT be evaluated (None = it is safe). The danger is leakage: a
+    network trained on a person has seen them, so scoring it on that person as a "stranger" or
+    "known" would be meaningless.
     """
     path = request.finetuned_checkpoint
     if path is None:
@@ -320,7 +294,7 @@ def run_evaluation(
                 per_variant[spec.key].append({"variant": spec.key, "seed": seed, "status": "failed", "reason": str(exc)})
         progress("Scoring variants", 0.72 + 0.2 * (step + 1) / len(request.seeds))
 
-    # ---- performance (measured, not assumed) ---------------------------------------
+    # performance (measured, not assumed)
     progress("Measuring speed and memory", 0.94)
     performance = _measure_performance(ctx, ctx.protocols[request.seeds[0]])
 
@@ -361,10 +335,9 @@ def run_evaluation(
 
 def _sandbox_payload(scores: tuple[ScoredSplit, ScoredSplit] | None, per_variant: dict[str, list[dict]], seed: int,
                      info: DatasetInfo, ctx: _Context) -> dict | None:
-    """The fixed table the threshold sandbox works on (see ``evaluation/sandbox.py``).
-
-    The reference rule is the calibrated rule of the margin variant (or the plain threshold variant), because both
-    are applied to the plain-embedding scores stored here. ``None`` if neither variant ran successfully.
+    """The fixed table the threshold sandbox works on (see ``evaluation/sandbox.py``). The reference
+    rule is the calibrated rule of the margin variant (or the plain threshold variant), because both
+    are applied to the plain-embedding scores stored here.
     """
     if scores is None:
         return None
@@ -445,9 +418,7 @@ def _measure_performance(ctx: _Context, protocol: Protocol) -> dict:
     }
 
 
-# --------------------------------------------------------------------------
 # Threshold calibration (never touches the test split)
-# --------------------------------------------------------------------------
 
 
 @dataclass

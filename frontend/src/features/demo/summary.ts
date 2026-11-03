@@ -1,10 +1,4 @@
-/**
- * Counting up the example's results.
- *
- * In plain words: the server decides each photo and says whether the decision was right. This file only COUNTS those
- * verdicts (how many known people were recognised, how many strangers were wrongly accepted ...) and turns the counts
- * into a plain sentence. It never decides anything itself, so the numbers on screen are exactly what the server measured.
- */
+/** Counting up the example's results. The server decides each photo and says whether the decision was right. */
 import type { DemoCase, DemoCaseResult, DemoDecision } from "@/types/api";
 
 /** The group of strangers who wear the same clothes as an enrolled person (the heart of the "low inter-class variance" problem). */

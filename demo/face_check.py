@@ -1,33 +1,7 @@
-"""
-Try the system with YOUR OWN volunteers' photos - no web interface needed.
-
-In plain words: put photos of the people who have agreed to take part in a folder, run this, and it tells you - for every
-test photo - whether the system said MATCH (and to whom), UNKNOWN or REVIEW, with the face and body scores, next to
-what the answer SHOULD have been. It is the quickest honest way to see the system work (or fail) on real people.
-
-Folder layout (names are only labels; use first names or nicknames - they become reference IDs like "check-anna"):
-
-    my_photos/
-        enroll/
-            anna/   anna_1.jpg  anna_2.jpg        <- 2-3 clear, front-facing photos of each person to enrol
-            ben/    ben_1.jpg   ben_2.jpg
-        test/
-            anna/   new_photo.jpg  back_view.jpg  <- NEW photos of enrolled people: should be MATCH (or REVIEW if poor)
-            ben/    ...
-            visitor/  ...                         <- anyone NOT enrolled (a folder name that is not in enroll/): should be UNKNOWN
-
-Run (the server must be running, normally on http://127.0.0.1:8000):
-
-    python demo/face_check.py my_photos --i-have-consent
-    python demo/face_check.py my_photos --i-have-consent --keep      # leave the people enrolled afterwards
-    python demo/face_check.py --cleanup                              # remove everyone this script enrolled
-
-CONSENT: only use photos of people who have agreed. Enrolling stores a fingerprint of their face and body (biometric data)
-until you delete them - this script deletes them again at the end unless you pass --keep. It only ever touches reference
-IDs that start with "check-".
-
-TIP for the strongest demonstration: put in test/ a photo of someone NOT enrolled who is wearing clothes similar to an
-enrolled person's. A clothing-only matcher accepts that person; the face-first matcher should say UNKNOWN.
+"""Try the system with YOUR OWN volunteers' photos - no web interface needed. Put photos of the people
+who have agreed to take part in a folder, run this, and it tells you - for every test photo -
+whether the system said MATCH (and to whom), UNKNOWN or REVIEW, with the face and body scores, next
+to what the answer SHOULD have been.
 """
 
 from __future__ import annotations

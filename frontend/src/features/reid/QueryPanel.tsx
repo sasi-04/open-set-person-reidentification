@@ -1,10 +1,4 @@
-/**
- * QueryPanel: choose the image and decide how to process it.
- *
- * In plain words: upload area (or the chosen file with Replace/Remove), the two processing
- * options, and the action buttons. The Run button always says what it is going to do, so
- * nothing happens that the person did not expect.
- */
+/** QueryPanel: choose the image and decide how to process it. Upload area (or the chosen file with Replace/Remove), the two processing options, and the action buttons. */
 import { ImagePlus, ScanSearch, Trash2, Users } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";

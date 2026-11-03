@@ -1,10 +1,4 @@
-/**
- * Test harness: render the REAL application against a fake network.
- *
- * In plain words: ``mockApi`` replaces ``fetch`` with a table of "METHOD /path" -> response, so
- * tests exercise the real components, hooks and API client - only the server is pretend. Calls
- * are recorded so tests can check exactly what the interface sent.
- */
+/** Test harness: render the REAL application against a fake network. ``mockApi`` replaces ``fetch`` with a table of "METHOD /path" -> response, so tests exercise the real components, hooks and API client - only the server is pretend. */
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";

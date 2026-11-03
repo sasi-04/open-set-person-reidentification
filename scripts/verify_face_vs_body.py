@@ -1,24 +1,4 @@
-"""
-End-to-end check of the RUNNING system: does adding the face stop strangers being accepted?
-
-In plain words: it enrols several real people (two photos each) through the normal API, then shows the system
-  * new photos of those same people  - they should be MATCHED to the right person, and
-  * photos of people who were never enrolled - they should be UNKNOWN (never accepted).
-It runs the identical queries twice - under the original BODY-ONLY policy and under the FACE + BODY policy - and prints
-the two result tables side by side, so the effect of the face is measured, not claimed.
-
-Honest limits (also printed in the report):
-  * the pictures are LFW head-and-shoulders photographs, which are NOT what the body model was built for (it expects
-    full-body pedestrian crops), so the body-only column shows how the body model behaves on this kind of picture, not
-    its best case. The face stage is measured separately on the full LFW protocol (scripts/evaluate_face_lfw.py).
-  * a small random sample; the numbers describe this run, they are not a benchmark.
-
-It only touches identities whose reference ID starts with ``lfwcheck-`` (it removes them at the end) and puts the
-policy back as it found it. Use a test instance, not a gallery you care about:
-
-    $env:REID_DATA_DIR = "D:\\scratch\\data"; powershell -File scripts\\start.ps1 -Port 8765
-    python scripts/verify_face_vs_body.py --lfw D:\\data\\lfw --base-url http://127.0.0.1:8765
-"""
+"""End-to-end check of the RUNNING system: does adding the face stop strangers being accepted?"""
 
 from __future__ import annotations
 

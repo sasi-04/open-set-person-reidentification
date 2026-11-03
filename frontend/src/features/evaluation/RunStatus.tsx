@@ -1,10 +1,4 @@
-/**
- * RunStatus: live progress of the current background job.
- *
- * In plain words: polls the backend while a job is queued or running and shows its REAL stage
- * and progress (never a fake timer-driven bar). When the job ends it tells you once - success,
- * failure (with the reason) or cancellation.
- */
+/** RunStatus: live progress of the current background job. Polls the backend while a job is queued or running and shows its REAL stage and progress (never a fake timer-driven bar). */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircleStop } from "lucide-react";
 import { useEffect, useRef } from "react";

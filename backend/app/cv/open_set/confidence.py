@@ -1,22 +1,5 @@
-"""
-Turning similarity scores into a calibrated confidence.
-
-In plain words: a cosine similarity of 0.78 is not "78% sure". To say anything
-probabilistic we must MEASURE how often matches with such scores were really
-correct. This module fits a tiny logistic-regression model on held-out
-calibration data:
-
-    confidence = P( the top-1 candidate is the right enrolled person | top-1 similarity, margin )
-
-(Platt-style calibration with two inputs.) Two honest caveats that the UI and
-docs repeat:
-
-  * the value depends on the mix of known/unknown queries in the calibration
-    data (the "base rate"), which may differ from real deployment;
-  * it is only meaningful for the embedding model it was fitted with.
-
-It is a separate number from the retrieval score and is never used unless a
-calibration run produced and applied it.
+"""Turning similarity scores into a calibrated confidence. A cosine similarity of 0.78 is not "78%
+sure".
 """
 
 from __future__ import annotations

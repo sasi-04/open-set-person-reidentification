@@ -1,10 +1,5 @@
-"""
-The contract every embedding backbone must satisfy.
-
-In plain words: the rest of the application only ever talks to this small
-interface - "give me crops, I give you unit-length vectors". That is what makes
-the backbone swappable: write another class with these members and register it
-in ``factory.py``; no other file needs to change.
+"""The contract every embedding backbone must satisfy. The rest of the application only ever talks to
+this small interface - "give me crops, I give you unit-length vectors".
 """
 
 from __future__ import annotations

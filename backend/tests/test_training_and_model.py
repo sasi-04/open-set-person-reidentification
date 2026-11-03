@@ -1,8 +1,5 @@
-"""
-Metric-learning code, batch-norm folding, the fine-tune leakage guard, and the REAL pretrained model.
-
-The first groups use tiny synthetic data (fast, deterministic). The last group loads the real OSNet-AIN
-weights from backend/weights/ and is skipped automatically when they have not been downloaded.
+"""Metric-learning code, batch-norm folding, the fine-tune leakage guard, and the REAL pretrained
+model.
 """
 
 from __future__ import annotations
@@ -28,7 +25,7 @@ from app.training.triplet import PKBatchSampler, batch_hard_triplet_loss
 from tests.test_evaluation_pipeline import make_dataset
 
 
-# ------------------------------------------------------------------------ triplet loss
+# triplet loss
 def test_batch_hard_loss_picks_the_hardest_positive_and_hardest_negative():
     # Person A: a1=(1,0), a2=(0.8,0.6) -> distance 0.2.  Person B: b1=(0.9,0.436) is very close to a1.
     embeddings = torch.tensor([[1.0, 0.0], [0.8, 0.6], [0.9, 0.436]])
@@ -57,7 +54,7 @@ def test_loss_has_gradients_and_rejects_batches_without_triplets():
         batch_hard_triplet_loss(torch.randn(4, 8), torch.tensor([0, 1, 2, 3]))  # nobody has a positive
 
 
-# --------------------------------------------------------------------------- P x K sampler
+# P x K sampler
 def test_sampler_builds_p_by_k_batches_and_is_reproducible():
     labels = [i // 6 for i in range(60)]  # 10 people x 6 photos
     batches = list(PKBatchSampler(labels, 4, 3, batches_per_epoch=5, seed=1))
@@ -77,7 +74,7 @@ def test_sampler_handles_people_with_few_photos_and_too_few_people():
         PKBatchSampler(labels, 6, 2, batches_per_epoch=1)
 
 
-# ---------------------------------------------------------------- batch-norm folding
+# batch-norm folding
 def random_osnet(name="osnet_ain_x0_25", seed=0) -> OSNetAIN:
     torch.manual_seed(seed)
     spec = get_spec(name)
@@ -108,7 +105,7 @@ def test_folding_needs_eval_mode():
         fold_batch_norm(random_osnet().train())
 
 
-# --------------------------------------------------------- fine-tuning and its leakage guard
+# fine-tuning and its leakage guard
 @pytest.fixture()
 def toy(tmp_path):
     info = inspect_dataset(make_dataset(tmp_path / "toy", identities=40, images=6))
@@ -197,7 +194,7 @@ def test_missing_or_absent_checkpoint_is_reported(toy, tmp_path):
     assert "does not exist" in _finetuned_problem(EvaluationRequest(dataset=info.name, finetuned_checkpoint=tmp_path / "nope.pt"), info, {0: protocol})
 
 
-# ---------------------------------------------------- incompatible weights / registry
+# incompatible weights / registry
 def test_weights_that_do_not_fit_the_architecture_are_rejected(tmp_path):
     wrong = tmp_path / "wrong.pt"
     torch.save({"conv1.conv.weight": torch.zeros(3, 3)}, wrong)
@@ -212,7 +209,7 @@ def test_every_registered_model_has_a_pinned_hash_and_one_embedding_size():
         assert OSNetAIN(spec.channels, spec.feature_dim).eval()(torch.zeros(1, 3, 256, 128)).shape == (1, 512)
 
 
-# -------------------------------------------------- the REAL pretrained model (skipped without weights)
+# the REAL pretrained model (skipped without weights)
 WEIGHTS_PRESENT = (Settings(_env_file=None).weights_dir / get_spec("osnet_x1_0").weights.filename).is_file()
 real = pytest.mark.skipif(not WEIGHTS_PRESENT, reason="official weights not downloaded (run scripts/download_weights.py)")
 

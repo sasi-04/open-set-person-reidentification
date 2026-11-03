@@ -1,12 +1,4 @@
-/**
- * Analysis: the open-set picture and a "what if" for the face threshold.
- *
- * In plain words: two plots show where every example photo scored. On the FACE plot the known people sit far to the right and every
- * stranger far to the left, so one line separates them. On the CLOTHES plot strangers dressed like an enrolled person sit
- * on the same side as people the system should accept - no line can separate them. Under the plots, a slider lets you move
- * the face line yourself and see when a stranger would start to be let in, or a known person would start to be missed.
- * Everything is drawn from the numbers the server measured; the slider only counts them.
- */
+/** Analysis: the open-set picture and a "what if" for the face threshold. Two plots show where every example photo scored. */
 import { RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";

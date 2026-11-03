@@ -1,14 +1,7 @@
-"""
-The runtime: everything that is created ONCE when the server starts.
-
-In plain words: loading a neural network takes a moment and uses memory, so the
-server loads the embedding model and the person detector a single time and keeps
-them for its whole life, together with the in-memory gallery index and the file
-stores. Request handlers receive this object and use it; they never load models.
-
-If a model cannot be loaded (weights missing, corrupted ...) the server still
-starts: the problem is remembered and shown by ``/api/readiness`` and in the UI,
-and the features that need that model respond with a clear 503 error.
+"""The runtime: everything that is created ONCE when the server starts. Loading a neural network takes
+a moment and uses memory, so the server loads the embedding model and the person detector a single
+time and keeps them for its whole life, together with the in-memory gallery index and the file
+stores.
 """
 
 from __future__ import annotations
@@ -65,7 +58,7 @@ class Runtime:
     demo_sandbox: object | None = None  # the built-in example's private gallery (services/demo_service); never touches the real one
     demo_lock: threading.Lock = field(default_factory=threading.Lock)
 
-    # ---------------------------------------------------------------- creation
+    # creation
     @classmethod
     def create(
         cls,
@@ -141,7 +134,7 @@ class Runtime:
             self.face_error = exc.message
             logger.warning("Face models unavailable (matching uses the body only): %s", exc.message)
 
-    # ------------------------------------------------------------------- guards
+    # guards
     def require_extractor(self) -> OSNetExtractor:
         if self.extractor is None:
             raise ModelUnavailable(self.extractor_error or "The embedding model is not loaded.")
@@ -165,11 +158,10 @@ class Runtime:
             return {"type": "unavailable"}
         return describe_device(self.device)
 
-    # --------------------------------------------------------------- gallery index
+    # gallery index
     def sync_gallery(self, session: Session) -> None:
-        """Mark embeddings made by a different model as stale, then rebuild the in-memory index.
-
-        Call after any change to the gallery. Safe to call from several threads.
+        """Mark embeddings made by a different model as stale, then rebuild the in-memory index. Call
+        after any change to the gallery.
         """
         if self.extractor is None:
             return

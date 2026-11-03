@@ -1,12 +1,4 @@
-/**
- * ScoreStrip: where each example photo landed on a similarity scale.
- *
- * In plain words: every photo gets a similarity number between 0 (nothing alike) and 1 (identical) against the closest
- * enrolled person. This draws one dot per photo, a row per kind of photo, with a vertical line at the threshold. If the
- * dots of "known people" sit to the right of the line and every stranger sits to the left, the number separates them
- * cleanly. If strangers sit on the same side as known people, it cannot - which is what happens with clothing.
- * The shaded band just left of the face line is the "ask a person" zone. It only draws numbers the server measured.
- */
+/** ScoreStrip: where each example photo landed on a similarity scale. Every photo gets a similarity number between 0 (nothing alike) and 1 (identical) against the closest enrolled person. */
 import clsx from "clsx";
 import { InfoTip } from "@/components/ui/InfoTip";
 import { GROUP_DOT } from "./present";

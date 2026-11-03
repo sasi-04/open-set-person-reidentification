@@ -1,11 +1,4 @@
-/**
- * The open-set example, on the home page.
- *
- * In plain words: this is the project's argument in one click. It enrolls three example people in a private, temporary
- * gallery, then shows the system 13 photos it has never seen - known people, strangers, and strangers dressed like an
- * enrolled person - and lays out what it decided, whether that was right, and what a clothes-only matcher would have done.
- * The photos are public-domain portraits shipped with the project. Nothing is saved and the real gallery is never touched.
- */
+/** The open-set example, on the home page. This is the project's argument in one click. */
 import { FlaskConical, Play, RotateCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AuthImage } from "@/components/ui/AuthImage";

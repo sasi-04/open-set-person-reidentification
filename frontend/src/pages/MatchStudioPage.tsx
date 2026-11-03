@@ -1,14 +1,4 @@
-/**
- * Match Studio (screen C): the query-to-gallery workflow.
- *
- *   left   query image + processing controls
- *   centre detection preview (boxes you can select), then the query next to its closest reference
- *   right  decision (MATCH / UNKNOWN / REVIEW), ranked candidates, exports
- *
- * On narrow screens these stack in that order. All logic lives in useReid(); this file
- * only arranges the pieces. The decision itself always comes from the backend - the page
- * never decides anything.
- */
+/** Match Studio (screen C): the query-to-gallery workflow. Left   query image + processing controls centre detection preview (boxes you can select), then the query next to its closest reference right  decision (MATCH / UNKNOWN / REVIEW), ranked candidates, exports */
 import { AlertTriangle, ScanSearch } from "lucide-react";
 import { useState } from "react";
 import { OutcomeBadge } from "@/components/ui/Badge";

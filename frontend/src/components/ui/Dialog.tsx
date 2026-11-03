@@ -1,12 +1,4 @@
-/**
- * Dialogs.
- *
- * In plain words: built on Radix UI's Dialog primitive, which provides what is hard to
- * get right by hand - focus is trapped inside while open, Escape closes it, focus
- * returns to the button that opened it, and screen readers are told it is a modal.
- * ``ConfirmDialog`` is the standard pattern for destructive actions: it says exactly
- * what will happen and can require typing a phrase before the red button works.
- */
+/** Dialogs. Built on Radix UI's Dialog primitive, which provides what is hard to get right by hand - focus is trapped inside while open, Escape closes it, focus returns to the button that opened it, and screen readers are told it is a modal. */
 import * as RadixDialog from "@radix-ui/react-dialog";
 import clsx from "clsx";
 import { X } from "lucide-react";

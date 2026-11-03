@@ -1,48 +1,5 @@
-"""
-Evaluation metrics for open-set person re-identification.
-
-In plain words: this file turns a table of query results into the numbers a
-reviewer cares about. Every metric states its denominator. There is no model
-code here - only arithmetic on arrays - so each formula can be checked by hand
-against the toy examples in ``tests/test_metrics.py``.
-
-THE TABLE (``QueryScores``) has one row per QUERY. A query is either
-
-    known    the person IS enrolled in the gallery (their other photos are enrolled), or
-    unknown  the person is NOT enrolled at all.
-
-For each query the retrieval step has already produced the best identity score
-(``top1_score``), the gap to the runner-up (``margin``), whether the best
-identity was the right one (``top1_correct``) and where the true identity
-ranked (``true_rank``, 1 = best).
-
-DEFINITIONS (acceptance rule: accept iff top1_score >= threshold AND margin >= min_margin)
--------------------------------------------------------------------------------
-FAR   False Accept Rate     = unknown queries accepted / ALL unknown queries.
-                              An unknown query is falsely accepted whenever the system
-                              names ANY enrolled identity for it (query-level, not pairwise).
-TAR   True Accept Rate      = known queries accepted (any identity) / ALL known queries.
-DIR@k Detection & Identification Rate at rank k
-                            = known queries that are accepted AND whose true identity is
-                              among the top-k candidates / ALL known queries.
-                              DIR@1 = "accepted and correct" - the honest recall of the system.
-FRR   False Reject Rate     = 1 - TAR   (known queries the system refused to accept).
-Precision / Recall / F1     decision task "name the right person":
-                              TP = known, accepted, correct identity
-                              FP = accepted but wrong (an unknown person, or a known person
-                                   given the wrong identity)
-                              FN = known queries that were not correctly accepted
-                              precision = TP/(TP+FP), recall = TP/(TP+FN) = DIR@1.
-OSCR  Open-Set Classification Rate curve (Dhamija et al., 2018)
-                            = DIR@1 plotted against FAR as the threshold sweeps. AUOSCR is the
-                              area under it (1.0 = perfect). It judges rejection and correct
-                              identification in one number.
-Rank-k / CMC                closed-set: share of known queries whose true identity is in the
-                            top-k (ignores thresholds; asks "can the system retrieve at all?").
-mAP                         mean over known queries of average precision over the ranked gallery
-                            IMAGES (Market-1501 style), counting same-identity images as relevant.
-
-NOTE on the margin: it is a heuristic ambiguity signal, not a probability.
+"""Evaluation metrics for open-set person re-identification. This file turns a table of query results
+into the numbers a reviewer cares about.
 """
 
 from __future__ import annotations
@@ -53,9 +10,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-# --------------------------------------------------------------------------
 # The per-query results table
-# --------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -106,9 +61,7 @@ def accepted_mask(qs: QueryScores, threshold: float, min_margin: float | None = 
     return accepted
 
 
-# --------------------------------------------------------------------------
 # Metrics at ONE operating point
-# --------------------------------------------------------------------------
 
 
 def operating_point(
@@ -160,9 +113,7 @@ def operating_point(
     }
 
 
-# --------------------------------------------------------------------------
 # Threshold-sweeping curves
-# --------------------------------------------------------------------------
 
 
 @dataclass(frozen=True)
@@ -244,9 +195,7 @@ def far_at_recall(curve: RocCurve, target_recall: float, which: str = "dir1") ->
     }
 
 
-# --------------------------------------------------------------------------
 # Closed-set retrieval metrics
-# --------------------------------------------------------------------------
 
 
 def cmc(true_rank: np.ndarray, max_rank: int = 10) -> list[float]:
@@ -273,10 +222,8 @@ def mean_average_precision(
     gallery_ids: np.ndarray,
     ignore: np.ndarray | None = None,
 ) -> float | None:
-    """mAP over rows of an image-level similarity matrix (Q, G).
-
-    ``ignore`` (Q, G) marks gallery images to skip for a query (e.g. same camera as the query).
-    Queries with no relevant image left are skipped. Returns None if no query is evaluable.
+    """MAP over rows of an image-level similarity matrix (Q, G). ``ignore`` (Q, G) marks gallery images
+    to skip for a query (e.g. same camera as the query).
     """
     values = []
     for row in range(similarity.shape[0]):
@@ -288,9 +235,7 @@ def mean_average_precision(
     return float(np.mean(values)) if values else None
 
 
-# --------------------------------------------------------------------------
 # Uncertainty and sample-size honesty
-# --------------------------------------------------------------------------
 
 
 def wilson_upper_bound(events: int, trials: int, z: float = 1.645) -> float | None:
@@ -317,11 +262,9 @@ def cluster_bootstrap_ci(
     seed: int,
     level: float = 0.95,
 ) -> dict[str, dict | None]:
-    """Percentile confidence intervals that resample whole IDENTITIES, not single queries.
-
-    Queries of the same person are not independent (they look alike), so resampling single
-    queries would make the intervals too narrow. Every resample draws people with replacement
-    and re-computes ALL statistics on the same resample, so the intervals are consistent.
+    """Percentile confidence intervals that resample whole IDENTITIES, not single queries. Queries of
+    the same person are not independent (they look alike), so resampling single queries would make
+    the intervals too narrow.
     """
     if n_boot <= 0:
         return {name: None for name in statistics}
@@ -350,9 +293,7 @@ def cluster_bootstrap_ci(
     return intervals
 
 
-# --------------------------------------------------------------------------
 # Confidence calibration quality
-# --------------------------------------------------------------------------
 
 
 def calibration_report(probability: np.ndarray, outcome: np.ndarray, bins: int = 10) -> dict:
@@ -381,11 +322,10 @@ def calibration_report(probability: np.ndarray, outcome: np.ndarray, bins: int =
 
 
 def score_histogram(qs: QueryScores, bins: int = 40, value_range: tuple[float, float] = (0.0, 1.0)) -> dict:
-    """Distribution of top-1 scores for correct-known / wrong-known / unknown queries.
-
-    The overlap between the 'unknown' and 'correct known' histograms IS the low
-    inter-class-variance problem: the more they overlap, the harder it is to
-    reject strangers without also rejecting enrolled people.
+    """Distribution of top-1 scores for correct-known / wrong-known / unknown queries. The overlap
+    between the 'unknown' and 'correct known' histograms IS the low inter-class-variance problem:
+    the more they overlap, the harder it is to reject strangers without also rejecting enrolled
+    people.
     """
     edges = np.linspace(value_range[0], value_range[1], bins + 1)
 

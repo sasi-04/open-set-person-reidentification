@@ -1,16 +1,5 @@
-"""
-Computing and caching embeddings for evaluation images.
-
-In plain words: embedding thousands of benchmark images on a CPU takes minutes,
-and an ablation study needs the SAME embeddings many times. So every embedding
-is computed once and saved to disk, keyed by
-
-    dataset + image path + file size + model weights fingerprint
-
-Change the model (or the image) and the cache entry is simply not found, so a
-stale number can never sneak into a result. Two flavours are stored side by
-side: ``plain`` and ``mirrored`` (horizontally flipped). Flip test-time
-augmentation is then ``normalise(plain + mirrored)`` - no extra model passes.
+"""Computing and caching embeddings for evaluation images. Embedding thousands of benchmark images on a
+CPU takes minutes, and an ablation study needs the SAME embeddings many times.
 """
 
 from __future__ import annotations
@@ -66,9 +55,8 @@ def embed_records(
     cancelled: Callable[[], bool] | None = None,
     timings: list[float] | None = None,
 ) -> np.ndarray:
-    """Return an (N, D) matrix aligned with ``records``; only uncached images are run through the model.
-
-    ``timings`` (optional) collects per-image model latency in milliseconds for the performance report.
+    """Return an (N, D) matrix aligned with ``records``; only uncached images are run through the
+    model.
     """
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_file = _cache_path(cache_dir, dataset, extractor, mirrored)

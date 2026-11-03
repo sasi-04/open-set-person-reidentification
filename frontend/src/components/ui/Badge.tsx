@@ -1,9 +1,4 @@
-/**
- * Badges: small status labels.
- *
- * In plain words: a badge always shows an icon AND text, never colour alone, so it
- * reads correctly in grayscale, for colour-blind readers, and in forced-colours mode.
- */
+/** Badges: small status labels. A badge always shows an icon AND text, never colour alone, so it reads correctly in grayscale, for colour-blind readers, and in forced-colours mode. */
 import clsx from "clsx";
 import type { ReactNode } from "react";
 import { OUTCOME_META, POLICY_META, TONE_CLASSES, type Tone } from "@/lib/present";

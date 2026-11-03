@@ -1,9 +1,5 @@
-"""
-Shared dependencies for the API routes.
-
-In plain words: small helpers that every route file uses - "give me the
-runtime", "give me a database session", "read this upload but refuse files that
-are too big".
+"""Shared dependencies for the API routes. Small helpers that every route file uses - "give me the
+runtime", "give me a database session", "read this upload but refuse files that are too big".
 """
 
 from __future__ import annotations

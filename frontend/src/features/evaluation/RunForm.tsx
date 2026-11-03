@@ -1,12 +1,4 @@
-/**
- * RunForm: configure and launch an experiment.
- *
- * In plain words: pick a dataset, say what you want to hold fixed (a recall to keep, or a
- * false-accept limit), and press either "Run evaluation" (the whole study with ablations on
- * a held-out test split) or "Calibrate threshold" (only chooses a threshold on the
- * calibration split - the test split is never read). Both start a background job whose real
- * progress is shown below the form.
- */
+/** RunForm: configure and launch an experiment. Pick a dataset, say what you want to hold fixed (a recall to keep, or a false-accept limit), and press either "Run evaluation" (the whole study with ablations on a held-out test split) or "Calibrate threshold" (only chooses a threshold on the calibration split - the test split is never read). */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FlaskConical, SlidersHorizontal } from "lucide-react";
 import { useState } from "react";

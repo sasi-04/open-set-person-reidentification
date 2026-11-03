@@ -1,12 +1,5 @@
-"""
-Safe file storage for reference images and short-lived query crops.
-
-In plain words: user-supplied file names are NEVER used on disk. Every stored
-image gets a random 32-character name generated here (``<hex>.jpg``), and
-before any file is read, written or deleted the name is checked against that
-exact pattern. A name like ``../../secret.txt`` cannot match, so path traversal
-is impossible by construction. We also store only our own re-encoded JPEG of
-the person crop - never the raw upload.
+"""Safe file storage for reference images and short-lived query crops. User-supplied file names are
+NEVER used on disk.
 """
 
 from __future__ import annotations

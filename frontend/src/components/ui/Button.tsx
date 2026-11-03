@@ -1,11 +1,4 @@
-/**
- * Button.
- *
- * In plain words: one button component for the whole app, so every button has the same
- * shape (pill, like zed.digital), the same visible keyboard focus, and the same
- * loading/disabled behaviour. A loading button is disabled (no double submits) and
- * announces itself as busy to screen readers.
- */
+/** Button. One button component for the whole app, so every button has the same shape (pill, like zed.digital), the same visible keyboard focus, and the same loading/disabled behaviour. */
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";

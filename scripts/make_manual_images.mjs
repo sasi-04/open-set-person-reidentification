@@ -1,15 +1,4 @@
-/*
- * Photograph the real website, step by step, for the user manual.
- *
- * In plain words: this drives the running website exactly the way a person would (click "Enroll identity", type an ID, add photos,
- * tick the boxes, press the buttons ...) and, at each step, saves a picture of the screen with RED NUMBERED BOXES drawn on top of
- * the parts the manual explains. Nothing is mocked: every picture is a screenshot of the real application answering real photos.
- *
- * Use a clean test instance (it enrols people and leaves them there):
- *     $env:REID_DATA_DIR = "D:\scratch\manual_data"; powershell -File scripts\start.ps1 -Port 8765
- *     node scripts/make_manual_images.mjs http://127.0.0.1:8765
- * Output: demo/manual_images/*.jpg   (then run scripts/build_user_manual.mjs to make the PDF)
- */
+/** Photograph the real website, step by step, for the user manual. This drives the running website exactly the way a person would (click "Enroll identity", type an ID, add photos, tick the boxes, press the buttons ...) and, at each step, saves a picture of the screen with RED NUMBERED BOXES drawn on top of the parts the manual explains. */
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
@@ -44,7 +33,7 @@ const SCALE = 1.5;
 await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: SCALE });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// ---------------------------------------------------------------------------------------------- in-page helpers
+// in-page helpers
 await page.evaluateOnNewDocument(() => {
   try { localStorage.setItem("reid-theme", "light"); } catch { /* ignore */ }
   const visible = (el) => {
@@ -175,7 +164,7 @@ async function waitText(text, timeout = 90000) {
 }
 const D = { within: { css: '[role="dialog"]' } };
 
-// =============================================================================================== 1. the first screen
+// the first screen
 console.log("1. First screen and screen map");
 await go("/", 2500);
 await save("01_first_screen", {
@@ -199,7 +188,7 @@ await save("02_screen_map", {
   ],
 });
 
-// =============================================================================================== 1b. the example on the home page
+// b. the example on the home page
 console.log("1b. The built-in example");
 const EX = { css: "#open-set-example" };
 await go("/", 2500);
@@ -249,7 +238,7 @@ await save("01c_example_rows", {
   ],
 });
 
-// =============================================================================================== 2. add a person
+// add a person
 console.log("2. Add a person");
 await go("/gallery");
 await save("03_gallery_empty", { mark: [{ n: 1, text: "Enroll identity", css: undefined, tag: "button", nth: 0 }] });
@@ -309,7 +298,7 @@ await save("06_gallery_people", {
   ],
 });
 
-// =============================================================================================== 3. check a photo
+// check a photo
 console.log("3. Check a photo");
 await go("/match");
 await save("07_match_empty", {
@@ -420,7 +409,7 @@ await save("15_review_dialog", {
 });
 await page.keyboard.press("Escape");
 
-// =============================================================================================== 4. several people
+// several people
 console.log("4. A photo with several people");
 await go("/match", 1200);
 await pick({ css: 'input[type="file"]' }, path.join(samples, "scene_B_station_square.jpg"));
@@ -449,7 +438,7 @@ await save("17_everyone_result", {
   ],
 });
 
-// =============================================================================================== 5. video
+// video
 console.log("5. Video");
 await go("/video", 1500);
 await pick({ css: 'input[aria-label="Choose a video file"]' }, path.join(samples, "clip_faces.avi"));
@@ -480,12 +469,12 @@ await save("19_video_result", {
   ],
 });
 
-// =============================================================================================== 6. history
+// history
 console.log("6. History");
 await go("/history", 1800);
 await save("20_history", { mark: [{ n: 1, css: "main table, main ul", at: "tl" }] });
 
-// =============================================================================================== 7. manage people
+// manage people
 console.log("7. Manage people");
 await go("/gallery", 1500);
 await save("21_gallery_buttons", {
@@ -513,7 +502,7 @@ await save("22_person_dialog", {
 });
 await page.keyboard.press("Escape");
 
-// =============================================================================================== 8. settings
+// settings
 console.log("8. Settings");
 await go("/settings?tab=model", 2200);
 await fit(3200);
@@ -535,7 +524,7 @@ await save("24_settings_rules", {
   ],
 });
 
-// =============================================================================================== 9. summary screen
+// summary screen
 console.log("9. Command Center after use");
 await go("/", 2500);
 await page.evaluate(() => document.getElementById("status-title").scrollIntoView({ block: "start" }));

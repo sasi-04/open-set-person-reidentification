@@ -1,11 +1,4 @@
-/*
- * Build the 10-minute presentation script for a non-technical audience (company HR).
- *
- * In plain words: a step-by-step PDF - what to say, what to click, how long it takes, one clear everyday example, the answers to the
- * questions HR usually asks, and a backup plan. Numbers are read from docs/results/open_set_example.json, not typed by hand.
- *     node scripts/build_hr_presentation.mjs        ->  OpenID-Vision-HR-Presentation-10min.pdf
- * Needs puppeteer-core (cd .tools\shots; npm install puppeteer-core) and Microsoft Edge or Chrome.
- */
+/** Build the 10-minute presentation script for a non-technical audience (company HR). A step-by-step PDF - what to say, what to click, how long it takes, one clear everyday example, the answers to the questions HR usually asks, and a backup plan. */
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";

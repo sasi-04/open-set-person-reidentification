@@ -1,21 +1,5 @@
-"""
-OSNet-AIN: a small convolutional network that turns a picture of a person into
-a 512-number "appearance fingerprint" (an embedding).
-
-In plain words: this file is the neural-network *architecture* only - no
-weights, no downloading, no application logic. It is a compact re-write of the
-OSNet-AIN model from the open-source Torchreid project (MIT licence, Copyright
-(c) 2018 Kaiyang Zhou). Layer and attribute names are intentionally identical
-to the original so that the published pretrained weights fit this class
-exactly. Anything that is not needed at inference time (the identity
-classifier head, the ImageNet weight downloader) has been left out.
-
-References
-----------
-* Zhou et al., "Omni-Scale Feature Learning for Person Re-Identification", ICCV 2019.
-* Zhou et al., "Learning Generalisable Omni-Scale Representations for Person
-  Re-Identification", TPAMI 2021 (the "AIN" variant adds instance normalisation
-  in selected blocks, which helps when the camera / lighting changes).
+"""OSNet-AIN: a small convolutional network that turns a picture of a person into a 512-number
+"appearance fingerprint" (an embedding).
 """
 
 from __future__ import annotations
@@ -24,9 +8,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-# --------------------------------------------------------------------------
 # Small building blocks
-# --------------------------------------------------------------------------
 
 
 class ConvLayer(nn.Module):
@@ -117,9 +99,7 @@ class ChannelGate(nn.Module):
         return x * gates
 
 
-# --------------------------------------------------------------------------
 # Omni-scale blocks: look at the person at several scales at once
-# --------------------------------------------------------------------------
 
 
 class OSBlock(nn.Module):
@@ -171,16 +151,13 @@ class OSBlockINin(nn.Module):
         return F.relu(x3 + identity)
 
 
-# --------------------------------------------------------------------------
 # The full network
-# --------------------------------------------------------------------------
 
 
 class OSNetAIN(nn.Module):
-    """Image batch (B, 3, 256, 128)  ->  raw embeddings (B, feature_dim).
-
-    The output is *not* normalised here; the extractor L2-normalises it so the
-    same code path is used for serving and for evaluation.
+    """Image batch (B, 3, 256, 128) -> raw embeddings (B, feature_dim). The output is *not* normalised
+    here; the extractor L2-normalises it so the same code path is used for serving and for
+    evaluation.
     """
 
     def __init__(self, channels: tuple[int, int, int, int], feature_dim: int = 512):

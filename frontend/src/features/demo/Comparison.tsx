@@ -1,10 +1,4 @@
-/**
- * Comparison: the example's verdict, side by side.
- *
- * In plain words: a small table with one row per question an interviewer would ask - "were known people recognised?",
- * "were strangers wrongly let in?", "what about strangers dressed like an enrolled person?" - and two columns: the system
- * (face + body) and a clothes-only matcher. Each cell is a count taken from the server's own verdicts, with a tick or a cross.
- */
+/** Comparison: the example's verdict, side by side. A small table with one row per question an interviewer would ask - "were known people recognised?", "were strangers wrongly let in?", "what about strangers dressed like an enrolled person?" - and two columns: the system (face + body) and a clothes-only matcher. */
 import { CheckCircle2, XCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import { Notice } from "@/components/ui/Feedback";

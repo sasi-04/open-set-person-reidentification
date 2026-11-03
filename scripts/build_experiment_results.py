@@ -1,10 +1,5 @@
-"""
-Write docs/EXPERIMENT_RESULTS.md: the saved evaluation runs, tabulated by code, around hand-written interpretation.
-
-In plain words: every number in the two tables is read from the JSON files in docs/results/ by scripts/summarise_results.py - none is typed
-in. The sentences around them were written after reading the tables and are deliberately blunt about negative and mixed results.
-
-    python scripts/build_experiment_results.py
+"""Write docs/EXPERIMENT_RESULTS.md: the saved evaluation runs, tabulated by code, around hand-written
+interpretation.
 """
 
 from __future__ import annotations

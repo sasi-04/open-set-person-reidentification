@@ -1,24 +1,5 @@
-"""
-Fetch the public-domain face photos used by the face demonstration.
-
-In plain words: to SHOW face matching you need photos of the same person in different clothes and settings, plus a
-stranger. Photos of private people cannot be bundled, and news photos (like the LFW test set) cannot be redistributed. These
-are NASA astronaut photographs on Wikimedia Commons that are in the PUBLIC DOMAIN (work of the US government) - the script
-asks the Commons API for each file's licence and REFUSES anything that is not public domain or CC0.
-
-It builds the folder layout that ``demo/face_check.py`` understands:
-
-    demo/samples/faces/
-        enroll/<person>/...   the photos used to enrol each person (two each)
-        test/<person>/...     NEW photos of enrolled people (should be MATCH) and of a person who is NOT enrolled (should be UNKNOWN)
-
-and writes ``demo/samples/faces/SOURCES.json`` (title, author, date, licence, page URL for every photo).
-
-These are real, named public figures photographed at work. They are used here only to show that a face matcher recognises the
-same person across photos; nothing is inferred about them. For your own demonstration, prefer photos of consenting volunteers
-(see demo/face_check.py).
-
-    python demo/prepare_faces.py
+"""Fetch the public-domain face photos used by the face demonstration. To SHOW face matching you need
+photos of the same person in different clothes and settings, plus a stranger.
 """
 
 from __future__ import annotations

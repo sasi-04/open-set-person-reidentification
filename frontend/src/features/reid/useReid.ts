@@ -1,16 +1,4 @@
-/**
- * The re-identification workspace state machine.
- *
- * In plain words: this hook holds everything the workspace screen needs - the chosen
- * image, the people found in it, which one is selected, and the result - and exposes
- * plain actions ("choose file", "detect", "run", "reset"). The screen itself only draws.
- *
- * Which matching mode is used (decided here, in one place):
- *   - "image is already a person crop" ticked    -> mode "crop"  (no detector)
- *   - "match everyone" ticked                    -> mode "all"   (server detects and matches each person)
- *   - a person was selected after "Detect"       -> mode "box"   (only that person)
- *   - otherwise                                  -> mode "all"
- */
+/** The re-identification workspace state machine. This hook holds everything the workspace screen needs - the chosen image, the people found in it, which one is selected, and the result - and exposes plain actions ("choose file", "detect", "run", "reset"). */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useToast } from "@/components/ui/Toast";

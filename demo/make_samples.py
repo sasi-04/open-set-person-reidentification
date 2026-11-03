@@ -1,28 +1,5 @@
-"""
-Rebuild the demo's sample pictures from the two prepared street scenes (public-domain photos, heads blurred).
-
-In plain words: the demo needs a few pictures whose "right answer" is known in advance - the same person seen
-again, a stranger, and a poor-quality picture. This script derives them from two CC0 photos
-(see samples/SOURCES.md) with fixed, simple recipes, using the SERVER'S OWN person detector to find the boxes.
-
-The recipes were fixed before looking at any result and are not tuned to make the demo look good:
-
-    person_A_reference_1   tight crop of the most confident person in scene A
-    person_A_reference_2   the same crop, mirrored (a second reference photo)
-    query_1_same_person    the same person "seen again": a looser crop, 55% of the size, 20% darker
-    query_2_stranger       a tight crop of the most confident person in scene B (a different person, in a different place)
-    query_3_blurry         the same person in a loose box, half size, heavily out of focus (Gaussian blur radius 6).
-                           This recipe is DELIBERATELY strong enough to trip the system's own sharpness check
-                           (backend/app/cv/quality.py: Laplacian variance < 12). It exercises the REVIEW path;
-                           it says nothing about how often real footage is that blurry.
-    clip_street.avi        a 3 s clip with a slow zoom: scene A, scene B, scene A
-    clip_faces.avi         a 3 s clip of the FACE demonstration photos: Collins, Ride (a stranger), Collins
-
-HONEST LIMIT: "same person seen again" is derived from the SAME source photo, because no public multi-camera
-photo of one person is bundled. It shows how the system behaves; it is not a test of cross-camera accuracy.
-For that, use a real benchmark (README section 9).
-
-Run (the server must be running):   python demo/make_samples.py
+"""Rebuild the demo's sample pictures from the two prepared street scenes (public-domain photos, heads
+blurred).
 """
 
 from __future__ import annotations

@@ -1,13 +1,5 @@
-"""
-Stand-ins for the neural networks, used ONLY in tests.
-
-In plain words: the real OSNet takes ~0.2 s per image on a CPU and the real
-detector about a second, which would make a few hundred API tests crawl. These
-fakes keep the same interface but compute a deterministic embedding from the
-image's mean colour, so a "person" is just a colour. Tests built on them prove
-that the PLUMBING is right (routes, rules, storage, security); they say
-nothing about how accurate the real model is - that is what the evaluation
-pipeline on a real dataset is for.
+"""Stand-ins for the neural networks, used ONLY in tests. The real OSNet takes ~0.2 s per image on a
+CPU and the real detector about a second, which would make a few hundred API tests crawl.
 """
 
 from __future__ import annotations
@@ -78,8 +70,9 @@ class FakeDetector:
 
 
 class FakeFaceEngine:
-    """Stands in for YuNet + SFace. A 'face' is a block of pixels with a dark frame that ``person_png`` draws; its identity is the
-    block's fill colour. Like the other fakes it proves the PLUMBING and the decision rules, not recognition accuracy."""
+    """Stands in for YuNet + SFace. A 'face' is a block of pixels with a dark frame that ``person_png``
+    draws; its identity is the block's fill colour.
+    """
 
     name = "fake-face"
     dim = 128

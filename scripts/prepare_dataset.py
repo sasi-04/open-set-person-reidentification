@@ -1,25 +1,6 @@
-"""
-Check, unpack and prepare an evaluation dataset.
-
-In plain words: benchmark datasets are not part of this repository (they are licensed for research
-and must not be redistributed), so YOU download one and put it in ``datasets/``. This script makes
-that step safe and easy:
-
-  inspect   Look at a folder in datasets/ and say, in plain words, whether the evaluation can use it
-            (how many people, images, cameras; whether pictures open; what is missing).
-  unpack    Safely unpack a downloaded .zip / .tar / .tar.gz into datasets/<name>. It refuses paths that
-            try to escape the folder, and refuses to write into a folder that already has files.
-  template  Write an empty ``hard_subset.json`` you can fill in by hand to mark genuinely
-            "same clothing" queries (used instead of the colour-histogram proxy when present).
-
-Examples (from the repository root, backend venv active):
-
-    python scripts/prepare_dataset.py unpack C:/Downloads/Market-1501-v15.09.15.zip --name market1501
-    python scripts/prepare_dataset.py inspect market1501
-    python scripts/prepare_dataset.py template market1501
-
-Market-1501 is for NON-COMMERCIAL RESEARCH. Obtain it from its authors (Zheng et al., ICCV 2015) and
-cite their paper. Do not re-upload it.
+"""Check, unpack and prepare an evaluation dataset. Benchmark datasets are not part of this repository
+(they are licensed for research and must not be redistributed), so YOU download one and put it in
+``datasets/``.
 """
 
 from __future__ import annotations
@@ -43,7 +24,7 @@ from app.cv.imaging import load_rgb_file  # noqa: E402
 from app.evaluation.datasets import find_dataset, inspect_dataset, load_records  # noqa: E402
 
 
-# ------------------------------------------------------------------------------ inspect
+# inspect
 def cmd_inspect(args: argparse.Namespace) -> int:
     settings = get_settings()
     root = Path(args.name) if Path(args.name).is_dir() else settings.datasets_dir / args.name
@@ -97,7 +78,7 @@ def cmd_inspect(args: argparse.Namespace) -> int:
     return 0
 
 
-# ------------------------------------------------------------------------------- unpack
+# unpack
 def _safe_zip_extract(archive: Path, destination: Path) -> int:
     count = 0
     with zipfile.ZipFile(archive) as bundle:
@@ -145,7 +126,7 @@ def cmd_unpack(args: argparse.Namespace) -> int:
     return cmd_inspect(argparse.Namespace(name=args.name))
 
 
-# ------------------------------------------------------------------------------ template
+# template
 def cmd_template(args: argparse.Namespace) -> int:
     settings = get_settings()
     info = find_dataset(settings.datasets_dir, args.name)

@@ -1,10 +1,4 @@
-/**
- * How the example's verdicts and groups are shown.
- *
- * In plain words: every decision in the example is marked "right", "sent to a person", or one of the ways it can be wrong
- * (a stranger accepted, the wrong person named, a known person missed). Each verdict has a fixed icon, colour and wording;
- * colour is never the only signal.
- */
+/** How the example's verdicts and groups are shown. Every decision in the example is marked "right", "sent to a person", or one of the ways it can be wrong (a stranger accepted, the wrong person named, a known person missed). */
 import { CheckCircle2, CircleAlert, Eye, ShieldAlert, UserX, XCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Tone } from "@/lib/present";

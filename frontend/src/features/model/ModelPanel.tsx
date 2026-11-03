@@ -1,12 +1,4 @@
-/**
- * Model & thresholds: what is running, and the rules that turn scores into decisions.
- *
- * In plain words: this is the "validated settings" half of the Model & System screen. It shows the
- * loaded models with their weight provenance and checksum, the ACTIVE decision policy and how far it
- * can be trusted (unvalidated / experimental / calibrated), and the versioned history of every change.
- * Changing a rule needs explicit confirmation and creates a new auditable version; nothing here is
- * ever edited in place.
- */
+/** Model & thresholds: what is running, and the rules that turn scores into decisions. This is the "validated settings" half of the Model & System screen. */
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Badge, PolicyBadge } from "@/components/ui/Badge";

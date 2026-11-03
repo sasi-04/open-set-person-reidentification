@@ -1,10 +1,4 @@
-/**
- * Client-side checks for chosen image files.
- *
- * In plain words: these give instant feedback ("that is a PDF", "that is 14 MB") before
- * anything is uploaded. They are a convenience only - the backend repeats and enforces
- * every one of these checks by looking at the real file contents.
- */
+/** Client-side checks for chosen image files. These give instant feedback ("that is a PDF", "that is 14 MB") before anything is uploaded. */
 import { fileSize } from "./format";
 
 export interface FileLimits {

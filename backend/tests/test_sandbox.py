@@ -1,9 +1,4 @@
-"""
-The threshold sandbox: same rule as the live engine, honest about what it is, never writes policy.
-
-The most important test is the first one: for many random score/margin/threshold combinations the
-sandbox's vectorised rule must give EXACTLY the outcome the real decision engine gives.
-"""
+"""The threshold sandbox: same rule as the live engine, honest about what it is, never writes policy."""
 
 from __future__ import annotations
 
@@ -53,7 +48,7 @@ def test_the_threshold_boundary_is_inclusive_like_the_live_engine():
     assert sandbox.decide_rows(np.array([0.6999]), np.array([np.inf]), 0.7, None, "review")[0] == "unknown"
 
 
-# ------------------------------------------------------------------------------ a small hand-made table
+# a small hand-made table
 def _rows():
     #            who they are          best score   margin   right person?
     people = [("k1", True, "k1", 0.90, 0.30, True), ("k2", True, "k2", 0.75, 0.01, True), ("k3", True, "other", 0.74, 0.20, False),
@@ -131,7 +126,7 @@ def test_rows_roundtrip_into_the_same_metrics_the_evaluation_uses():
     assert point["counts"]["known_accepted"] == 3 and point["counts"]["unknown_accepted"] == 2
 
 
-# ---------------------------------------------------------------------------- inside a real evaluation run
+# inside a real evaluation run
 def test_an_evaluation_run_stores_the_sandbox_table_and_the_reference_is_its_calibrated_rule(tmp_path):
     info = inspect_dataset(make_dataset(tmp_path / "toy"))
     request = EvaluationRequest(

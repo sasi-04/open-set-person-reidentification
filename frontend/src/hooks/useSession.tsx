@@ -1,14 +1,4 @@
-/**
- * The session: who is using the app, and does this server ask for an access key at all?
- *
- * In plain words: when the page opens we ask the backend "who am I?". By default access keys
- * are switched off, so the answer is simply "admin" and the app opens straight away - no key
- * screen. If the server was started with keys switched on (REID_AUTH_REQUIRED=true) it answers
- * "401, I need a key" and we show the key screen instead; once a key works we ask again and
- * learn the role (viewer / operator / admin), which decides which buttons are enabled. The
- * backend still enforces every permission itself - the UI only avoids offering actions that
- * would be refused.
- */
+/** The session: who is using the app, and does this server ask for an access key at all?. When the page opens we ask the backend "who am I?". */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Spinner } from "@/components/ui/Feedback";

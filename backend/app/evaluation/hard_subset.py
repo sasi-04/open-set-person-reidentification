@@ -1,27 +1,5 @@
-"""
-The "same-clothing" (low inter-class variance) evaluation subset.
-
-In plain words: the hard cases for open-set ReID are strangers who dress like
-an enrolled person. Benchmarks like Market-1501 do NOT label clothing, so we
-cannot pretend a ground-truth "same clothing" attribute exists. Instead:
-
-PROXY (default)  For every query we measure how similar its torso and leg
-                 COLOURS are to the closest OTHER enrolled person, using simple
-                 HSV colour histograms. The queries in the top quartile of that
-                 similarity form the "hard subset".
-                   * unknown query: closest colour match among ALL enrolled people
-                   * known query:   closest colour match among OTHER enrolled people
-                 The proxy never looks at the ReID model, the decision threshold
-                 or any test outcome, so the subset cannot be cherry-picked
-                 after seeing results. It is a proxy, and the report says so.
-
-MANUAL (override) If ``<dataset>/hard_subset.json`` exists - a list of image
-                 paths relative to the dataset folder that a human annotated as
-                 "wearing similar clothing to another enrolled person" - it is
-                 used instead of the proxy. This is the mechanism for genuine
-                 ground-truth annotation.
-
-File format:  {"hard_queries": ["0002/c1_0001.jpg", "0007/c3_0004.jpg"]}
+"""The "same-clothing" (low inter-class variance) evaluation subset. The hard cases for open-set ReID
+are strangers who dress like an enrolled person.
 """
 
 from __future__ import annotations

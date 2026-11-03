@@ -1,11 +1,5 @@
-"""
-Bounding boxes and cropping.
-
-In plain words: a ``Box`` is a rectangle in pixel coordinates, (x1, y1) = top-left
-corner and (x2, y2) = bottom-right corner. ``crop_person`` cuts that rectangle
-out of an image, adds a small safety margin around it, and makes sure the crop
-has a person-like proportion (about twice as tall as wide) so the network sees
-the body without squashing it.
+"""Bounding boxes and cropping. A ``Box`` is a rectangle in pixel coordinates, (x1, y1) = top-left
+corner and (x2, y2) = bottom-right corner.
 """
 
 from __future__ import annotations
@@ -70,20 +64,16 @@ def touches_border(box: Box, image_width: int, image_height: int, tolerance: flo
 
 
 def crop_person(pixels: np.ndarray, box: Box, margin: float = 0.05) -> np.ndarray:
-    """Cut a person out of an image, keeping a sensible aspect ratio.
-
-    ``margin`` grows the box by that fraction on every side so we do not clip
-    hands or feet when the detector box is tight.
+    """Cut a person out of an image, keeping a sensible aspect ratio. ``margin`` grows the box by that
+    fraction on every side so we do not clip hands or feet when the detector box is tight.
     """
     region, _ = crop_region(pixels, box, margin)
     return pad_to_person_aspect(region)
 
 
 def crop_region(pixels: np.ndarray, box: Box, margin: float = 0.05) -> tuple[np.ndarray, tuple[int, int]]:
-    """The same cut as ``crop_person`` but WITHOUT the grey padding, plus where its top-left corner sits in the image.
-
-    Face detection and colour measurements need real picture content only, and need to map what they find back to the
-    uploaded image, so they use this instead of the padded crop the body network sees.
+    """The same cut as ``crop_person`` but WITHOUT the grey padding, plus where its top-left corner
+    sits in the image.
     """
     image_height, image_width = pixels.shape[:2]
     box = box.clipped(image_width, image_height)

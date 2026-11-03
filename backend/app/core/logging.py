@@ -1,14 +1,4 @@
-"""
-Logging with request IDs.
-
-In plain words: every HTTP request gets a short random ID. The ID is printed
-on every log line written while that request is being handled, and is also
-returned to the client in the ``X-Request-ID`` header, so a problem report
-("request 3f9a1c...") can be traced end to end.
-
-Privacy rule enforced by convention: we log *what happened* (route, status,
-timings, counts). We never log image bytes, embeddings or file contents.
-"""
+"""Logging with request IDs. Every HTTP request gets a short random ID."""
 
 from __future__ import annotations
 

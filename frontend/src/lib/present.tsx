@@ -1,15 +1,4 @@
-/**
- * How outcomes, policy statuses and quality flags are presented.
- *
- * In plain words: the decision outcomes each get a fixed icon, colour tone and wording.
- * Colour is never the only signal - every badge carries an icon and text. A rejected query
- * is described neutrally ("no supported match"); the interface never implies wrongdoing.
- *
- * Names: the product speaks of MATCH, UNKNOWN and REVIEW (plus PROCESSING ERROR when the input
- * could not be handled at all). The API keeps its stable codes - ``accepted``, ``unknown``,
- * ``review_required``, ``processing_error`` - and this table is the one place that translates
- * them, so a code reviewer can see both vocabularies side by side.
- */
+/** How outcomes, policy statuses and quality flags are presented. The decision outcomes each get a fixed icon, colour tone and wording. */
 import { AlertTriangle, CheckCircle2, CircleHelp, Eye, FlaskConical, ShieldCheck, ShieldQuestion } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Outcome, PolicyStatus, Role } from "@/types/api";

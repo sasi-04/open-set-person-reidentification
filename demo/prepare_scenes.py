@@ -1,18 +1,5 @@
-"""
-Fetch the two public-domain street photos used by the demo and blur people's heads.
-
-In plain words: the demo needs real photos with real pedestrians. Both are CC0 (public domain) on Wikimedia Commons,
-but a licence for the picture is not a licence to circulate recognisable strangers, so before they go into a pack
-that is shared around a company, this script blurs the HEAD region of every detected person. The system never uses
-faces - it matches on the whole body (clothing, build, posture) - so blurring costs the demonstration nothing.
-
-What it does:
-  1. asks the Commons API for each photo's 960-px version, author and licence (and refuses anything that is not CC0);
-  2. finds the people with the SERVER'S person detector (the server must be running);
-  3. blurs the top ~17 % of each person's box, centred, and saves the scenes into demo/samples/.
-
-It is a one-time step: the blurred scenes are already in the repository. Re-run it only to rebuild them.
-    python demo/prepare_scenes.py
+"""Fetch the two public-domain street photos used by the demo and blur people's heads. The demo needs
+real photos with real pedestrians.
 """
 
 from __future__ import annotations

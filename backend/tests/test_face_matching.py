@@ -1,11 +1,4 @@
-"""
-Face + body matching.
-
-In plain words: these tests prove the RULES. The headline case is the one that motivated the feature - a stranger wearing
-the same clothes as an enrolled person must NOT be matched, because the face disagrees - plus the safe fallbacks (no
-face, bad face, nobody with a face on file). They use stand-in networks, so they say nothing about how accurate the real
-face model is; that is measured separately on the LFW benchmark (docs/FACE_AND_BODY_MATCHING.md).
-"""
+"""Face + body matching. These tests prove the RULES."""
 
 from __future__ import annotations
 
@@ -32,9 +25,7 @@ def cands(*pairs):
     return [Candidate(i + 1, ref, score, f"img-{ref}", 2) for i, (ref, score) in enumerate(sorted(pairs, key=lambda p: -p[1]))]
 
 
-# =====================================================================================================
 # The decision rules (pure functions)
-# =====================================================================================================
 class TestFaceDecides:
     def test_a_matching_face_is_accepted_even_when_the_clothes_differ(self):
         d = decide_multicue(cands(("ann", 0.31)), cands(("ann", 0.74)), policy())
@@ -162,9 +153,7 @@ class TestPolicyValues:
         assert MultiCuePolicy.from_dict(None) is None
 
 
-# =====================================================================================================
 # The whole application with stand-in networks
-# =====================================================================================================
 def person(r):
     return r.json()["people"][0]
 

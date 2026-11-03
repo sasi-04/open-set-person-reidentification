@@ -1,17 +1,6 @@
-"""
-Fine-tune the embedding backbone with batch-hard triplet loss.
-
-In plain words: this continues training the pretrained OSNet on the DEVELOPMENT identities of a
-dataset (never the calibration or test identities), then saves a checkpoint together with a record
-of exactly which people it saw. The evaluation later refuses to score a checkpoint whose training
-people overlap its calibration/test people, so a fine-tuned result can never be inflated by leakage.
-
-What it does NOT do: it does not claim improvement. Whether the fine-tuned backbone is better is
-decided only by running the evaluation (ablation variant "triplet fine-tuned backbone") on held-out
-people. The script reports training loss only.
-
-Defaults are CPU-friendly: only the last stage (conv4, conv5, fc) is trained and the network stays
-in eval mode, so batch-norm statistics are not disturbed by tiny batches.
+"""Fine-tune the embedding backbone with batch-hard triplet loss. This continues training the
+pretrained OSNet on the DEVELOPMENT identities of a dataset (never the calibration or test
+identities), then saves a checkpoint together with a record of exactly which people it saw.
 """
 
 from __future__ import annotations

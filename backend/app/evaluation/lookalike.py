@@ -1,41 +1,4 @@
-"""
-The Lookalike Failure Lab: where does the matcher go wrong, and why?
-
-In plain words
---------------
-Person re-identification fails in a very particular way: two DIFFERENT people who
-look alike (same colours, same build, similar clothing) get a high similarity score,
-so a stranger is accepted as an enrolled person. This module goes looking for those
-cases on labelled data instead of waiting for them to happen:
-
-  1. MINE      list the pairs of different people the model finds most alike.
-  2. CHALLENGE turn those pairs (plus ordinary genuine same-person pairs) into a fixed,
-               reproducible "challenge set" and measure the matcher on it.
-  3. COMPARE   run the same challenge pairs through a second model (a fine-tuned
-               checkpoint), if one exists, so the two are compared on the SAME examples.
-  4. INSPECT   list the real query-level mistakes (strangers accepted, enrolled people
-               turned away) with the recorded evidence and clearly-labelled HYPOTHESES.
-
-What this is NOT: it is not a new learning algorithm and it proves nothing by itself. It is
-a diagnostic tool; the numbers it prints are measurements on one dataset sample.
-
-Honesty rules built into the code
----------------------------------
-* The operating threshold is chosen on the CALIBRATION split only. The mining/inspection
-  split (default: test) is looked at afterwards and never feeds back into that choice.
-* A "challenge" false-accept rate is measured on pairs that were SELECTED for being hard, so
-  it is far higher than the real-world rate. Next to it we always print the false-accept rate
-  over ALL different-person pairs ("all-pairs reference") so nobody mistakes one for the other.
-* "Embeddings look alike" and "clothing looks alike" are two separate things. Each pair
-  carries both: the model similarity and an independent clothing-COLOUR similarity (a
-  label-free proxy; the dataset has no clothing labels).
-* An observed fact (score 0.81, threshold 0.78) and a hypothesis about its cause ("clothing
-  colours are very close") are stored in separate fields and the hypothesis is always labelled
-  as unproven.
-* A second model is only compared if it passes the leakage guard (it must never have been
-  trained on the people being evaluated). Otherwise the result says "unavailable" and why;
-  nothing is invented.
-"""
+"""The Lookalike Failure Lab: where does the matcher go wrong, and why?"""
 
 from __future__ import annotations
 
@@ -107,9 +70,7 @@ class LookalikeRequest:
         }
 
 
-# =====================================================================================
 # Step 1 - mining look-alike identity pairs
-# =====================================================================================
 @dataclass
 class MiningSet:
     """The images being searched, ordered so each person's photos are contiguous."""
@@ -152,11 +113,10 @@ def mining_records(ctx: _Context, protocol: Protocol, split: str) -> list[ImageR
 
 
 def scan_identity_pairs(embeddings: np.ndarray, mining: MiningSet, threshold: float, block: int = 512) -> dict:
-    """Compare every image with every image of OTHER people, in blocks (so memory stays small).
-
-    Returns
-      pair_max   (I, I) for each two people, the highest similarity between any photo of one and any photo of the other
-      above/total   how many of ALL different-person image pairs reach ``threshold`` (the "all-pairs reference" FAR)
+    """Compare every image with every image of OTHER people, in blocks (so memory stays small). Returns
+    pair_max (I, I) for each two people, the highest similarity between any photo of one and any
+    photo of the other above/total how many of ALL different-person image pairs reach ``threshold``
+    (the "all-pairs reference" FAR)
     """
     n, n_ids = len(embeddings), len(mining.identities)
     pair_max = np.full((n_ids, n_ids), -np.inf, dtype=np.float32)
@@ -194,11 +154,7 @@ def _best_image_pairs(embeddings: np.ndarray, mining: MiningSet, a: int, b: int,
 
 
 def genuine_pairs(mining: MiningSet, limit: int, seed: int) -> tuple[np.ndarray, np.ndarray]:
-    """Same-person photo pairs from DIFFERENT cameras (or any two photos when cameras are unknown).
-
-    Using different cameras mirrors the real task - recognising a person in a new place - and avoids
-    flattering the model with two near-identical frames from the same camera.
-    """
+    """Same-person photo pairs from DIFFERENT cameras (or any two photos when cameras are unknown)."""
     first_rows: list[int] = []
     second_rows: list[int] = []
     for person in range(len(mining.identities)):
@@ -220,9 +176,7 @@ def pair_similarity(embeddings: np.ndarray, first: np.ndarray, second: np.ndarra
     return np.einsum("ij,ij->i", embeddings[first], embeddings[second]).astype(np.float64)
 
 
-# =====================================================================================
 # Step 2 - measuring the challenge set
-# =====================================================================================
 def challenge_measurement(genuine: np.ndarray, impostor: np.ndarray, threshold: float, reference: dict) -> dict:
     """Counts and rates of one model on the challenge pairs, at its own calibrated threshold."""
     true_accept = int((genuine >= threshold).sum())
@@ -256,9 +210,7 @@ def pair_curve(genuine: np.ndarray, impostor: np.ndarray, points: int = 60) -> l
             for t, f, r in zip(thresholds, far, tar, strict=True)]
 
 
-# =====================================================================================
 # Step 4 - inspecting real mistakes
-# =====================================================================================
 CATEGORY_LABELS = {
     "incorrect_acceptance": "Stranger accepted as an enrolled person",
     "wrong_identity_accepted": "Enrolled person accepted as a different enrolled person",
@@ -382,9 +334,7 @@ def inspect_failures(scored: ScoredSplit, rule: dict, root: Path, colour_cutoff:
                     "measurements; they have not been tested and must not be read as the proven reason."}
 
 
-# =====================================================================================
 # The whole experiment
-# =====================================================================================
 def run_lookalike(
     info: DatasetInfo,
     request: LookalikeRequest,
@@ -409,7 +359,7 @@ def run_lookalike(
             f"'{info.name}' is a {info.kind.replace('_', ' ')} dataset: these results only show that the lab runs end to end. "
             "They are NOT benchmark results and must not be quoted as performance.")
 
-    # ---- is a second model allowed? -------------------------------------------------------------
+    # is a second model allowed?
     improved_state: dict = {"status": "unavailable"}
     use_improved = False
     if request.finetuned_checkpoint is None:
@@ -425,7 +375,7 @@ def run_lookalike(
         else:
             use_improved = True
 
-    # ---- embeddings (cached on disk; only new images are run through the network) ----------
+    # embeddings (cached on disk; only new images are run through the network)
     mining_set = MiningSet.build(mining_records(ctx, protocol, request.mining_split))
     if len(mining_set.identities) < 2:
         raise ValueError("The chosen split has fewer than two people, so there are no different-person pairs to mine.")
@@ -440,7 +390,7 @@ def run_lookalike(
         kinds["finetuned"] = (request.finetuned_checkpoint, False)
     ctx.compute_embeddings(kinds, 0.05, 0.62, records=list(needed.values()))
 
-    # ---- model-independent clothing-colour descriptors (the "look-alike clothing" proxy) ------
+    # model-independent clothing-colour descriptors (the "look-alike clothing" proxy)
     progress("Measuring clothing-colour similarity", 0.64)
     colours = describe_records(mining_set.records)
     sample_rng = np.random.default_rng(request.seed)
@@ -449,7 +399,7 @@ def run_lookalike(
     different = mining_set.identity_index[sample_a] != mining_set.identity_index[sample_b]
     colour_cutoff = float(np.quantile((colours[sample_a[different]] * colours[sample_b[different]]).sum(axis=1) / 2.0, COLOUR_QUANTILE))
 
-    # ---- per model: threshold on CALIBRATION, then everything else on the frozen rule --------
+    # per model: threshold on CALIBRATION, then everything else on the frozen rule
     sources = {"baseline": "plain", **({"improved": "finetuned"} if use_improved else {})}
     labels = {"baseline": "Baseline (official pretrained weights)", "improved": "Improved (fine-tuned checkpoint)"}
     per_model: dict[str, dict] = {}
@@ -476,7 +426,7 @@ def run_lookalike(
     if cancelled():
         raise EvaluationCancelled()
 
-    # ---- mining and the challenge set (pairs are chosen with the BASELINE model) --------------
+    # mining and the challenge set (pairs are chosen with the BASELINE model)
     progress("Searching for look-alike pairs", 0.78)
     embeddings = {name: ctx.vectors("finetuned" if src == "finetuned" else "plain", mining_set.records) for name, src in sources.items()}
     base_threshold = per_model["baseline"]["rule"]["threshold"]
@@ -511,7 +461,7 @@ def run_lookalike(
                                                       threshold=threshold),
         }
 
-    # ---- the listed identity pairs --------------------------------------------------------------
+    # the listed identity pairs
     colour_pair = {}
     for rank, (a, b, _) in enumerate(pairs):
         block = (colours[mining_set.starts[a]:mining_set.ends[a]] @ colours[mining_set.starts[b]:mining_set.ends[b]].T) / 2.0
@@ -542,13 +492,13 @@ def run_lookalike(
             "comparisons_in_challenge_set": len(comparisons),
         })
 
-    # ---- real mistakes of the matcher on the test split -------------------------------------------
+    # real mistakes of the matcher on the test split
     progress("Inspecting failures", 0.92)
     failures = {}
     for name in sources:
         failures[name] = inspect_failures(scored_test[name], per_model[name]["rule"], info.root, colour_cutoff, request.max_failures)
 
-    # ---- speed: measured, never assumed ------------------------------------------------------------
+    # speed: measured, never assumed
     progress("Measuring speed", 0.96)
     crops = [pad_to_person_aspect(load_rgb_file(r.path)) for r in mining_set.records[:: max(1, len(mining_set.records) // 12)][:12]]
     for name, source in sources.items():

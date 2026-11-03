@@ -1,13 +1,4 @@
-/**
- * Model & System Settings (screen G).
- *
- * In plain words: everything about HOW the system is set up, on three tabs -
- *   Model & thresholds   the loaded models and the versioned decision policy (validated settings, plus
- *                        clearly marked experimental changes)
- *   Runtime & system     live health of each component, limits, datasets, loading errors
- *   Access, appearance   who you are, theme, privacy/retention, the audit trail and the honest limits
- * The tab can be chosen from a link (``/settings?tab=system``) so other screens can point straight at it.
- */
+/** Model & System Settings (screen G). Everything about HOW the system is set up, on three tabs - Model & thresholds   the loaded models and the versioned decision policy (validated settings, plus clearly marked experimental changes) Runtime & system     live health of each component, limits, datasets, loading errors Access, appearance   who you are, theme, privacy/retention, the audit trail and the honest limits The tab can be chosen from a link (``/settings?tab=system``) so other screens can point straight at it. */
 import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Tabs } from "@/components/ui/Tabs";

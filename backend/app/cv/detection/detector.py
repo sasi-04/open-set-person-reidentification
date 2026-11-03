@@ -1,21 +1,4 @@
-"""
-Person detection.
-
-In plain words: before we can compare people we have to find them. This module
-wraps a small pretrained object detector (torchvision, trained on the public
-COCO dataset - BSD licence) and keeps only the "person" boxes it finds.
-
-Important distinction used everywhere in this project:
-
-    detector score      = how sure the DETECTOR is that a box contains a person
-    similarity score    = how alike two people's embeddings are
-    calibrated confidence (optional) = estimated chance an accepted match is right
-
-These three numbers answer different questions and are never mixed.
-
-Like the embedding model, the detector loads its weights from a local file that
-``scripts/download_weights.py`` placed there - nothing is downloaded at runtime.
-"""
+"""Person detection. Before we can compare people we have to find them."""
 
 from __future__ import annotations
 

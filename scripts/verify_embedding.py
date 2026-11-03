@@ -1,18 +1,4 @@
-"""
-Check that an embedding model genuinely separates people - before trusting it with anything else.
-
-In plain words: a network can load without errors, output 512 finite numbers of unit length and still be useless for telling
-people apart. This script measures the one thing that matters: on real photos of people taken by different cameras, is the nearest
-gallery picture the SAME person? It uses the project's own preprocessing and the models listed in the registry.
-
-Protocol (closed set, deliberately simple): N random Market-1501 identities; one query image each; a gallery of up to K images of the
-same identity taken by OTHER cameras; cosine similarity; report Rank-1 and mAP. Chance level is 1/N.
-
-    python scripts/verify_embedding.py --dataset market1501                       # the configured model
-    python scripts/verify_embedding.py --dataset market1501 --model osnet_ain_x1_0   # the weights that FAILED (see docs/MODEL_VERIFICATION.md)
-
-Exit code 0 = Rank-1 at or above --min-rank1 (default 0.5), 1 = below it.
-"""
+"""Check that an embedding model genuinely separates people - before trusting it with anything else."""
 
 from __future__ import annotations
 

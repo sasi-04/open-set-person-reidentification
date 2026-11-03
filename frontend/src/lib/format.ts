@@ -1,10 +1,4 @@
-/**
- * Small formatting helpers.
- *
- * In plain words: one place that decides how numbers and dates look, so "FAR 1.2%"
- * is written the same way on every screen, and a missing value is always shown as
- * an em dash - never as a misleading 0.
- */
+/** Small formatting helpers. One place that decides how numbers and dates look, so "FAR 1.2%" is written the same way on every screen, and a missing value is always shown as an em dash - never as a misleading 0. */
 
 export const DASH = "—";
 

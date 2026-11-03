@@ -1,13 +1,4 @@
-/**
- * Application routes.
- *
- * In plain words: seven screens (A-G), all inside the common frame (AppShell):
- *   A Command Center   B Identity Gallery   C Match Studio   D Video Explorer
- *   E Lookalike Failure Lab   F Evaluation Lab   G Model & System Settings
- * plus "Decision history" (reached from inside Match Studio) and "How it works" (a plain-language tour, reached from the top bar). If the server was started with access keys
- * switched on, a key screen comes first; by default it does not. Screens are loaded on demand so the first
- * page opens quickly. Old addresses (/reidentify, /model) still work and forward to their new home.
- */
+/** Application routes. Seven screens (A-G), all inside the common frame (AppShell): A Command Center   B Identity Gallery   C Match Studio   D Video Explorer E Lookalike Failure Lab   F Evaluation Lab   G Model & System Settings plus "Decision history" (reached from inside Match Studio) and "How it works" (a plain-language tour, reached from the top bar). */
 import { lazy, Suspense, type ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "@/components/layout/AppShell";

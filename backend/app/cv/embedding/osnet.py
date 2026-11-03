@@ -1,21 +1,5 @@
-"""
-OSNet (plain, without instance normalisation): the person-embedding network the system uses by default.
-
-In plain words: this file is the neural-network *architecture* only - no weights, no downloading, no
-application logic. It is a compact inference-only re-write of ``osnet_x1_0`` from the open-source Torchreid
-project (MIT licence, Copyright (c) 2018 Kaiyang Zhou). Layer and attribute names are intentionally identical to
-the original (``conv2a``, ``conv2b`` ...) so that the official pretrained weights fit this class exactly.
-The identity-classifier head and the weight downloader were left out.
-
-Why this and not OSNet-AIN: on 2026-10-25 the OSNet-AIN weight file that shipped with the first version was
-measured on Market-1501 (100 identities, cross-camera, closed set) and reached only Rank-1 20 % / mAP 13 %, while
-this architecture with the official Torchreid multi-source checkpoint reached Rank-1 81 % / mAP 69 % under the
-identical protocol - and the OSNet-AIN file gave the same 20 % inside Torchreid's own reference code, so the weights, not
-the re-write, were at fault. See docs/MODEL_VERIFICATION.md.
-
-References
-----------
-* Zhou et al., "Omni-Scale Feature Learning for Person Re-Identification", ICCV 2019.
+"""OSNet (plain, without instance normalisation): the person-embedding network the system uses by
+default.
 """
 
 from __future__ import annotations

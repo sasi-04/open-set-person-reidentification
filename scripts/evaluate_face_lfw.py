@@ -1,25 +1,6 @@
-"""
-Measure the FACE stage on the standard LFW verification benchmark.
-
-In plain words: "Labeled Faces in the Wild" ships a list of 6,000 picture pairs - 3,000 show the same person, 3,000
-show two different people - split into 10 folds. For every pair this runs the SAME face code the application
-uses (YuNet finds the face, SFace fingerprints it), scores the pair by cosine similarity and reports
-
-  * accuracy with the standard 10-fold protocol (the threshold is chosen on 9 folds and tested on the 10th),
-  * what happens at the threshold the application ships with (genuine pairs accepted, impostor pairs wrongly accepted),
-  * how many pictures had no face found, and the spread of the face-quality measurements.
-
-Why this matters: it is a real, repeatable number for the face component, so nobody has to take "99 %" on trust.
-Why it is not enough: LFW is an easy benchmark of mostly frontal, well-lit news photographs of public figures. It says
-nothing about phone-camera selfies in poor light, masks, CCTV distance, twins or deliberate attacks. See
-docs/FACE_AND_BODY_MATCHING.md.
-
-Get the data (research use only; never bundled with this project):
-    pair list : https://ndownloader.figshare.com/files/5976006   (pairs.txt)
-    pictures  : https://ndownloader.figshare.com/files/5976018   (lfw.tgz, 173 MB, sha256 055f7d9c...d536c0)
-Extract so that   <folder>/lfw/<Person_Name>/<Person_Name>_0001.jpg   exists, then:
-
-    python scripts/evaluate_face_lfw.py --folder D:\\data\\lfw --out docs/results/face_lfw.json
+"""Measure the FACE stage on the standard LFW verification benchmark. "Labeled Faces in the Wild" ships
+a list of 6,000 picture pairs - 3,000 show the same person, 3,000 show two different people - split
+into 10 folds.
 """
 
 from __future__ import annotations
@@ -132,7 +113,7 @@ def main() -> int:
             "threshold": round(threshold, 3), "same_person_pairs_accepted": float((genuine >= threshold).mean())
         }
 
-    # ---- the stranger tail: one picture each of many different people, every pair compared (3,000 people = 4.5 million pairs)
+    # the stranger tail: one picture each of many different people, every pair compared (3,000 people = 4.5 million pairs)
     tail_report = None
     if args.tail_people > 0:
         import random

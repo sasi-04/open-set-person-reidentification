@@ -1,11 +1,4 @@
-/**
- * FaceCrop: zoom in on one face inside a picture.
- *
- * In plain words: the matcher reports WHERE it found the face (a box in pixels). This draws just that part of the
- * picture, with a little margin, so a person can look at the two faces side by side - the one in the query and the one
- * in the closest enrolled photo - and judge for themselves. It only draws what the server already measured; it does
- * not detect or compare anything in the browser. Pictures behind the access key are fetched through the app's own client.
- */
+/** FaceCrop: zoom in on one face inside a picture. The matcher reports WHERE it found the face (a box in pixels). */
 import clsx from "clsx";
 import { UserRound } from "lucide-react";
 import { useEffect, useRef } from "react";

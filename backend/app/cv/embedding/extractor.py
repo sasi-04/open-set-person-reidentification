@@ -1,18 +1,4 @@
-"""
-The OSNet embedding extractor.
-
-In plain words: this class owns the loaded neural network. It is created ONCE
-when the server starts (loading weights is slow), put into evaluation mode,
-and then reused for every request. For each batch of person crops it:
-
-  1. resizes + normalises the pixels the way the network was trained;
-  2. runs the network with gradients switched off (``torch.inference_mode``);
-  3. optionally averages the result with the embedding of the mirrored crop
-     (flip test-time augmentation - a cheap trick that usually helps ReID);
-  4. L2-normalises, so every embedding has length 1 and a plain dot product
-     equals cosine similarity;
-  5. refuses to return anything that is not finite or not the right size.
-"""
+"""The OSNet embedding extractor. This class owns the loaded neural network."""
 
 from __future__ import annotations
 
@@ -70,7 +56,7 @@ class OSNetExtractor:
         self._mean = torch.tensor(spec.mean, dtype=torch.float32, device=device).view(1, 3, 1, 1)
         self._std = torch.tensor(spec.std, dtype=torch.float32, device=device).view(1, 3, 1, 1)
 
-    # ----------------------------------------------------------------- loading
+    # loading
     @classmethod
     def load(
         cls,
@@ -83,11 +69,7 @@ class OSNetExtractor:
         use_flip_tta: bool = False,
         fold_bn: bool = False,
     ) -> OSNetExtractor:
-        """Build the network, load verified weights, switch to eval mode. Raises ModelUnavailable.
-
-        ``fold_bn`` merges batch-norm layers into the convolutions: the same output, and a small (~4% on the
-        development CPU, not consistently measurable) speed-up. Off by default.
-        """
+        """Build the network, load verified weights, switch to eval mode. Raises ModelUnavailable."""
         started = time.perf_counter()
 
         if checkpoint is not None:
@@ -146,7 +128,7 @@ class OSNetExtractor:
         self.embed(list(dummy))
         self.warmup_seconds = time.perf_counter() - started
 
-    # --------------------------------------------------------------- inference
+    # inference
     @property
     def fingerprint(self) -> str:
         """Identifies the exact embedding function (used as a cache key in evaluation)."""
@@ -207,7 +189,7 @@ class OSNetExtractor:
             raise ProcessingFailed("Embeddings are not unit length after normalisation.")
         return embeddings
 
-    # ------------------------------------------------------------------ status
+    # status
     def info(self) -> dict:
         return {
             "architecture": self.spec.display_name,

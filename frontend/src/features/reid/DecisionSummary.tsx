@@ -1,12 +1,4 @@
-/**
- * DecisionSummary: the outcome for one person, with the real numbers behind it.
- *
- * In plain words: this panel never shows a "confidence %" made up from a similarity.
- * It shows the similarity, the threshold it was compared with, the margin to the
- * runner-up, and - only if a calibration was applied - a separately labelled calibrated
- * confidence. An unknown or review outcome looks like exactly that; it is never dressed
- * up as a success.
- */
+/** DecisionSummary: the outcome for one person, with the real numbers behind it. This panel never shows a "confidence %" made up from a similarity. */
 import { Link } from "react-router-dom";
 import { Badge, OutcomeBadge, PolicyBadge } from "@/components/ui/Badge";
 import { InfoTip } from "@/components/ui/InfoTip";

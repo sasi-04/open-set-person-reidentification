@@ -1,18 +1,5 @@
-"""
-Choose the acceptance threshold on the CALIBRATION split (the test split is never read).
-
-In plain words: the same workflow as the "Calibrate threshold" button in the Evaluation Lab, from the
-command line. You say what to hold fixed ("keep 90% of enrolled people accepted and correct" or "never
-let more than 1% of strangers in"), and it searches the calibration people for the threshold - and
-optionally a margin rule - that does best. If the target cannot be met it SAYS SO and refuses to call
-the result calibrated.
-
-    python scripts/calibrate_threshold.py --dataset market1501 --mode fixed_recall --target-recall 0.90
-    python scripts/calibrate_threshold.py --dataset market1501 --mode fixed_far --target-far 0.01 --max-identities 150
-
-The result is written to backend/data/reports/. To make it live: open "Model & Thresholds" and press
-"Apply this calibration" (it checks that the model matches), or run the same calibration from the
-Evaluation Lab, which stores it in the database.
+"""Choose the acceptance threshold on the CALIBRATION split (the test split is never read). The same
+workflow as the "Calibrate threshold" button in the Evaluation Lab, from the command line.
 """
 
 from __future__ import annotations

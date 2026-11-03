@@ -1,10 +1,4 @@
-/**
- * Toast notifications.
- *
- * In plain words: short messages in the corner. A toast is only shown AFTER the backend
- * has confirmed (or refused) an action - never optimistically. They live in an
- * aria-live region so screen-reader users hear them too, and errors stay longer.
- */
+/** Toast notifications. Short messages in the corner. */
 import clsx from "clsx";
 import { CheckCircle2, TriangleAlert, X } from "lucide-react";
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";

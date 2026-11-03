@@ -7,13 +7,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Candidate:
-    """One enrolled identity proposed for a query, with its retrieval score.
-
-    ``score`` is a cosine similarity (-1..1). It is a *retrieval score*, not a
-    probability - see ``open_set/confidence.py`` for the calibrated version.
-
-    With face matching switched on, ``score`` is the score of the evidence the candidate was judged by (``basis``) and
-    ``face_score`` / ``body_score`` hold what each fingerprint says separately (None = that fingerprint was not available).
+    """One enrolled identity proposed for a query, with its retrieval score. ``score`` is a cosine
+    similarity (-1..1).
     """
 
     rank: int  # 1 = most similar

@@ -1,11 +1,8 @@
-"""
-Request/response shapes for re-identification.
-
-Reading guide - four different numbers, deliberately named differently:
-    detector_score         how sure the DETECTOR is that the box holds a person
-    decision.top1_score    cosine SIMILARITY of the best enrolled candidate (a retrieval score)
-    decision.margin        top-1 minus top-2 similarity (an ambiguity signal)
-    decision.calibrated_confidence   fitted estimate that an accepted match is right (optional)
+"""Request/response shapes for re-identification. Reading guide - four different numbers, deliberately
+named differently: detector_score how sure the DETECTOR is that the box holds a person
+decision.top1_score cosine SIMILARITY of the best enrolled candidate (a retrieval score)
+decision.margin top-1 minus top-2 similarity (an ambiguity signal) decision.calibrated_confidence
+fitted estimate that an accepted match is right (optional)
 """
 
 from __future__ import annotations
@@ -103,7 +100,7 @@ class DecisionModel(BaseModel):
     policy_version: int
     policy_status: str
     quality_flags: list[str] = Field(default_factory=list)
-    # ---- face + body matching (all None / "body" when the policy is body-only)
+    # face + body matching (all None / "body" when the policy is body-only)
     matching_mode: str = Field(default="body", description="body | face_body: what the policy compared")
     basis: str = Field(default="body", description="face | body: the evidence `top1_score` and `accept_threshold` belong to")
     face_status: str | None = None

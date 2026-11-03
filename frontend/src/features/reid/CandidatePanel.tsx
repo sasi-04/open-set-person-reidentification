@@ -1,10 +1,4 @@
-/**
- * CandidatePanel: the ranked enrolled identities for the selected person.
- *
- * In plain words: ALL top candidates stay visible. If nothing was accepted, the panel
- * says "no supported match" and calls the first candidate the "closest candidate" - a
- * nearest neighbour is shown for transparency, never presented as an answer.
- */
+/** CandidatePanel: the ranked enrolled identities for the selected person. ALL top candidates stay visible. */
 import clsx from "clsx";
 import { Eye } from "lucide-react";
 import { Link } from "react-router-dom";

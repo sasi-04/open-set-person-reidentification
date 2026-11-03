@@ -1,10 +1,4 @@
-/**
- * FileDrop: drag-and-drop or browse for image files.
- *
- * In plain words: a drop area plus a real "Browse files" button (so keyboard users and
- * touch devices are not excluded). Each chosen file is checked for type and size; valid
- * files are passed on, and problems are listed in plain words.
- */
+/** FileDrop: drag-and-drop or browse for image files. A drop area plus a real "Browse files" button (so keyboard users and touch devices are not excluded). */
 import clsx from "clsx";
 import { ImagePlus, UploadCloud } from "lucide-react";
 import { useId, useRef, useState, type DragEvent } from "react";

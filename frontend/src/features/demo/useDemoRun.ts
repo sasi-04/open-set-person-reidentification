@@ -1,11 +1,4 @@
-/**
- * Running the example, one photo at a time.
- *
- * In plain words: "Run the example" asks the server to build its private example gallery (about 3 seconds), then to analyse
- * the 13 example photos one by one. Going one by one lets the page show progress and fill in rows as the answers arrive.
- * A finished run is kept for the rest of the visit, so going to another screen and coming back does not lose it.
- * Nothing is saved on the server: the example gallery lives only in memory and never touches the real gallery.
- */
+/** Running the example, one photo at a time. "Run the example" asks the server to build its private example gallery (about 3 seconds), then to analyse the 13 example photos one by one. */
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, keys } from "@/services/api";

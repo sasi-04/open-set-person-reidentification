@@ -1,10 +1,4 @@
-/**
- * VideoStatus: live progress of the current video job.
- *
- * In plain words: shows the job's REAL stage ("Frame 7 of about 30") and progress as reported by the backend,
- * with a Cancel button that really stops processing at the next frame. When it ends it says so once: finished,
- * failed (with the reason) or cancelled (nothing is kept).
- */
+/** VideoStatus: live progress of the current video job. Shows the job's REAL stage ("Frame 7 of about 30") and progress as reported by the backend, with a Cancel button that really stops processing at the next frame. */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircleStop } from "lucide-react";
 import { useEffect, useRef } from "react";

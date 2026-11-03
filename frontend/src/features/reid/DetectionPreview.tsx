@@ -1,11 +1,4 @@
-/**
- * DetectionPreview: the uploaded image with the detected people drawn on it.
- *
- * In plain words: each detected person is an actual <button> placed over the picture at
- * the detector's real box coordinates, so people can be selected with a mouse, a finger
- * or the keyboard. The number shown on a box is the DETECTOR's confidence that it is a
- * person - it is labelled as such, and is unrelated to who the person might be.
- */
+/** DetectionPreview: the uploaded image with the detected people drawn on it. Each detected person is an actual <button> placed over the picture at the detector's real box coordinates, so people can be selected with a mouse, a finger or the keyboard. */
 import clsx from "clsx";
 import type { Tone } from "@/lib/present";
 

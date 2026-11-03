@@ -1,25 +1,4 @@
-"""
-Run every demo scenario against the RUNNING OpenID Vision server and show the real results.
-
-In plain words: this does by script what you would do by hand in the web interface - enrol a few example people, then show the
-system pictures and short clips, and print what it decided and why. Nothing is faked or pre-recorded: every line comes from the
-live server's own answers, and each scenario states the answer it SHOULD give so you can see at a glance whether the system behaved.
-
-    python demo/run_demo.py                      # the scenarios (about 40 s on a laptop CPU)
-    python demo/run_demo.py --compare            # also re-run the face photos under the OLD clothing-only policy, side by side
-    python demo/run_demo.py --lab                # also the Lookalike Failure Lab on the synthetic smoke-test set (1-2 min)
-    python demo/run_demo.py --cleanup            # remove what the demo created
-
-The scenarios, in two parts:
-  PART A - FACE + BODY (the main show): the same person in different clothes and years is recognised; strangers are not.
-  PART B - NO USABLE FACE: pictures with the heads blurred (so no face can be used) show the safe fallback - the system will not
-           accept on clothing alone; it asks a person (REVIEW).
-It enrols three example people (reference IDs start with "demo-") and leaves them in the gallery so you can repeat any scenario by
-hand with the pictures in demo/samples/. Nothing else in the gallery is touched. The pictures are public domain (demo/samples/SOURCES.md).
-
-``--compare`` and ``--enable-faces`` create a new, audited policy version (and ``--compare`` puts the old one back at the end).
-Standard library only: runs with any Python 3.9+.
-"""
+"""Run every demo scenario against the RUNNING OpenID Vision server and show the real results."""
 
 from __future__ import annotations
 
@@ -60,7 +39,7 @@ def save_json(folder: Path, name: str, data) -> None:
     (folder / name).write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------------------------------- set-up
+# set-up
 def check_server(api: Api) -> dict:
     try:
         ready = api.get("/api/readiness")
@@ -89,7 +68,7 @@ def enrol_examples(api: Api) -> None:
         say(f"   enrolled {reference:<14} {len(photos)} photos, usable face on file in {usable}")
 
 
-# --------------------------------------------------------------------------------------------------- scenarios
+# scenarios
 class Report:
     def __init__(self) -> None:
         self.rows: list[dict] = []
@@ -258,7 +237,7 @@ def compare_with_body_only(api: Api, out: Path) -> None:
     (out / "comparison_clothing_vs_face.csv").write_text(buffer.getvalue(), encoding="utf-8")
 
 
-# ------------------------------------------------------------------------------------------------------ main
+# main
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--base-url", default="http://127.0.0.1:8000", help="where the server is running")

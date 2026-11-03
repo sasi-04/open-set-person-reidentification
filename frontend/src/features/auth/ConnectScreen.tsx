@@ -1,14 +1,4 @@
-/**
- * ConnectScreen: shown ONLY when the app cannot get in on its own.
- *
- * In plain words: by default the backend needs no access key, and this screen never appears.
- * It appears in two situations:
- *   1. the server was started with access keys switched on (REID_AUTH_REQUIRED=true) - then
- *      it takes a key, asks the backend what role it grants, and lets the person in;
- *   2. the backend cannot be reached at all - then it says so and offers "Try again".
- * Keys live in this browser tab (or on this device if "remember" is ticked) and are never
- * put in a URL.
- */
+/** ConnectScreen: shown ONLY when the app cannot get in on its own. By default the backend needs no access key, and this screen never appears. */
 import { ShieldCheck } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { Brand } from "@/components/layout/Brand";

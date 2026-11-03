@@ -1,11 +1,4 @@
-/**
- * AuthImage: shows an image that needs the access key.
- *
- * In plain words: a normal <img src="/api/..."> cannot send the X-API-Key header, so
- * reference images and stored crops would be blocked. This component downloads the
- * image through our authenticated client, shows it from an in-memory URL, and frees
- * that URL again when it disappears. Images are cached for a few minutes.
- */
+/** AuthImage: shows an image that needs the access key. A normal <img src="/api/..."> cannot send the X-API-Key header, so reference images and stored crops would be blocked. */
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { ImageOff, User } from "lucide-react";

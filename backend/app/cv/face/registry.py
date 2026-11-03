@@ -1,21 +1,5 @@
-"""
-The two face models and where their weight files come from.
-
-In plain words: face matching uses two small pretrained networks from the OpenCV model zoo,
-
-    YuNet   finds faces in a picture and marks five landmark points (eyes, nose, mouth corners)
-    SFace   turns an aligned 112x112 face into 128 numbers; two faces of the same person give
-            similar numbers (cosine similarity), faces of different people do not
-
-Like every other model here, the files are fetched ONLY by ``scripts/download_weights.py`` and are
-checked against the SHA-256 that the OpenCV zoo itself publishes in its Git-LFS pointer files
-(https://github.com/opencv/opencv_zoo, folders ``models/face_detection_yunet`` and
-``models/face_recognition_sface``). The app refuses a file whose hash differs.
-
-Licences: YuNet is MIT (libfacedetection.train), SFace is Apache-2.0 (opencv_zoo / zhongyy/SFace).
-Caveat, also stated in THIRD_PARTY_NOTICES.md: the networks were trained by their authors on public
-face datasets that have their own research terms; this project has not audited them. Research
-prototype only.
+"""The two face models and where their weight files come from. Face matching uses two small pretrained
+networks from the OpenCV model zoo,
 """
 
 from __future__ import annotations

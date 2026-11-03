@@ -1,11 +1,4 @@
-/**
- * ResultsView: the full result of one evaluation run.
- *
- * In plain words: a headline for the configuration that was selected (using calibration data
- * only), then tabs for the ablation table, the ROC curve, the score distributions, retrieval
- * accuracy, the same-clothing subset, speed and the experiment metadata. Everything shown is
- * read from the stored result; missing values are shown as "—", never as zero.
- */
+/** ResultsView: the full result of one evaluation run. A headline for the configuration that was selected (using calibration data only), then tabs for the ablation table, the ROC curve, the score distributions, retrieval accuracy, the same-clothing subset, speed and the experiment metadata. */
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/Badge";

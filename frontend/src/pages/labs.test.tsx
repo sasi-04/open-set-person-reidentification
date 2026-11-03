@@ -36,7 +36,7 @@ const video = (name = "lobby.mp4", size = 4096) => {
   return file;
 };
 
-// ======================================================================================= branding
+// branding
 describe("OpenID Vision identity", () => {
   it("names the product, carries the tagline and says it is not an official Zed Digital product", async () => {
     mockApi();
@@ -62,7 +62,7 @@ describe("OpenID Vision identity", () => {
   });
 });
 
-// ================================================================================ Command Center
+// Command Center
 describe("Command Center", () => {
   it("guides a first run with steps that tick themselves from real data", async () => {
     mockApi();
@@ -89,7 +89,7 @@ describe("Command Center", () => {
   });
 });
 
-// =================================================================================== Match Studio
+// Match Studio
 describe("Match Studio extras", () => {
   it("shows the query next to its closest reference and offers the backend's decision record", async () => {
     const api = mockApi({
@@ -112,7 +112,7 @@ describe("Match Studio extras", () => {
   });
 });
 
-// ================================================================================ Video Explorer
+// Video Explorer
 describe("Video Explorer", () => {
   it("states its scope: frame-by-frame, not tracking", async () => {
     mockApi();
@@ -251,7 +251,7 @@ describe("Video Explorer", () => {
   });
 });
 
-// ============================================================================ Lookalike Failure Lab
+// Lookalike Failure Lab
 describe("Lookalike Failure Lab", () => {
   it("explains how the lab works", async () => {
     mockApi();
@@ -430,7 +430,7 @@ describe("Lookalike Failure Lab", () => {
   });
 });
 
-// ================================================================================ Threshold sandbox
+// Threshold sandbox
 describe("Threshold sandbox", () => {
   function openSandbox() {
     const run = labRun();
@@ -504,7 +504,7 @@ describe("Threshold sandbox", () => {
   });
 });
 
-// ============================================================================= Model & System Settings
+// Model & System Settings
 describe("Model & System Settings", () => {
   it("separates validated from experimental settings on the model tab", async () => {
     mockApi({ "GET /api/model/status": () => ({ embedding: { ready: true, architecture: "OSNet-AIN x1.0" }, detector: { ready: true }, device: {}, gallery_index: { version: 1, identities: 0, images: 0 } }), "GET /api/config/history": () => [] });

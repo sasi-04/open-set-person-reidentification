@@ -1,13 +1,4 @@
-"""
-Is this vector fit to be compared?
-
-In plain words: the whole decision rests on comparing fingerprints (embeddings). A fingerprint that is
-broken - the wrong size, full of NaN, all zeros, or not scaled to length 1 - would still produce *a* number
-when compared, and that number could look like an ordinary "no match". So every vector is checked at the
-door of the search, and a bad one is reported as what it is: a PROCESSING ERROR with a reason, never as
-"unknown person". The same check protects the stored reference fingerprints when the gallery index is
-rebuilt: a corrupted one is set aside and marked failed instead of silently poisoning every search.
-"""
+"""Is this vector fit to be compared?. The whole decision rests on comparing fingerprints (embeddings)."""
 
 from __future__ import annotations
 

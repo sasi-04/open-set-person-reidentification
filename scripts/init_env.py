@@ -1,14 +1,5 @@
-"""
-Create your local ``.env`` file.
-
-In plain words: this script copies ``.env.example`` to ``.env`` and replaces the
-placeholder access keys with random ones. Access keys are OFF by default
-(``REID_AUTH_REQUIRED=false``), so you never need them on your own machine; they
-are generated now only so that switching them on later is a one-line change. The
-real ``.env`` is git-ignored, so the keys never leave your computer, and they are
-not printed. It will not overwrite an existing ``.env`` unless you pass ``--force``.
-
-    python scripts/init_env.py
+"""Create your local ``.env`` file. this script copies ``.env.example`` to ``.env`` and replaces the
+placeholder access keys with random ones.
 """
 
 from __future__ import annotations

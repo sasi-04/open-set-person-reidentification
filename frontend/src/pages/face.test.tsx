@@ -1,10 +1,4 @@
-/**
- * Face + body matching in the interface.
- *
- * In plain words: these tests check that what the server says about the FACE (and the body, and the colour cues) reaches
- * the screen truthfully - which evidence decided, both scores next to their own thresholds, why a face could not be
- * used - and that the controls for switching the mode send exactly what was chosen. The server is a pretend one.
- */
+/** Face + body matching in the interface. These tests check that what the server says about the FACE (and the body, and the colour cues) reaches the screen truthfully - which evidence decided, both scores next to their own thresholds, why a face could not be used - and that the controls for switching the mode send exactly what was chosen. */
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

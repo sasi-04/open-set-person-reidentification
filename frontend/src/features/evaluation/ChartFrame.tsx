@@ -1,11 +1,4 @@
-/**
- * ChartFrame: title, legend, plot area and a "data table" twin.
- *
- * In plain words: every chart sits in the same frame. The legend is HTML (so it is readable
- * by screen readers), the plot is sized to include its axis labels, and the exact numbers
- * behind the picture are always available as a table - a tooltip is never the only way to
- * read a value.
- */
+/** ChartFrame: title, legend, plot area and a "data table" twin. Every chart sits in the same frame. */
 import type { ReactNode } from "react";
 import { InfoTip } from "@/components/ui/InfoTip";
 

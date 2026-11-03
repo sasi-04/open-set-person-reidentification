@@ -1,27 +1,6 @@
-"""
-The threshold sandbox: "what would change if I moved the dial?"
-
-In plain words: when an evaluation finishes we keep one small table per split -
-for every query image, the best matching enrolled person, how similar they were,
-the gap to the runner-up and whether that person was the right one. Nothing
-else. This module lets you try ANY threshold (and margin rule) on that fixed
-table and see, immediately and with real numbers:
-
-  * how many strangers would be let in / how many enrolled people turned away,
-  * which individual queries would change their decision compared with the
-    calibrated rule, so you can look at them.
-
-Three guarantees, each covered by a test:
-
-  1. It only does arithmetic on the stored table. It never re-runs a model, so
-     the table is exactly the "fixed evaluation set" the original run produced.
-  2. It applies the SAME rule as the live decision engine
-     (``cv/open_set/decision_engine.py``, rules 3-5) - ``decide_rows`` is checked
-     against ``decide`` in ``tests/test_sandbox.py``.
-  3. It NEVER writes to the active decision policy. The only way to change the
-     production threshold is a calibration run on the calibration split followed
-     by an explicit "apply". Looking at test-split numbers while moving a slider
-     is exploration, not tuning, and the result says so.
+"""The threshold sandbox: "what would change if I moved the dial?". When an evaluation finishes we keep
+one small table per split - for every query image, the best matching enrolled person, how similar
+they were, the gap to the runner-up and whether that person was the right one.
 """
 
 from __future__ import annotations
@@ -35,9 +14,7 @@ ACCEPTED, REVIEW, UNKNOWN = "accepted", "review_required", "unknown"
 SANDBOX_VERSION = 1
 
 
-# ----------------------------------------------------------------------------------
 # Storing the table
-# ----------------------------------------------------------------------------------
 def build_split_rows(scored: ScoredSplit, dataset_root) -> dict:
     """One compact column-per-field table for a scored split (JSON-friendly)."""
     qs = scored.qs
@@ -84,17 +61,13 @@ def to_query_scores(rows: dict) -> m.QueryScores:
     )
 
 
-# ----------------------------------------------------------------------------------
 # The rule (same order as the live decision engine, rules 3-5)
-# ----------------------------------------------------------------------------------
 def decide_rows(top1_score: np.ndarray, margin: np.ndarray, threshold: float, min_margin: float | None,
                 margin_action: str) -> np.ndarray:
-    """Outcome per query: ``accepted`` / ``review_required`` / ``unknown``.
-
-    Rule 3: top-1 below the threshold            -> unknown
-    Rule 4: margin below the minimum (if set)    -> review_required (or unknown, if the policy rejects)
-    Rule 5: otherwise                            -> accepted
-    A missing runner-up (margin = +inf) can never fail the margin rule - exactly like the live engine.
+    """Outcome per query: ``accepted`` / ``review_required`` / ``unknown``. Rule 3: top-1 below the
+    threshold -> unknown Rule 4: margin below the minimum (if set) -> review_required (or unknown,
+    if the policy rejects) Rule 5: otherwise -> accepted A missing runner-up (margin = +inf) can
+    never fail the margin rule - exactly like the live engine.
     """
     outcome = np.full(len(top1_score), ACCEPTED, dtype=object)
     below = top1_score < threshold

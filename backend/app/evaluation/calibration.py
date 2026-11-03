@@ -1,23 +1,5 @@
-"""
-Choosing the operating point (threshold + margin) on CALIBRATION data.
-
-In plain words: the acceptance threshold is the dial that trades "let
-strangers in" against "turn enrolled people away". We never pick it by
-feel and never by looking at the final test results. This module picks it
-from the calibration split, in one of two modes:
-
-  fixed_recall (the PS-1 objective)  "Keep at least R% of enrolled people being
-                                      correctly accepted, and make the False Accept
-                                      Rate as small as possible."
-  fixed_far                          "Never let more than F% of strangers in, and
-                                      keep as many enrolled people as possible."
-
-It can also search a small grid of margin values (top-1 minus top-2) and keep
-the combination that works best on the calibration data. It tells the truth
-when it fails: if no threshold reaches the target, ``target_achieved`` is False
-and the report says what WAS reachable. It also reports the sample size and a
-95% upper confidence bound on the FAR, because a threshold selected on a small
-calibration set can not "guarantee" any particular FAR on new people.
+"""Choosing the operating point (threshold + margin) on CALIBRATION data. The acceptance threshold is
+the dial that trades "let strangers in" against "turn enrolled people away".
 """
 
 from __future__ import annotations

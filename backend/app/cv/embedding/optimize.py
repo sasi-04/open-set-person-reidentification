@@ -1,19 +1,6 @@
-"""
-Inference-only speed-up: fold batch normalisation into the convolutions.
-
-In plain words: at inference time a batch-norm layer is just "multiply by a constant, add a
-constant" per channel - the same thing a convolution followed by it can do in one step. So we
-rewrite each (convolution -> batch-norm) pair into a single convolution with adjusted weights.
-The network computes the SAME function (verified by a test to ~1e-5) but runs fewer operations.
-
-Why this exists: profiling the backbone on CPU showed convolutions at ~62% of the time and
-batch-norm at ~13% (see docs/PERFORMANCE.md), which suggested folding could save up to that much.
-HONEST RESULT: measured fairly (interleaved A/B runs) the saving on the development laptop was only
-about 4% for single crops and nothing in batches, within the noise of that machine. It is therefore
-OFF by default (REID_FOLD_BATCH_NORM) and kept as a tested, opt-in option for other hardware.
-
-This is applied once, after the weights are loaded and the model is in eval mode. A fused model
-can no longer be trained - the training code builds its own, un-fused copy.
+"""Inference-only speed-up: fold batch normalisation into the convolutions. At inference time a
+batch-norm layer is just "multiply by a constant, add a constant" per channel - the same thing a
+convolution followed by it can do in one step.
 """
 
 from __future__ import annotations

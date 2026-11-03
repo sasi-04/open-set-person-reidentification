@@ -1,18 +1,4 @@
-"""
-The re-identification workflow, start to finish.
-
-In plain words: for one uploaded picture this does, in order,
-
-    1. find the person (or people)               - detector, or a box/crop the user supplied
-    2. cut out each person and check crop quality
-    3. turn each crop into an embedding           - ONE batched pass through the network
-    4. rank the enrolled people by similarity     - gallery index
-    5. decide: accepted / unknown / review        - decision engine + the ACTIVE policy
-    6. write a history row (scores only)          - and keep the crop briefly, if retention allows
-    7. return everything, including how long each stage took
-
-Stage timings are measured with ``time.perf_counter`` around the real calls.
-"""
+"""The re-identification workflow, start to finish. For one uploaded picture this does, in order,"""
 
 from __future__ import annotations
 
@@ -81,9 +67,7 @@ def new_request_id() -> str:
     return uuid.uuid4().hex[:16]
 
 
-# ---------------------------------------------------------------------------------
 # Step 1: finding people
-# ---------------------------------------------------------------------------------
 def _quality_model(report: QualityReport) -> QualityModel:
     return QualityModel(**report.to_dict())
 
@@ -155,9 +139,7 @@ def _find_people(runtime: Runtime, image: DecodedImage, mode: PredictMode, raw_b
     return people
 
 
-# ---------------------------------------------------------------------------------
 # Step 2: the main workflow
-# ---------------------------------------------------------------------------------
 def _r(value: float | None) -> float | None:
     return None if value is None else round(value, 5)
 
@@ -355,9 +337,7 @@ def _notes(policy: DecisionPolicy, runtime: Runtime) -> list[str]:
     return notes
 
 
-# ---------------------------------------------------------------------------------
 # History
-# ---------------------------------------------------------------------------------
 _PRIORITY = ["accepted", "review_required", "unknown", "processing_error"]
 
 

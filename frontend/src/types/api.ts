@@ -1,17 +1,11 @@
-/**
- * Shapes of the data the backend sends.
- *
- * In plain words: these TypeScript types mirror the backend's response schemas
- * (backend/app/schemas). If a field is renamed on the server, the compiler tells
- * us here which screens must change.
- */
+/** Shapes of the data the backend sends. These TypeScript types mirror the backend's response schemas (backend/app/schemas). */
 
 export type Outcome = "accepted" | "unknown" | "review_required" | "processing_error";
 export type Role = "viewer" | "operator" | "admin";
 export type PolicyStatus = "unvalidated" | "experimental" | "calibrated";
 export type EmbeddingStatus = "ready" | "stale" | "failed" | "mixed";
 
-// ------------------------------------------------------------- re-identification
+// re-identification
 export interface Quality {
   usable: boolean;
   flags: string[];
@@ -163,7 +157,7 @@ export interface HistoryDetail {
   timings_ms: Record<string, number>;
 }
 
-// ----------------------------------------------------------------------- gallery
+// gallery
 export interface GalleryImage {
   image_uid: string;
   width: number;
@@ -232,7 +226,7 @@ export interface MutationResult {
   detail: Record<string, unknown>;
 }
 
-// ----------------------------------------------------------- configuration / model
+// configuration / model
 export interface Policy {
   version: number;
   accept_threshold: number;
@@ -311,7 +305,7 @@ export interface AuditEntry {
   detail: Record<string, unknown>;
 }
 
-// -------------------------------------------------------------------- evaluation
+// evaluation
 export interface DatasetInfo {
   name: string;
   layout: string;
@@ -529,7 +523,7 @@ export interface CalibrationResult {
   warnings: string[];
 }
 
-// ------------------------------------------------------------ Lookalike Failure Lab
+// Lookalike Failure Lab
 /** What the matcher did with one pair of photos: a different-person pair it accepted is a false accept. */
 export type PairDecision = "false_accept" | "correct_reject";
 
@@ -686,7 +680,7 @@ export interface LookalikeResult {
   warnings: string[];
 }
 
-// ----------------------------------------------------------------- threshold sandbox
+// threshold sandbox
 export interface SandboxInfo {
   run_id: string;
   kind: RunKind;
@@ -742,7 +736,7 @@ export interface SandboxResult {
   is_benchmark: boolean;
 }
 
-// ---------------------------------------------------------------------- Video Explorer
+// Video Explorer
 export interface VideoPerson {
   index: number;
   box: number[];
@@ -820,7 +814,7 @@ export interface VideoLimits {
   scope: string;
 }
 
-// ----------------------------------------------------------------------- overview
+// overview
 export interface Overview {
   gallery: { identities: number; images: number };
   inference: {
@@ -852,7 +846,7 @@ export interface Overview {
   recent_runs: RunSummary[];
 }
 
-// ----------------------------------------------------------------------- built-in example (open-set analysis)
+// built-in example (open-set analysis)
 export interface DemoRules {
   matching_mode: string;
   face_threshold: number;
